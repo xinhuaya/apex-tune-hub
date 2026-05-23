@@ -72,8 +72,8 @@ export const websiteConfig: WebsiteConfig = {
     provider: 'affonso',
   },
   analytics: {
-    enableVercelAnalytics: false,
-    enableSpeedInsights: false,
+    enableVercelAnalytics: true,
+    enableSpeedInsights: true,
   },
   apikeys: {
     enable: process.env.NEXT_PUBLIC_DEMO_WEBSITE === 'true',
