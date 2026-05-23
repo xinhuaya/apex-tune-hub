@@ -1,0 +1,720 @@
+'use client';
+
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import type { ReactNode } from 'react';
+import {
+  calculateDriftTune,
+  calculateGearRatio,
+  calculateTune,
+  classOptions,
+  drivetrainOptions,
+  formatResultForClipboard,
+  issueOptions,
+  raceTypeOptions,
+  styleOptions,
+  type CalculationResult,
+  type ClassBand,
+  type DriftInput,
+  type Drivetrain,
+  type GearInput,
+  type HandlingIssue,
+  type RaceType,
+  type Recommendation,
+  type TuneInput,
+} from '@/lib/tuning/forza-horizon-6';
+import { BookmarkPlusIcon, LinkIcon, Trash2Icon } from 'lucide-react';
+
+type StringRecord = Record<string, string>;
+type SavedPreset = {
+  id: string;
+  title: string;
+  summary: string;
+  url: string;
+  createdAt: string;
+};
+type PresetConfig<T extends StringRecord> = {
+  [K in keyof T]: {
+    key: string;
+    values: readonly T[K][];
+  };
+};
+
+function parsePresetInput<T extends StringRecord>(
+  defaults: T,
+  config: PresetConfig<T>
+): T {
+  if (typeof window === 'undefined') {
+    return defaults;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const nextInput = { ...defaults };
+
+  for (const key of Object.keys(config) as Array<keyof T>) {
+    const paramValue = params.get(config[key].key);
+    if (paramValue && config[key].values.includes(paramValue as T[keyof T])) {
+      nextInput[key] = paramValue as T[typeof key];
+    }
+  }
+
+  return nextInput;
+}
+
+function buildPresetUrl<T extends StringRecord>(
+  input: T,
+  config: PresetConfig<T>
+) {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const url = new URL(window.location.href);
+
+  for (const key of Object.keys(config) as Array<keyof T>) {
+    url.searchParams.set(config[key].key, input[key]);
+  }
+
+  return url.toString();
+}
+
+function storageKeyFor(toolId: string) {
+  return `apex-tune-hub:${toolId}:saved-presets`;
+}
+
+function readSavedPresets(toolId: string): SavedPreset[] {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(storageKeyFor(toolId));
+    if (!rawValue) {
+      return [];
+    }
+
+    const parsed = JSON.parse(rawValue);
+    return Array.isArray(parsed) ? parsed.slice(0, 6) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeSavedPresets(toolId: string, presets: SavedPreset[]) {
+  window.localStorage.setItem(
+    storageKeyFor(toolId),
+    JSON.stringify(presets.slice(0, 6))
+  );
+}
+
+function usePresetUrl<T extends StringRecord>(
+  defaults: T,
+  config: PresetConfig<T>
+) {
+  const [input, setInput] = useState<T>(defaults);
+  const [shareUrl, setShareUrl] = useState('');
+  const hasReadUrl = useRef(false);
+
+  useEffect(() => {
+    const parsed = parsePresetInput(defaults, config);
+    hasReadUrl.current = true;
+    setInput(parsed);
+    setShareUrl(buildPresetUrl(parsed, config));
+  }, [defaults, config]);
+
+  useEffect(() => {
+    if (!hasReadUrl.current || typeof window === 'undefined') {
+      return;
+    }
+
+    const presetUrl = buildPresetUrl(input, config);
+    setShareUrl(presetUrl);
+    window.history.replaceState(null, '', presetUrl);
+  }, [input, config]);
+
+  return [input, setInput, shareUrl] as const;
+}
+
+async function writeClipboard(text: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Fall through to textarea copy for browsers that block Clipboard API.
+    }
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+}
+
+const tuneDefaults: TuneInput = {
+  raceType: 'road',
+  drivetrain: 'AWD',
+  classBand: 'S1',
+  handlingIssue: 'understeer',
+  drivingStyle: 'balanced',
+};
+
+const tunePresetConfig: PresetConfig<TuneInput> = {
+  raceType: {
+    key: 'race',
+    values: raceTypeOptions.map((option) => option.value),
+  },
+  drivetrain: {
+    key: 'drive',
+    values: drivetrainOptions.map((option) => option.value),
+  },
+  classBand: {
+    key: 'class',
+    values: classOptions.map((option) => option.value),
+  },
+  handlingIssue: {
+    key: 'issue',
+    values: issueOptions.map((option) => option.value),
+  },
+  drivingStyle: {
+    key: 'style',
+    values: styleOptions.map((option) => option.value),
+  },
+};
+
+const driftDefaults: DriftInput = {
+  drivetrain: 'RWD',
+  powerLevel: 'medium',
+  tireGrip: 'drift',
+  problem: 'no-angle',
+  skillLevel: 'beginner',
+};
+
+const driftPresetConfig: PresetConfig<DriftInput> = {
+  drivetrain: {
+    key: 'drive',
+    values: ['RWD', 'AWD'],
+  },
+  powerLevel: {
+    key: 'power',
+    values: ['low', 'medium', 'high'],
+  },
+  tireGrip: {
+    key: 'tires',
+    values: ['street', 'sport', 'race', 'drift'],
+  },
+  problem: {
+    key: 'issue',
+    values: [
+      'spins-out',
+      'no-angle',
+      'bogs-down',
+      'snaps-back',
+      'too-slippery',
+    ],
+  },
+  skillLevel: {
+    key: 'skill',
+    values: ['beginner', 'intermediate', 'advanced'],
+  },
+};
+
+const gearDefaults: GearInput = {
+  raceType: 'road',
+  gears: '6',
+  priority: 'balanced',
+  symptom: 'bogs-after-shift',
+};
+
+const gearPresetConfig: PresetConfig<GearInput> = {
+  raceType: {
+    key: 'race',
+    values: raceTypeOptions.map((option) => option.value),
+  },
+  gears: {
+    key: 'gears',
+    values: ['4', '5', '6', '7', '8', '9', '10'],
+  },
+  priority: {
+    key: 'priority',
+    values: ['acceleration', 'balanced', 'top-speed'],
+  },
+  symptom: {
+    key: 'issue',
+    values: [
+      'hits-limiter',
+      'never-top-gear',
+      'slow-launch',
+      'bogs-after-shift',
+      'wheelspin',
+    ],
+  },
+};
+
+function SelectField<T extends string>({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: T;
+  onChange: (value: T) => void;
+  options: Array<{ value: T; label: string }>;
+}) {
+  const id = useId();
+
+  return (
+    <label
+      className="grid gap-2 text-sm font-medium text-zinc-200"
+      htmlFor={id}
+    >
+      <span>{label}</span>
+      <select
+        id={id}
+        className="forza-select"
+        value={value}
+        onChange={(event) => onChange(event.target.value as T)}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function ToolShell({
+  eyebrow,
+  toolId,
+  title,
+  description,
+  children,
+  result,
+  shareUrl,
+}: {
+  eyebrow: string;
+  toolId: string;
+  title: string;
+  description: string;
+  children: ReactNode;
+  result: CalculationResult;
+  shareUrl: string;
+}) {
+  const [copied, setCopied] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
+
+  useEffect(() => {
+    setSavedPresets(readSavedPresets(toolId));
+  }, [toolId]);
+
+  async function copyResult() {
+    await writeClipboard(formatResultForClipboard(result));
+  }
+
+  async function copyPresetUrl() {
+    if (!shareUrl) {
+      return;
+    }
+
+    await writeClipboard(shareUrl);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
+  }
+
+  function savePreset() {
+    if (!shareUrl) {
+      return;
+    }
+
+    const preset: SavedPreset = {
+      id: `${Date.now()}`,
+      title: result.title,
+      summary: result.summary,
+      url: shareUrl,
+      createdAt: new Date().toISOString(),
+    };
+    const nextPresets = [
+      preset,
+      ...savedPresets.filter((item) => item.url !== shareUrl),
+    ].slice(0, 6);
+
+    writeSavedPresets(toolId, nextPresets);
+    setSavedPresets(nextPresets);
+    setSaved(true);
+    window.setTimeout(() => setSaved(false), 1800);
+  }
+
+  function deletePreset(id: string) {
+    const nextPresets = savedPresets.filter((item) => item.id !== id);
+    writeSavedPresets(toolId, nextPresets);
+    setSavedPresets(nextPresets);
+  }
+
+  return (
+    <section className="forza-page mx-auto w-full px-4 py-10 text-zinc-50 sm:px-6 lg:px-8">
+      <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-80 opacity-30" />
+      <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="forza-panel relative p-5">
+          <p className="forza-chip">{eyebrow}</p>
+          <h1 className="forza-neon-title mt-3 text-3xl font-semibold tracking-normal text-zinc-50 sm:text-4xl">
+            {title}
+          </h1>
+          <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
+          <div className="mt-6 grid gap-4">{children}</div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <button
+              className="forza-primary-button h-11 w-full focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
+              type="button"
+              onClick={copyResult}
+            >
+              Copy setup notes
+            </button>
+            <button
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-amber-300/30 bg-amber-300/10 px-4 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/15 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
+              type="button"
+              onClick={savePreset}
+            >
+              <BookmarkPlusIcon className="size-4" />
+              {saved ? 'Saved' : 'Save preset'}
+            </button>
+            <button
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-cyan-300/30 bg-cyan-300/10 px-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-300/15 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
+              type="button"
+              onClick={copyPresetUrl}
+            >
+              <LinkIcon className="size-4" />
+              {copied ? 'Link copied' : 'Copy preset link'}
+            </button>
+          </div>
+          <p className="mt-4 text-xs leading-5 text-zinc-500">
+            Preset links keep the selected options in the URL. These outputs are
+            baseline tuning notes, so test in-game before calling a setup final.
+          </p>
+          {savedPresets.length > 0 ? (
+            <div className="mt-5 border-t border-white/10 pt-5">
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="text-sm font-semibold text-zinc-100">
+                  Saved on this device
+                </h2>
+                <span className="text-xs text-zinc-500">
+                  {savedPresets.length}/6
+                </span>
+              </div>
+              <div className="mt-3 grid gap-2">
+                {savedPresets.map((preset) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-3"
+                    key={preset.id}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <a className="min-w-0 flex-1 text-left" href={preset.url}>
+                        <span className="block truncate text-sm font-semibold text-cyan-100">
+                          {preset.summary}
+                        </span>
+                        <span className="mt-1 block text-xs text-zinc-500">
+                          {new Date(preset.createdAt).toLocaleDateString()}
+                        </span>
+                      </a>
+                      <button
+                        aria-label="Delete saved preset"
+                        className="inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-white/10 text-zinc-500 transition hover:border-red-300/40 hover:bg-red-300/10 hover:text-red-200"
+                        type="button"
+                        onClick={() => deletePreset(preset.id)}
+                      >
+                        <Trash2Icon className="size-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+        <ResultPanel result={result} />
+      </div>
+    </section>
+  );
+}
+
+function ResultPanel({ result }: { result: CalculationResult }) {
+  return (
+    <div className="forza-panel relative p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-zinc-800 pb-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+            Generated baseline
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold text-zinc-50">
+            {result.title}
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-zinc-400">
+            {result.summary}
+          </p>
+        </div>
+        <span className="rounded-md border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">
+          {result.confidence}
+        </span>
+      </div>
+      <div className="mt-5 grid gap-3">
+        {result.recommendations.map((item) => (
+          <RecommendationCard item={item} key={item.setting} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RecommendationCard({ item }: { item: Recommendation }) {
+  return (
+    <article className="forza-card p-4">
+      <h3 className="text-base font-semibold text-zinc-50">{item.setting}</h3>
+      <p className="mt-2 text-sm leading-6 text-zinc-200">
+        {item.recommendation}
+      </p>
+      <div className="mt-3 grid gap-2 text-xs leading-5 text-zinc-500 sm:grid-cols-2">
+        <p>
+          <span className="font-semibold text-zinc-400">Why: </span>
+          {item.why}
+        </p>
+        <p>
+          <span className="font-semibold text-zinc-400">Test: </span>
+          {item.test}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+export function ForzaTuneCalculator() {
+  const [input, setInput, shareUrl] = usePresetUrl(
+    tuneDefaults,
+    tunePresetConfig
+  );
+
+  const result = useMemo(() => calculateTune(input), [input]);
+  const updateInput = useCallback(
+    (patch: Partial<TuneInput>) => {
+      setInput((current) => ({ ...current, ...patch }));
+    },
+    [setInput]
+  );
+
+  return (
+    <ToolShell
+      eyebrow="Forza Horizon 6 tool"
+      toolId="tune"
+      title="Tune Calculator"
+      description="Choose the race type, drivetrain, class, and main handling problem. The calculator returns a baseline direction you can test before saving a car-specific setup."
+      result={result}
+      shareUrl={shareUrl}
+    >
+      <SelectField
+        label="Race type"
+        value={input.raceType}
+        onChange={(raceType: RaceType) => updateInput({ raceType })}
+        options={raceTypeOptions}
+      />
+      <SelectField
+        label="Drivetrain"
+        value={input.drivetrain}
+        onChange={(drivetrain: Drivetrain) => updateInput({ drivetrain })}
+        options={drivetrainOptions}
+      />
+      <SelectField
+        label="Class"
+        value={input.classBand}
+        onChange={(classBand: ClassBand) => updateInput({ classBand })}
+        options={classOptions}
+      />
+      <SelectField
+        label="Main problem"
+        value={input.handlingIssue}
+        onChange={(handlingIssue: HandlingIssue) =>
+          updateInput({ handlingIssue })
+        }
+        options={issueOptions}
+      />
+      <SelectField
+        label="Driving style"
+        value={input.drivingStyle}
+        onChange={(drivingStyle: TuneInput['drivingStyle']) =>
+          updateInput({ drivingStyle })
+        }
+        options={styleOptions}
+      />
+    </ToolShell>
+  );
+}
+
+export function ForzaDriftTuneCalculator() {
+  const [input, setInput, shareUrl] = usePresetUrl(
+    driftDefaults,
+    driftPresetConfig
+  );
+
+  const result = useMemo(() => calculateDriftTune(input), [input]);
+  const updateInput = useCallback(
+    (patch: Partial<DriftInput>) => {
+      setInput((current) => ({ ...current, ...patch }));
+    },
+    [setInput]
+  );
+
+  return (
+    <ToolShell
+      eyebrow="Forza Horizon 6 tool"
+      toolId="drift"
+      title="Drift Tune Calculator"
+      description="Pick your drift build style and the problem you are trying to fix. Use the output as a repeatable first test, then refine around your car and controller or wheel."
+      result={result}
+      shareUrl={shareUrl}
+    >
+      <SelectField
+        label="Drivetrain"
+        value={input.drivetrain}
+        onChange={(drivetrain: DriftInput['drivetrain']) =>
+          updateInput({ drivetrain })
+        }
+        options={[
+          { value: 'RWD', label: 'RWD' },
+          { value: 'AWD', label: 'AWD' },
+        ]}
+      />
+      <SelectField
+        label="Power level"
+        value={input.powerLevel}
+        onChange={(powerLevel: DriftInput['powerLevel']) =>
+          updateInput({ powerLevel })
+        }
+        options={[
+          { value: 'low', label: 'Low' },
+          { value: 'medium', label: 'Medium' },
+          { value: 'high', label: 'High' },
+        ]}
+      />
+      <SelectField
+        label="Tire grip"
+        value={input.tireGrip}
+        onChange={(tireGrip: DriftInput['tireGrip']) =>
+          updateInput({ tireGrip })
+        }
+        options={[
+          { value: 'street', label: 'Street' },
+          { value: 'sport', label: 'Sport' },
+          { value: 'race', label: 'Race' },
+          { value: 'drift', label: 'Drift' },
+        ]}
+      />
+      <SelectField
+        label="Main problem"
+        value={input.problem}
+        onChange={(problem: DriftInput['problem']) => updateInput({ problem })}
+        options={[
+          { value: 'spins-out', label: 'Spins out' },
+          { value: 'no-angle', label: 'Cannot hold angle' },
+          { value: 'bogs-down', label: 'Bogs down' },
+          { value: 'snaps-back', label: 'Snaps back on transition' },
+          { value: 'too-slippery', label: 'Feels too slippery' },
+        ]}
+      />
+      <SelectField
+        label="Skill level"
+        value={input.skillLevel}
+        onChange={(skillLevel: DriftInput['skillLevel']) =>
+          updateInput({ skillLevel })
+        }
+        options={[
+          { value: 'beginner', label: 'Beginner' },
+          { value: 'intermediate', label: 'Intermediate' },
+          { value: 'advanced', label: 'Advanced' },
+        ]}
+      />
+    </ToolShell>
+  );
+}
+
+export function ForzaGearRatioCalculator() {
+  const [input, setInput, shareUrl] = usePresetUrl(
+    gearDefaults,
+    gearPresetConfig
+  );
+
+  const result = useMemo(() => calculateGearRatio(input), [input]);
+  const updateInput = useCallback(
+    (patch: Partial<GearInput>) => {
+      setInput((current) => ({ ...current, ...patch }));
+    },
+    [setInput]
+  );
+
+  return (
+    <ToolShell
+      eyebrow="Forza Horizon 6 tool"
+      toolId="gear"
+      title="Gear Ratio Calculator"
+      description="Tune final drive and gear spacing around the route, not just the biggest speed number. The output tells you what to test first."
+      result={result}
+      shareUrl={shareUrl}
+    >
+      <SelectField
+        label="Race type"
+        value={input.raceType}
+        onChange={(raceType: RaceType) => updateInput({ raceType })}
+        options={raceTypeOptions}
+      />
+      <SelectField
+        label="Number of gears"
+        value={input.gears}
+        onChange={(gears: GearInput['gears']) => updateInput({ gears })}
+        options={[
+          { value: '4', label: '4 gears' },
+          { value: '5', label: '5 gears' },
+          { value: '6', label: '6 gears' },
+          { value: '7', label: '7 gears' },
+          { value: '8', label: '8 gears' },
+          { value: '9', label: '9 gears' },
+          { value: '10', label: '10 gears' },
+        ]}
+      />
+      <SelectField
+        label="Priority"
+        value={input.priority}
+        onChange={(priority: GearInput['priority']) =>
+          updateInput({ priority })
+        }
+        options={[
+          { value: 'acceleration', label: 'Acceleration' },
+          { value: 'balanced', label: 'Balanced' },
+          { value: 'top-speed', label: 'Top speed' },
+        ]}
+      />
+      <SelectField
+        label="Current symptom"
+        value={input.symptom}
+        onChange={(symptom: GearInput['symptom']) => updateInput({ symptom })}
+        options={[
+          { value: 'hits-limiter', label: 'Hits limiter too early' },
+          { value: 'never-top-gear', label: 'Never reaches top gear' },
+          { value: 'slow-launch', label: 'Slow launch' },
+          { value: 'bogs-after-shift', label: 'Bogs after shift' },
+          { value: 'wheelspin', label: 'Wheelspin on launch' },
+        ]}
+      />
+    </ToolShell>
+  );
+}
