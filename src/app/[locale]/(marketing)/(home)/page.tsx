@@ -67,8 +67,8 @@ export default function HomePage() {
     <main className="forza-page text-zinc-50">
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-[34rem] opacity-35" />
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
-          <div className="flex flex-col justify-center">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-20">
+          <div className="min-w-0 max-w-full flex flex-col justify-center">
             <p className="forza-chip">Forza Horizon 6 tuning tools</p>
             <h1 className="forza-neon-title mt-6 max-w-3xl text-4xl font-semibold tracking-normal text-zinc-50 sm:text-5xl lg:text-6xl">
               Build faster tunes without guessing every slider.
@@ -121,11 +121,11 @@ export default function HomePage() {
                       href={tool.href}
                       className="forza-card group p-4"
                     >
-                      <div className="flex items-start gap-3">
+                      <div className="flex min-w-0 items-start gap-3">
                         <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-cyan-300/30 bg-cyan-300/10 text-cyan-200">
                           <Icon className="size-4" />
                         </span>
-                        <span>
+                        <span className="min-w-0">
                           <span className="block text-base font-semibold text-zinc-50">
                             {tool.title}
                           </span>

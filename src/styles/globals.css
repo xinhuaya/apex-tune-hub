@@ -500,14 +500,14 @@ html {
   }
 
   .forza-panel {
-    @apply rounded-md border border-white/10 bg-[#080b10]/90 shadow-2xl shadow-black/50;
+    @apply min-w-0 max-w-full rounded-md border border-white/10 bg-[#080b10]/90 shadow-2xl shadow-black/50;
     box-shadow:
       0 24px 80px rgb(0 0 0 / 0.48),
       inset 0 1px 0 rgb(255 255 255 / 0.06);
   }
 
   .forza-card {
-    @apply rounded-md border border-white/10 bg-[#07090d]/85 transition;
+    @apply min-w-0 max-w-full rounded-md border border-white/10 bg-[#07090d]/85 transition;
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
   }
 
