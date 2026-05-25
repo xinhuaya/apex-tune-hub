@@ -20,7 +20,7 @@ export async function generateMetadata({
   return constructMetadata({
     title: 'Forza Horizon 6 Guides - Tuning, Settings, and Setup Help',
     description:
-      'Forza Horizon 6 tuning guides for beginners, understeer, oversteer, gear ratios, wheel settings, and Steam Deck settings.',
+      'Forza Horizon 6 tuning guides for starter cars, Japan drift setups, A and S1 road racing, handling fixes, gearing, wheel settings, and Steam Deck settings.',
     locale,
     pathname: '/games/forza-horizon-6/guides',
   });
@@ -62,8 +62,9 @@ export default function ForzaHorizon6GuidesPage() {
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
                 Practical setup guides for the questions players keep searching
-                after launch: how to tune, how to fix handling problems, and
-                which settings to start with.
+                after launch: which starter cars to build, how to tune Japan
+                routes, how to fix handling problems, and which settings to
+                start with.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="forza-primary-button">
@@ -90,8 +91,8 @@ export default function ForzaHorizon6GuidesPage() {
               </h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
                 Start with the launch plan, use the beginner guide for a clean
-                baseline, then open the handling fixes when a car pushes wide,
-                snaps loose, or loses speed after shifts.
+                baseline, then pick starter car, drift, road racing, or handling
+                fixes based on the event you are trying to finish.
               </p>
             </div>
           </div>

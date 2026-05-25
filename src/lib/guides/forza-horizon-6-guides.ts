@@ -79,6 +79,177 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-starter-cars',
+    title: 'Best Starter Cars in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best starter cars in Forza Horizon 6',
+    description:
+      'How to choose the best starter cars in Forza Horizon 6 for road racing, drifting, rally, and early weekly events without wasting credits.',
+    eyebrow: 'Starter cars',
+    intro:
+      'The best first car is the one that teaches the route, survives mistakes, and upgrades cleanly. Pick starter builds by role instead of buying the loudest S2 car on day one.',
+    primaryCta: {
+      label: 'Browse Best Cars',
+      href: '/games/forza-horizon-6/best-cars',
+    },
+    relatedLinks: [
+      {
+        label: 'Car database',
+        href: '/games/forza-horizon-6/cars',
+      },
+      {
+        label: 'Best road racing cars',
+        href: '/games/forza-horizon-6/best-road-racing-cars',
+      },
+      {
+        label: 'Best rally cars',
+        href: '/games/forza-horizon-6/best-rally-cars',
+      },
+    ],
+    sections: [
+      {
+        title: 'Pick one car per job',
+        body: 'Early credits go further when each car has a clear use. A road car, a dirt car, and a drift car will help more than three similar high-power street builds.',
+        bullets: [
+          'Road starter: predictable braking, stable turn-in, and enough grip for city routes.',
+          'Dirt starter: forgiving suspension, AWD traction, and clean recovery after jumps.',
+          'Drift starter: controllable power delivery before extreme angle tuning.',
+        ],
+      },
+      {
+        title: 'Avoid overbuilding too early',
+        body: 'A starter car should help you learn the map. If an upgrade makes every exit messy, the car is not faster for real events yet.',
+        bullets: [
+          'Keep early road cars in A or S1 until the route feels repeatable.',
+          'Add tires, weight, and handling before maxing horsepower.',
+          'Save one stock-ish version so you can compare upgrades honestly.',
+        ],
+      },
+      {
+        title: 'Prioritize weekly usefulness',
+        body: 'The best starter garage covers playlist restrictions. Build cars that can handle road, dirt, drift zones, and speed traps without needing a full rebuild every week.',
+        bullets: [
+          'Keep one flexible AWD tune for mixed events.',
+          'Keep one RWD drift tune for angle and recovery practice.',
+          'Keep one clean road tune for seasonal championships.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'japan-drift-setup',
+    title: 'Forza Horizon 6 Japan Drift Setup Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 Japan drift setup guide',
+    description:
+      'A Forza Horizon 6 drift setup guide for Japan mountain roads, city transitions, throttle control, gearing, and beginner-friendly drift baselines.',
+    eyebrow: 'Drift setup',
+    intro:
+      'Japan drift routes reward rhythm more than raw power. Build a setup that initiates cleanly, holds angle without panic corrections, and recovers before the next transition.',
+    primaryCta: {
+      label: 'Open Drift Calculator',
+      href: '/tools/forza-horizon-6-drift-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Best drift cars',
+        href: '/games/forza-horizon-6/best-drift-cars',
+      },
+      {
+        label: 'JDM cars',
+        href: '/games/forza-horizon-6/best-jdm-cars',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+    ],
+    sections: [
+      {
+        title: 'Choose control before angle',
+        body: 'Huge angle looks good in clips but can make linked corners harder. The first drift tune should recover fast enough to catch the next corner.',
+        bullets: [
+          'Use moderate power until throttle control feels natural.',
+          'Keep steering response quick without making the rear snap instantly.',
+          'Test linked corners instead of one isolated slide.',
+        ],
+      },
+      {
+        title: 'Gear for the drift zone',
+        body: 'A drift car that keeps falling out of power will feel inconsistent. Set the useful gear for the section, not for top speed.',
+        bullets: [
+          'Shorten gearing if the car bogs mid-corner.',
+          'Lengthen gearing if the tires instantly light up and kill direction.',
+          'Use one main drift gear for repeatable scoring runs.',
+        ],
+      },
+      {
+        title: 'Separate mountain and city tunes',
+        body: 'Mountain roads need flow and recovery. City drift routes often need sharper transitions and lower-speed control.',
+        bullets: [
+          'Mountain setup: smoother transitions and calmer throttle response.',
+          'City setup: quicker initiation and shorter gearing for tight sections.',
+          'Save both presets so weekly drift zones are faster to prepare.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'a-s1-road-racing-tune',
+    title: 'Forza Horizon 6 A and S1 Road Racing Tune Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 A and S1 road racing tune guide',
+    description:
+      'A Forza Horizon 6 road racing tune guide for A-class and S1-class builds, covering grip, braking, gearing, understeer, and route testing.',
+    eyebrow: 'Road racing',
+    intro:
+      'A and S1 are the workhorse classes for learning Japan routes. A clean tune in these classes is easier to repeat, easier to upgrade, and more useful for weekly racing than a nervous max-power build.',
+    primaryCta: {
+      label: 'Open Road Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Best road racing cars',
+        href: '/games/forza-horizon-6/best-road-racing-cars',
+      },
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build A class for learning',
+        body: 'A-class road tunes make handling problems easier to see. Start here when learning a new route or testing a new car.',
+        bullets: [
+          'Prioritize tires, brakes, weight, and balance before big power.',
+          'Use short technical routes to spot understeer and braking instability.',
+          'Keep gearing tight enough for slow exits and traffic-heavy roads.',
+        ],
+      },
+      {
+        title: 'Move to S1 for pace',
+        body: 'S1 builds should feel like stronger A-class cars, not different cars entirely. Add speed only after corner exits are repeatable.',
+        bullets: [
+          'If S1 creates wheelspin, calm differential and lower gears first.',
+          'If S1 pushes wide, improve rotation before adding aero.',
+          'If the car feels nervous, reduce aggressive alignment changes.',
+        ],
+      },
+      {
+        title: 'Test on mixed road sections',
+        body: 'Japan road events can combine city corners, fast sweepers, elevation, and rain. A good road tune survives all four without becoming dramatic.',
+        bullets: [
+          'Run one dry route and one wet or rough route before saving a preset.',
+          'Compare consistency over three runs, not only the fastest lap.',
+          'Keep separate safe and aggressive versions for weekly events.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'beginner-tuning-guide',
     title: 'Forza Horizon 6 Beginner Tuning Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 beginner tuning guide',
