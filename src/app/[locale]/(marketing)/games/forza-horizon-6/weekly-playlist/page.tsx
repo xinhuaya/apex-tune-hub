@@ -1,3 +1,4 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -8,7 +9,13 @@ import {
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
-import { CalendarDaysIcon, CarIcon, MailIcon, TrophyIcon } from 'lucide-react';
+import {
+  CalendarDaysIcon,
+  CarIcon,
+  GaugeIcon,
+  MailIcon,
+  TrophyIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -42,6 +49,36 @@ const baselineLinks = [
     title: 'Starter garage',
     href: '/games/forza-horizon-6/guides/best-starter-cars',
     note: 'Use when the playlist needs quick coverage across several event types.',
+  },
+];
+const weeklyPrepLinks = [
+  {
+    title: 'Road championship prep',
+    eventType: 'Road or street',
+    carLink: '/games/forza-horizon-6/best-road-racing-cars',
+    tuneLink: '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
+    guideLink: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+  },
+  {
+    title: 'Drift zone prep',
+    eventType: 'Drift zone',
+    carLink: '/games/forza-horizon-6/best-drift-cars',
+    tuneLink: '/tools/forza-horizon-6-drift-tune-calculator',
+    guideLink: '/games/forza-horizon-6/guides/japan-drift-setup',
+  },
+  {
+    title: 'Dirt and rally prep',
+    eventType: 'Dirt or rally',
+    carLink: '/games/forza-horizon-6/best-rally-cars',
+    tuneLink: '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
+    guideLink: '/games/forza-horizon-6/guides/beginner-tuning',
+  },
+  {
+    title: 'Speed and drag prep',
+    eventType: 'Speed trap or drag',
+    carLink: '/games/forza-horizon-6/best-cars',
+    tuneLink: '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
+    guideLink: '/tools/forza-horizon-6-gear-ratio-calculator',
   },
 ];
 
@@ -201,6 +238,43 @@ export default function WeeklyPlaylistPage() {
         </div>
 
         <div className="forza-panel mt-6 p-5">
+          <div className="flex items-center gap-3">
+            <GaugeIcon className="size-5 text-cyan-300" />
+            <h2 className="text-xl font-semibold">Weekly tune path matrix</h2>
+          </div>
+          <div className="mt-4 grid gap-3 lg:grid-cols-4">
+            {weeklyPrepLinks.map((item) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={item.title}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  {item.eventType}
+                </p>
+                <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {[
+                    ['Cars', item.carLink],
+                    ['Tune', item.tuneLink],
+                    ['Guide', item.guideLink],
+                  ].map(([label, href]) => (
+                    <LocaleLink
+                      className="rounded-md border border-white/10 px-3 py-2 text-xs font-semibold text-zinc-300 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                      href={href}
+                      key={href}
+                    >
+                      {label}
+                    </LocaleLink>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
           <h2 className="text-xl font-semibold">FAQ</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             {weeklyFaqs.map((faq) => (
@@ -219,6 +293,10 @@ export default function WeeklyPlaylistPage() {
           </div>
         </div>
       </section>
+      <ApexNewsletterCta
+        description="Get weekly FH6 event restrictions, safe car picks, tune links, and car page updates in one short setup note."
+        title="Follow FH6 weekly setup notes"
+      />
     </main>
   );
 }

@@ -55,6 +55,28 @@ const carPassFaqs = [
       'Transparent labels prevent fake certainty. Cars should move into tested notes only after official source checks and route or event testing.',
   },
 ];
+const carPassWorkflow = [
+  {
+    title: 'Verify source first',
+    text: 'Keep the car labelled To verify until the official source, timing, and release window are clear.',
+    href: '/games/forza-horizon-6/faq',
+  },
+  {
+    title: 'Create the car page',
+    text: 'Add class, PI, acquisition, testing status, source URL, and first tune direction before promoting the car.',
+    href: '/games/forza-horizon-6/cars',
+  },
+  {
+    title: 'Pick a baseline preset',
+    text: 'Match the car to a road, drift, rally, dirt, street, or drag preset instead of publishing a vague setup note.',
+    href: '/tools/forza-horizon-6-tune-presets',
+  },
+  {
+    title: 'Link the weekly tracker',
+    text: 'Add the car to weekly playlist prep when it appears in challenges, rewards, or seasonal restrictions.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+];
 
 export async function generateMetadata({
   params,
@@ -175,6 +197,24 @@ export default function CarPassTrackerPage() {
               calculator if relevant, and the future car detail page.
             </p>
           </article>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">Car Pass publishing workflow</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-4">
+            {carPassWorkflow.map((item) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40"
+                href={item.href}
+                key={item.title}
+              >
+                <strong className="block text-zinc-100">{item.title}</strong>
+                <span className="mt-2 block leading-6 text-zinc-400">
+                  {item.text}
+                </span>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
