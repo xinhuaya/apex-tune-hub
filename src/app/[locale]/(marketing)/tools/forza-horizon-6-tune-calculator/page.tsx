@@ -64,6 +64,12 @@ const relatedLinks = [
     href: '/tools/forza-horizon-6-gear-ratio-calculator',
   },
   {
+    title: 'Tune Codes Hub',
+    description:
+      'Use shareable preset URLs and tune-code workflow notes without pretending untested codes are final.',
+    href: '/tools/forza-horizon-6-tune-codes',
+  },
+  {
     title: 'FH6 Car Database',
     description: 'Pair calculator output with car pages, strengths, and launch notes.',
     href: '/games/forza-horizon-6/cars',

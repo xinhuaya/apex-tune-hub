@@ -48,6 +48,7 @@ const staticRoutes = [
   '/tools/forza-horizon-6-drift-tune-calculator',
   '/tools/forza-horizon-6-gear-ratio-calculator',
   '/tools/forza-horizon-6-tune-calculator',
+  '/tools/forza-horizon-6-tune-codes',
   '/tools/forza-horizon-6-tune-presets',
   ...(websiteConfig.blog.enable ? ['/blog'] : []),
   ...(websiteConfig.docs.enable ? ['/docs'] : []),

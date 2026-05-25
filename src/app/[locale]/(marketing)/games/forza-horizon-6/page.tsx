@@ -71,6 +71,13 @@ const hubLinks = [
     icon: SlidersHorizontalIcon,
   },
   {
+    title: 'Tune Codes',
+    description:
+      'Shareable preset URLs and verified-code workflow without fake codes.',
+    href: '/tools/forza-horizon-6-tune-codes',
+    icon: GaugeIcon,
+  },
+  {
     title: 'Drift Tune Calculator',
     description: 'RWD and AWD drift setup notes for angle and recovery.',
     href: '/tools/forza-horizon-6-drift-tune-calculator',

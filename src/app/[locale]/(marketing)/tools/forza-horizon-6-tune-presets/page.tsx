@@ -169,8 +169,8 @@ export default function ForzaHorizon6TunePresetsPage() {
                   variant="outline"
                   className="rounded-md"
                 >
-                  <LocaleLink href="/games/forza-horizon-6/cars">
-                    Browse Car Database
+                  <LocaleLink href="/tools/forza-horizon-6-tune-codes">
+                    Tune Codes Hub
                   </LocaleLink>
                 </Button>
               </div>
