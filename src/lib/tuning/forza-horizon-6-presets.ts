@@ -340,6 +340,31 @@ export function getForzaTunePreset(slug: string) {
   return forzaTunePresets.find((preset) => preset.slug === slug);
 }
 
+export function getRelatedForzaTunePresets(
+  preset: ForzaTunePreset,
+  limit = 3
+) {
+  return forzaTunePresets
+    .filter((item) => item.slug !== preset.slug)
+    .map((item) => {
+      const sharedTargets = item.targetCars.filter((car) =>
+        preset.targetCars.includes(car)
+      ).length;
+      const score =
+        (item.input.raceType === preset.input.raceType ? 4 : 0) +
+        (item.input.handlingIssue === preset.input.handlingIssue ? 4 : 0) +
+        (item.input.classBand === preset.input.classBand ? 3 : 0) +
+        (item.input.drivetrain === preset.input.drivetrain ? 2 : 0) +
+        (item.input.drivingStyle === preset.input.drivingStyle ? 1 : 0) +
+        sharedTargets * 2;
+
+      return { item, score };
+    })
+    .sort((a, b) => b.score - a.score || a.item.slug.localeCompare(b.item.slug))
+    .slice(0, limit)
+    .map(({ item }) => item);
+}
+
 export function getPresetCalculatorUrl(preset: ForzaTunePreset) {
   const params = new URLSearchParams({
     race: preset.input.raceType,

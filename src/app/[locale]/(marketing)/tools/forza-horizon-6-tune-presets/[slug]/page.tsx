@@ -21,6 +21,7 @@ import {
   forzaTunePresets,
   getForzaTunePreset,
   getPresetCalculatorUrl,
+  getRelatedForzaTunePresets,
 } from '@/lib/tuning/forza-horizon-6-presets';
 import { ArrowRightIcon, ClipboardListIcon, GaugeIcon } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -65,9 +66,7 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
 
   const pathname = `/tools/forza-horizon-6-tune-presets/${preset.slug}`;
   const result = calculateTune(preset.input);
-  const relatedPresets = forzaTunePresets
-    .filter((item) => item.slug !== preset.slug)
-    .slice(0, 2);
+  const relatedPresets = getRelatedForzaTunePresets(preset, 3);
   const targetCars = preset.targetCars.map((name) => {
     const car = forzaHorizon6Cars.find(
       (candidate) => getForzaHorizon6CarTitle(candidate) === name
@@ -281,7 +280,11 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
 
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <h2 className="text-xl font-semibold">Related tune presets</h2>
-        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-400">
+          These presets share the closest race type, handling symptom, class,
+          drivetrain, or target-car overlap with this baseline.
+        </p>
+        <div className="mt-4 grid gap-4 lg:grid-cols-3">
           {relatedPresets.map((item) => (
             <ForzaPresetCard key={item.slug} preset={item} />
           ))}

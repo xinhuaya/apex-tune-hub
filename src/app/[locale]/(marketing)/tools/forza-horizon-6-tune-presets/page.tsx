@@ -72,6 +72,43 @@ const presetLibraryFaqs = [
       'The calculator keeps the baseline adjustable. If a preset is close but not perfect, you can change the issue, class, drivetrain, or style without starting over.',
   },
 ];
+const problemClusters = [
+  {
+    title: 'Understeer presets',
+    issue: 'understeer',
+    guide: '/games/forza-horizon-6/guides/fix-understeer',
+  },
+  {
+    title: 'Oversteer presets',
+    issue: 'oversteer',
+    guide: '/games/forza-horizon-6/guides/fix-oversteer',
+  },
+  {
+    title: 'Wheelspin presets',
+    issue: 'wheelspin',
+    guide: '/games/forza-horizon-6/guides/fix-wheelspin',
+  },
+  {
+    title: 'Slow launch presets',
+    issue: 'slow-launch',
+    guide: '/games/forza-horizon-6/guides/fix-slow-launch',
+  },
+  {
+    title: 'Braking stability presets',
+    issue: 'unstable-braking',
+    guide: '/games/forza-horizon-6/guides/fix-unstable-braking',
+  },
+  {
+    title: 'Top speed presets',
+    issue: 'poor-top-speed',
+    guide: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+  },
+].map((cluster) => ({
+  ...cluster,
+  presets: forzaTunePresets.filter(
+    (preset) => preset.input.handlingIssue === cluster.issue
+  ),
+}));
 
 export async function generateMetadata({
   params,
@@ -154,6 +191,48 @@ export default function ForzaHorizon6TunePresetsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+            Problem clusters
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold">
+            Start from the handling symptom
+          </h2>
+          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+            {problemClusters.map((cluster) => (
+              <article className="forza-card p-5" key={cluster.issue}>
+                <GaugeIcon className="size-5 text-cyan-300" />
+                <h3 className="mt-4 text-lg font-semibold">
+                  {cluster.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {cluster.presets.length} preset
+                  {cluster.presets.length === 1 ? '' : 's'} matched to this
+                  tuning problem.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {cluster.presets.slice(0, 2).map((preset) => (
+                    <LocaleLink
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-zinc-300 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                      href={`/tools/forza-horizon-6-tune-presets/${preset.slug}`}
+                      key={preset.slug}
+                    >
+                      {preset.input.classBand} {preset.input.drivetrain}
+                    </LocaleLink>
+                  ))}
+                </div>
+                <LocaleLink
+                  className="mt-4 inline-flex text-sm font-semibold text-amber-200 hover:text-amber-100"
+                  href={cluster.guide}
+                >
+                  Read the fix guide
+                  <ArrowRightIcon className="ml-2 size-4" />
+                </LocaleLink>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-4">
           {presetUseCases.map((item) => {
             const Icon = item.icon;
