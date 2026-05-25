@@ -4,6 +4,7 @@ import { routing } from '@/i18n/routing';
 import { forzaHorizon6Cars } from '@/lib/cars/forza-horizon-6-cars';
 import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
 import { forzaHorizon6Guides } from '@/lib/guides/forza-horizon-6-guides';
+import { forzaHorizon6MakeCarGuides } from '@/lib/guides/forza-horizon-6-make-car-guides';
 import { generateHreflangUrls } from '@/lib/hreflang';
 import { blogSource, categorySource, source } from '@/lib/source';
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
@@ -30,6 +31,7 @@ const staticRoutes = [
   '/games/forza-horizon-6/guides',
   '/games/forza-horizon-6/best-cars',
   ...Object.values(forzaHorizon6ClassCarGuides).map((guide) => guide.pathname),
+  ...Object.values(forzaHorizon6MakeCarGuides).map((guide) => guide.pathname),
   '/games/forza-horizon-6/best-drift-cars',
   '/games/forza-horizon-6/best-jdm-cars',
   '/games/forza-horizon-6/best-rally-cars',

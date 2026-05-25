@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
 import { forzaHorizon6BestCarGuides } from '@/lib/guides/forza-horizon-6-best-car-guides';
+import { forzaHorizon6MakeCarGuides } from '@/lib/guides/forza-horizon-6-make-car-guides';
 import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
@@ -35,6 +36,11 @@ const classCarGuides = [
   forzaHorizon6ClassCarGuides.a,
   forzaHorizon6ClassCarGuides.s1,
   forzaHorizon6ClassCarGuides.s2,
+];
+const makeCarGuides = [
+  forzaHorizon6MakeCarGuides.toyota,
+  forzaHorizon6MakeCarGuides.honda,
+  forzaHorizon6MakeCarGuides.mazda,
 ];
 
 const carRows = bestCarGuides.map((guide) => ({
@@ -254,6 +260,22 @@ export default function BestCarsPage() {
               <h2 className="mt-4 text-lg font-semibold">{guide.h1}</h2>
               <p className="mt-2 text-sm leading-6 text-zinc-400">
                 {guide.classGoal}. Best for {guide.bestFor}.
+              </p>
+            </LocaleLink>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {makeCarGuides.map((guide) => (
+            <LocaleLink
+              className="forza-card p-5"
+              href={guide.pathname}
+              key={guide.id}
+            >
+              <CarFrontIcon className="size-5 text-cyan-300" />
+              <h2 className="mt-4 text-lg font-semibold">{guide.h1}</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {guide.bestFor}. {guide.testingAngle}
               </p>
             </LocaleLink>
           ))}
