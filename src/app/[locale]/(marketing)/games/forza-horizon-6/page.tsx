@@ -52,6 +52,13 @@ const hubLinks = [
     icon: CalendarClockIcon,
   },
   {
+    title: 'Japan Map Planner',
+    description:
+      'Route-type planning for city, mountain, rain, dirt, drift, and speed testing.',
+    href: '/games/forza-horizon-6/japan-map',
+    icon: CalendarClockIcon,
+  },
+  {
     title: 'Guides',
     description: 'Beginner tuning, handling fixes, gearing, and settings help.',
     href: '/games/forza-horizon-6/guides',

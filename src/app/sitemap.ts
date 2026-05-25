@@ -28,6 +28,7 @@ const staticRoutes = [
   '/terms',
   '/cookie',
   '/games/forza-horizon-6',
+  '/games/forza-horizon-6/japan-map',
   '/games/forza-horizon-6/tuning-settings',
   '/games/forza-horizon-6/guides',
   '/games/forza-horizon-6/best-cars',
