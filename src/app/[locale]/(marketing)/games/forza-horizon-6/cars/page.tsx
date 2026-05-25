@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { JsonLd } from '@/components/seo/json-ld';
 import {
   forzaHorizon6Cars,
   getForzaHorizon6CarTitle,
@@ -6,9 +7,37 @@ import {
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+  type FaqItem,
+} from '@/lib/seo/forza-horizon-6';
 import { DatabaseIcon, GaugeIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
+
+const pathname = '/games/forza-horizon-6/cars';
+const title = 'Forza Horizon 6 Car Database - Apex Tune Hub';
+const description =
+  'A starter Forza Horizon 6 car database with class, PI, acquisition, tune direction, and testing status.';
+const carDatabaseFaqs: FaqItem[] = [
+  {
+    question: 'What is in the Apex Tune Hub FH6 car database?',
+    answer:
+      'The first database slice focuses on Japan-related cars with stock class, PI, acquisition, best use, tune direction, and transparent testing status.',
+  },
+  {
+    question: 'Are these FH6 car recommendations final?',
+    answer:
+      'No. Pages marked candidate or needs-testing are starting points until route notes, tune screenshots, and weekly event results are added.',
+  },
+  {
+    question: 'How should I use a car page?',
+    answer:
+      'Pick the car role first: starter build, road tune, drift setup, alternate preset, or weekly event use. Then open the matching calculator or guide.',
+  },
+];
 
 export async function generateMetadata({
   params,
@@ -18,17 +47,26 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Forza Horizon 6 Car Database - Apex Tune Hub',
-    description:
-      'A starter Forza Horizon 6 car database with class, PI, acquisition, tune direction, and testing status.',
+    title,
+    description,
     locale,
-    pathname: '/games/forza-horizon-6/cars',
+    pathname,
   });
 }
 
 export default function ForzaHorizon6CarsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Car Database', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(carDatabaseFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -65,12 +103,12 @@ export default function ForzaHorizon6CarsPage() {
             <div className="forza-panel p-5">
               <DatabaseIcon className="size-7 text-cyan-300" />
               <h2 className="mt-4 text-xl font-semibold">
-                Why only 10 cars first?
+                How to read this database
               </h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
-                Thin programmatic pages are risky. The site should publish small
-                batches, add tune links, and expand only after the templates are
-                useful.
+                Start with the car role, then open the car page for starter,
+                road, alternate, weekly, and FAQ notes. Candidate labels stay
+                visible until real route testing is added.
               </p>
             </div>
           </div>
@@ -116,12 +154,23 @@ export default function ForzaHorizon6CarsPage() {
         <div className="forza-panel mt-6 p-5">
           <div className="flex items-center gap-3">
             <GaugeIcon className="size-5 text-amber-300" />
-            <h2 className="text-lg font-semibold">Expansion rule</h2>
+            <h2 className="text-lg font-semibold">FAQ</h2>
           </div>
-          <p className="mt-3 text-sm leading-6 text-zinc-400">
-            Add the next 25 cars only after this template has screenshots, tune
-            paths, internal links, and at least one real testing note format.
-          </p>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {carDatabaseFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
       <ApexNewsletterCta
