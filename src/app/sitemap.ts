@@ -13,6 +13,8 @@ import type { Locale } from 'next-intl';
 
 type Href = Parameters<typeof getLocalePathname>[0]['href'];
 
+export const revalidate = 0;
+
 /**
  * static routes for sitemap, you may change the routes for your own
  */
