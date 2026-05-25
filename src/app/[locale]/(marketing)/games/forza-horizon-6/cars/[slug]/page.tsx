@@ -9,6 +9,8 @@ import {
 } from '@/lib/cars/forza-horizon-6-cars';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
+import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
+import { forzaHorizon6MakeCarGuides } from '@/lib/guides/forza-horizon-6-make-car-guides';
 import { constructMetadata } from '@/lib/metadata';
 import {
   buildArticleJsonLd,
@@ -87,6 +89,38 @@ function getBuildCards(car: ForzaHorizon6Car, title: string) {
   ];
 }
 
+function getClassGuide(car: ForzaHorizon6Car) {
+  if (car.stockClass === 'S2') {
+    return forzaHorizon6ClassCarGuides.s2;
+  }
+
+  if (car.stockClass === 'S1') {
+    return forzaHorizon6ClassCarGuides.s1;
+  }
+
+  if (car.stockClass === 'A') {
+    return forzaHorizon6ClassCarGuides.a;
+  }
+
+  return forzaHorizon6ClassCarGuides.b;
+}
+
+function getMakeGuide(car: ForzaHorizon6Car) {
+  if (car.make === 'Toyota') {
+    return forzaHorizon6MakeCarGuides.toyota;
+  }
+
+  if (car.make === 'Honda') {
+    return forzaHorizon6MakeCarGuides.honda;
+  }
+
+  if (car.make === 'Mazda') {
+    return forzaHorizon6MakeCarGuides.mazda;
+  }
+
+  return null;
+}
+
 export function generateStaticParams() {
   return forzaHorizon6Cars.map((car) => ({
     slug: car.slug,
@@ -133,6 +167,27 @@ export default async function ForzaHorizon6CarPage({
     .slice(0, 3);
   const pathname = `/games/forza-horizon-6/cars/${slug}`;
   const buildCards = getBuildCards(car, title);
+  const classGuide = getClassGuide(car);
+  const makeGuide = getMakeGuide(car);
+  const relatedHubs = [
+    {
+      title: classGuide.h1,
+      body: `${title} starts at ${car.stockClass} ${car.stockPi}; use this class hub for first-build direction and comparison candidates.`,
+      href: classGuide.pathname,
+    },
+    makeGuide
+      ? {
+          title: makeGuide.h1,
+          body: `Compare ${title} against the rest of the ${car.make} starter database and matching tune paths.`,
+          href: makeGuide.pathname,
+        }
+      : null,
+    {
+      title: 'Best cars hub',
+      body: 'Move back to road, drift, rally, JDM, class, and manufacturer recommendation clusters.',
+      href: '/games/forza-horizon-6/best-cars',
+    },
+  ].filter(Boolean) as { title: string; body: string; href: string }[];
   const faqs: FaqItem[] = [
     {
       question: `Is the ${title} good in Forza Horizon 6?`,
@@ -270,7 +325,28 @@ export default async function ForzaHorizon6CarPage({
             })}
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel mt-6 p-5">
+            <div className="flex items-center gap-3">
+              <CarIcon className="size-5 text-amber-300" />
+              <h2 className="text-xl font-semibold">Related car hubs</h2>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {relatedHubs.map((hub) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm transition hover:border-cyan-300/40"
+                  href={hub.href}
+                  key={hub.href}
+                >
+                  <strong className="block text-zinc-100">{hub.title}</strong>
+                  <span className="mt-2 block leading-6 text-zinc-400">
+                    {hub.body}
+                  </span>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
             <article className="forza-card p-5">
               <WrenchIcon className="size-5 text-amber-300" />
               <h2 className="mt-4 text-xl font-semibold">Tune direction</h2>

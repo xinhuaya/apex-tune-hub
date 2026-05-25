@@ -6,6 +6,8 @@ import {
 } from '@/lib/cars/forza-horizon-6-cars';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
+import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
+import { forzaHorizon6MakeCarGuides } from '@/lib/guides/forza-horizon-6-make-car-guides';
 import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
@@ -13,7 +15,7 @@ import {
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
-import { DatabaseIcon, GaugeIcon } from 'lucide-react';
+import { CarFrontIcon, DatabaseIcon, GaugeIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -37,6 +39,17 @@ const carDatabaseFaqs: FaqItem[] = [
     answer:
       'Pick the car role first: starter build, road tune, drift setup, alternate preset, or weekly event use. Then open the matching calculator or guide.',
   },
+];
+const classLinks = [
+  forzaHorizon6ClassCarGuides.b,
+  forzaHorizon6ClassCarGuides.a,
+  forzaHorizon6ClassCarGuides.s1,
+  forzaHorizon6ClassCarGuides.s2,
+];
+const makeLinks = [
+  forzaHorizon6MakeCarGuides.toyota,
+  forzaHorizon6MakeCarGuides.honda,
+  forzaHorizon6MakeCarGuides.mazda,
 ];
 
 export async function generateMetadata({
@@ -116,6 +129,42 @@ export default function ForzaHorizon6CarsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="forza-panel p-5">
+            <CarFrontIcon className="size-5 text-cyan-300" />
+            <h2 className="mt-4 text-xl font-semibold">Browse by class</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {classLinks.map((guide) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                  href={guide.pathname}
+                  key={guide.id}
+                >
+                  {guide.h1}
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel p-5">
+            <GaugeIcon className="size-5 text-amber-300" />
+            <h2 className="mt-4 text-xl font-semibold">
+              Browse by manufacturer
+            </h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {makeLinks.map((guide) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                  href={guide.pathname}
+                  key={guide.id}
+                >
+                  {guide.h1}
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2">
           {forzaHorizon6Cars.map((car) => (
             <LocaleLink
