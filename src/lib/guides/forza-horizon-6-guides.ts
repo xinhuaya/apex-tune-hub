@@ -567,6 +567,234 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       },
     ],
   },
+  {
+    slug: 'fix-wheelspin',
+    title: 'How to Fix Wheelspin in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'How to fix wheelspin in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 wheelspin tuning guide for RWD, AWD, street, rally, and drag builds that waste grip on launch or corner exit.',
+    eyebrow: 'Traction fix',
+    intro:
+      'Wheelspin is not always a power problem. It can come from gearing, differential behavior, tire choice, suspension movement, or asking too much throttle from the car too early.',
+    primaryCta: {
+      label: 'Open wheelspin preset',
+      href: '/tools/forza-horizon-6-tune-presets/a-rwd-street-wheelspin-stable',
+    },
+    relatedLinks: [
+      {
+        label: 'Tune calculator',
+        href: '/tools/forza-horizon-6-tune-calculator?race=street&drive=RWD&class=A&issue=wheelspin&style=stable',
+      },
+      {
+        label: 'Drag wheelspin preset',
+        href: '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
+      },
+      {
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+    ],
+    sections: [
+      {
+        title: 'Find when the tires break loose',
+        body: 'Launch wheelspin, mid-corner wheelspin, and exit wheelspin need different fixes. Start by repeating the same section and naming the trigger.',
+        bullets: [
+          'If it spins instantly, look at first gear and launch behavior.',
+          'If it spins after turning, look at throttle differential and rear grip.',
+          'If it spins after bumps, look at suspension and damping before adding power.',
+        ],
+      },
+      {
+        title: 'Calm gearing before removing power',
+        body: 'A strong car can feel useless if first and second gear are too short. Fix the delivery before deciding the build has too much horsepower.',
+        bullets: [
+          'Lengthen first gear if launch smoke dominates.',
+          'Smooth the first-to-second shift if the car snaps after launch.',
+          'Use the gear calculator when the car bogs after you lengthen too much.',
+        ],
+      },
+      {
+        title: 'Tune traction without making the car lazy',
+        body: 'The goal is usable drive, not a car that refuses to rotate. Keep enough response for corner exits while reducing wasted spin.',
+        bullets: [
+          'Use half throttle and full throttle tests on the same exit.',
+          'Reduce aggressive differential choices in small steps.',
+          'Save separate street, rally, and drag versions if the car has multiple roles.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'fix-slow-launch',
+    title: 'How to Fix Slow Launch in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'How to fix slow launch in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 slow launch tuning guide for cars that bog down, lose starts, or feel asleep out of tight corners.',
+    eyebrow: 'Launch fix',
+    intro:
+      'A slow launch can be too little grip, too much grip, long gearing, weak low-end response, or a setup that falls out of its useful power band after the first shift.',
+    primaryCta: {
+      label: 'Open slow launch preset',
+      href: '/tools/forza-horizon-6-tune-presets/b-rwd-rally-slow-launch-balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'A AWD dirt launch preset',
+        href: '/tools/forza-horizon-6-tune-presets/a-awd-dirt-slow-launch-balanced',
+      },
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+      {
+        label: 'Tune calculator',
+        href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=B&issue=slow-launch&style=balanced',
+      },
+    ],
+    sections: [
+      {
+        title: 'Test launch and corner exit separately',
+        body: 'A car can leave the starting line well but bog after a hairpin. Use one standing launch and one slow-corner exit before changing the tune.',
+        bullets: [
+          'If the start is weak, check first gear and traction first.',
+          'If hairpin exits are weak, check lower gear spacing and throttle response.',
+          'If AWD bogs, avoid making every gear longer at once.',
+        ],
+      },
+      {
+        title: 'Shorten only what needs help',
+        body: 'Many slow cars need shorter lower gears, not a whole gearbox rewrite. Keep top speed intact unless the route never uses it.',
+        bullets: [
+          'Start with final drive if every gear feels lazy.',
+          'Adjust first and second if only exits feel slow.',
+          'Stop if the fix creates wheelspin you cannot repeat.',
+        ],
+      },
+      {
+        title: 'Match launch style to surface',
+        body: 'Dirt, rally, street, and drag launches reward different choices. A launch fix that works on asphalt can create spin on mixed surface.',
+        bullets: [
+          'Use softer delivery for dirt and rally surfaces.',
+          'Use cleaner gear spacing for street routes with traffic.',
+          'Use drag-specific testing for high-power straight-line builds.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'fix-unstable-braking',
+    title: 'How to Fix Unstable Braking in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'How to fix unstable braking in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 braking stability tuning guide for cars that wander, snap, bounce, or rotate too hard under braking.',
+    eyebrow: 'Braking fix',
+    intro:
+      'Unstable braking costs confidence before the corner even starts. Fix the braking platform first, then worry about mid-corner speed or power upgrades.',
+    primaryCta: {
+      label: 'Open braking preset',
+      href: '/tools/forza-horizon-6-tune-presets/s1-awd-dirt-unstable-braking-stable',
+    },
+    relatedLinks: [
+      {
+        label: 'Road tune calculator',
+        href: '/tools/forza-horizon-6-tune-calculator?race=dirt&drive=AWD&class=S1&issue=unstable-braking&style=stable',
+      },
+      {
+        label: 'Best rally cars',
+        href: '/games/forza-horizon-6/best-rally-cars',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+    ],
+    sections: [
+      {
+        title: 'Separate lockup, wandering, and snap rotation',
+        body: 'A car that refuses to stop, a car that wanders over bumps, and a car that spins on trail braking are different problems.',
+        bullets: [
+          'Brake in a straight line before testing trail braking.',
+          'Use a bumpy braking zone to identify suspension movement.',
+          'Use a smooth braking zone to isolate brake balance and differential behavior.',
+        ],
+      },
+      {
+        title: 'Stabilize the platform first',
+        body: 'If the car bounces or dives too sharply, alignment and differential changes may not solve the real issue. Make the platform readable first.',
+        bullets: [
+          'Soften harsh behavior before chasing more rotation.',
+          'Avoid over-stiffening the rear just to make turn-in sharp.',
+          'Retest braking before changing corner-exit settings.',
+        ],
+      },
+      {
+        title: 'Keep trail braking predictable',
+        body: 'Fast routes need a car that can brake and rotate together. The tune should let you add steering without sudden rear panic.',
+        bullets: [
+          'Use light trail braking on one repeatable corner.',
+          'Back off if the car snaps when brake pressure drops.',
+          'Save a stable version for weekly championships.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'fix-poor-top-speed',
+    title: 'How to Fix Poor Top Speed in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'How to fix poor top speed in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 top speed tuning guide for cars that hit the limiter, run out of gear, or lose fast road and speed trap events.',
+    eyebrow: 'Top speed fix',
+    intro:
+      'Poor top speed is not only about adding horsepower. Final drive, aero, tire drag, class limits, and whether the route actually rewards top end all matter.',
+    primaryCta: {
+      label: 'Open top speed preset',
+      href: '/tools/forza-horizon-6-tune-presets/s2-awd-road-poor-top-speed-aggressive',
+    },
+    relatedLinks: [
+      {
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+      {
+        label: 'Best road racing cars',
+        href: '/games/forza-horizon-6/best-road-racing-cars',
+      },
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Check if the route needs top speed',
+        body: 'A highway test can make a race tune worse. Tune top end for the longest useful straight in the target event, not an empty-road fantasy.',
+        bullets: [
+          'If the car hits limiter early, lengthen final drive first.',
+          'If the route is technical, protect acceleration before top speed.',
+          'Compare lap time and speed trap results separately.',
+        ],
+      },
+      {
+        title: 'Use gearing before power upgrades',
+        body: 'If the car already has enough power but runs out of gear, more horsepower may only create traction problems.',
+        bullets: [
+          'Lengthen final drive in small steps.',
+          'Open upper gears only if lower gears still feel strong.',
+          'Retest launch after every top-speed change.',
+        ],
+      },
+      {
+        title: 'Balance aero against straight-line speed',
+        body: 'More downforce can make corners easier but cap the car on long straights. Less aero can make fast corners worse even if the speed number improves.',
+        bullets: [
+          'Test one fast corner after aero changes.',
+          'Watch for new understeer when reducing downforce.',
+          'Keep a speed-trap tune separate from a road-race tune.',
+        ],
+      },
+    ],
+  },
 ];
 
 export function getForzaHorizon6Guide(slug: string) {

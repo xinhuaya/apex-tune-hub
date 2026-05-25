@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import {
@@ -6,9 +7,61 @@ import {
   type ForzaHorizon6Guide,
 } from '@/lib/guides/forza-horizon-6-guides';
 import { constructMetadata } from '@/lib/metadata';
-import { ArrowRightIcon, BookOpenIcon } from 'lucide-react';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+} from '@/lib/seo/forza-horizon-6';
+import {
+  ArrowRightIcon,
+  BookOpenIcon,
+  CircleGaugeIcon,
+  MapIcon,
+  WrenchIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
+
+const pathname = '/games/forza-horizon-6/guides';
+const title = 'Forza Horizon 6 Guides - Tuning, Settings, and Setup Help';
+const description =
+  'Forza Horizon 6 tuning guides for starter cars, Japan drift setups, A and S1 road racing, handling fixes, gearing, wheel settings, and Steam Deck settings.';
+
+const guideClusters = [
+  {
+    icon: MapIcon,
+    title: 'Launch route planning',
+    text: 'Start with Japan launch strategy, starter cars, and early route testing before chasing meta picks.',
+  },
+  {
+    icon: WrenchIcon,
+    title: 'Handling fixes',
+    text: 'Use problem guides for understeer, oversteer, wheelspin, braking instability, slow launch, and top-speed issues.',
+  },
+  {
+    icon: CircleGaugeIcon,
+    title: 'Settings and devices',
+    text: 'Keep wheel, controller, PC, and Steam Deck guidance separated so every setup note stays testable.',
+  },
+];
+
+const guideFaqs = [
+  {
+    question: 'Which Forza Horizon 6 guide should I read first?',
+    answer:
+      'Start with the beginner tuning guide if you are new to setups, then move to the specific handling problem or event type you are trying to fix.',
+  },
+  {
+    question: 'Are these guides based on fake leaderboard certainty?',
+    answer:
+      'No. Apex Tune Hub labels launch content as baseline guidance and candidate testing, then links to calculators and presets so the advice can be refined after route testing.',
+  },
+  {
+    question: 'Why are handling problem guides useful for SEO?',
+    answer:
+      'Players usually search the symptom they feel, such as understeer, oversteer, wheelspin, slow launch, unstable braking, or poor top speed. Each guide can answer that intent directly.',
+  },
+];
 
 export async function generateMetadata({
   params,
@@ -18,11 +71,10 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Forza Horizon 6 Guides - Tuning, Settings, and Setup Help',
-    description:
-      'Forza Horizon 6 tuning guides for starter cars, Japan drift setups, A and S1 road racing, handling fixes, gearing, wheel settings, and Steam Deck settings.',
+    title,
+    description,
     locale,
-    pathname: '/games/forza-horizon-6/guides',
+    pathname,
   });
 }
 
@@ -51,6 +103,17 @@ function GuideCard({ guide }: { guide: ForzaHorizon6Guide }) {
 export default function ForzaHorizon6GuidesPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Guides', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(guideFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -100,10 +163,56 @@ export default function ForzaHorizon6GuidesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-3">
+          {guideClusters.map((cluster) => {
+            const Icon = cluster.icon;
+
+            return (
+              <article className="forza-card p-5" key={cluster.title}>
+                <Icon className="size-6 text-cyan-300" />
+                <h2 className="mt-4 text-lg font-semibold">
+                  {cluster.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {cluster.text}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+            Guide index
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold">
+            {forzaHorizon6Guides.length} practical FH6 guides
+          </h2>
+        </div>
         <div className="grid gap-4 md:grid-cols-2">
           {forzaHorizon6Guides.map((guide) => (
             <GuideCard guide={guide} key={guide.slug} />
           ))}
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <h2 className="text-2xl font-semibold">Guide FAQ</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {guideFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={faq.question}
+              >
+                <h3 className="text-base font-semibold">{faq.question}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
       <ApexNewsletterCta
