@@ -46,7 +46,7 @@ export const websiteConfig: WebsiteConfig = {
   },
   metadata: {
     images: {
-      ogImage: '/og.png',
+      ogImage: '/og-apex-v2.png',
       logoLight: '/logo.png',
       logoDark: '/logo-dark.png',
     },
