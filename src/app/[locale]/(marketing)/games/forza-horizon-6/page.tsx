@@ -108,9 +108,10 @@ const hubLinks = [
     icon: MonitorIcon,
   },
   {
-    title: 'PC Settings',
-    description: 'Balanced, low-end, and high-end settings framework.',
-    href: '/settings/forza-horizon-6-pc',
+    title: 'Settings Hub',
+    description:
+      'PC, Steam Deck, wheel, and controller setup paths in one settings index.',
+    href: '/settings/forza-horizon-6',
     icon: MonitorIcon,
   },
   {
