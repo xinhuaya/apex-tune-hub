@@ -22,6 +22,63 @@ export type ForzaHorizon6Guide = {
 
 export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   {
+    slug: 'japan-launch-tuning-plan',
+    title: 'Forza Horizon 6 Japan Launch Tuning Plan - Apex Tune Hub',
+    h1: 'Forza Horizon 6 Japan launch tuning plan',
+    description:
+      'A practical Forza Horizon 6 launch tuning plan for Japan roads, mountain passes, city routes, rain, dirt, and early car choices.',
+    eyebrow: 'Japan launch plan',
+    intro:
+      'Forza Horizon 6 is live in Japan, which means one setup will not feel good everywhere. Build separate road, mountain, dirt, and drift baselines before chasing leaderboard-style extremes.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=A&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Best JDM cars',
+        href: '/games/forza-horizon-6/best-jdm-cars',
+      },
+      {
+        label: 'Drift tune calculator',
+        href: '/tools/forza-horizon-6-drift-tune-calculator',
+      },
+      {
+        label: 'Weekly playlist',
+        href: '/games/forza-horizon-6/weekly-playlist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build four launch baselines',
+        body: 'Japan rewards different car behavior across city streets, mountain passes, wet routes, and mixed-surface events. Keep one clean baseline per use case instead of forcing one universal tune.',
+        bullets: [
+          'Road baseline: stable braking, quick turn-in, and short gearing for traffic-heavy routes.',
+          'Mountain baseline: predictable lift-off behavior and enough rotation for linked corners.',
+          'Dirt baseline: softer suspension, calmer throttle, and gearing that recovers after bumps.',
+        ],
+      },
+      {
+        title: 'Start in A or S1 class',
+        body: 'Early testing is easier when the car is fast enough to expose handling problems but not so powerful that every corner becomes a traction problem.',
+        bullets: [
+          'Use A class to learn a new route and spot understeer or braking instability.',
+          'Move to S1 after the car repeats clean exits three runs in a row.',
+          'Save S2 builds for routes with enough straight-line payoff.',
+        ],
+      },
+      {
+        title: 'Tune for weather and surface changes',
+        body: 'A tune that feels sharp in dry city sections can become nervous in rain or on rougher roads. Keep the first setup forgiving enough for Festival Playlist events.',
+        bullets: [
+          'If rain makes exits messy, reduce aggressive differential and gearing choices first.',
+          'If the car bounces on rough roads, soften the suspension before adding aero.',
+          'If weekly events feel inconsistent, choose a safer launch tune over maximum pace.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'beginner-tuning-guide',
     title: 'Forza Horizon 6 Beginner Tuning Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 beginner tuning guide',

@@ -86,12 +86,12 @@ export default function ForzaHorizon6GuidesPage() {
             <div className="forza-panel p-5">
               <BookOpenIcon className="size-7 text-cyan-300" />
               <h2 className="mt-4 text-xl font-semibold">
-                Why this helps revenue
+                How to use this guide stack
               </h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
-                Guides bring search traffic, tools convert repeat visitors, and
-                saved presets become the later membership layer. This is the
-                safer path than publishing thin news posts.
+                Start with the launch plan, use the beginner guide for a clean
+                baseline, then open the handling fixes when a car pushes wide,
+                snaps loose, or loses speed after shifts.
               </p>
             </div>
           </div>

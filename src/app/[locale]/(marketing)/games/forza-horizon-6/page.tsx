@@ -15,6 +15,13 @@ import type { Locale } from 'next-intl';
 
 const hubLinks = [
   {
+    title: 'Japan Launch Plan',
+    description:
+      'Early tuning priorities for city roads, mountain routes, dirt, rain, and JDM builds.',
+    href: '/games/forza-horizon-6/guides/japan-launch-tuning-plan',
+    icon: CalendarClockIcon,
+  },
+  {
     title: 'Guides',
     description: 'Beginner tuning, handling fixes, gearing, and settings help.',
     href: '/games/forza-horizon-6/guides',
@@ -123,9 +130,10 @@ export default function ForzaHorizon6HubPage() {
                 Forza Horizon 6 tuning hub
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
-                Start with calculators, then add best-car lists, handheld
-                settings, wheel profiles, weekly playlist notes, and Car Pass
-                updates as the site collects tested data.
+                Use launch-ready calculators, Japan route setup guides, best-car
+                lists, handheld settings, wheel profiles, weekly playlist notes,
+                and Car Pass tracking to build faster FH6 tunes without guessing
+                every slider.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="forza-primary-button">
@@ -154,14 +162,22 @@ export default function ForzaHorizon6HubPage() {
                 <div>
                   <h2 className="text-lg font-semibold">Source status</h2>
                   <p className="text-sm text-zinc-500">
-                    Official facts checked May 23, 2026.
+                    Launch status checked May 25, 2026.
                   </p>
                 </div>
               </div>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-zinc-400">
-                <li>Available on Xbox Series X|S and PC.</li>
-                <li>Over 550 cars listed by official launch materials.</li>
-                <li>Steam Deck Verified and PC handheld optimized.</li>
+                <li>
+                  Now positioned around Japan road, city, and mountain tuning.
+                </li>
+                <li>
+                  Launch pages prioritize repeatable A, S1, drift, and rally
+                  baselines.
+                </li>
+                <li>
+                  Steam Deck and PC settings pages support handheld and desktop
+                  players.
+                </li>
                 <li>PS5 version planned for later in 2026.</li>
               </ul>
             </div>
