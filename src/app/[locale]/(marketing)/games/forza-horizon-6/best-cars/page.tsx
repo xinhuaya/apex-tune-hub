@@ -1,34 +1,76 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
+import { forzaHorizon6BestCarGuides } from '@/lib/guides/forza-horizon-6-best-car-guides';
 import { constructMetadata } from '@/lib/metadata';
-import { ArrowRightIcon, BadgeCheckIcon, GaugeIcon } from 'lucide-react';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+} from '@/lib/seo/forza-horizon-6';
+import {
+  ArrowRightIcon,
+  BadgeCheckIcon,
+  CarFrontIcon,
+  GaugeIcon,
+  ListChecksIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
-const carRows = [
+const pathname = '/games/forza-horizon-6/best-cars';
+const title = 'Best Cars in Forza Horizon 6 - Apex Tune Hub';
+const description =
+  'Best Forza Horizon 6 car planning hub for road racing, drift, rally, class picks, JDM cars, and weekly event recommendations.';
+
+const bestCarGuides = [
+  forzaHorizon6BestCarGuides.road,
+  forzaHorizon6BestCarGuides.drift,
+  forzaHorizon6BestCarGuides.rally,
+  forzaHorizon6BestCarGuides.jdm,
+];
+
+const carRows = bestCarGuides.map((guide) => ({
+  category: guide.h1.replace('Best ', '').replace(' in Forza Horizon 6', ''),
+  pick: guide.picks[0]?.car ?? 'Candidate list pending',
+  classBand: guide.classFocus,
+  note: guide.picks[0]?.tuneDirection ?? guide.updateCadence,
+  href: guide.pathname,
+}));
+
+const frameworkCards = [
   {
-    category: 'Road racing',
-    pick: 'Candidate list pending',
-    classBand: 'A / S1',
-    note: 'Add tested road picks after launch telemetry and community data.',
+    title: 'Candidate first',
+    description:
+      'Cars stay labelled candidate or needs-testing until route notes and tune evidence are added.',
   },
   {
-    category: 'Drift',
-    pick: 'Candidate list pending',
-    classBand: 'A / S1',
-    note: 'Prioritize controllable RWD and AWD builds, then link drift tunes.',
+    title: 'Class matters',
+    description:
+      'A, B, S1, and S2 versions should be evaluated separately instead of forcing one universal ranking.',
   },
   {
-    category: 'Rally / touge',
-    pick: 'Candidate list pending',
-    classBand: 'B / A / S1',
-    note: 'Japan roads make rotation, gearing, and suspension travel important.',
+    title: 'Tune links',
+    description:
+      'Every recommended car should point to a calculator, preset, or guide that explains the setup direction.',
+  },
+];
+
+const bestCarsFaqs = [
+  {
+    question: 'What are the best cars in Forza Horizon 6?',
+    answer:
+      'Apex Tune Hub starts with transparent candidate lists for road racing, drift, rally, and JDM builds, then promotes cars after route or event testing is added.',
   },
   {
-    category: 'Weekly playlist',
-    pick: 'Update weekly',
-    classBand: 'Event rules',
-    note: 'This is the repeat-traffic page once weekly events are live.',
+    question: 'Why not publish a fake final meta list?',
+    answer:
+      'A final ranking before testing would be low-trust content. The site keeps candidate status visible and links each car to tune direction, class focus, and testing notes.',
+  },
+  {
+    question: 'Which class should I build first?',
+    answer:
+      'Most players should start around B, A, or S1 depending on the car role. Move higher only when the car stays repeatable on target routes.',
   },
 ];
 
@@ -66,17 +108,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Best Cars in Forza Horizon 6 - Apex Tune Hub',
-    description:
-      'Best Forza Horizon 6 car planning hub for road racing, drift, rally, class picks, and weekly event recommendations.',
+    title,
+    description,
     locale,
-    pathname: '/games/forza-horizon-6/best-cars',
+    pathname,
   });
 }
 
 export default function BestCarsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Best Cars', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(bestCarsFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -89,7 +141,8 @@ export default function BestCarsPage() {
               <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
                 This page starts as a transparent recommendation framework. It
                 should become a tested car database as we add class pages, tune
-                links, event results, and weekly playlist notes.
+                links, event results, and weekly playlist notes. The current
+                picks are candidates, not fake final rankings.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="forza-primary-button">
@@ -142,19 +195,20 @@ export default function BestCarsPage() {
             <span>Testing note</span>
           </div>
           {carRows.map((row) => (
-            <div
+            <LocaleLink
               key={row.category}
+              href={row.href}
               className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[1fr_1fr_0.7fr_1.5fr]"
             >
               <span className="font-semibold text-zinc-50">{row.category}</span>
               <span className="text-amber-200">{row.pick}</span>
               <span className="text-zinc-300">{row.classBand}</span>
               <span className="text-zinc-400">{row.note}</span>
-            </div>
+            </LocaleLink>
           ))}
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-4">
           {guideLinks.map((guide) => (
             <LocaleLink
               key={guide.href}
@@ -168,20 +222,10 @@ export default function BestCarsPage() {
               </p>
             </LocaleLink>
           ))}
-          {[
-            [
-              'Class pages',
-              'S1, A, B, S2, and X pages become the next SEO layer.',
-            ],
-            [
-              'Use-case pages',
-              'Drift, rally, road, dirt, street, and beginner picks.',
-            ],
-            [
-              'Tune links',
-              'Every recommended car should link to a calculator preset.',
-            ],
-          ].map(([title, description]) => (
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {frameworkCards.map(({ title, description }) => (
             <article key={title} className="forza-card p-5">
               <GaugeIcon className="size-5 text-fuchsia-300" />
               <h2 className="mt-4 text-lg font-semibold">{title}</h2>
@@ -190,6 +234,53 @@ export default function BestCarsPage() {
               </p>
             </article>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="flex items-center gap-3">
+            <ListChecksIcon className="size-5 text-amber-300" />
+            <h2 className="text-lg font-semibold">Best cars FAQ</h2>
+          </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {bestCarsFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <LocaleLink
+            className="forza-card p-5"
+            href="/games/forza-horizon-6/cars"
+          >
+            <CarFrontIcon className="size-5 text-cyan-300" />
+            <h2 className="mt-4 text-lg font-semibold">Open car database</h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">
+              Browse individual car pages with class, PI, acquisition, tune
+              direction, matched presets, and candidate status.
+            </p>
+          </LocaleLink>
+          <LocaleLink
+            className="forza-card p-5"
+            href="/tools/forza-horizon-6-tune-presets"
+          >
+            <GaugeIcon className="size-5 text-cyan-300" />
+            <h2 className="mt-4 text-lg font-semibold">Open tune presets</h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">
+              Match car candidates to shareable baseline presets for road,
+              drift, rally, dirt, street, and drag testing.
+            </p>
+          </LocaleLink>
         </div>
       </section>
     </main>
