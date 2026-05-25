@@ -1,7 +1,11 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/seo/json-ld';
 import { LocaleLink } from '@/i18n/navigation';
-import type { ForzaHorizon6BestCarGuide } from '@/lib/guides/forza-horizon-6-best-car-guides';
+import {
+  forzaHorizon6BestCarGuides,
+  type ForzaHorizon6BestCarGuide,
+} from '@/lib/guides/forza-horizon-6-best-car-guides';
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
@@ -20,6 +24,9 @@ export function ForzaHorizon6BestCarGuidePage({
 }: {
   guide: ForzaHorizon6BestCarGuide;
 }) {
+  const relatedCarGuides = Object.values(forzaHorizon6BestCarGuides).filter(
+    (item) => item.id !== guide.id
+  );
   const faqs: FaqItem[] = [
     {
       question: `What are the best picks for ${guide.h1}?`,
@@ -188,7 +195,26 @@ export function ForzaHorizon6BestCarGuidePage({
               ))}
             </div>
           </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <h2 className="text-xl font-semibold">Related best car hubs</h2>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {relatedCarGuides.map((item) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                  href={item.pathname}
+                  key={item.id}
+                >
+                  {item.h1}
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
         </section>
+        <ApexNewsletterCta
+          description="Get new FH6 candidate car notes, class updates, preset links, and weekly event testing changes."
+          title={`Track ${guide.h1.toLowerCase()} updates`}
+        />
       </main>
     </>
   );
