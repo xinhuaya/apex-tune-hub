@@ -1,3 +1,4 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -217,6 +218,10 @@ export default function ForzaHorizon6WheelSettingsPage() {
           </div>
         </div>
       </section>
+      <ApexNewsletterCta
+        description="Get FH6 wheel settings updates, force feedback notes, and car-tune links as testing expands."
+        title="Follow FH6 wheel settings updates"
+      />
     </main>
   );
 }

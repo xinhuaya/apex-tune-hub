@@ -1,3 +1,4 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -177,6 +178,10 @@ export default function ForzaHorizon6PcSettingsPage() {
           </div>
         </div>
       </section>
+      <ApexNewsletterCta
+        description="Get FH6 PC settings updates, benchmark workflow notes, and tuning links as performance testing expands."
+        title="Follow FH6 PC settings updates"
+      />
     </main>
   );
 }

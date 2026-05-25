@@ -1,3 +1,4 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -227,6 +228,10 @@ export default function SteamDeckSettingsPage() {
           </div>
         </div>
       </section>
+      <ApexNewsletterCta
+        description="Get FH6 Steam Deck settings updates, FPS target notes, battery checks, and weekly event setup links."
+        title="Follow FH6 Steam Deck settings updates"
+      />
     </main>
   );
 }
