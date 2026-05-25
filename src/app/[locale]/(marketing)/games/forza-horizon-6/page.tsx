@@ -1,7 +1,13 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+} from '@/lib/seo/forza-horizon-6';
 import {
   CalendarClockIcon,
   BookOpenIcon,
@@ -12,6 +18,30 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
+
+const pathname = '/games/forza-horizon-6';
+const title =
+  'Forza Horizon 6 Tuning Hub - Calculators, Best Cars, and Settings';
+const description =
+  'Forza Horizon 6 tuning hub with calculators, best car planning, Steam Deck settings, wheel settings, Car Pass tracking, and weekly setup notes.';
+
+const hubFaqs = [
+  {
+    question: 'What should I use first on Apex Tune Hub?',
+    answer:
+      'Start with the tune calculator for a baseline, then move into tune presets, car pages, or guide pages based on the problem you are trying to solve.',
+  },
+  {
+    question: 'Does the FH6 hub cover more than tuning sliders?',
+    answer:
+      'Yes. The hub links tuning calculators, car candidates, weekly playlist notes, Car Pass tracking, Steam Deck settings, PC settings, wheel settings, and controller settings.',
+  },
+  {
+    question: 'Are Apex Tune Hub recommendations official?',
+    answer:
+      'No. Apex Tune Hub is independent. Official release and platform facts should be checked against Forza.net, while tuning notes are baseline guidance for testing.',
+  },
+];
 
 const hubLinks = [
   {
@@ -109,17 +139,26 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Forza Horizon 6 Tuning Hub - Calculators, Best Cars, and Settings',
-    description:
-      'Forza Horizon 6 tuning hub with calculators, best car planning, Steam Deck settings, wheel settings, Car Pass tracking, and weekly setup notes.',
+    title,
+    description,
     locale,
-    pathname: '/games/forza-horizon-6',
+    pathname,
   });
 }
 
 export default function ForzaHorizon6HubPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Forza Horizon 6', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(hubFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -208,6 +247,24 @@ export default function ForzaHorizon6HubPage() {
               </LocaleLink>
             );
           })}
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <h2 className="text-2xl font-semibold">FH6 hub FAQ</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {hubFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={faq.question}
+              >
+                <h3 className="text-base font-semibold">{faq.question}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
       <ApexNewsletterCta

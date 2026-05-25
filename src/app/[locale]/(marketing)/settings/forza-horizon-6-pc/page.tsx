@@ -1,9 +1,20 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+} from '@/lib/seo/forza-horizon-6';
 import { MonitorCogIcon, RouteIcon, ZapIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
+
+const pathname = '/settings/forza-horizon-6-pc';
+const title = 'Best Forza Horizon 6 PC Settings - Apex Tune Hub';
+const description =
+  'Forza Horizon 6 PC settings guide for balanced visuals, stable FPS, low-end PCs, high-end PCs, and performance troubleshooting.';
 
 const presets = [
   {
@@ -23,6 +34,24 @@ const presets = [
   },
 ];
 
+const pcFaqs = [
+  {
+    question: 'What is the best first PC settings preset for FH6?',
+    answer:
+      'Start with the balanced preset, then lower shadows, reflections, and density settings only if frame pacing or stutter appears.',
+  },
+  {
+    question: 'Should I chase average FPS first?',
+    answer:
+      'No. Racing games feel bad when frame time spikes during corners, so frame pacing, input feel, heat, and VRAM pressure matter alongside average FPS.',
+  },
+  {
+    question: 'How should I test PC settings?',
+    answer:
+      'Use one repeatable route with city driving, high-speed road, weather, and dense scenery while changing only one setting group at a time.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,17 +60,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Best Forza Horizon 6 PC Settings - Apex Tune Hub',
-    description:
-      'Forza Horizon 6 PC settings guide for balanced visuals, stable FPS, low-end PCs, high-end PCs, and performance troubleshooting.',
+    title,
+    description,
     locale,
-    pathname: '/settings/forza-horizon-6-pc',
+    pathname,
   });
 }
 
 export default function ForzaHorizon6PcSettingsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'PC Settings', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(pcFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -117,6 +156,25 @@ export default function ForzaHorizon6PcSettingsPage() {
             road, weather, and dense scenery. Keep the same car and route while
             changing only one setting group at a time.
           </p>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">PC settings FAQ</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {pcFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

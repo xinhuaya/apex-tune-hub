@@ -1,9 +1,21 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+} from '@/lib/seo/forza-horizon-6';
 import { CalendarDaysIcon, RadioTowerIcon, RouteIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
+
+const pathname = '/games/forza-horizon-6/car-pass';
+const title = 'Forza Horizon 6 Car Pass Tracker - Apex Tune Hub';
+const description =
+  'Track Forza Horizon 6 Car Pass weekly cars, release dates, tune links, source status, and setup recommendations.';
 
 const trackerRows = [
   {
@@ -26,6 +38,24 @@ const trackerRows = [
   },
 ];
 
+const carPassFaqs = [
+  {
+    question: 'What is the Forza Horizon 6 Car Pass tracker?',
+    answer:
+      'It is a repeat-visit page for weekly Car Pass additions, release timing, source status, and tune links for each new car.',
+  },
+  {
+    question: 'How often should this page be updated?',
+    answer:
+      'Update it every week when the Car Pass car is confirmed, then add class direction, calculator links, and a car detail page when available.',
+  },
+  {
+    question: 'Why keep unverified cars labelled as To verify?',
+    answer:
+      'Transparent labels prevent fake certainty. Cars should move into tested notes only after official source checks and route or event testing.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -34,17 +64,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Forza Horizon 6 Car Pass Tracker - Apex Tune Hub',
-    description:
-      'Track Forza Horizon 6 Car Pass weekly cars, release dates, tune links, source status, and setup recommendations.',
+    title,
+    description,
     locale,
-    pathname: '/games/forza-horizon-6/car-pass',
+    pathname,
   });
 }
 
 export default function CarPassTrackerPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Car Pass Tracker', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(carPassFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -136,7 +176,30 @@ export default function CarPassTrackerPage() {
             </p>
           </article>
         </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">Car Pass FAQ</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {carPassFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
+      <ApexNewsletterCta
+        description="Get weekly Car Pass tune notes, recommended calculator presets, and new car page updates."
+        title="Follow FH6 Car Pass updates"
+      />
     </main>
   );
 }
