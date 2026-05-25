@@ -1,5 +1,6 @@
 import { ForzaPresetCard } from '@/components/tools/forza-preset-card';
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import {
@@ -7,6 +8,11 @@ import {
   getForzaHorizon6CarTitle,
 } from '@/lib/cars/forza-horizon-6-cars';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildArticleJsonLd,
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+} from '@/lib/seo/forza-horizon-6';
 import {
   calculateTune,
   formatResultForClipboard,
@@ -57,6 +63,7 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
     notFound();
   }
 
+  const pathname = `/tools/forza-horizon-6-tune-presets/${preset.slug}`;
   const result = calculateTune(preset.input);
   const relatedPresets = forzaTunePresets
     .filter((item) => item.slug !== preset.slug)
@@ -71,9 +78,45 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
       href: car ? `/games/forza-horizon-6/cars/${car.slug}` : undefined,
     };
   });
+  const presetFaqs = [
+    {
+      question: `When should I use the ${preset.h1}?`,
+      answer: preset.routeUse,
+    },
+    {
+      question: 'Is this preset a final tune code?',
+      answer:
+        'No. It is a baseline calculator state. Use the recommendations, test the car on the target route, and save a car-specific version once the behavior repeats.',
+    },
+    {
+      question: 'Which cars fit this preset?',
+      answer: `Start with cars similar to ${preset.targetCars.join(
+        ', '
+      )}, then adjust the live calculator if your build has a different drivetrain, class, or handling problem.`,
+    },
+  ];
 
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Tools', path: '/tools' },
+            {
+              name: 'Forza Horizon 6 Tune Presets',
+              path: '/tools/forza-horizon-6-tune-presets',
+            },
+            { name: preset.h1, path: pathname },
+          ]),
+          buildArticleJsonLd({
+            title: preset.title,
+            description: preset.description,
+            path: pathname,
+          }),
+          buildFaqJsonLd(presetFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -214,6 +257,25 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
           <pre className="mt-5 max-h-56 overflow-auto rounded-md border border-white/10 bg-black/40 p-4 text-xs leading-5 text-zinc-400">
             {formatResultForClipboard(result)}
           </pre>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <h2 className="text-xl font-semibold">Preset FAQ</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {presetFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={faq.question}
+              >
+                <h3 className="text-base font-semibold">{faq.question}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

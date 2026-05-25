@@ -1,12 +1,77 @@
 import { ForzaPresetCard } from '@/components/tools/forza-preset-card';
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+} from '@/lib/seo/forza-horizon-6';
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
-import { ArrowRightIcon, GaugeIcon, LinkIcon } from 'lucide-react';
+import {
+  ArrowRightIcon,
+  ClipboardCheckIcon,
+  GaugeIcon,
+  LinkIcon,
+  SearchIcon,
+  Share2Icon,
+  SlidersHorizontalIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
+
+const pathname = '/tools/forza-horizon-6-tune-presets';
+const title = 'Forza Horizon 6 Tune Presets - Apex Tune Hub';
+const description =
+  'Shareable Forza Horizon 6 tune presets for road, rally, dirt, street, drag, AWD, RWD, FWD, A class, S1, and S2 builds.';
+
+const presetUseCases = [
+  {
+    icon: SearchIcon,
+    title: 'Pick by problem',
+    text: 'Start with the symptom you feel first: understeer, oversteer, wheelspin, slow launch, braking instability, or weak top speed.',
+  },
+  {
+    icon: GaugeIcon,
+    title: 'Match class and drive',
+    text: 'Each preset keeps class band, drivetrain, surface, and driving style visible so you can avoid copying a setup meant for a different build.',
+  },
+  {
+    icon: SlidersHorizontalIcon,
+    title: 'Open a live calculator state',
+    text: 'Preset pages link into the tune calculator with the same inputs already loaded, making the page useful beyond a static note.',
+  },
+  {
+    icon: Share2Icon,
+    title: 'Save route-specific links',
+    text: 'Use these URLs in Discord, Reddit, YouTube descriptions, or your own testing notes while you refine car-specific settings.',
+  },
+];
+
+const presetLibraryFaqs = [
+  {
+    question: 'What are FH6 tune presets?',
+    answer:
+      'They are shareable starting points for Forza Horizon 6 tuning situations, built around race type, drivetrain, class, handling problem, and driving style.',
+  },
+  {
+    question: 'Are these final tune codes?',
+    answer:
+      'No. Apex Tune Hub treats presets as baseline setup links. You should test the car, track the symptom, and then save a car-specific version after repeatable laps.',
+  },
+  {
+    question: 'How should I choose a preset?',
+    answer:
+      'Choose the preset that matches the issue you feel first, then confirm the race type, drivetrain, class band, and driving style before opening the live calculator.',
+  },
+  {
+    question: 'Why do preset pages link back to the calculator?',
+    answer:
+      'The calculator keeps the baseline adjustable. If a preset is close but not perfect, you can change the issue, class, drivetrain, or style without starting over.',
+  },
+];
 
 export async function generateMetadata({
   params,
@@ -16,17 +81,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Forza Horizon 6 Tune Presets - Apex Tune Hub',
-    description:
-      'Shareable Forza Horizon 6 tune presets for road, rally, dirt, street, AWD, RWD, A class, S1, and S2 builds.',
+    title,
+    description,
     locale,
-    pathname: '/tools/forza-horizon-6-tune-presets',
+    pathname,
   });
 }
 
 export default function ForzaHorizon6TunePresetsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Tools', path: '/tools' },
+            { name: 'Forza Horizon 6 Tune Presets', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(presetLibraryFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -79,10 +154,78 @@ export default function ForzaHorizon6TunePresetsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-4 lg:grid-cols-4">
+          {presetUseCases.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article className="forza-card p-5" key={item.title}>
+                <Icon className="size-6 text-cyan-300" />
+                <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {item.text}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">
+              Preset library
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold">
+              Browse baseline setups by symptom, surface, and class.
+            </h2>
+          </div>
+          <p className="text-sm leading-7 text-zinc-400">
+            The goal is not to pretend every car has one universal magic tune.
+            These preset pages create a repeatable testing path: identify the
+            problem, open the calculator state, test a short route, then record
+            the car-specific changes that actually helped.
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Shareable tune starts
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              {forzaTunePresets.length} FH6 preset pages
+            </h2>
+          </div>
+          <div className="flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-zinc-400">
+            <ClipboardCheckIcon className="size-4 text-amber-300" />
+            Test, refine, then save per car
+          </div>
+        </div>
         <div className="grid gap-4 lg:grid-cols-2">
           {forzaTunePresets.map((preset) => (
             <ForzaPresetCard key={preset.slug} preset={preset} />
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <h2 className="text-2xl font-semibold">Tune preset FAQ</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {presetLibraryFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={faq.question}
+              >
+                <h3 className="text-base font-semibold">{faq.question}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
       <ApexNewsletterCta

@@ -178,6 +178,162 @@ export const forzaTunePresets: ForzaTunePreset[] = [
       'Compare lap time, not only speed trap numbers.',
     ],
   },
+  {
+    slug: 'a-awd-road-understeer-stable',
+    title: 'A Class AWD Road Understeer Tune Preset - Forza Horizon 6',
+    h1: 'A class AWD road tune preset for understeer',
+    description:
+      'A stable Forza Horizon 6 A class AWD road preset for builds that feel safe but push wide through apexes.',
+    eyebrow: 'A AWD road preset',
+    input: {
+      raceType: 'road',
+      drivetrain: 'AWD',
+      classBand: 'A',
+      handlingIssue: 'understeer',
+      drivingStyle: 'stable',
+    },
+    targetCars: ['2020 Toyota GR Supra', '1992 Honda NSX-R', '2022 Toyota GR86'],
+    routeUse:
+      'Use this preset on road routes where AWD traction is strong but the front tires wash out before the car points at the exit.',
+    tuningIntent:
+      'Improve turn-in and mid-corner rotation while keeping the build friendly for longer championship routes.',
+    checklist: [
+      'Run a medium-speed corner twice before changing settings.',
+      'Check if the push starts on entry, middle, or throttle exit.',
+      'Add front response before reducing rear grip.',
+      'Only chase aggression after the car hits apexes consistently.',
+    ],
+  },
+  {
+    slug: 's1-rwd-road-oversteer-balanced',
+    title: 'S1 RWD Road Oversteer Tune Preset - Forza Horizon 6',
+    h1: 'S1 RWD road tune preset for oversteer',
+    description:
+      'A balanced Forza Horizon 6 S1 RWD road preset for fast builds that rotate too sharply on entry or exit.',
+    eyebrow: 'S1 RWD road preset',
+    input: {
+      raceType: 'road',
+      drivetrain: 'RWD',
+      classBand: 'S1',
+      handlingIssue: 'oversteer',
+      drivingStyle: 'balanced',
+    },
+    targetCars: ['2005 Honda NSX-R', '1997 Mazda RX-7', '1998 Toyota Supra RZ'],
+    routeUse:
+      'Use this preset when a high-class RWD road build is quick in clean air but loses time from snap rotation or nervous exits.',
+    tuningIntent:
+      'Calm the rear without muting the rotation that makes RWD cars fast on technical road sections.',
+    checklist: [
+      'Separate entry oversteer from throttle oversteer.',
+      'Test one braking zone and one second-gear exit.',
+      'Reduce snap before adding final-drive aggression.',
+      'Keep lap time notes so stability changes do not hide lost speed.',
+    ],
+  },
+  {
+    slug: 'b-fwd-street-understeer-stable',
+    title: 'B Class FWD Street Understeer Tune Preset - Forza Horizon 6',
+    h1: 'B class FWD street tune preset for understeer',
+    description:
+      'A stable Forza Horizon 6 B class FWD street preset for compact builds that scrub speed and miss tight city apexes.',
+    eyebrow: 'B FWD street preset',
+    input: {
+      raceType: 'street',
+      drivetrain: 'FWD',
+      classBand: 'B',
+      handlingIssue: 'understeer',
+      drivingStyle: 'stable',
+    },
+    targetCars: ['1985 Toyota Sprinter Trueno GT Apex', '2022 Toyota GR86'],
+    routeUse:
+      'Use this preset for lower-class street routes where braking, curbs, and traffic make front-end grip more important than peak speed.',
+    tuningIntent:
+      'Help the car rotate without making a forgiving FWD build unstable under braking or throttle lift.',
+    checklist: [
+      'Brake earlier for one lap, then compare a later-brake lap.',
+      'Watch whether front tires slide before throttle is applied.',
+      'Do not overcorrect with rear stiffness on bumpy streets.',
+      'Tune for repeatable corner exits, not one perfect slide.',
+    ],
+  },
+  {
+    slug: 's1-awd-rally-wheelspin-balanced',
+    title: 'S1 AWD Rally Wheelspin Tune Preset - Forza Horizon 6',
+    h1: 'S1 AWD rally tune preset for wheelspin',
+    description:
+      'A Forza Horizon 6 S1 AWD rally preset for mixed-surface builds that break traction after jumps, crests, or slow exits.',
+    eyebrow: 'S1 AWD rally preset',
+    input: {
+      raceType: 'rally',
+      drivetrain: 'AWD',
+      classBand: 'S1',
+      handlingIssue: 'wheelspin',
+      drivingStyle: 'balanced',
+    },
+    targetCars: ['2025 Toyota GR GT Prototype', '2005 Honda NSX-R'],
+    routeUse:
+      'Use this preset on rally routes where the car lands well but wastes time spinning all four tires after rough exits.',
+    tuningIntent:
+      'Keep AWD launch strength while smoothing power delivery and platform movement on uneven surfaces.',
+    checklist: [
+      'Test one flat launch and one crest exit.',
+      'Check tire spin after landing before changing gearing.',
+      'Soften the platform if traction loss follows bumps.',
+      'Retest with partial throttle before increasing power.',
+    ],
+  },
+  {
+    slug: 'a-awd-dirt-slow-launch-balanced',
+    title: 'A Class AWD Dirt Slow Launch Preset - Forza Horizon 6',
+    h1: 'A class AWD dirt tune preset for slow launch',
+    description:
+      'A balanced Forza Horizon 6 A class AWD dirt preset for cars that bog down out of hairpins or uphill sections.',
+    eyebrow: 'A AWD dirt preset',
+    input: {
+      raceType: 'dirt',
+      drivetrain: 'AWD',
+      classBand: 'A',
+      handlingIssue: 'slow-launch',
+      drivingStyle: 'balanced',
+    },
+    targetCars: ['2020 Toyota GR Supra', '2022 Toyota GR86', '2003 Honda S2000'],
+    routeUse:
+      'Use this preset when an AWD dirt build is easy to drive but loses races because it cannot pull hard from slow corners.',
+    tuningIntent:
+      'Improve low-speed response while preserving the traction and stability that make AWD dirt builds reliable.',
+    checklist: [
+      'Time a hairpin exit before changing final drive.',
+      'Watch for bogging after the first upshift.',
+      'Shorten lower gears in small steps.',
+      'Stop if the fix creates wheelspin on loose exits.',
+    ],
+  },
+  {
+    slug: 's2-awd-drag-wheelspin-aggressive',
+    title: 'S2 AWD Drag Wheelspin Tune Preset - Forza Horizon 6',
+    h1: 'S2 AWD drag tune preset for wheelspin',
+    description:
+      'An aggressive Forza Horizon 6 S2 AWD drag preset for high-power builds that launch hard but waste grip early.',
+    eyebrow: 'S2 AWD drag preset',
+    input: {
+      raceType: 'drag',
+      drivetrain: 'AWD',
+      classBand: 'S2',
+      handlingIssue: 'wheelspin',
+      drivingStyle: 'aggressive',
+    },
+    targetCars: ['2025 Toyota GR GT Prototype', '1998 Toyota Supra RZ'],
+    routeUse:
+      'Use this preset for drag and speed-zone testing when the car has enough power but cannot apply it cleanly in the first seconds.',
+    tuningIntent:
+      'Turn launch violence into usable acceleration before chasing a taller top gear or more peak horsepower.',
+    checklist: [
+      'Launch from the same line three times.',
+      'Record whether spin happens instantly or after the first shift.',
+      'Change launch behavior before changing top gear.',
+      'Compare elapsed time, not only trap speed.',
+    ],
+  },
 ];
 
 export function getForzaTunePreset(slug: string) {
