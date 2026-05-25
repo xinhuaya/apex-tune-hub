@@ -1,6 +1,7 @@
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
+import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
 import { forzaHorizon6BestCarGuides } from '@/lib/guides/forza-horizon-6-best-car-guides';
 import { constructMetadata } from '@/lib/metadata';
 import {
@@ -28,6 +29,12 @@ const bestCarGuides = [
   forzaHorizon6BestCarGuides.drift,
   forzaHorizon6BestCarGuides.rally,
   forzaHorizon6BestCarGuides.jdm,
+];
+const classCarGuides = [
+  forzaHorizon6ClassCarGuides.b,
+  forzaHorizon6ClassCarGuides.a,
+  forzaHorizon6ClassCarGuides.s1,
+  forzaHorizon6ClassCarGuides.s2,
 ];
 
 const carRows = bestCarGuides.map((guide) => ({
@@ -233,6 +240,22 @@ export default function BestCarsPage() {
                 {description}
               </p>
             </article>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-4">
+          {classCarGuides.map((guide) => (
+            <LocaleLink
+              className="forza-card p-5"
+              href={guide.pathname}
+              key={guide.id}
+            >
+              <CarFrontIcon className="size-5 text-amber-300" />
+              <h2 className="mt-4 text-lg font-semibold">{guide.h1}</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {guide.classGoal}. Best for {guide.bestFor}.
+              </p>
+            </LocaleLink>
           ))}
         </div>
 
