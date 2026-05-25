@@ -68,6 +68,12 @@ const relatedLinks = [
     description: 'Pair calculator output with car pages, strengths, and launch notes.',
     href: '/games/forza-horizon-6/cars',
   },
+  {
+    title: 'Tuning Settings Guide',
+    description:
+      'Check what each slider changes before turning a baseline into a car-specific tune.',
+    href: '/games/forza-horizon-6/tuning-settings',
+  },
 ];
 
 const tuneCalculatorFaqs = [

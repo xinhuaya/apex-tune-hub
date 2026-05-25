@@ -58,6 +58,13 @@ const hubLinks = [
     icon: BookOpenIcon,
   },
   {
+    title: 'Tuning Settings',
+    description:
+      'Plain-English tuning glossary for tires, gearing, alignment, aero, brakes, and diff.',
+    href: '/games/forza-horizon-6/tuning-settings',
+    icon: SlidersHorizontalIcon,
+  },
+  {
     title: 'Tune Calculator',
     description: 'Baseline setup direction for road, dirt, rally, and drag.',
     href: '/tools/forza-horizon-6-tune-calculator',
