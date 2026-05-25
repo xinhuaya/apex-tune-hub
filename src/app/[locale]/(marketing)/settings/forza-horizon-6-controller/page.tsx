@@ -1,6 +1,13 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+  type FaqItem,
+} from '@/lib/seo/forza-horizon-6';
 import { Gamepad2Icon, SlidersHorizontalIcon, WrenchIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -42,6 +49,29 @@ const controllerTestLinks = [
   },
 ];
 
+const pathname = '/settings/forza-horizon-6-controller';
+const title = 'Best Forza Horizon 6 Controller Settings - Apex Tune Hub';
+const description =
+  'Forza Horizon 6 controller settings guide for steering, throttle, braking, vibration, and stable driving feel.';
+const controllerFaqs: FaqItem[] = [
+  {
+    question:
+      'What controller setting should I change first in Forza Horizon 6?',
+    answer:
+      'Start with steering and throttle response. If every car feels twitchy or hard to catch, adjust controls before changing individual tunes.',
+  },
+  {
+    question: 'Should I fix understeer with controller settings or tuning?',
+    answer:
+      'If only one car pushes wide, fix the tune. If every car feels delayed or too sharp, adjust controller steering feel first.',
+  },
+  {
+    question: 'Are controller settings better than wheel settings for FH6?',
+    answer:
+      'Controller settings are easier for most players and work well for road, drift, and weekly events. Wheel settings can feel better after a dedicated force feedback profile.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -50,17 +80,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Best Forza Horizon 6 Controller Settings - Apex Tune Hub',
-    description:
-      'Forza Horizon 6 controller settings guide for steering, throttle, braking, vibration, and stable driving feel.',
+    title,
+    description,
     locale,
-    pathname: '/settings/forza-horizon-6-controller',
+    pathname,
   });
 }
 
 export default function ForzaHorizon6ControllerSettingsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Settings', path: pathname },
+            { name: 'Controller Settings', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(controllerFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -160,6 +200,25 @@ export default function ForzaHorizon6ControllerSettingsPage() {
               </p>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">FAQ</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {controllerFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

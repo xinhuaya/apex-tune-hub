@@ -1,6 +1,13 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+  type FaqItem,
+} from '@/lib/seo/forza-horizon-6';
 import {
   BatteryChargingIcon,
   Gamepad2Icon,
@@ -49,6 +56,28 @@ const handheldLinks = [
   },
 ];
 
+const pathname = '/settings/forza-horizon-6-steam-deck';
+const title = 'Best Forza Horizon 6 Steam Deck Settings - Apex Tune Hub';
+const description =
+  'Forza Horizon 6 Steam Deck settings guide with Verified status, FPS targets, battery notes, and preset planning.';
+const steamDeckFaqs: FaqItem[] = [
+  {
+    question: 'Is Forza Horizon 6 Steam Deck Verified?',
+    answer:
+      'Forza.net lists Forza Horizon 6 as Steam Deck Verified and optimized for PC handhelds at launch.',
+  },
+  {
+    question: 'Should I target 30 FPS or 40 FPS on Steam Deck?',
+    answer:
+      'Start with a stable 40 FPS target for balanced play. Drop to 30 FPS when battery life, heat, or crowded weekly events matter more.',
+  },
+  {
+    question: 'Do Steam Deck settings affect car control?',
+    answer:
+      'Yes. Unstable frame pacing can make braking, steering, and drift recovery feel inconsistent, so tune graphics and input settings together.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -57,17 +86,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Best Forza Horizon 6 Steam Deck Settings - Apex Tune Hub',
-    description:
-      'Forza Horizon 6 Steam Deck settings guide with Verified status, FPS targets, battery notes, and preset planning.',
+    title,
+    description,
     locale,
-    pathname: '/settings/forza-horizon-6-steam-deck',
+    pathname,
   });
 }
 
 export default function SteamDeckSettingsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Settings', path: pathname },
+            { name: 'Steam Deck Settings', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(steamDeckFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -167,6 +206,25 @@ export default function SteamDeckSettingsPage() {
               </p>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">FAQ</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {steamDeckFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

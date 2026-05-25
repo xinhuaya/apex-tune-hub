@@ -1,6 +1,13 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+  type FaqItem,
+} from '@/lib/seo/forza-horizon-6';
 import { CalendarDaysIcon, CarIcon, MailIcon, TrophyIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -38,6 +45,28 @@ const baselineLinks = [
   },
 ];
 
+const pathname = '/games/forza-horizon-6/weekly-playlist';
+const title = 'Forza Horizon 6 Weekly Playlist Tracker - Apex Tune Hub';
+const description =
+  'Track Forza Horizon 6 weekly playlist rewards, event notes, recommended cars, and tune links.';
+const weeklyFaqs: FaqItem[] = [
+  {
+    question: 'What should I check first in the FH6 weekly playlist?',
+    answer:
+      'Check event class, drivetrain limits, surface type, and reward car timing before choosing a tune.',
+  },
+  {
+    question: 'Which tune is safest for weekly events?',
+    answer:
+      'A stable A or S1 baseline is usually safer than an extreme build because weekly events reward consistency across traffic, weather, and mixed routes.',
+  },
+  {
+    question: 'How often should this playlist page be updated?',
+    answer:
+      'Update it on the weekly playlist cadence with reward cars, event restrictions, suggested cars, and the closest tune links.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -46,17 +75,26 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Forza Horizon 6 Weekly Playlist Tracker - Apex Tune Hub',
-    description:
-      'Track Forza Horizon 6 weekly playlist rewards, event notes, recommended cars, and tune links.',
+    title,
+    description,
     locale,
-    pathname: '/games/forza-horizon-6/weekly-playlist',
+    pathname,
   });
 }
 
 export default function WeeklyPlaylistPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Weekly Playlist', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(weeklyFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -160,6 +198,25 @@ export default function WeeklyPlaylistPage() {
               </p>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">FAQ</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {weeklyFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

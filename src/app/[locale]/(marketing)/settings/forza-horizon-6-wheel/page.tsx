@@ -1,6 +1,13 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
+  buildWebPageJsonLd,
+  type FaqItem,
+} from '@/lib/seo/forza-horizon-6';
 import {
   Disc3Icon,
   GaugeIcon,
@@ -47,6 +54,28 @@ const wheelTestLinks = [
   },
 ];
 
+const pathname = '/settings/forza-horizon-6-wheel';
+const title = 'Best Forza Horizon 6 Wheel Settings - Apex Tune Hub';
+const description =
+  'Forza Horizon 6 wheel settings guide for Logitech, Thrustmaster, Fanatec, Moza, force feedback, deadzones, and steering feel.';
+const wheelFaqs: FaqItem[] = [
+  {
+    question: 'What should I test first with a wheel in Forza Horizon 6?',
+    answer:
+      'Use one stable road car and one familiar route. Make force feedback readable before changing every car tune.',
+  },
+  {
+    question: 'Why does my FH6 wheel setup feel too heavy?',
+    answer:
+      'Heavy force feedback can hide understeer and make oversteer harder to catch. Reduce force strength before making aggressive tune changes.',
+  },
+  {
+    question: 'Should wheel users use different tunes than controller users?',
+    answer:
+      'Often yes. Wheel users may need gentler steering response and more predictable rear behavior, especially on drift and high-power RWD builds.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -55,17 +84,27 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return constructMetadata({
-    title: 'Best Forza Horizon 6 Wheel Settings - Apex Tune Hub',
-    description:
-      'Forza Horizon 6 wheel settings guide for Logitech, Thrustmaster, Fanatec, Moza, force feedback, deadzones, and steering feel.',
+    title,
+    description,
     locale,
-    pathname: '/settings/forza-horizon-6-wheel',
+    pathname,
   });
 }
 
 export default function ForzaHorizon6WheelSettingsPage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildBreadcrumbJsonLd([
+            { name: 'Forza Horizon 6', path: '/games/forza-horizon-6' },
+            { name: 'Settings', path: pathname },
+            { name: 'Wheel Settings', path: pathname },
+          ]),
+          buildWebPageJsonLd({ title, description, path: pathname }),
+          buildFaqJsonLd(wheelFaqs),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -157,6 +196,25 @@ export default function ForzaHorizon6WheelSettingsPage() {
               </p>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">FAQ</h2>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {wheelFaqs.map((faq) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                key={faq.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {faq.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>
