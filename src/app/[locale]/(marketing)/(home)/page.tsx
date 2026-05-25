@@ -3,9 +3,12 @@ import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
 import {
   ArrowRightIcon,
+  CalendarDaysIcon,
+  CarFrontIcon,
   GaugeIcon,
   LinkIcon,
   ListChecksIcon,
+  MapPinnedIcon,
   RadioTowerIcon,
   SlidersHorizontalIcon,
 } from 'lucide-react';
@@ -41,9 +44,27 @@ const tools = [
 
 const stats = [
   { label: 'Launch hub', value: 'FH6' },
-  { label: 'Cars to index', value: '550+' },
+  { label: 'Cars target', value: '550+' },
   { label: 'MVP tools', value: '4' },
-  { label: 'Port', value: '3017' },
+  { label: 'Weekly radar', value: 'Live' },
+];
+
+const launchSignals = [
+  {
+    label: 'Japan prep',
+    value: 'Road + drift baselines',
+    icon: MapPinnedIcon,
+  },
+  {
+    label: 'Garage data',
+    value: 'Car pages built to scale',
+    icon: CarFrontIcon,
+  },
+  {
+    label: 'Playlist loop',
+    value: 'Weekly picks and tune notes',
+    icon: CalendarDaysIcon,
+  },
 ];
 
 export async function generateMetadata({
@@ -96,10 +117,38 @@ export default function HomePage() {
                 </LocaleLink>
               </Button>
             </div>
+
+            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+              {launchSignals.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div key={item.label} className="forza-signal">
+                    <Icon className="size-4 text-cyan-200" />
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-300">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-zinc-500">
+                        {item.value}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <div className="forza-panel relative overflow-hidden p-5">
             <div className="forza-hero-grid absolute inset-0 opacity-30" />
+            <div
+              className="pointer-events-none absolute -right-24 top-8 h-44 w-44 rounded-full border border-cyan-300/25"
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute -right-12 top-20 h-24 w-24 rounded-full border border-amber-300/20"
+              aria-hidden="true"
+            />
             <div className="relative">
               <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
                 <div>
