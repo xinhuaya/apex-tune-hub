@@ -8,20 +8,38 @@ import type { Locale } from 'next-intl';
 const controllerRows = [
   [
     'Steering',
-    'Balanced response',
-    'Avoid twitchy inputs before testing drift.',
+    'Linear and predictable',
+    'Keep steering calm enough for road racing before testing drift angle.',
   ],
-  ['Throttle', 'Smooth exits', 'Useful for AWD and high-power builds.'],
+  ['Throttle', 'Smooth exits', 'Helps AWD launches and high-power S1 builds.'],
   [
     'Braking',
     'Stable trail braking',
-    'Tune braking feel with car setup notes.',
+    'Use car setup changes if only one car locks or pushes wide.',
   ],
   [
     'Vibration',
-    'Driver preference',
-    'Keep enough feedback to notice grip loss.',
+    'Readable grip loss',
+    'Keep enough feedback to notice tire slip without distracting rumble.',
   ],
+];
+
+const controllerTestLinks = [
+  {
+    title: 'Road racing test',
+    href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+    note: 'Use this route style to test steering, braking, and corner exits.',
+  },
+  {
+    title: 'Drift test',
+    href: '/games/forza-horizon-6/guides/japan-drift-setup',
+    note: 'Use this when throttle and countersteer feel too sharp or too slow.',
+  },
+  {
+    title: 'Handling fixes',
+    href: '/games/forza-horizon-6/guides',
+    note: 'Open the guide stack when a problem follows one car instead of every car.',
+  },
 ];
 
 export async function generateMetadata({
@@ -124,6 +142,24 @@ export default function ForzaHorizon6ControllerSettingsPage() {
               the page can become more useful over time.
             </p>
           </article>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {controllerTestLinks.map((item) => (
+            <LocaleLink
+              className="forza-card p-5"
+              href={item.href}
+              key={item.href}
+            >
+              <Gamepad2Icon className="size-5 text-amber-300" />
+              <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {item.note}
+              </p>
+            </LocaleLink>
+          ))}
         </div>
       </section>
     </main>

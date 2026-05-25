@@ -176,9 +176,10 @@ export const forzaHorizon6BestCarGuides: Record<
     eyebrow: 'Japan car hub',
     h1: 'Best JDM cars in Forza Horizon 6',
     intro:
-      'Because Forza Horizon 6 starts in Japan, JDM-focused pages can be a long-term content lane. This hub links car database pages to road, drift, touge, and weekly testing.',
+      'Because Forza Horizon 6 starts in Japan, JDM cars are useful for road racing, drift, touge-style routes, starter builds, and weekly events. Use this page to pick a role first, then open the car page or matching tune guide.',
     classFocus: 'B / A / S1',
-    updateCadence: 'Update as the Japan car database expands',
+    updateCadence:
+      'Refresh after route, drift zone, and weekly playlist testing',
     picks: [
       {
         car: '2020 Toyota GR Supra',
@@ -207,12 +208,39 @@ export const forzaHorizon6BestCarGuides: Record<
           'Build a responsive A-class setup before chasing high-power swaps.',
         href: '/games/forza-horizon-6/cars/2003-honda-s2000',
       },
+      {
+        car: '1992 Honda NSX-R',
+        classBand: 'B / A',
+        status: 'candidate',
+        why: 'Balanced mid-engine handling makes it a useful road and mountain route test car.',
+        tuneDirection:
+          'Start with clean braking and mid-corner stability before adding power.',
+        href: '/games/forza-horizon-6/cars/1992-honda-nsx-r',
+      },
+      {
+        car: '1985 Toyota Sprinter Trueno GT Apex',
+        classBand: 'C / B / A',
+        status: 'needs-testing',
+        why: 'Lightweight retro candidate for touge, beginner drift, and lower-class route learning.',
+        tuneDirection:
+          'Build gradually and preserve rotation; too much power can make the car less useful.',
+        href: '/games/forza-horizon-6/cars/1985-toyota-sprinter-trueno-gt-apex',
+      },
+      {
+        car: '2022 Toyota GR86',
+        classBand: 'B / A',
+        status: 'candidate',
+        why: 'Modern, readable handling makes it a strong starter car for road and drift testing.',
+        tuneDirection:
+          'Keep it light, compare road and drift suspension, then decide if it deserves S1.',
+        href: '/games/forza-horizon-6/cars/2022-toyota-gr86',
+      },
     ],
     checkpoints: [
-      'Each car links to a database page.',
-      'Each high-demand car gets one focused tune page later.',
-      'Recommendations are separated by use case.',
-      'Testing status stays visible until real data is added.',
+      'Pick the role first: road, drift, touge, rally, or weekly event coverage.',
+      'Keep B and A-class builds for learning routes before moving into S1.',
+      'Use separate road and drift presets for the same car.',
+      'Treat candidate labels as transparent until real route notes are added.',
     ],
   },
 };

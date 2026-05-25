@@ -1,7 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
-import { BatteryChargingIcon, MonitorCogIcon, ZapIcon } from 'lucide-react';
+import {
+  BatteryChargingIcon,
+  Gamepad2Icon,
+  MonitorCogIcon,
+  ZapIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -23,6 +28,24 @@ const presets = [
     fps: '45-60 FPS target',
     direction: 'Higher visual budget while watching thermals and stutter.',
     status: 'Needs local test',
+  },
+];
+
+const handheldLinks = [
+  {
+    title: 'Steam Deck guide',
+    href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+    note: 'Use the evergreen guide for testing order and patch update notes.',
+  },
+  {
+    title: 'Controller settings',
+    href: '/settings/forza-horizon-6-controller',
+    note: 'Pair handheld graphics changes with predictable input settings.',
+  },
+  {
+    title: 'Weekly playlist',
+    href: '/games/forza-horizon-6/weekly-playlist',
+    note: 'Use stable handheld settings for weekly events with traffic and weather.',
   },
 ];
 
@@ -85,13 +108,11 @@ export default function SteamDeckSettingsPage() {
 
             <div className="forza-panel p-5">
               <BatteryChargingIcon className="size-7 text-lime-300" />
-              <h2 className="mt-4 text-xl font-semibold">
-                Affiliate-friendly page
-              </h2>
+              <h2 className="mt-4 text-xl font-semibold">Best first target</h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
-                This is one of the best long-term pages for handheld accessory,
-                controller, dock, and storage affiliate links after the content
-                has real test data.
+                Start with stable frame pacing. A lower but consistent FPS
+                target usually feels better than a higher target that drops in
+                traffic, rain, or packed event starts.
               </p>
             </div>
           </div>
@@ -128,6 +149,24 @@ export default function SteamDeckSettingsPage() {
             <li>Separate Steam Deck LCD and OLED results.</li>
             <li>Retest after major graphics or performance patches.</li>
           </ul>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {handheldLinks.map((item) => (
+            <LocaleLink
+              className="forza-card p-5"
+              href={item.href}
+              key={item.href}
+            >
+              <Gamepad2Icon className="size-5 text-fuchsia-300" />
+              <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {item.note}
+              </p>
+            </LocaleLink>
+          ))}
         </div>
       </section>
     </main>

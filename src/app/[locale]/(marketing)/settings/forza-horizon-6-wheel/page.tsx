@@ -1,7 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
-import { Disc3Icon, GaugeIcon, RotateCcwIcon } from 'lucide-react';
+import {
+  Disc3Icon,
+  GaugeIcon,
+  RotateCcwIcon,
+  SlidersHorizontalIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -21,6 +26,24 @@ const wheelProfiles = [
     issue: 'Oscillation, clipping, or too much self-aligning force',
     action:
       'Use device software plus in-game settings as one combined profile.',
+  },
+];
+
+const wheelTestLinks = [
+  {
+    title: 'Wheel setup guide',
+    href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+    note: 'Use this for the full testing order and when to stop changing settings.',
+  },
+  {
+    title: 'Road tune baseline',
+    href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+    note: 'Use a stable road tune before judging force feedback feel.',
+  },
+  {
+    title: 'Controller comparison',
+    href: '/settings/forza-horizon-6-controller',
+    note: 'Compare controller feel if the wheel profile makes every car harder to catch.',
   },
 ];
 
@@ -54,8 +77,9 @@ export default function ForzaHorizon6WheelSettingsPage() {
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
                 Use this as the starting page for wheel setup, force feedback,
-                steering feel, deadzones, and brand-specific profiles. It is a
-                strong affiliate page once tested settings are added.
+                steering feel, deadzones, and brand-specific profiles. Start
+                readable, test one route, then make the car tune sharper only
+                after the wheel profile feels stable.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="forza-primary-button">
@@ -115,6 +139,24 @@ export default function ForzaHorizon6WheelSettingsPage() {
             the same setting feels wrong across all three, change the wheel
             profile before changing every tune.
           </p>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {wheelTestLinks.map((item) => (
+            <LocaleLink
+              className="forza-card p-5"
+              href={item.href}
+              key={item.href}
+            >
+              <SlidersHorizontalIcon className="size-5 text-cyan-300" />
+              <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {item.note}
+              </p>
+            </LocaleLink>
+          ))}
         </div>
       </section>
     </main>
