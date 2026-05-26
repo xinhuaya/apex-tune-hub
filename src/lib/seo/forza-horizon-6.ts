@@ -102,3 +102,63 @@ export function buildWebPageJsonLd({
     dateModified: modifiedDate,
   };
 }
+
+export function buildSoftwareApplicationJsonLd({
+  title,
+  description,
+  path,
+  featureList,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  featureList: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: title,
+    description,
+    url: absoluteUrl(path),
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Web',
+    isAccessibleForFree: true,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList,
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      url: getBaseUrl(),
+    },
+  };
+}
+
+export function buildHowToJsonLd({
+  title,
+  description,
+  path,
+  steps,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  steps: FaqItem[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: title,
+    description,
+    url: absoluteUrl(path),
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.question,
+      text: step.answer,
+    })),
+  };
+}

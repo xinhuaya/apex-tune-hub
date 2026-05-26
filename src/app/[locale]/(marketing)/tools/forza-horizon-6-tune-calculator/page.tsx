@@ -8,6 +8,8 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
@@ -105,6 +107,11 @@ const tuneCalculatorFaqs = [
   },
 ];
 
+const tuneHowToSteps = workflowSteps.map((step) => ({
+  question: step.title,
+  answer: step.description,
+}));
+
 export async function generateMetadata({
   params,
 }: {
@@ -131,6 +138,24 @@ export default function ForzaHorizon6TuneCalculatorPage() {
             { name: 'FH6 Tune Calculator', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildSoftwareApplicationJsonLd({
+            title,
+            description,
+            path: pathname,
+            featureList: [
+              'FH6 baseline tune recommendations',
+              'Shareable preset URLs',
+              'Local saved preset history',
+              'Road, street, dirt, rally, drag, and drift setup paths',
+            ],
+          }),
+          buildHowToJsonLd({
+            title: 'How to use the Forza Horizon 6 tune calculator',
+            description:
+              'Use Apex Tune Hub to generate a practical FH6 baseline tune before car-specific testing.',
+            path: pathname,
+            steps: tuneHowToSteps,
+          }),
           buildFaqJsonLd(tuneCalculatorFaqs),
         ]}
       />

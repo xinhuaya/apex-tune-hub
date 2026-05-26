@@ -6,6 +6,8 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -93,6 +95,11 @@ const gearFaqs = [
   },
 ];
 
+const gearHowToSteps = gearWorkflow.map((step) => ({
+  question: step.title,
+  answer: step.description,
+}));
+
 export async function generateMetadata({
   params,
 }: {
@@ -119,6 +126,24 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
             { name: 'FH6 Gear Ratio Calculator', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildSoftwareApplicationJsonLd({
+            title,
+            description,
+            path: pathname,
+            featureList: [
+              'Final drive tuning direction',
+              'Gear count and route priority matching',
+              'Shift symptom diagnosis',
+              'Shareable gearing preset URLs',
+            ],
+          }),
+          buildHowToJsonLd({
+            title: 'How to use the Forza Horizon 6 gear ratio calculator',
+            description:
+              'Use Apex Tune Hub to pick a final-drive direction before editing every gear individually.',
+            path: pathname,
+            steps: gearHowToSteps,
+          }),
           buildFaqJsonLd(gearFaqs),
         ]}
       />

@@ -6,6 +6,8 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -93,6 +95,11 @@ const driftFaqs = [
   },
 ];
 
+const driftHowToSteps = driftWorkflow.map((step) => ({
+  question: step.title,
+  answer: step.description,
+}));
+
 export async function generateMetadata({
   params,
 }: {
@@ -119,6 +126,24 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
             { name: 'FH6 Drift Tune Calculator', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildSoftwareApplicationJsonLd({
+            title,
+            description,
+            path: pathname,
+            featureList: [
+              'RWD and AWD drift tune directions',
+              'Power and tire-grip symptom matching',
+              'Shareable drift preset URLs',
+              'Local saved drift preset history',
+            ],
+          }),
+          buildHowToJsonLd({
+            title: 'How to use the Forza Horizon 6 drift tune calculator',
+            description:
+              'Use Apex Tune Hub to turn a drift symptom into a repeatable first setup test.',
+            path: pathname,
+            steps: driftHowToSteps,
+          }),
           buildFaqJsonLd(driftFaqs),
         ]}
       />
