@@ -6,10 +6,20 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
-import { Gamepad2Icon, SlidersHorizontalIcon, WrenchIcon } from 'lucide-react';
+import {
+  GaugeIcon,
+  Gamepad2Icon,
+  ListChecksIcon,
+  RouteIcon,
+  ShieldCheckIcon,
+  SlidersHorizontalIcon,
+  WrenchIcon,
+  ZapIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -47,6 +57,85 @@ const controllerTestLinks = [
     title: 'Handling fixes',
     href: '/games/forza-horizon-6/guides',
     note: 'Open the guide stack when a problem follows one car instead of every car.',
+  },
+];
+
+const controllerFeelProfiles = [
+  {
+    title: 'Road consistency',
+    body: 'Use smooth steering, predictable throttle, and stable braking before comparing A and S1 road tunes.',
+    icon: RouteIcon,
+  },
+  {
+    title: 'Drift recovery',
+    body: 'Use readable countersteer, throttle modulation, and vibration cues before changing every drift slider.',
+    icon: ZapIcon,
+  },
+  {
+    title: 'Weekly reliability',
+    body: 'Use conservative input feel when event restrictions, traffic, and weather make retries expensive.',
+    icon: ListChecksIcon,
+  },
+];
+
+const controllerSymptomRows = [
+  {
+    symptom: 'Every car feels twitchy',
+    likelyCause: 'Steering response or deadzone',
+    firstMove:
+      'Calm steering response first, then retest before changing ARBs or alignment.',
+    href: '/settings/forza-horizon-6',
+  },
+  {
+    symptom: 'Throttle exits feel abrupt',
+    likelyCause: 'Trigger modulation or tune grip',
+    firstMove:
+      'Smooth throttle input, then move to wheelspin tuning if only one car still spins.',
+    href: '/games/forza-horizon-6/guides/fix-wheelspin',
+  },
+  {
+    symptom: 'Braking feels inconsistent',
+    likelyCause: 'Brake input, FPS, or car balance',
+    firstMove:
+      'Check frame pacing and braking input before changing brake balance on a single car.',
+    href: '/settings/forza-horizon-6-pc',
+  },
+  {
+    symptom: 'Drift snapback is hard to catch',
+    likelyCause: 'Steering speed or drift setup',
+    firstMove:
+      'Test countersteer feel, then use the drift calculator for car-specific recovery.',
+    href: '/tools/forza-horizon-6-drift-tune-calculator',
+  },
+];
+
+const controllerTestLoop = [
+  'Use the same car, class, assist settings, camera, and route for each test.',
+  'Change one input group at a time: steering, throttle, braking, or vibration.',
+  'If every car improves, keep the controller change; if only one car improves, tune the car.',
+  'Save the final path as controller settings plus tune preset notes.',
+];
+
+const controllerNextLinks = [
+  {
+    title: 'Settings Hub',
+    href: '/settings/forza-horizon-6',
+    note: 'Return here when the problem may be PC, Steam Deck, wheel, or platform related.',
+  },
+  {
+    title: 'Tune Calculator',
+    href: '/tools/forza-horizon-6-tune-calculator',
+    note: 'Use this when controller feel is stable and one car still has a handling symptom.',
+  },
+  {
+    title: 'Drift Calculator',
+    href: '/tools/forza-horizon-6-drift-tune-calculator',
+    note: 'Use this when angle, countersteer, or recovery is the remaining issue.',
+  },
+  {
+    title: 'Wheel Settings',
+    href: '/settings/forza-horizon-6-wheel',
+    note: 'Use this if a wheel rig needs force feedback and steering-lock tuning instead.',
   },
 ];
 
@@ -99,6 +188,13 @@ export default function ForzaHorizon6ControllerSettingsPage() {
             { name: 'Controller Settings', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 controller settings next steps',
+            items: controllerNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(controllerFaqs),
         ]}
       />
@@ -142,12 +238,54 @@ export default function ForzaHorizon6ControllerSettingsPage() {
                 Change controls when every car feels wrong. Change the tune when
                 one car feels wrong.
               </p>
+              <div className="mt-5 grid gap-2">
+                {controllerTestLoop.map((step) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={step}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-fuchsia-300" />
+                    <span>{step}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <GaugeIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Choose controller feel by use case
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Controller settings should make inputs readable before the car
+              tune gets blamed. Pick a use case, run the same route, then move
+              to tuning only if one car remains the problem.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {controllerFeelProfiles.map((profile) => {
+              const Icon = profile.icon;
+
+              return (
+                <article className="forza-card p-4" key={profile.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {profile.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {profile.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_1fr_1.4fr]">
             <span>Control</span>
@@ -183,6 +321,57 @@ export default function ForzaHorizon6ControllerSettingsPage() {
               the page can become more useful over time.
             </p>
           </article>
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
+            <span>Controller symptom</span>
+            <span>Likely cause</span>
+            <span>First move</span>
+          </div>
+          {controllerSymptomRows.map((row) => (
+            <LocaleLink
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.85fr_0.75fr_1.4fr]"
+              href={row.href}
+              key={row.symptom}
+            >
+              <span className="font-semibold text-zinc-50">{row.symptom}</span>
+              <span className="text-amber-200">{row.likelyCause}</span>
+              <span className="leading-6 text-zinc-400">{row.firstMove}</span>
+            </LocaleLink>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Follow-up routes
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Where to go after controller feel is stable
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Once every-car input problems are ruled out, route the remaining
+              issue into the right tuning or device page.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {controllerNextLinks.map((item) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={item.href}
+                key={item.href}
+              >
+                <Gamepad2Icon className="size-5 text-fuchsia-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.note}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
