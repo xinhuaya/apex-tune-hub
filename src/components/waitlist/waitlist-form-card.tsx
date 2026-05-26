@@ -76,7 +76,7 @@ export function WaitlistFormCard() {
   };
 
   return (
-    <Card className="forza-panel mx-auto w-full max-w-lg overflow-hidden pt-6 pb-0 text-zinc-50">
+    <Card className="forza-panel mx-auto w-full max-w-lg self-start overflow-hidden pt-6 pb-0 text-zinc-50">
       <CardHeader>
         <CardTitle className="text-lg font-semibold">{t('title')}</CardTitle>
         <CardDescription className="text-zinc-400">
