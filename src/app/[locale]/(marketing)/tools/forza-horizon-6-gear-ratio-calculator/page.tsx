@@ -7,15 +7,11 @@ import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildHowToJsonLd,
+  buildItemListJsonLd,
   buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
-import {
-  FlagIcon,
-  GaugeIcon,
-  ListChecksIcon,
-  TimerIcon,
-} from 'lucide-react';
+import { FlagIcon, GaugeIcon, ListChecksIcon, TimerIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -70,6 +66,63 @@ const gearRelatedLinks = [
       'Pair gearing changes with road candidates that can use longer straights and stable exits.',
     href: '/games/forza-horizon-6/best-road-racing-cars',
   },
+];
+
+const gearRouteTargets = [
+  {
+    route: 'City sprint',
+    target: 'Shorter usable acceleration',
+    note: 'Prioritize launch, 2nd-4th gear pull, and corner-exit recovery over a huge top-speed number.',
+  },
+  {
+    route: 'Highway speed run',
+    target: 'Longer final drive',
+    note: 'Give the car room to keep pulling near top speed without bouncing the limiter too early.',
+  },
+  {
+    route: 'Rally or dirt',
+    target: 'Stable mid-range',
+    note: 'Avoid long gaps that drop the car out of the power band after bumps, crests, and loose exits.',
+  },
+  {
+    route: 'Drag launch',
+    target: 'First-shift control',
+    note: 'Balance launch grip with early shift recovery before chasing the final trap-speed number.',
+  },
+];
+
+const gearDiagnosisRows = [
+  {
+    symptom: 'Hits limiter early',
+    firstMove: 'Lengthen final drive',
+    check:
+      'Retest the longest straight and confirm the car still pulls after the final shift.',
+  },
+  {
+    symptom: 'Never uses top gear',
+    firstMove: 'Shorten final drive',
+    check:
+      'If the car wakes up but spins, solve traction before shortening more.',
+  },
+  {
+    symptom: 'Bogging after shifts',
+    firstMove: 'Close the affected gap',
+    check:
+      'Focus on the gear pair where RPM falls too far, not the entire gearbox.',
+  },
+  {
+    symptom: 'Wheelspin on launch',
+    firstMove: 'Lengthen first gear slightly',
+    check:
+      'If wheelspin remains, move to differential and tire pressure instead of gearing only.',
+  },
+];
+
+const gearPublishingRules = [
+  'Name the route type before recommending a final-drive direction.',
+  'Separate top-speed builds from road-racing builds in internal links.',
+  'Send handling problems back to the main tune calculator before deeper gear edits.',
+  'Attach useful gearing notes to car pages once specific cars are tested.',
 ];
 
 const gearFaqs = [
@@ -144,11 +197,48 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
             path: pathname,
             steps: gearHowToSteps,
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 gear ratio next steps',
+            items: gearRelatedLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(gearFaqs),
         ]}
       />
       <ForzaGearRatioCalculator />
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <FlagIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+              Pick the gearing target before moving the slider
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              A gearing page becomes useful when it teaches players what to
+              test. These route targets give search visitors a simple reason to
+              choose shorter, longer, or more stable gearing.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {gearRouteTargets.map((target) => (
+              <article className="forza-card p-4" key={target.route}>
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-base font-semibold text-zinc-50">
+                    {target.route}
+                  </h3>
+                  <span className="rounded-md border border-cyan-300/25 bg-cyan-300/10 px-2 py-1 text-xs font-semibold text-cyan-100">
+                    {target.target}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {target.note}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="forza-panel p-5">
             <p className="forza-chip">Gearing workflow</p>
@@ -188,6 +278,25 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_0.8fr_1.4fr]">
+            <span>Symptom</span>
+            <span>First gearing move</span>
+            <span>Retest before saving</span>
+          </div>
+          {gearDiagnosisRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.8fr_0.8fr_1.4fr]"
+              key={row.symptom}
+            >
+              <span className="font-semibold text-zinc-50">{row.symptom}</span>
+              <span className="text-amber-200">{row.firstMove}</span>
+              <span className="leading-6 text-zinc-400">{row.check}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <p className="forza-chip">Next gearing layer</p>
@@ -220,6 +329,32 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
                 </span>
               </LocaleLink>
             ))}
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+                Gear page publishing rules
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These rules keep the calculator, guide, car pages, and future
+                tune-code pages connected without promising fake exact ratios.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {gearPublishingRules.map((rule) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={rule}
+                >
+                  {rule}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
