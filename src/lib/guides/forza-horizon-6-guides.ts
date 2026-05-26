@@ -1551,6 +1551,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         ],
       },
     ],
+    deepDive: [
+      {
+        title: 'S1 rally setup checkpoints',
+        description:
+          'S1 rally builds need power, but the useful tune is the one that recovers after rough sections and mixed-grip exits.',
+        cards: [
+          {
+            title: 'Rough exit recovery',
+            body: 'Use one bumpy corner exit as the repeatable test. If the car lands sideways or spins after the bump, solve suspension and throttle behavior before adding speed.',
+            bullets: [
+              'Raise or soften only enough to keep tire contact.',
+              'Retest the same rough exit after every damping change.',
+              'Do not shorten gearing if the car already spins after landing.',
+            ],
+          },
+          {
+            title: 'Mixed-surface braking',
+            body: 'S1 rally cars often feel good on dirt until they hit a paved braking zone. A useful setup must slow down cleanly on both surfaces.',
+            bullets: [
+              'Use one dirt braking zone and one paved braking zone.',
+              'Fix rear instability before adding front bite.',
+              'Keep a safer brake setup for weekly playlist events.',
+            ],
+          },
+          {
+            title: 'AWD exit rotation',
+            body: 'AWD should help the car pull out of corners, not drag it wide. If throttle makes the car understeer, tune differential behavior before changing every tire setting.',
+            bullets: [
+              'Compare half throttle and full throttle on the same exit.',
+              'Check whether the front axle is pulling the car straight.',
+              'Use the gear ratio calculator if exits feel asleep after shifts.',
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     slug: 'weekly-playlist-tuning-checklist',
@@ -1605,6 +1641,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Tag the setup by class, surface, drivetrain, and problem fixed.',
           'Link successful builds to tune presets or calculator settings.',
           'Update the guide after patch notes or event rotation changes.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Weekly event prep workflow',
+        description:
+          'A weekly playlist tune has to be fast enough, legal for the restriction, and forgiving under traffic or messy attempts.',
+        cards: [
+          {
+            title: 'Restriction pass',
+            body: 'Start by writing the required class, car type, region, drivetrain, and surface. This prevents wasting time on a build that cannot enter the event.',
+            bullets: [
+              'Record class and car type before choosing upgrades.',
+              'Check whether the event is road, dirt, drift, speed, or stunt.',
+              'Keep one backup car for common restrictions.',
+            ],
+          },
+          {
+            title: 'Reliability pass',
+            body: 'A weekly tune should survive traffic, bumps, and imperfect inputs. The fastest clean run is less useful than a setup that wins repeatedly.',
+            bullets: [
+              'Favor braking stability and exit traction.',
+              'Avoid extreme gearing unless the objective is speed based.',
+              'Test with a conservative first run before sharpening the tune.',
+            ],
+          },
+          {
+            title: 'Reuse pass',
+            body: 'Every weekly build should create future value. Save the preset link and tag it by class, surface, drivetrain, and solved problem.',
+            bullets: [
+              'Link successful builds to tune preset pages.',
+              'Move repeated car picks into the car database.',
+              'Update the weekly tracker when rewards or restrictions change.',
+            ],
+          },
         ],
       },
     ],
