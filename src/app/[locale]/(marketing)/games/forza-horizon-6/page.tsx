@@ -13,7 +13,11 @@ import {
   BookOpenIcon,
   Gamepad2Icon,
   GaugeIcon,
+  ListChecksIcon,
   MonitorIcon,
+  RadioTowerIcon,
+  RouteIcon,
+  ShieldCheckIcon,
   SlidersHorizontalIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -153,6 +157,55 @@ const hubLinks = [
   },
 ];
 
+const hubStats = [
+  {
+    value: '17',
+    label: 'FH6 hubs',
+    detail: 'Tools, guide clusters, car pages, settings pages, and weekly trackers.',
+  },
+  {
+    value: '10',
+    label: 'starter cars',
+    detail: 'Japan-focused car database slice with individual tune paths.',
+  },
+  {
+    value: 'weekly',
+    label: 'return loop',
+    detail: 'Weekly playlist, Car Pass, tune drops, and update notes.',
+  },
+];
+
+const playerPaths = [
+  {
+    title: 'I need a tune now',
+    body: 'Start with the calculator, pick a preset, then adjust the car page after testing.',
+    icon: GaugeIcon,
+    href: '/tools/forza-horizon-6-tune-calculator',
+    cta: 'Open calculator',
+  },
+  {
+    title: 'I need the best car',
+    body: 'Compare class, role, manufacturer, and current candidate labels before building.',
+    icon: Gamepad2Icon,
+    href: '/games/forza-horizon-6/best-cars',
+    cta: 'Compare cars',
+  },
+  {
+    title: 'I need weekly prep',
+    body: 'Check restrictions, reward cars, Car Pass updates, and safe baseline tune links.',
+    icon: CalendarClockIcon,
+    href: '/games/forza-horizon-6/weekly-playlist',
+    cta: 'Open weekly tracker',
+  },
+];
+
+const ecosystemRows = [
+  ['Tools', 'Calculator, presets, drift, gear ratio, and tune-code workflow'],
+  ['Cars', 'Car database, best cars, class hubs, and manufacturer pages'],
+  ['Guides', 'Launch plans, handling fixes, settings, and event builds'],
+  ['Updates', 'Weekly playlist, Car Pass tracker, FAQ, and tune drops'],
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -179,6 +232,17 @@ export default function ForzaHorizon6HubPage() {
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
           buildFaqJsonLd(hubFaqs),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 Apex Tune Hub links',
+            itemListElement: hubLinks.map((link, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: link.title,
+              url: `https://apextunehub.com${link.href}`,
+            })),
+          },
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -213,6 +277,24 @@ export default function ForzaHorizon6HubPage() {
                   </LocaleLink>
                 </Button>
               </div>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {hubStats.map((stat) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                    key={stat.label}
+                  >
+                    <div className="text-2xl font-semibold text-zinc-50">
+                      {stat.value}
+                    </div>
+                    <div className="mt-1 text-sm font-semibold text-cyan-200">
+                      {stat.label}
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-zinc-500">
+                      {stat.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="forza-panel p-5">
@@ -241,12 +323,118 @@ export default function ForzaHorizon6HubPage() {
                 </li>
                 <li>PS5 version planned for later in 2026.</li>
               </ul>
+              <div className="mt-5 grid gap-2">
+                {ecosystemRows.map(([label, text]) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2"
+                    key={label}
+                  >
+                    <span className="text-sm font-semibold text-zinc-100">
+                      {label}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-zinc-500">
+                      {text}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <RouteIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Choose a path before choosing a page
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The hub should answer the first player decision quickly: tune,
+              car, or weekly prep. Every path then routes into a deeper tool or
+              guide stack.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {playerPaths.map((path) => {
+              const Icon = path.icon;
+
+              return (
+                <LocaleLink
+                  className="forza-card p-4"
+                  href={path.href}
+                  key={path.title}
+                >
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {path.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {path.body}
+                  </p>
+                  <span className="mt-4 inline-flex items-center text-sm font-semibold text-amber-200">
+                    {path.cta}
+                  </span>
+                </LocaleLink>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Hub maintenance loop
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                This keeps the top FH6 page aligned with the rest of the site as
+                weekly content and car testing expands.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {[
+                'Route every new high-value page back to this FH6 hub.',
+                'Keep official release/platform facts separated from tuning guidance.',
+                'Send repeat visitors to weekly playlist, Car Pass, and FH6 tune drops.',
+                'Use guide, car, and tool hubs as the main internal-link clusters.',
+              ].map((item) => (
+                <div
+                  className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
+                  key={item}
+                >
+                  <ShieldCheckIcon className="mt-0.5 size-4 shrink-0 text-amber-300" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-6 grid gap-4 md:grid-cols-2">
+          <LocaleLink
+            className="forza-card p-5"
+            href="/games/forza-horizon-6/guides"
+          >
+            <BookOpenIcon className="size-5 text-cyan-300" />
+            <h2 className="mt-4 text-lg font-semibold">Guide topic hub</h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">
+              Launch plans, handling fixes, device settings, event builds, and
+              long-tail guide publishing workflow.
+            </p>
+          </LocaleLink>
+          <LocaleLink className="forza-card p-5" href="/waitlist">
+            <RadioTowerIcon className="size-5 text-fuchsia-300" />
+            <h2 className="mt-4 text-lg font-semibold">FH6 tune drops</h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">
+              Email capture for new presets, weekly notes, car page changes,
+              and verified update paths.
+            </p>
+          </LocaleLink>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2">
           {hubLinks.map((link) => {
             const Icon = link.icon;
