@@ -6,9 +6,18 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
-import { MonitorCogIcon, RouteIcon, ZapIcon } from 'lucide-react';
+import {
+  GaugeIcon,
+  ListChecksIcon,
+  MonitorCogIcon,
+  RouteIcon,
+  ShieldCheckIcon,
+  ThermometerIcon,
+  ZapIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -32,6 +41,85 @@ const presets = [
     name: 'High-end PC',
     target: 'Visual clarity',
     note: 'Raise visual settings gradually while checking heat, VRAM pressure, and frame-time spikes.',
+  },
+];
+
+const pcProfileCards = [
+  {
+    title: 'Frame-pacing first',
+    body: 'Use this when the game looks fine in screenshots but feels uneven in corners, traffic, or dense city routes.',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Thermal control',
+    body: 'Use this when performance starts strong, then fades after several events or long highway runs.',
+    icon: ThermometerIcon,
+  },
+  {
+    title: 'Visual clarity',
+    body: 'Use this when FPS is already stable and you want cleaner reflections, road detail, draw distance, and cockpit readability.',
+    icon: MonitorCogIcon,
+  },
+];
+
+const pcBottleneckRows = [
+  {
+    symptom: 'Sharp stutter in city traffic',
+    likelyCause: 'CPU, storage, or background load',
+    firstMove:
+      'Close overlays, reduce crowd or traffic density, and retest the same city route.',
+  },
+  {
+    symptom: 'FPS drops after a few races',
+    likelyCause: 'Heat or power limit',
+    firstMove:
+      'Check temperature, fan profile, laptop power mode, and plugged-in status before lowering visuals.',
+  },
+  {
+    symptom: 'Blurred roads at speed',
+    likelyCause: 'Upscaling or motion clarity',
+    firstMove:
+      'Adjust upscaling sharpness, motion blur, and resolution scale after frame pacing is stable.',
+  },
+  {
+    symptom: 'Input delay during rain',
+    likelyCause: 'GPU load spike',
+    firstMove:
+      'Lower reflections, shadows, particles, or weather-heavy settings, then repeat the rain section.',
+  },
+];
+
+const benchmarkSteps = [
+  'Pick one city route, one high-speed route, and one rain or night route.',
+  'Use the same car, camera, traffic setting, and controller or wheel profile.',
+  'Change only one setting group before each retest.',
+  'Keep the setting only if frame pacing and input feel improve, not just average FPS.',
+];
+
+const pcNextLinks = [
+  {
+    title: 'Settings Hub',
+    description:
+      'Return to the main FH6 settings hub when the issue might be input, handheld, or wheel related.',
+    href: '/settings/forza-horizon-6',
+  },
+  {
+    title: 'Steam Deck Settings',
+    description:
+      'Use handheld-specific profiles when battery, thermals, or portable readability are the real constraint.',
+    href: '/settings/forza-horizon-6-steam-deck',
+  },
+  {
+    title: 'Controller Settings',
+    description:
+      'Move here if FPS is stable but steering, throttle, braking, or vibration still feels wrong.',
+    href: '/settings/forza-horizon-6-controller',
+  },
+  {
+    title: 'Tune Calculator',
+    description:
+      'Move here when platform performance is stable and only one car still behaves badly.',
+    href: '/tools/forza-horizon-6-tune-calculator',
   },
 ];
 
@@ -79,6 +167,13 @@ export default function ForzaHorizon6PcSettingsPage() {
             { name: 'PC Settings', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 PC settings next steps',
+            items: pcNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(pcFaqs),
         ]}
       />
@@ -126,12 +221,54 @@ export default function ForzaHorizon6PcSettingsPage() {
                 stutter, input feel, and heat, because racing games feel bad
                 when frame time spikes during corners.
               </p>
+              <div className="mt-5 grid gap-2">
+                {benchmarkSteps.map((step) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={step}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                    <span>{step}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Choose the PC tuning goal before changing visuals
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The best PC settings path depends on the problem: uneven frame
+              pacing, heat, or visual clarity. This keeps the page from becoming
+              a generic max-FPS checklist.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {pcProfileCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <article className="forza-card p-4" key={card.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {card.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-3">
           {presets.map((preset) => (
             <article key={preset.name} className="forza-card p-5">
@@ -157,6 +294,56 @@ export default function ForzaHorizon6PcSettingsPage() {
             road, weather, and dense scenery. Keep the same car and route while
             changing only one setting group at a time.
           </p>
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
+            <span>PC symptom</span>
+            <span>Likely bottleneck</span>
+            <span>First move</span>
+          </div>
+          {pcBottleneckRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_0.75fr_1.4fr]"
+              key={row.symptom}
+            >
+              <span className="font-semibold text-zinc-50">{row.symptom}</span>
+              <span className="text-amber-200">{row.likelyCause}</span>
+              <span className="leading-6 text-zinc-400">{row.firstMove}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Follow-up routes
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Where to go after PC performance is stable
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Once the platform feels consistent, route the player into the
+              setting or tuning page that matches the remaining problem.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {pcNextLinks.map((link) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={link.href}
+                key={link.href}
+              >
+                <ZapIcon className="size-5 text-fuchsia-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.description}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
