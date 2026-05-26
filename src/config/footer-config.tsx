@@ -42,6 +42,21 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Tune Codes',
+          href: Routes.TuneCodes,
+          external: false,
+        },
+        {
+          title: 'Drift Calculator',
+          href: Routes.DriftTuneCalculator,
+          external: false,
+        },
+        {
+          title: 'Gear Ratio Calculator',
+          href: Routes.GearRatioCalculator,
+          external: false,
+        },
+        {
           title: 'Car Database',
           href: Routes.ForzaHorizon6Cars,
           external: false,

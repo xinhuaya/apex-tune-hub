@@ -27,6 +27,7 @@ export enum Routes {
   ForzaHorizon6Wheel = '/settings/forza-horizon-6-wheel',
   TuneCalculator = '/tools/forza-horizon-6-tune-calculator',
   TunePresets = '/tools/forza-horizon-6-tune-presets',
+  TuneCodes = '/tools/forza-horizon-6-tune-codes',
   DriftTuneCalculator = '/tools/forza-horizon-6-drift-tune-calculator',
   GearRatioCalculator = '/tools/forza-horizon-6-gear-ratio-calculator',
   Ai = '/ai',

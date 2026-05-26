@@ -117,6 +117,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Tune Codes',
+          description: 'Tune code workflow notes and shareable setup links',
+          icon: <LinkIcon className="size-4 shrink-0" />,
+          href: Routes.TuneCodes,
+          external: false,
+        },
+        {
           title: 'Drift Tune Calculator',
           description: 'RWD and AWD drift setup guidance for angle and control',
           icon: <GaugeIcon className="size-4 shrink-0" />,
