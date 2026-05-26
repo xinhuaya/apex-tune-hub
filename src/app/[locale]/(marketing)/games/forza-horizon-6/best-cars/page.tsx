@@ -8,6 +8,7 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -16,6 +17,9 @@ import {
   CarFrontIcon,
   GaugeIcon,
   ListChecksIcon,
+  RouteIcon,
+  ShieldCheckIcon,
+  TrophyIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -66,6 +70,78 @@ const frameworkCards = [
     title: 'Tune links',
     description:
       'Every recommended car should point to a calculator, preset, or guide that explains the setup direction.',
+  },
+];
+
+const scoringCriteria = [
+  {
+    title: 'Route fit',
+    body: 'Does the car suit city sprint, mountain road, rally, drift zone, drag, or weekly restrictions?',
+    icon: RouteIcon,
+  },
+  {
+    title: 'Tune ceiling',
+    body: 'Can the car improve with a clear preset path, or does it need too many hidden compromises?',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Repeatability',
+    body: 'Can a normal player repeat clean launches, braking, exits, and recovery without a perfect lap?',
+    icon: TrophyIcon,
+  },
+];
+
+const bestCarWorkflow = [
+  {
+    step: 'Pick the role',
+    detail:
+      'Choose road, drift, rally, JDM, class, or weekly event before comparing cars.',
+    href: '/games/forza-horizon-6/guides',
+  },
+  {
+    step: 'Open the candidate list',
+    detail:
+      'Use the category or class guide to find cars with the right surface and class direction.',
+    href: '/games/forza-horizon-6/cars',
+  },
+  {
+    step: 'Attach a baseline tune',
+    detail:
+      'Pair the car with the tune calculator, preset library, drift tool, or gear ratio tool.',
+    href: '/tools/forza-horizon-6-tune-presets',
+  },
+  {
+    step: 'Promote only after testing',
+    detail:
+      'Move a car from candidate to recommended only after route notes and a tested setup are added.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+];
+
+const bestCarNextLinks = [
+  {
+    title: 'Car Database',
+    description:
+      'Browse individual car pages with class, PI, tune direction, presets, and candidate status.',
+    href: '/games/forza-horizon-6/cars',
+  },
+  {
+    title: 'Tune Presets',
+    description:
+      'Attach baseline setup URLs to candidate cars before in-game share codes are verified.',
+    href: '/tools/forza-horizon-6-tune-presets',
+  },
+  {
+    title: 'Weekly Playlist',
+    description:
+      'Use event restrictions and reward cars to decide which candidates deserve testing next.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+  {
+    title: 'Tuning Settings',
+    description:
+      'Explain which slider group supports the car role once a candidate needs refinement.',
+    href: '/games/forza-horizon-6/tuning-settings',
   },
 ];
 
@@ -139,6 +215,22 @@ export default function BestCarsPage() {
             { name: 'Best Cars', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 best car guide clusters',
+            items: [...bestCarGuides, ...classCarGuides, ...makeCarGuides].map(
+              (guide) => ({
+                name: guide.h1,
+                path: guide.pathname,
+              })
+            ),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 best cars next steps',
+            items: bestCarNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(bestCarsFaqs),
         ]}
       />
@@ -194,12 +286,89 @@ export default function BestCarsPage() {
                 testing starts, add class, surface, tune direction, source, and
                 last-tested date.
               </p>
+              <div className="mt-5 grid gap-2">
+                {[
+                  'Keep candidate labels visible until testing is added.',
+                  'Separate class lists from role lists so rankings stay useful.',
+                  'Link every promoted car to a tune, preset, or route note.',
+                ].map((rule) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={rule}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                    <span>{rule}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <TrophyIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Score the best car by job, not hype
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              A best-car hub can rank before final meta data exists if it is
+              honest about the selection framework. The score should start with
+              route fit, tune ceiling, and repeatability.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {scoringCriteria.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <article className="forza-card p-4" key={item.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Best-car testing workflow
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                This is the editorial path for turning a speculative candidate
+                into a useful recommendation as FH6 testing expands.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {bestCarWorkflow.map((item) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40"
+                  href={item.href}
+                  key={item.step}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.step}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.detail}
+                  </p>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1fr_0.7fr_1.5fr]">
             <span>Category</span>
@@ -219,6 +388,39 @@ export default function BestCarsPage() {
               <span className="text-zinc-400">{row.note}</span>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Follow-up routes
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Where to go after picking a car candidate
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The best-car page should move players into concrete action:
+              compare the car, attach a tune, check weekly use cases, then tune
+              the setting group that matches the weakness.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {bestCarNextLinks.map((link) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={link.href}
+                key={link.href}
+              >
+                <CarFrontIcon className="size-5 text-fuchsia-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.description}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-4">
