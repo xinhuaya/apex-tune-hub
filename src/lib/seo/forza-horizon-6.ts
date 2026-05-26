@@ -162,3 +162,39 @@ export function buildHowToJsonLd({
     })),
   };
 }
+
+export function buildWebSiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteName,
+    url: getBaseUrl(),
+    description:
+      'Racing tune calculators, car setup data, settings guides, and weekly trackers for Forza Horizon 6.',
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      url: getBaseUrl(),
+    },
+  };
+}
+
+export function buildItemListJsonLd({
+  title,
+  items,
+}: {
+  title: string;
+  items: BreadcrumbItem[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: title,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.path),
+    })),
+  };
+}

@@ -1,6 +1,11 @@
+import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
+import {
+  buildItemListJsonLd,
+  buildWebSiteJsonLd,
+} from '@/lib/seo/forza-horizon-6';
 import {
   ArrowRightIcon,
   CalendarDaysIcon,
@@ -39,6 +44,30 @@ const tools = [
     description: 'Final drive and gear spacing guidance for real routes.',
     href: '/tools/forza-horizon-6-gear-ratio-calculator',
     icon: ListChecksIcon,
+  },
+];
+
+const homepageItemList = [
+  { name: 'Forza Horizon 6 Hub', path: '/games/forza-horizon-6' },
+  {
+    name: 'Forza Horizon 6 Tune Calculator',
+    path: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    name: 'Forza Horizon 6 Drift Tune Calculator',
+    path: '/tools/forza-horizon-6-drift-tune-calculator',
+  },
+  {
+    name: 'Forza Horizon 6 Gear Ratio Calculator',
+    path: '/tools/forza-horizon-6-gear-ratio-calculator',
+  },
+  {
+    name: 'Forza Horizon 6 Car Database',
+    path: '/games/forza-horizon-6/cars',
+  },
+  {
+    name: 'Forza Horizon 6 Guides',
+    path: '/games/forza-horizon-6/guides',
   },
 ];
 
@@ -86,6 +115,15 @@ export async function generateMetadata({
 export default function HomePage() {
   return (
     <main className="forza-page text-zinc-50">
+      <JsonLd
+        data={[
+          buildWebSiteJsonLd(),
+          buildItemListJsonLd({
+            title: 'Apex Tune Hub core FH6 tuning pages',
+            items: homepageItemList,
+          }),
+        ]}
+      />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-[34rem] opacity-35" />
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-20">
