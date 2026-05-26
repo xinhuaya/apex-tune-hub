@@ -1,6 +1,16 @@
 import { WaitlistFormCard } from '@/components/waitlist/waitlist-form-card';
+import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
-import { BellIcon, GaugeIcon, ListChecksIcon } from 'lucide-react';
+import { Routes } from '@/routes';
+import {
+  ArrowRightIcon,
+  BellIcon,
+  CalendarClockIcon,
+  GaugeIcon,
+  ListChecksIcon,
+  RouteIcon,
+  WrenchIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
@@ -62,6 +72,52 @@ export default async function WaitlistPage() {
           </div>
 
           <WaitlistFormCard />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-4 lg:grid-cols-3">
+          {[
+            {
+              title: 'Preset drops',
+              description:
+                'New road, drift, rally, drag, and class setups with the settings that matter first.',
+              href: Routes.TunePresets,
+              icon: <WrenchIcon className="size-5 text-fuchsia-300" />,
+              label: 'Browse presets',
+            },
+            {
+              title: 'Weekly reset notes',
+              description:
+                'Fast picks for playlist races, reward cars, seasonal restrictions, and first setup angles.',
+              href: Routes.ForzaHorizon6WeeklyPlaylist,
+              icon: <CalendarClockIcon className="size-5 text-cyan-300" />,
+              label: 'Track weekly playlist',
+            },
+            {
+              title: 'Calculator fixes',
+              description:
+                'Small tune calculator refinements based on car behavior, drivetrain, surface, and PI class.',
+              href: Routes.TuneCalculator,
+              icon: <RouteIcon className="size-5 text-yellow-300" />,
+              label: 'Open calculator',
+            },
+          ].map((item) => (
+            <div className="forza-card p-5" key={item.title}>
+              {item.icon}
+              <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {item.description}
+              </p>
+              <LocaleLink
+                href={item.href}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 hover:text-cyan-100"
+              >
+                {item.label}
+                <ArrowRightIcon className="size-4" />
+              </LocaleLink>
+            </div>
+          ))}
         </div>
       </section>
     </main>
