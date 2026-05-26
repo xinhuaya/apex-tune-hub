@@ -7,6 +7,7 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
@@ -15,8 +16,10 @@ import {
   ClipboardCheckIcon,
   GaugeIcon,
   LinkIcon,
+  ListChecksIcon,
   SearchIcon,
   Share2Icon,
+  ShieldCheckIcon,
   SlidersHorizontalIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -158,6 +161,69 @@ const routePresetPaths = [
   },
 ];
 
+const presetLibraryStats = [
+  {
+    value: forzaTunePresets.length.toString(),
+    label: 'preset pages',
+    detail: 'Every preset has its own crawlable page and calculator route.',
+  },
+  {
+    value: problemClusters.length.toString(),
+    label: 'problem clusters',
+    detail: 'Understeer, oversteer, wheelspin, launch, braking, and top speed.',
+  },
+  {
+    value: '4',
+    label: 'route paths',
+    detail: 'Road, rally, drag, and weekly playlist baseline groups.',
+  },
+];
+
+const presetDecisionRules = [
+  {
+    title: 'Match the first symptom',
+    text: 'Pick the preset for the issue you felt first. Do not solve understeer, gearing, and braking in the same pass.',
+    icon: SearchIcon,
+  },
+  {
+    title: 'Confirm the setup context',
+    text: 'Class, drivetrain, race type, and driving style should match before you open the calculator state.',
+    icon: ClipboardCheckIcon,
+  },
+  {
+    title: 'Keep it testable',
+    text: 'Save a preset URL, run one repeatable route, then record what changed before moving to a car-specific tune.',
+    icon: ShieldCheckIcon,
+  },
+];
+
+const presetNextLinks = [
+  {
+    title: 'Calculator workflow',
+    description:
+      'Open the live tool when a preset is close but needs a different symptom, drivetrain, or driving style.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    title: 'Tune-code workflow',
+    description:
+      'Move from transparent preset URLs into real share codes only after in-game verification.',
+    href: '/tools/forza-horizon-6-tune-codes',
+  },
+  {
+    title: 'Car database',
+    description:
+      'Attach useful presets to car pages so players can see role, class, and weakness context.',
+    href: '/games/forza-horizon-6/cars',
+  },
+  {
+    title: 'Weekly playlist tracker',
+    description:
+      'Use fast baseline starts when a weekly event has class, surface, or restriction pressure.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -185,6 +251,20 @@ export default function ForzaHorizon6TunePresetsPage() {
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
           buildFaqJsonLd(presetLibraryFaqs),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tune preset pages',
+            items: forzaTunePresets.map((preset) => ({
+              name: preset.h1,
+              path: `/tools/forza-horizon-6-tune-presets/${preset.slug}`,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 preset next steps',
+            items: presetNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -233,12 +313,61 @@ export default function ForzaHorizon6TunePresetsPage() {
                 linking to a live calculator state instead of being a static
                 fake tune.
               </p>
+              <div className="mt-5 grid gap-2">
+                {presetLibraryStats.map((stat) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2"
+                    key={stat.label}
+                  >
+                    <span className="text-xl font-semibold text-zinc-50">
+                      {stat.value}
+                    </span>
+                    <span className="ml-2 text-sm font-semibold text-cyan-200">
+                      {stat.label}
+                    </span>
+                    <p className="mt-1 text-xs leading-5 text-zinc-500">
+                      {stat.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.7fr_1.3fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Preset selection checkpoints
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              A good preset library should help players choose quickly without
+              hiding the limits of a baseline setup. These rules keep each
+              preset useful for search traffic and actual testing.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {presetDecisionRules.map((rule) => {
+              const Icon = rule.icon;
+
+              return (
+                <article className="forza-card p-4" key={rule.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {rule.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {rule.text}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
             Problem clusters
@@ -250,9 +379,7 @@ export default function ForzaHorizon6TunePresetsPage() {
             {problemClusters.map((cluster) => (
               <article className="forza-card p-5" key={cluster.issue}>
                 <GaugeIcon className="size-5 text-cyan-300" />
-                <h3 className="mt-4 text-lg font-semibold">
-                  {cluster.title}
-                </h3>
+                <h3 className="mt-4 text-lg font-semibold">{cluster.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-zinc-400">
                   {cluster.presets.length} preset
                   {cluster.presets.length === 1 ? '' : 's'} matched to this
@@ -345,6 +472,32 @@ export default function ForzaHorizon6TunePresetsPage() {
               </article>
             );
           })}
+        </div>
+
+        <div className="mt-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+            Internal routes
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold">
+            Where to go after a preset URL
+          </h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {presetNextLinks.map((link) => (
+              <LocaleLink
+                className="forza-card p-5"
+                href={link.href}
+                key={link.href}
+              >
+                <LinkIcon className="size-5 text-fuchsia-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.description}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
