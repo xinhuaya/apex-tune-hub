@@ -1194,6 +1194,234 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       },
     ],
   },
+  {
+    slug: 'japan-route-tuning-checklist',
+    title: 'Forza Horizon 6 Japan Route Tuning Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 Japan route tuning checklist',
+    description:
+      'A practical FH6 Japan route tuning checklist for road, drift, rally, speed zone, and weekly playlist testing.',
+    eyebrow: 'Japan routes',
+    intro:
+      'Japan routes can punish tunes that only feel good on one surface. Use a small checklist for each route so you know whether the issue is gearing, braking, traction, or driver input.',
+    primaryCta: {
+      label: 'Open Japan Map Planner',
+      href: '/games/forza-horizon-6/japan-map',
+    },
+    relatedLinks: [
+      {
+        label: 'Japan launch plan',
+        href: '/games/forza-horizon-6/guides/japan-launch-tuning-plan',
+      },
+      {
+        label: 'Tune calculator',
+        href: '/tools/forza-horizon-6-tune-calculator',
+      },
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with route type',
+        body: 'A road sprint, mountain drift route, dirt climb, and speed zone need different compromises even when the same car class is allowed.',
+        bullets: [
+          'Mark the route as road, street, drift, dirt, cross-country, or speed.',
+          'Record whether the problem appears at entry, apex, exit, or top end.',
+          'Use one baseline tune before creating route-specific versions.',
+        ],
+      },
+      {
+        title: 'Test one corner family at a time',
+        body: 'Route testing gets messy when every change is judged across the whole map. Pick one corner family and tune around the repeated problem.',
+        bullets: [
+          'Use hairpins for brake balance, rotation, and first-gear exits.',
+          'Use sweepers for aero, tire pressure, and mid-corner stability.',
+          'Use straights for final drive, shift points, and top-speed limits.',
+        ],
+      },
+      {
+        title: 'Keep weekly and leaderboard notes separate',
+        body: 'A weekly playlist setup should be reliable under restrictions. A leaderboard test setup can be sharper and riskier.',
+        bullets: [
+          'Keep a safe weekly tune for traffic and mixed weather.',
+          'Keep an aggressive test tune for clean solo attempts.',
+          'Write down the exact route problem before changing the tune again.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-a-class-road-tune-settings',
+    title: 'Best A Class Road Tune Settings in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best A class road tune settings in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 A class road tune settings guide for grip, braking, gearing, tire pressure, differential, and stable race builds.',
+    eyebrow: 'A class road',
+    intro:
+      'A class road racing is usually about clean exits and predictable braking, not maximum horsepower. Build a car that repeats laps before chasing one fast split.',
+    primaryCta: {
+      label: 'Open A Class Road Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=A&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Best A class cars',
+        href: '/games/forza-horizon-6/best-a-class-cars',
+      },
+      {
+        label: 'A and S1 road guide',
+        href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+      },
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build around exit speed',
+        body: 'A road tune that launches hard but pushes wide out of corners will lose time on every technical route.',
+        bullets: [
+          'Check whether exit understeer appears before or after throttle.',
+          'Use gearing that keeps the car awake without forcing wheelspin.',
+          'Prefer repeatable exits over one aggressive launch setup.',
+        ],
+      },
+      {
+        title: 'Keep braking predictable',
+        body: 'A class road cars should let the player brake late without sudden rear movement or dead front tires.',
+        bullets: [
+          'Test one heavy braking zone three times in a row.',
+          'Fix unstable braking before adding more front grip.',
+          'Use brake balance and differential changes in small steps.',
+        ],
+      },
+      {
+        title: 'Use balanced aero and tire pressure',
+        body: 'Too much stability can make the car slow to rotate, while too little makes every correction expensive.',
+        bullets: [
+          'Use medium-speed corners to judge rotation.',
+          'Retest tire pressure after changing suspension or aero.',
+          'Keep one wet or bumpy route in the test loop.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-s1-rally-tune-settings',
+    title: 'Best S1 Rally Tune Settings in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best S1 rally tune settings in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 S1 rally tune settings guide for AWD grip, bumps, gearing, suspension, braking, and mixed-surface event testing.',
+    eyebrow: 'S1 rally',
+    intro:
+      'S1 rally builds need enough speed to feel competitive and enough compliance to survive rough exits. Tune the car for recovery first, then sharpen the pace.',
+    primaryCta: {
+      label: 'Open S1 Rally Preset',
+      href: '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Best rally cars',
+        href: '/games/forza-horizon-6/best-rally-cars',
+      },
+      {
+        label: 'Rally tune settings',
+        href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      },
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+    ],
+    sections: [
+      {
+        title: 'Protect traction after bumps',
+        body: 'The fastest S1 rally tune is not helpful if the car lands, spins, and needs a full correction before accelerating.',
+        bullets: [
+          'Test a rough exit before judging power upgrades.',
+          'Use suspension changes to keep tires connected after crests.',
+          'Shorten gearing only when traction stays clean.',
+        ],
+      },
+      {
+        title: 'Use AWD as a tool, not a mask',
+        body: 'AWD can hide bad balance until the car hits mixed surfaces. Make sure the front and rear axles are both doing useful work.',
+        bullets: [
+          'Check if the car pulls wide on throttle.',
+          'Check if the rear steps out when lifting or braking.',
+          'Tune differential behavior before blaming every tire setting.',
+        ],
+      },
+      {
+        title: 'Plan for playlist restrictions',
+        body: 'Weekly rally events often force class, region, or car-type constraints. Keep a conservative S1 rally baseline ready.',
+        bullets: [
+          'Save one stable S1 AWD setup as the default.',
+          'Create a sharper route-specific version only after testing.',
+          'Link the build notes to the weekly playlist tracker.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'weekly-playlist-tuning-checklist',
+    title: 'Forza Horizon 6 Weekly Playlist Tuning Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 weekly playlist tuning checklist',
+    description:
+      'Forza Horizon 6 weekly playlist tuning checklist for restricted events, car picks, setup testing, tune notes, and repeatable wins.',
+    eyebrow: 'Weekly playlist',
+    intro:
+      'Weekly playlist tuning is different from building a perfect free-roam car. You need a fast-enough setup that works inside restrictions and can survive messy attempts.',
+    primaryCta: {
+      label: 'Open Weekly Tracker',
+      href: '/games/forza-horizon-6/weekly-playlist',
+    },
+    relatedLinks: [
+      {
+        label: 'Tune presets',
+        href: '/tools/forza-horizon-6-tune-presets',
+      },
+      {
+        label: 'Car pass tracker',
+        href: '/games/forza-horizon-6/car-pass',
+      },
+      {
+        label: 'Best cars hub',
+        href: '/games/forza-horizon-6/best-cars',
+      },
+    ],
+    sections: [
+      {
+        title: 'Read the restriction first',
+        body: 'A weekly tune starts with class, drivetrain, region, car type, and event surface. Do not tune a car before the restriction is clear.',
+        bullets: [
+          'Write the required class and car type at the top of the notes.',
+          'Separate road, dirt, drift, stunt, and speed-trap builds.',
+          'Keep backup cars for common restrictions.',
+        ],
+      },
+      {
+        title: 'Build for reliability',
+        body: 'Weekly events reward consistency. A setup that wins twice out of three attempts is better than a sharper tune that only works once.',
+        bullets: [
+          'Prioritize braking stability and exit traction.',
+          'Avoid extreme gearing unless the event demands it.',
+          'Test with traffic, bumps, and imperfect inputs.',
+        ],
+      },
+      {
+        title: 'Save reusable notes',
+        body: 'Every weekly event can feed the next one. Keep notes for restrictions, tune changes, and why a car worked.',
+        bullets: [
+          'Tag the setup by class, surface, drivetrain, and problem fixed.',
+          'Link successful builds to tune presets or calculator settings.',
+          'Update the guide after patch notes or event rotation changes.',
+        ],
+      },
+    ],
+  },
 ];
 
 export function getForzaHorizon6Guide(slug: string) {

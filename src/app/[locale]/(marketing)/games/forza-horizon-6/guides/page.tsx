@@ -57,6 +57,7 @@ const guideGroups = [
       'Pages for the first wave of search demand: beginners, starter cars, Japan routes, and baseline tuning.',
     slugs: [
       'japan-launch-tuning-plan',
+      'japan-route-tuning-checklist',
       'beginner-tuning-guide',
       'best-starter-cars',
       'a-s1-road-racing-tune',
@@ -96,10 +97,13 @@ const guideGroups = [
   {
     id: 'event-guides',
     eyebrow: 'Event builds',
-    title: 'Drift, rally, and drag setup guides',
+    title: 'Road, drift, rally, and drag setup guides',
     description:
       'Event-specific tuning pages that connect guide readers to calculator presets and car lists.',
     slugs: [
+      'best-a-class-road-tune-settings',
+      'best-s1-rally-tune-settings',
+      'weekly-playlist-tuning-checklist',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',
