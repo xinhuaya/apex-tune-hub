@@ -9,6 +9,7 @@ import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildHowToJsonLd,
+  buildItemListJsonLd,
   buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
@@ -17,7 +18,9 @@ import {
   CarFrontIcon,
   ClipboardCheckIcon,
   GaugeIcon,
+  ListChecksIcon,
   RouteIcon,
+  ShieldCheckIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -57,12 +60,14 @@ const workflowSteps = [
 const relatedLinks = [
   {
     title: 'Drift Tune Calculator',
-    description: 'Use this when the build is about angle, transition, and recovery.',
+    description:
+      'Use this when the build is about angle, transition, and recovery.',
     href: '/tools/forza-horizon-6-drift-tune-calculator',
   },
   {
     title: 'Gear Ratio Calculator',
-    description: 'Tune final drive and gear spacing after the handling baseline feels stable.',
+    description:
+      'Tune final drive and gear spacing after the handling baseline feels stable.',
     href: '/tools/forza-horizon-6-gear-ratio-calculator',
   },
   {
@@ -73,7 +78,8 @@ const relatedLinks = [
   },
   {
     title: 'FH6 Car Database',
-    description: 'Pair calculator output with car pages, strengths, and launch notes.',
+    description:
+      'Pair calculator output with car pages, strengths, and launch notes.',
     href: '/games/forza-horizon-6/cars',
   },
   {
@@ -82,6 +88,61 @@ const relatedLinks = [
       'Check what each slider changes before turning a baseline into a car-specific tune.',
     href: '/games/forza-horizon-6/tuning-settings',
   },
+];
+
+const calculatorDecisionRows = [
+  {
+    situation: 'Car misses apexes',
+    firstInput: 'Understeer',
+    nextCheck: 'Front tire pressure, ARBs, differential, and aero direction.',
+    href: '/games/forza-horizon-6/guides/fix-understeer',
+  },
+  {
+    situation: 'Rear steps out on exit',
+    firstInput: 'Oversteer',
+    nextCheck:
+      'Rear grip, differential lock, spring balance, and throttle timing.',
+    href: '/games/forza-horizon-6/guides/fix-oversteer',
+  },
+  {
+    situation: 'Launch or corner exit spins',
+    firstInput: 'Wheelspin',
+    nextCheck:
+      'Gearing, rear tire pressure, differential, and throttle-friendly suspension.',
+    href: '/games/forza-horizon-6/guides/fix-wheelspin',
+  },
+  {
+    situation: 'Fast sections feel capped',
+    firstInput: 'Poor top speed',
+    nextCheck:
+      'Final drive, aero drag, gear spacing, and longest useful straight.',
+    href: '/tools/forza-horizon-6-gear-ratio-calculator',
+  },
+];
+
+const calculatorUseCases = [
+  {
+    title: 'Launch tuning session',
+    body: 'Use the calculator before building a large preset library so every page starts from the same race-type and symptom logic.',
+    icon: RouteIcon,
+  },
+  {
+    title: 'Weekly restriction prep',
+    body: 'When a weekly event has a class, surface, and car restriction, generate a safe baseline before chasing exact share codes.',
+    icon: ClipboardCheckIcon,
+  },
+  {
+    title: 'Car page testing',
+    body: 'Attach calculator notes to individual car pages once a candidate has a role, weakness, and test route.',
+    icon: CarFrontIcon,
+  },
+];
+
+const calculatorTrustRules = [
+  'Treat calculator output as a first pass, not a final universal tune.',
+  'Change one setting group at a time after the baseline feels testable.',
+  'Move gearing-only problems to the gear ratio calculator after handling is stable.',
+  'Move drift-only problems to the drift calculator when angle and recovery matter more than lap time.',
 ];
 
 const tuneCalculatorFaqs = [
@@ -156,11 +217,52 @@ export default function ForzaHorizon6TuneCalculatorPage() {
             path: pathname,
             steps: tuneHowToSteps,
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tune calculator next steps',
+            items: relatedLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(tuneCalculatorFaqs),
         ]}
       />
       <ForzaTuneCalculator />
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+              Choose the first symptom before changing every slider
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The calculator works best when the player can name one problem
+              first. This decision table routes common FH6 tuning intent into a
+              calculator input, then into the deeper guide or tool that should
+              come next.
+            </p>
+          </div>
+          <div className="forza-panel overflow-hidden">
+            <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_0.7fr_1.2fr]">
+              <span>What you feel</span>
+              <span>Calculator input</span>
+              <span>Next check</span>
+            </div>
+            {calculatorDecisionRows.map((row) => (
+              <LocaleLink
+                className="grid gap-3 border-b border-white/10 px-4 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.8fr_0.7fr_1.2fr]"
+                href={row.href}
+                key={row.situation}
+              >
+                <span className="font-semibold text-zinc-50">
+                  {row.situation}
+                </span>
+                <span className="text-amber-200">{row.firstInput}</span>
+                <span className="leading-6 text-zinc-400">{row.nextCheck}</span>
+              </LocaleLink>
+            ))}
+          </div>
+        </div>
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="forza-panel p-5">
             <p className="forza-chip">How to use it</p>
@@ -197,6 +299,25 @@ export default function ForzaHorizon6TuneCalculatorPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-3">
+          {calculatorUseCases.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article className="forza-card p-5" key={item.title}>
+                <Icon className="size-5 text-cyan-300" />
+                <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {item.body}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
@@ -257,6 +378,33 @@ export default function ForzaHorizon6TuneCalculatorPage() {
                 </span>
               </LocaleLink>
             ))}
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ShieldCheckIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+                Baseline tune trust rules
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These rules keep the main calculator honest while still making
+                it a strong internal hub for presets, car pages, weekly events,
+                and future verified share codes.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {calculatorTrustRules.map((rule) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={rule}
+                >
+                  {rule}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
