@@ -20,6 +20,7 @@ import {
 } from '@/lib/seo/forza-horizon-6';
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
 import {
+  ArrowRightIcon,
   ArrowLeftIcon,
   CarIcon,
   FlagIcon,
@@ -121,6 +122,102 @@ function getMakeGuide(car: ForzaHorizon6Car) {
   return null;
 }
 
+function getPrimarySetupGuide(car: ForzaHorizon6Car) {
+  const profile = `${car.bestUse} ${car.tuneDirection}`.toLowerCase();
+
+  if (profile.includes('drag')) {
+    return {
+      title: 'Drag setup path',
+      href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+      body: 'Start with launch grip, first-shift behavior, and final-drive testing before chasing top speed.',
+    };
+  }
+
+  if (profile.includes('drift') || profile.includes('touge')) {
+    return {
+      title: 'Drift and touge path',
+      href: '/games/forza-horizon-6/guides/best-drift-tune-settings',
+      body: 'Keep power delivery readable first, then tune differential, gearing, and transition recovery.',
+    };
+  }
+
+  if (profile.includes('rally') || profile.includes('dirt')) {
+    return {
+      title: 'Rally setup path',
+      href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      body: 'Build for bumps, traction after crests, and mixed-surface braking before adding pace.',
+    };
+  }
+
+  if (car.stockClass === 'A') {
+    return {
+      title: 'A class road path',
+      href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      body: 'Use A class as the first clean road-racing baseline, then test braking and exit speed.',
+    };
+  }
+
+  return {
+    title: 'Road racing path',
+    href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+    body: 'Start from a stable road setup and only add power after the car repeats corners cleanly.',
+  };
+}
+
+function getCarTunePath(
+  car: ForzaHorizon6Car,
+  recommendedPresets: typeof forzaTunePresets
+) {
+  const primarySetupGuide = getPrimarySetupGuide(car);
+  const classGuide = getClassGuide(car);
+  const makeGuide = getMakeGuide(car);
+  const firstPreset = recommendedPresets[0];
+  const links = [
+    {
+      title: '1. Pick the setup path',
+      href: primarySetupGuide.href,
+      body: primarySetupGuide.body,
+      cta: primarySetupGuide.title,
+    },
+    firstPreset
+      ? {
+          title: '2. Open the closest preset',
+          href: `/tools/forza-horizon-6-tune-presets/${firstPreset.slug}`,
+          body: `Use the ${firstPreset.h1} as the closest current baseline, then adjust after route testing.`,
+          cta: 'Open matched preset',
+        }
+      : {
+          title: '2. Generate a baseline',
+          href: '/tools/forza-horizon-6-tune-calculator',
+          body: 'Use the calculator to choose class, drivetrain, surface, and handling issue before saving a preset.',
+          cta: 'Open calculator',
+        },
+    {
+      title: '3. Compare the class',
+      href: classGuide.pathname,
+      body: `Compare ${car.stockClass} and nearby class builds before moving this car into a higher PI range.`,
+      cta: classGuide.h1,
+    },
+    makeGuide
+      ? {
+          title: '4. Compare the manufacturer',
+          href: makeGuide.pathname,
+          body: `Check how this ${car.make} option fits against other launch candidates from the same manufacturer.`,
+          cta: makeGuide.h1,
+        }
+      : {
+          title: '4. Track weekly use',
+          href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+          body: 'Save the restriction, route type, and handling problem so the build can be reused later.',
+          cta: 'Weekly checklist',
+        },
+  ];
+
+  return links.filter(
+    (link, index) => links.findIndex((item) => item.href === link.href) === index
+  );
+}
+
 export function generateStaticParams() {
   return forzaHorizon6Cars.map((car) => ({
     slug: car.slug,
@@ -165,6 +262,7 @@ export default async function ForzaHorizon6CarPage({
   const recommendedPresets = forzaTunePresets
     .filter((preset) => preset.targetCars.includes(title))
     .slice(0, 3);
+  const carTunePath = getCarTunePath(car, recommendedPresets);
   const pathname = `/games/forza-horizon-6/cars/${slug}`;
   const buildCards = getBuildCards(car, title);
   const classGuide = getClassGuide(car);
@@ -340,6 +438,42 @@ export default async function ForzaHorizon6CarPage({
                   <strong className="block text-zinc-100">{hub.title}</strong>
                   <span className="mt-2 block leading-6 text-zinc-400">
                     {hub.body}
+                  </span>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+                  Car tune path
+                </p>
+                <h2 className="mt-2 text-xl font-semibold">
+                  Turn this car page into a working build plan
+                </h2>
+              </div>
+              <span className="rounded-md border border-amber-300/25 bg-amber-300/10 px-3 py-2 text-sm font-semibold text-amber-100">
+                {carTunePath.length} steps
+              </span>
+            </div>
+            <div className="mt-5 grid gap-3 lg:grid-cols-4">
+              {carTunePath.map((step) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                  href={step.href}
+                  key={step.href}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {step.body}
+                  </p>
+                  <span className="mt-4 inline-flex items-center text-sm font-semibold text-amber-200">
+                    {step.cta}
+                    <ArrowRightIcon className="ml-2 size-4" />
                   </span>
                 </LocaleLink>
               ))}
