@@ -7,6 +7,7 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -188,6 +189,11 @@ const faqs: FaqItem[] = [
   },
 ];
 
+const howToSteps: FaqItem[] = tuningOrder.map((step) => ({
+  question: step.title,
+  answer: step.text,
+}));
+
 export async function generateMetadata({
   params,
 }: {
@@ -214,6 +220,13 @@ export default function ForzaHorizon6TuningSettingsPage() {
             { name: 'Tuning Settings', path: pathname },
           ]),
           buildArticleJsonLd({ title, description, path: pathname }),
+          buildHowToJsonLd({
+            title: 'How to tune Forza Horizon 6 settings in order',
+            description:
+              'A repeatable tuning workflow for matching FH6 car symptoms to the right setting group.',
+            path: pathname,
+            steps: howToSteps,
+          }),
           buildFaqJsonLd(faqs),
         ]}
       />

@@ -11,6 +11,7 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -75,6 +76,18 @@ export default async function ForzaHorizon6GuidePage({
       answer: section.body,
     })),
   ];
+  const howToSteps: FaqItem[] = [
+    ...guide.sections.map((section) => ({
+      question: section.title,
+      answer: `${section.body} ${section.bullets.join(' ')}`,
+    })),
+    ...(guide.deepDive ?? []).flatMap((group) =>
+      group.cards.map((card) => ({
+        question: card.title,
+        answer: `${card.body} ${card.bullets.join(' ')}`,
+      }))
+    ),
+  ];
 
   return (
     <>
@@ -89,6 +102,12 @@ export default async function ForzaHorizon6GuidePage({
             title: guide.h1,
             description: guide.description,
             path: pathname,
+          }),
+          buildHowToJsonLd({
+            title: `How to use ${guide.h1}`,
+            description: guide.description,
+            path: pathname,
+            steps: howToSteps,
           }),
           buildFaqJsonLd(faqs),
         ]}

@@ -1215,6 +1215,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         ],
       },
     ],
+    deepDive: [
+      {
+        title: 'Drag launch troubleshooting',
+        description:
+          'Most drag problems show up before the car reaches full speed. Diagnose the first two seconds before adding power.',
+        cards: [
+          {
+            title: 'Instant wheelspin',
+            body: 'The launch is overpowering available grip. Lengthen first gear, soften aggressive differential behavior, and retest with the same throttle input.',
+            bullets: [
+              'Check whether spin happens before or after the first shift.',
+              'Lengthen first gear before changing every upper gear.',
+              'Reduce launch aggression before adding more tire pressure changes.',
+            ],
+          },
+          {
+            title: 'Bogging off the line',
+            body: 'The car is falling below its useful power range. Shorten the launch range carefully and check whether the next shift still lands in power.',
+            bullets: [
+              'Shorten final drive in small steps.',
+              'Avoid a fix that creates instant wheelspin.',
+              'Retest elapsed time, not only engine sound.',
+            ],
+          },
+          {
+            title: 'Fast trap, slow run',
+            body: 'The top end is good but the first half of the run is weak. Keep the upper gears and focus on launch grip, first shift, and differential.',
+            bullets: [
+              'Compare 0-60 feel against final trap speed.',
+              'Save a separate speed-trap version if needed.',
+              'Use one drag strip marker for every test.',
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     slug: 'best-rally-tune-settings',
@@ -1269,6 +1305,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Record surface type when a problem appears.',
           'Use one safe weekly tune and one aggressive test tune.',
           'Compare consistency across runs before chasing one fast split.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Rally setup decision points',
+        description:
+          'Rally tuning is about recovery. The car must stay useful after bumps, crests, braking zones, and mixed-grip exits.',
+        cards: [
+          {
+            title: 'Car skips across bumps',
+            body: 'The suspension is not keeping the tires connected. Soften harsh behavior before adding power or shortening gears.',
+            bullets: [
+              'Use the same rough exit for every suspension test.',
+              'Change springs and damping before blaming the car choice.',
+              'Retest braking after ride-height changes.',
+            ],
+          },
+          {
+            title: 'AWD pulls wide on throttle',
+            body: 'The drivetrain is helping launch but hurting rotation. Tune differential behavior and lower gears so throttle does not drag the car off line.',
+            bullets: [
+              'Test half throttle before full throttle.',
+              'Check whether the front axle is pulling the car straight.',
+              'Use a safer diff baseline for weekly events.',
+            ],
+          },
+          {
+            title: 'Good dirt pace, bad road sections',
+            body: 'Mixed-surface events need compromise. Keep enough compliance for dirt without making paved braking vague or delayed.',
+            bullets: [
+              'Run one dirt split and one paved braking zone.',
+              'Keep notes by surface type.',
+              'Use a route-specific version only after the safe tune works.',
+            ],
+          },
         ],
       },
     ],
@@ -1383,6 +1455,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Use medium-speed corners to judge rotation.',
           'Retest tire pressure after changing suspension or aero.',
           'Keep one wet or bumpy route in the test loop.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'A class road tuning priorities',
+        description:
+          'A class road builds should feel fast because they repeat clean corners, not because they hide mistakes with power.',
+        cards: [
+          {
+            title: 'Corner entry',
+            body: 'Entry should feel calm enough to brake late and still point the car toward the apex. If the rear moves too much, fix braking stability before adding front bite.',
+            bullets: [
+              'Use one heavy braking zone as the entry test.',
+              'Adjust brake balance and rear stability in small steps.',
+              'Do not judge entry on a corner you cannot repeat.',
+            ],
+          },
+          {
+            title: 'Mid-corner rotation',
+            body: 'The car should rotate without forcing huge steering input. If it washes wide, tune tire pressure, alignment, ARBs, and aero direction before power.',
+            bullets: [
+              'Use a medium-speed corner to test front response.',
+              'Retest after every tire or ARB change.',
+              'Keep enough rear stability for wet or bumpy routes.',
+            ],
+          },
+          {
+            title: 'Exit speed',
+            body: 'A class races are often won by clean exits. If throttle makes the car push wide or spin, use differential and gearing before adding horsepower.',
+            bullets: [
+              'Compare half throttle and full throttle on the same exit.',
+              'Shorten gearing only if it does not create wheelspin.',
+              'Save a safe weekly version before aggressive tuning.',
+            ],
+          },
         ],
       },
     ],
