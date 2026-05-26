@@ -12,9 +12,13 @@ import {
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
 import {
   ArrowRightIcon,
+  CalendarClockIcon,
   ClipboardCheckIcon,
+  FileCheck2Icon,
   GaugeIcon,
   LinkIcon,
+  ListChecksIcon,
+  RouteIcon,
   SearchIcon,
   ShieldCheckIcon,
 } from 'lucide-react';
@@ -80,6 +84,35 @@ const tuneCodeRows = [
   },
 ];
 
+const verificationRules = [
+  {
+    title: 'Exact car and class',
+    text: 'A share code needs the car, PI class, drivetrain, tire type, and upgrade direction it was tested with.',
+    icon: FileCheck2Icon,
+  },
+  {
+    title: 'Route and surface notes',
+    text: 'A code that feels great on road sprint routes can be wrong for rally, street traffic, rivals, or short circuits.',
+    icon: RouteIcon,
+  },
+  {
+    title: 'Fresh test date',
+    text: 'When a patch changes physics, PI balance, or car stats, old codes should be labelled instead of silently reused.',
+    icon: CalendarClockIcon,
+  },
+];
+
+const futureCodeFields = [
+  'Share code',
+  'Creator or source',
+  'Car and model year',
+  'Class and drivetrain',
+  'Race type and route',
+  'Last tested date',
+  'Matching preset URL',
+  'Known weakness',
+];
+
 const faqs: FaqItem[] = [
   {
     question: 'Does Apex Tune Hub publish Forza Horizon 6 tune codes?',
@@ -125,6 +158,17 @@ export default function ForzaHorizon6TuneCodesPage() {
           ]),
           buildArticleJsonLd({ title, description, path: pathname }),
           buildFaqJsonLd(faqs),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 tune code baseline links',
+            itemListElement: tuneCodeRows.map((row, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: row.label,
+              url: `https://apextunehub.com${row.href}`,
+            })),
+          },
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -199,6 +243,40 @@ export default function ForzaHorizon6TuneCodesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              What makes a tune code publishable?
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The page can rank for tune-code searches now, but it should only
+              publish real in-game codes after there is enough context for
+              players to trust them.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {verificationRules.map((rule) => {
+              const Icon = rule.icon;
+
+              return (
+                <article className="forza-card p-5" key={rule.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-4 text-base font-semibold">
+                    {rule.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {rule.text}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1.2fr_0.8fr]">
             <span>Search intent</span>
@@ -216,6 +294,38 @@ export default function ForzaHorizon6TuneCodesPage() {
               <span className="text-amber-200">{row.status}</span>
             </LocaleLink>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+                Future verified-code format
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">
+                Add real share codes without turning the page into a fake-code
+                list.
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                When FH6 codes are available, every row should include enough
+                context for a player to know whether the code matches their car,
+                route, and update version.
+              </p>
+            </div>
+
+            <div className="grid gap-2 sm:grid-cols-2">
+              {futureCodeFields.map((field) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200"
+                  key={field}
+                >
+                  {field}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
