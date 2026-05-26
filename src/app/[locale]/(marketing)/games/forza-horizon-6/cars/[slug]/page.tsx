@@ -22,9 +22,12 @@ import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
 import {
   ArrowRightIcon,
   ArrowLeftIcon,
+  CalendarClockIcon,
   CarIcon,
   FlagIcon,
   GaugeIcon,
+  LinkIcon,
+  RadioTowerIcon,
   RotateCcwIcon,
   WrenchIcon,
 } from 'lucide-react';
@@ -286,6 +289,29 @@ export default async function ForzaHorizon6CarPage({
       href: '/games/forza-horizon-6/best-cars',
     },
   ].filter(Boolean) as { title: string; body: string; href: string }[];
+  const relatedEcosystem = [
+    {
+      title: 'Weekly playlist fit',
+      eyebrow: 'Seasonal use',
+      href: '/games/forza-horizon-6/weekly-playlist',
+      icon: CalendarClockIcon,
+      body: `Keep one safe ${car.stockClass} or A/S1 version of ${title} ready for seasonal restrictions, reward tasks, and playlist refreshes.`,
+    },
+    {
+      title: 'Car Pass tracker',
+      eyebrow: 'New-car workflow',
+      href: '/games/forza-horizon-6/car-pass',
+      icon: RadioTowerIcon,
+      body: `If ${title} appears in a weekly drop or reward rotation, link the tracker back to this car page after source verification.`,
+    },
+    {
+      title: 'Tune codes hub',
+      eyebrow: 'Share-code path',
+      href: '/tools/forza-horizon-6-tune-codes',
+      icon: LinkIcon,
+      body: 'Use the tune-code workflow when a real in-game share code is verified. Until then, keep this as a transparent preset and calculator path.',
+    },
+  ];
   const faqs: FaqItem[] = [
     {
       question: `Is the ${title} good in Forza Horizon 6?`,
@@ -320,6 +346,19 @@ export default async function ForzaHorizon6CarPage({
             path: pathname,
           }),
           buildFaqJsonLd(faqs),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: `${title} related FH6 tuning links`,
+            itemListElement: [...carTunePath, ...relatedEcosystem].map(
+              (item, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: item.title,
+                url: `https://apextunehub.com${item.href}`,
+              })
+            ),
+          },
         ]}
       />
       <main className="forza-page text-zinc-50">
@@ -441,6 +480,52 @@ export default async function ForzaHorizon6CarPage({
                   </span>
                 </LocaleLink>
               ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+                  Related ecosystem
+                </p>
+                <h2 className="mt-3 text-xl font-semibold">
+                  Where this car page should connect next
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  A useful car page should feed weekly event prep, Car Pass
+                  updates, verified tune codes, and preset testing instead of
+                  ending as a dead-end note.
+                </p>
+              </div>
+              <div className="grid gap-3 md:grid-cols-3">
+                {relatedEcosystem.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <LocaleLink
+                      className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                      href={item.href}
+                      key={item.href}
+                    >
+                      <Icon className="size-5 text-cyan-300" />
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
+                        {item.eyebrow}
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold text-zinc-100">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-zinc-400">
+                        {item.body}
+                      </p>
+                      <span className="mt-4 inline-flex items-center text-sm font-semibold text-cyan-200">
+                        Open path
+                        <ArrowRightIcon className="ml-2 size-4" />
+                      </span>
+                    </LocaleLink>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
