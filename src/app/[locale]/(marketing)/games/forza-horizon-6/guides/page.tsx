@@ -16,7 +16,10 @@ import {
   ArrowRightIcon,
   BookOpenIcon,
   CircleGaugeIcon,
+  ListChecksIcon,
   MapIcon,
+  RadioTowerIcon,
+  ShieldCheckIcon,
   WrenchIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -130,6 +133,31 @@ const guideFaqs = [
   },
 ];
 
+const guideWorkflow = [
+  'Start every new guide with the player problem: event type, handling symptom, device setup, or weekly restriction.',
+  'Link each guide to one calculator, one preset or car hub, and one broader FH6 topic page.',
+  'Keep launch assumptions labelled until car testing, route notes, or official source checks confirm them.',
+  'Move repeated questions into the FAQ hub and link the FAQ back to the detailed guide.',
+];
+
+const guideDestinations = [
+  {
+    title: 'Tool destination',
+    body: 'Send setup readers to the calculator, drift calculator, gear ratio tool, presets, or tune-code workflow.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    title: 'Car destination',
+    body: 'Send car-intent readers to best cars, car database, class hubs, or manufacturer hubs.',
+    href: '/games/forza-horizon-6/cars',
+  },
+  {
+    title: 'Weekly destination',
+    body: 'Send repeat visitors to weekly playlist notes, Car Pass tracking, and FH6 tune drops.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -185,6 +213,17 @@ export default function ForzaHorizon6GuidesPage() {
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
           buildFaqJsonLd(guideFaqs),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 guide index',
+            itemListElement: forzaHorizon6Guides.map((guide, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: guide.h1,
+              url: `https://apextunehub.com/games/forza-horizon-6/guides/${guide.slug}`,
+            })),
+          },
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -230,6 +269,16 @@ export default function ForzaHorizon6GuidesPage() {
                 baseline, then pick starter car, drift, road racing, or handling
                 fixes based on the event you are trying to finish.
               </p>
+              <div className="mt-5 grid gap-2">
+                {['Problem', 'Tool', 'Car path', 'Weekly update'].map((item) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -260,6 +309,48 @@ export default function ForzaHorizon6GuidesPage() {
               </LocaleLink>
             );
           })}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Guide publishing queue
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Use this queue when adding the next long-tail FH6 guide so new
+                pages land inside the existing tool, car, and weekly ecosystem.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {guideWorkflow.map((item) => (
+                <div
+                  className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
+                  key={item}
+                >
+                  <ShieldCheckIcon className="mt-0.5 size-4 shrink-0 text-cyan-300" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {guideDestinations.map((item) => (
+            <LocaleLink className="forza-card p-5" href={item.href} key={item.href}>
+              <RadioTowerIcon className="size-5 text-fuchsia-300" />
+              <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {item.body}
+              </p>
+              <span className="mt-4 inline-flex items-center text-sm font-semibold text-cyan-200">
+                Open destination
+                <ArrowRightIcon className="ml-2 size-4" />
+              </span>
+            </LocaleLink>
+          ))}
         </div>
       </section>
 
