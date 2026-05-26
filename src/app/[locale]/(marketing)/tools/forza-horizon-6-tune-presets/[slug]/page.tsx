@@ -16,12 +16,16 @@ import {
 import {
   calculateTune,
   formatResultForClipboard,
+  type ClassBand,
+  type HandlingIssue,
+  type RaceType,
 } from '@/lib/tuning/forza-horizon-6';
 import {
   forzaTunePresets,
   getForzaTunePreset,
   getPresetCalculatorUrl,
   getRelatedForzaTunePresets,
+  type ForzaTunePreset,
 } from '@/lib/tuning/forza-horizon-6-presets';
 import { ArrowRightIcon, ClipboardListIcon, GaugeIcon } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -36,6 +40,126 @@ export function generateStaticParams() {
   return forzaTunePresets.map((preset) => ({
     slug: preset.slug,
   }));
+}
+
+const issueGuideMap: Record<HandlingIssue, { label: string; href: string }> = {
+  understeer: {
+    label: 'Fix understeer guide',
+    href: '/games/forza-horizon-6/guides/fix-understeer',
+  },
+  oversteer: {
+    label: 'Fix oversteer guide',
+    href: '/games/forza-horizon-6/guides/fix-oversteer',
+  },
+  wheelspin: {
+    label: 'Fix wheelspin guide',
+    href: '/games/forza-horizon-6/guides/fix-wheelspin',
+  },
+  'slow-launch': {
+    label: 'Fix slow launch guide',
+    href: '/games/forza-horizon-6/guides/fix-slow-launch',
+  },
+  'unstable-braking': {
+    label: 'Fix unstable braking guide',
+    href: '/games/forza-horizon-6/guides/fix-unstable-braking',
+  },
+  'poor-top-speed': {
+    label: 'Fix poor top speed guide',
+    href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+  },
+};
+
+const classGuideMap: Partial<Record<ClassBand, { label: string; href: string }>> = {
+  B: {
+    label: 'Best B class cars',
+    href: '/games/forza-horizon-6/best-b-class-cars',
+  },
+  A: {
+    label: 'Best A class cars',
+    href: '/games/forza-horizon-6/best-a-class-cars',
+  },
+  S1: {
+    label: 'Best S1 class cars',
+    href: '/games/forza-horizon-6/best-s1-class-cars',
+  },
+  S2: {
+    label: 'Best S2 class cars',
+    href: '/games/forza-horizon-6/best-s2-class-cars',
+  },
+};
+
+function getRaceGuide(input: ForzaTunePreset['input']) {
+  if (input.raceType === 'drag') {
+    return {
+      label: 'Best drag tune settings',
+      href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    };
+  }
+
+  if (input.raceType === 'drift') {
+    return {
+      label: 'Best drift tune settings',
+      href: '/games/forza-horizon-6/guides/best-drift-tune-settings',
+    };
+  }
+
+  if (input.raceType === 'rally' || input.raceType === 'dirt') {
+    return input.classBand === 'S1'
+      ? {
+          label: 'Best S1 rally tune settings',
+          href: '/games/forza-horizon-6/guides/best-s1-rally-tune-settings',
+        }
+      : {
+          label: 'Best rally tune settings',
+          href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+        };
+  }
+
+  if (input.raceType === 'road' && input.classBand === 'A') {
+    return {
+      label: 'Best A class road tune settings',
+      href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+    };
+  }
+
+  return {
+    label: 'A and S1 road racing guide',
+    href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+  };
+}
+
+function getRouteChecklist(input: ForzaTunePreset['input']) {
+  if (input.raceType === 'drag' || input.handlingIssue === 'poor-top-speed') {
+    return {
+      label: 'Gear ratio guide',
+      href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+    };
+  }
+
+  if (input.raceType === 'rally' || input.raceType === 'dirt') {
+    return {
+      label: 'Japan route checklist',
+      href: '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+    };
+  }
+
+  return {
+    label: 'Weekly playlist checklist',
+    href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+  };
+}
+
+function getPresetGuideLinks(preset: ForzaTunePreset) {
+  const links = [
+    issueGuideMap[preset.input.handlingIssue],
+    getRaceGuide(preset.input),
+    classGuideMap[preset.input.classBand],
+    getRouteChecklist(preset.input),
+  ].filter((link): link is { label: string; href: string } => Boolean(link));
+
+  return links.filter(
+    (link, index) => links.findIndex((item) => item.href === link.href) === index
+  );
 }
 
 export async function generateMetadata({
@@ -67,6 +191,7 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
   const pathname = `/tools/forza-horizon-6-tune-presets/${preset.slug}`;
   const result = calculateTune(preset.input);
   const relatedPresets = getRelatedForzaTunePresets(preset, 3);
+  const guideLinks = getPresetGuideLinks(preset);
   const targetCars = preset.targetCars.map((name) => {
     const car = forzaHorizon6Cars.find(
       (candidate) => getForzaHorizon6CarTitle(candidate) === name
@@ -209,6 +334,26 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
                   </span>
                 )
               )}
+            </div>
+          </article>
+
+          <article className="forza-panel p-5">
+            <h2 className="text-xl font-semibold">Guide path for this preset</h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Use these pages to move from a baseline preset into the exact
+              handling fix, event setup, class list, and testing checklist.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {guideLinks.map((link) => (
+                <LocaleLink
+                  className="inline-flex items-center justify-between rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                  <ArrowRightIcon className="ml-3 size-4 text-amber-200" />
+                </LocaleLink>
+              ))}
             </div>
           </article>
         </div>
