@@ -176,6 +176,45 @@ export default async function ForzaHorizon6GuidePage({
             ))}
           </div>
 
+          {guide.deepDive?.map((group) => (
+            <div className="forza-panel mt-6 p-5" key={group.title}>
+              <div className="max-w-3xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  Deep dive
+                </p>
+                <h2 className="mt-2 text-xl font-semibold">{group.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {group.description}
+                </p>
+              </div>
+              <div className="mt-5 grid gap-4 lg:grid-cols-3">
+                {group.cards.map((card) => (
+                  <article
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                    key={card.title}
+                  >
+                    <h3 className="text-base font-semibold text-zinc-100">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {card.body}
+                    </p>
+                    <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-300">
+                      {card.bullets.map((bullet) => (
+                        <li
+                          className="rounded-md border border-cyan-300/15 bg-cyan-300/[0.04] px-3 py-2"
+                          key={bullet}
+                        >
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
+
           <div className="forza-panel mt-6 p-5">
             <h2 className="text-xl font-semibold">FAQ</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-2">

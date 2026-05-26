@@ -18,6 +18,15 @@ export type ForzaHorizon6Guide = {
     body: string;
     bullets: string[];
   }[];
+  deepDive?: {
+    title: string;
+    description: string;
+    cards: {
+      title: string;
+      body: string;
+      bullets: string[];
+    }[];
+  }[];
 };
 
 export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
@@ -457,6 +466,76 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Watch RPM drop after each shift.',
           'Close spacing for technical roads.',
           'Leave taller gears for fast routes and high-power builds.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Final drive decision chart',
+        description:
+          'Use final drive first because it moves the entire gearbox. Only edit individual gears after the full range is close.',
+        cards: [
+          {
+            title: 'Car hits limiter before the useful straight ends',
+            body: 'The gearing is too short for the route. Lengthen final drive slightly, then retest the same straight before touching top gear alone.',
+            bullets: [
+              'Use small final-drive moves instead of dramatic jumps.',
+              'Retest launch after lengthening, because slow exits can appear.',
+              'If only one gear is wrong, move that gear after final drive is close.',
+            ],
+          },
+          {
+            title: 'Car never reaches top gear',
+            body: 'The gearing is too long for the route or the build lacks power for the target speed. Shorten final drive or reduce the top-speed target.',
+            bullets: [
+              'Do not tune for a top gear the route never uses.',
+              'Shorten upper gears for technical road events.',
+              'Compare lap time, not only the garage speed estimate.',
+            ],
+          },
+          {
+            title: 'Car bogs after every shift',
+            body: 'The engine is falling out of its useful power range. Close the gear spacing around the part of the route where the bog appears.',
+            bullets: [
+              'Watch the RPM drop after second-to-third and third-to-fourth.',
+              'Use tighter gears for hill climbs and short exits.',
+              'Avoid over-shortening if wheelspin appears after shifts.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Gearing targets by build type',
+        description:
+          'Road, rally, drift, and drag builds use gearing for different jobs. Start with the event type before chasing one universal ratio.',
+        cards: [
+          {
+            title: 'Road and street',
+            body: 'Target clean exits and the longest useful straight. A road gearbox should keep the car awake after medium-speed corners without forcing limiter hits.',
+            bullets: [
+              'Use balanced final drive before editing every gear.',
+              'Keep one gear ready for repeated corner exits.',
+              'Lengthen only when the route actually rewards top speed.',
+            ],
+          },
+          {
+            title: 'Drift',
+            body: 'Target one or two usable drift gears. The car should stay in power during linked corners without exploding into wheelspin.',
+            bullets: [
+              'Shorten if the car bogs mid-corner.',
+              'Lengthen if throttle instantly kills direction.',
+              'Save a separate drift gearbox from the road build.',
+            ],
+          },
+          {
+            title: 'Drag and speed traps',
+            body: 'Target launch repeatability first, then trap speed. A big top-speed number is not useful if first and second gear waste the run.',
+            bullets: [
+              'Fix launch spin or bog before upper gears.',
+              'Retest elapsed time and trap speed together.',
+              'Keep drag and speed-zone versions separate.',
+            ],
+          },
         ],
       },
     ],

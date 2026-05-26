@@ -114,7 +114,59 @@ const workflows = [
   {
     title: 'Rally and dirt',
     text: 'Start with ride height, springs, damping, and gearing so the car survives bumps before adding power.',
-    href: '/games/forza-horizon-6/guides/beginner-tuning',
+    href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+  },
+];
+
+const tuningOrder = [
+  {
+    title: '1. Define the job',
+    text: 'Write down race type, class, drivetrain, surface, and the main problem before touching settings.',
+  },
+  {
+    title: '2. Fix grip and balance',
+    text: 'Use tire pressure, alignment, ARBs, springs, and damping until the car turns and brakes predictably.',
+  },
+  {
+    title: '3. Tune power delivery',
+    text: 'Use differential and gearing after the chassis has a direction. This keeps wheelspin and bogging easier to diagnose.',
+  },
+  {
+    title: '4. Add route-specific polish',
+    text: 'Use aero, brake balance, and individual gear changes only when a repeatable route section proves they are needed.',
+  },
+];
+
+const symptomMap = [
+  {
+    symptom: 'Pushes wide before throttle',
+    settings: 'Front tires, alignment, front/rear ARB balance, front aero',
+    firstTest: 'Use one medium-speed entry corner and compare apex distance.',
+  },
+  {
+    symptom: 'Pushes wide on exit',
+    settings: 'Differential, lower gears, rear tire pressure, throttle style',
+    firstTest: 'Exit the same slow corner three times at half and full throttle.',
+  },
+  {
+    symptom: 'Snaps oversteer on lift or braking',
+    settings: 'Brake balance, rear damping, rear ARB, differential decel',
+    firstTest: 'Brake in a straight line first, then add light trail braking.',
+  },
+  {
+    symptom: 'Wheelspin on launch',
+    settings: 'First gear, final drive, differential accel, tire pressure',
+    firstTest: 'Launch from the same marker and record spin before first shift.',
+  },
+  {
+    symptom: 'Bounces or skips on rough roads',
+    settings: 'Ride height, spring rate, bump, rebound, rally suspension',
+    firstTest: 'Use one rough exit and watch whether the car lands settled.',
+  },
+  {
+    symptom: 'Feels slow on straights',
+    settings: 'Final drive, upper gears, aero, power-to-grip tradeoff',
+    firstTest: 'Check whether the car reaches top gear before the straight ends.',
   },
 ];
 
@@ -243,6 +295,75 @@ export default function ForzaHorizon6TuningSettingsPage() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Setup order
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              A repeatable FH6 tuning workflow
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The order matters because every slider changes how you interpret
+              the next test. Start broad, then move toward route-specific
+              changes after the car already has a clear baseline.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-4">
+            {tuningOrder.map((item) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={item.title}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
+              Symptom map
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Match the problem to the setting group
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Use this table when a tune feels wrong but you are not sure which
+              slider to touch. Pick the closest symptom, test the listed group,
+              then keep or undo the change based on the same route section.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3">
+            {symptomMap.map((item) => (
+              <article
+                className="grid gap-3 rounded-md border border-white/10 bg-white/[0.03] p-4 md:grid-cols-[0.8fr_1fr_1fr]"
+                key={item.symptom}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {item.symptom}
+                </h3>
+                <p className="text-sm leading-6 text-cyan-100">
+                  {item.settings}
+                </p>
+                <p className="text-sm leading-6 text-zinc-400">
+                  {item.firstTest}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
