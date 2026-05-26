@@ -8,6 +8,7 @@ import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildHowToJsonLd,
+  buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -16,6 +17,7 @@ import {
   GaugeIcon,
   ListChecksIcon,
   RouteIcon,
+  ShieldCheckIcon,
   SlidersHorizontalIcon,
   WrenchIcon,
 } from 'lucide-react';
@@ -64,8 +66,7 @@ const settingsGroups = [
   {
     title: 'Anti-roll bars',
     icon: WrenchIcon,
-    intent:
-      'Use ARBs as one of the fastest ways to tune mid-corner balance.',
+    intent: 'Use ARBs as one of the fastest ways to tune mid-corner balance.',
     checks: [
       'Stiffer front usually adds understeer.',
       'Stiffer rear usually adds rotation.',
@@ -119,6 +120,58 @@ const workflows = [
   },
 ];
 
+const followupLinks = [
+  {
+    title: 'Tune Calculator',
+    description:
+      'Generate a baseline before using this glossary to understand the slider direction.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    title: 'Tune Presets',
+    description:
+      'Use preset URLs when you need a shareable starting point for a class, drivetrain, and symptom.',
+    href: '/tools/forza-horizon-6-tune-presets',
+  },
+  {
+    title: 'Gear Ratio Calculator',
+    description:
+      'Move here when the car is stable but launch, shift recovery, or top speed still feels wrong.',
+    href: '/tools/forza-horizon-6-gear-ratio-calculator',
+  },
+  {
+    title: 'FH6 Car Database',
+    description:
+      'Attach tuned notes to specific cars once the baseline has been tested on a repeatable route.',
+    href: '/games/forza-horizon-6/cars',
+  },
+];
+
+const sliderPriorityCards = [
+  {
+    title: 'Fast diagnosis sliders',
+    body: 'Tire pressure, ARBs, final drive, brake balance, and diff can reveal whether the problem is grip, balance, or power delivery.',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Slow careful sliders',
+    body: 'Camber, toe, damping, spring rate, and individual gears need smaller steps because they can hide the real problem.',
+    icon: SlidersHorizontalIcon,
+  },
+  {
+    title: 'Late polish sliders',
+    body: 'Aero, brake pressure, fine gear spacing, and route-specific diff changes should come after the car repeats clean tests.',
+    icon: WrenchIcon,
+  },
+];
+
+const tuningGuardrails = [
+  'Write the route, class, drivetrain, and main symptom before tuning.',
+  'Change one setting group, then retest the same corner, launch, or straight.',
+  'Undo a change if it improves one section but breaks the car everywhere else.',
+  'Move from general settings to car-specific pages only after repeatable testing.',
+];
+
 const tuningOrder = [
   {
     title: '1. Define the job',
@@ -147,7 +200,8 @@ const symptomMap = [
   {
     symptom: 'Pushes wide on exit',
     settings: 'Differential, lower gears, rear tire pressure, throttle style',
-    firstTest: 'Exit the same slow corner three times at half and full throttle.',
+    firstTest:
+      'Exit the same slow corner three times at half and full throttle.',
   },
   {
     symptom: 'Snaps oversteer on lift or braking',
@@ -157,7 +211,8 @@ const symptomMap = [
   {
     symptom: 'Wheelspin on launch',
     settings: 'First gear, final drive, differential accel, tire pressure',
-    firstTest: 'Launch from the same marker and record spin before first shift.',
+    firstTest:
+      'Launch from the same marker and record spin before first shift.',
   },
   {
     symptom: 'Bounces or skips on rough roads',
@@ -167,7 +222,8 @@ const symptomMap = [
   {
     symptom: 'Feels slow on straights',
     settings: 'Final drive, upper gears, aero, power-to-grip tradeoff',
-    firstTest: 'Check whether the car reaches top gear before the straight ends.',
+    firstTest:
+      'Check whether the car reaches top gear before the straight ends.',
   },
 ];
 
@@ -227,6 +283,13 @@ export default function ForzaHorizon6TuningSettingsPage() {
             path: pathname,
             steps: howToSteps,
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tuning settings follow-up pages',
+            items: followupLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(faqs),
         ]}
       />
@@ -275,12 +338,54 @@ export default function ForzaHorizon6TuningSettingsPage() {
                 the handling symptom, change the most relevant setting group,
                 and keep a short note after each test run.
               </p>
+              <div className="mt-5 grid gap-2">
+                {tuningGuardrails.map((rule) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={rule}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-amber-300" />
+                    <span>{rule}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Know which sliders deserve caution
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Some settings are useful for quick diagnosis. Others should wait
+              until the car already has a clear baseline. This makes the guide
+              safer for beginners and more useful as an internal link target.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {sliderPriorityCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <article className="forza-card p-4" key={card.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {card.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="mb-6">
           <p className="text-xs font-semibold uppercase text-cyan-300">
             Slider map
@@ -339,6 +444,41 @@ export default function ForzaHorizon6TuningSettingsPage() {
                   {item.text}
                 </p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Follow-up routes
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Where this settings guide should send players next
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The glossary works as the middle layer: calculator first, setting
+              group second, then a preset, car page, or specialized tool once
+              the problem is clearer.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {followupLinks.map((link) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={link.href}
+                key={link.href}
+              >
+                <ArrowRightIcon className="size-5 text-fuchsia-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.description}
+                </p>
+              </LocaleLink>
             ))}
           </div>
         </div>
