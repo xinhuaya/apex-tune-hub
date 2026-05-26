@@ -6,13 +6,18 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
   BatteryChargingIcon,
   Gamepad2Icon,
+  GaugeIcon,
+  ListChecksIcon,
   MonitorCogIcon,
+  ShieldCheckIcon,
+  ThermometerIcon,
   ZapIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -54,6 +59,81 @@ const handheldLinks = [
     title: 'Weekly playlist',
     href: '/games/forza-horizon-6/weekly-playlist',
     note: 'Use stable handheld settings for weekly events with traffic and weather.',
+  },
+];
+
+const handheldDecisionCards = [
+  {
+    title: 'Balanced handheld run',
+    body: 'Use this when you want clean driving feel, readable visuals, and a stable session without draining the battery too fast.',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Battery-first session',
+    body: 'Use this for travel, longer weekly playlists, or repeated event retries where heat and battery matter more than sharp visuals.',
+    icon: BatteryChargingIcon,
+  },
+  {
+    title: 'Plugged-in testing',
+    body: 'Use this when you can spend more power budget on clarity, but still need to watch heat and frame-time spikes.',
+    icon: ThermometerIcon,
+  },
+];
+
+const handheldTroubleshootingRows = [
+  {
+    symptom: 'Corners feel delayed',
+    likelyCause: 'Frame pacing or input latency',
+    firstMove:
+      'Lock the FPS target, retest the same corner, then pair with controller settings.',
+  },
+  {
+    symptom: 'Battery drains too quickly',
+    likelyCause: 'Power budget too high',
+    firstMove:
+      'Drop the target profile, lower expensive visuals, and compare a full event loop.',
+  },
+  {
+    symptom: 'Heat builds after several races',
+    likelyCause: 'Sustained load',
+    firstMove:
+      'Use the battery profile or lower GPU-heavy settings before changing car tunes.',
+  },
+  {
+    symptom: 'Weekly events stutter',
+    likelyCause: 'Traffic, weather, or dense scenery',
+    firstMove:
+      'Test the weekly route conditions instead of only checking free-roam roads.',
+  },
+];
+
+const handheldTestLoop = [
+  'Test one city route, one high-speed route, and one dense weekly event start.',
+  'Record LCD or OLED model, FPS target, battery estimate, and plugged-in status.',
+  'Change only one graphics or power group before each retest.',
+  'Move to car tuning only after every-car input and frame pacing feel stable.',
+];
+
+const steamDeckNextLinks = [
+  {
+    title: 'Settings Hub',
+    href: '/settings/forza-horizon-6',
+    note: 'Return here when the problem might be PC, wheel, controller, or car-specific tuning instead.',
+  },
+  {
+    title: 'Controller settings',
+    href: '/settings/forza-horizon-6-controller',
+    note: 'Use this when frame pacing is stable but steering, braking, or throttle still feels inconsistent.',
+  },
+  {
+    title: 'Weekly playlist',
+    href: '/games/forza-horizon-6/weekly-playlist',
+    note: 'Use stable handheld settings for weekly events with traffic, weather, and repeated restarts.',
+  },
+  {
+    title: 'Tune calculator',
+    href: '/tools/forza-horizon-6-tune-calculator',
+    note: 'Move here when the device feels stable and only one car still needs setup work.',
   },
 ];
 
@@ -105,6 +185,13 @@ export default function SteamDeckSettingsPage() {
             { name: 'Steam Deck Settings', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Steam Deck settings next steps',
+            items: steamDeckNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(steamDeckFaqs),
         ]}
       />
@@ -154,12 +241,54 @@ export default function SteamDeckSettingsPage() {
                 target usually feels better than a higher target that drops in
                 traffic, rain, or packed event starts.
               </p>
+              <div className="mt-5 grid gap-2">
+                {handheldTestLoop.map((step) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={step}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-lime-300" />
+                    <span>{step}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Choose the handheld goal before tuning visuals
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Steam Deck settings are a tradeoff between frame pacing, battery,
+              heat, and readability. Pick the handheld goal first, then test the
+              same event conditions before touching car-specific tuning.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {handheldDecisionCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <article className="forza-card p-4" key={card.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {card.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-3">
           {presets.map((preset) => (
             <article key={preset.goal} className="forza-card p-5">
@@ -189,6 +318,56 @@ export default function SteamDeckSettingsPage() {
             <li>Separate Steam Deck LCD and OLED results.</li>
             <li>Retest after major graphics or performance patches.</li>
           </ul>
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
+            <span>Handheld symptom</span>
+            <span>Likely cause</span>
+            <span>First move</span>
+          </div>
+          {handheldTroubleshootingRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_0.75fr_1.4fr]"
+              key={row.symptom}
+            >
+              <span className="font-semibold text-zinc-50">{row.symptom}</span>
+              <span className="text-amber-200">{row.likelyCause}</span>
+              <span className="leading-6 text-zinc-400">{row.firstMove}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Follow-up routes
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Where to go after handheld performance is stable
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Once the Deck feels consistent, move into input settings, weekly
+              prep, or car tuning based on what still feels wrong.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {steamDeckNextLinks.map((item) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={item.href}
+                key={item.href}
+              >
+                <Gamepad2Icon className="size-5 text-fuchsia-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.note}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
