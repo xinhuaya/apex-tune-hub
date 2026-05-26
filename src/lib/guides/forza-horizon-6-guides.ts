@@ -795,6 +795,177 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       },
     ],
   },
+  {
+    slug: 'best-drift-tune-settings',
+    title: 'Best Drift Tune Settings in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best drift tune settings in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 drift tune settings guide for tire pressure, gearing, differential, suspension, steering feel, and linked drift sections.',
+    eyebrow: 'Drift settings',
+    intro:
+      'A good drift tune is not only more power and more angle. The best first drift setup is predictable enough to initiate, hold angle, and recover before the next transition.',
+    primaryCta: {
+      label: 'Open Drift Tune Calculator',
+      href: '/tools/forza-horizon-6-drift-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Japan drift setup',
+        href: '/games/forza-horizon-6/guides/japan-drift-setup',
+      },
+      {
+        label: 'Best drift cars',
+        href: '/games/forza-horizon-6/best-drift-cars',
+      },
+      {
+        label: 'Best Mazda cars',
+        href: '/games/forza-horizon-6/best-mazda-cars',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with recoverable angle',
+        body: 'Beginner drift setups should recover cleanly before chasing maximum angle. A car that catches the next transition consistently will score and teach better than one dramatic slide.',
+        bullets: [
+          'Use moderate power until throttle control feels repeatable.',
+          'Tune for linked corners, not one isolated screenshot slide.',
+          'Keep a safer version for weekly drift zones and a sharper version for practice.',
+        ],
+      },
+      {
+        title: 'Use gearing to hold the drift',
+        body: 'The main drift gear should sit in the useful power band without instantly lighting up the tires or bogging mid-corner.',
+        bullets: [
+          'Lengthen gearing if tires smoke instantly and kill direction.',
+          'Shorten gearing if the car falls out of power mid-drift.',
+          'Use the same drift section when comparing gear changes.',
+        ],
+      },
+      {
+        title: 'Tune differential and suspension together',
+        body: 'Differential changes affect throttle rotation, while suspension changes affect weight transfer. Move both carefully so the car keeps rhythm.',
+        bullets: [
+          'Reduce snap before adding more steering aggression.',
+          'Soften harsh transitions if the car bounces or unloads suddenly.',
+          'Record whether the problem appears on initiation, hold, or recovery.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'logitech-wheel-settings',
+    title: 'Best Logitech Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best Logitech wheel settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 Logitech wheel settings guide for G29, G920, G923, force feedback, steering feel, deadzones, and tuning workflow.',
+    eyebrow: 'Logitech wheel',
+    intro:
+      'Logitech wheels can feel light, noisy, heavy on center, or vague depending on force feedback and car setup. Fix readability first, then judge whether the car tune needs changes.',
+    primaryCta: {
+      label: 'Open Wheel Settings',
+      href: '/settings/forza-horizon-6-wheel',
+    },
+    relatedLinks: [
+      {
+        label: 'Wheel settings guide',
+        href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+      },
+      {
+        label: 'Controller settings',
+        href: '/settings/forza-horizon-6-controller',
+      },
+      {
+        label: 'Road tune guide',
+        href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+      },
+    ],
+    sections: [
+      {
+        title: 'Make force feedback readable first',
+        body: 'If the wheel fights every input or hides tire slip, car tuning becomes guesswork. Start with a setting that lets you feel understeer, rear movement, and braking weight transfer.',
+        bullets: [
+          'Lower heavy force before changing every car tune.',
+          'Use one stable road car to test steering feel.',
+          'Avoid judging drift setups until the wheel profile feels predictable.',
+        ],
+      },
+      {
+        title: 'Test road, dirt, and drift separately',
+        body: 'One wheel profile can feel fine on smooth roads but vague over bumps or too sharp during drift recovery.',
+        bullets: [
+          'Use a road route to test center feel and braking.',
+          'Use a dirt route to test bumps and oscillation.',
+          'Use a drift section to test countersteer and recovery speed.',
+        ],
+      },
+      {
+        title: 'Separate wheel problems from tune problems',
+        body: 'If every car feels bad, adjust the wheel. If one car feels bad, adjust the tune. This keeps setup changes from spiraling.',
+        bullets: [
+          'Change wheel settings when every car feels delayed or too heavy.',
+          'Change tune settings when only one build understeers, snaps, or spins.',
+          'Keep notes for force, damping, steering lock, assists, and class.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'controller-drift-settings',
+    title: 'Best Controller Drift Settings in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best controller drift settings in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 controller drift settings guide for steering response, throttle control, vibration, deadzones, and drift tune links.',
+    eyebrow: 'Controller drift',
+    intro:
+      'Controller drift setups need smooth throttle, readable steering, and a tune that does not punish every correction. Fix input feel and car setup together.',
+    primaryCta: {
+      label: 'Open Drift Tune Tool',
+      href: '/tools/forza-horizon-6-drift-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Controller settings',
+        href: '/settings/forza-horizon-6-controller',
+      },
+      {
+        label: 'Japan drift setup',
+        href: '/games/forza-horizon-6/guides/japan-drift-setup',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+    ],
+    sections: [
+      {
+        title: 'Smooth throttle before adding power',
+        body: 'Most controller drift mistakes come from asking too much throttle too quickly. A smoother setup will help more than a huge power build at the start.',
+        bullets: [
+          'Use a moderate-power car until countersteer feels natural.',
+          'Test half throttle and full throttle on the same corner.',
+          'Avoid shortening gears until wheelspin behavior is readable.',
+        ],
+      },
+      {
+        title: 'Keep steering predictable',
+        body: 'Drift recovery depends on steering response that is quick enough to catch the car without making every correction twitchy.',
+        bullets: [
+          'If every car snaps, check controller settings first.',
+          'If only one car snaps, open the oversteer guide and tune the car.',
+          'Keep vibration readable enough to notice grip loss.',
+        ],
+      },
+      {
+        title: 'Use a repeatable drift section',
+        body: 'A drift setup should be tested on linked transitions, not just one corner. The best controller setup is the one that lets you repeat the same rhythm.',
+        bullets: [
+          'Record the car, class, drivetrain, assists, and route section.',
+          'Use one transition for initiation and another for recovery.',
+          'Save a safe weekly version before building a more aggressive tune.',
+        ],
+      },
+    ],
+  },
 ];
 
 export function getForzaHorizon6Guide(slug: string) {
