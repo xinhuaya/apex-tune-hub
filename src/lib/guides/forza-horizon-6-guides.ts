@@ -966,6 +966,234 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       },
     ],
   },
+  {
+    slug: 'thrustmaster-wheel-settings',
+    title: 'Best Thrustmaster Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best Thrustmaster wheel settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 Thrustmaster wheel settings guide for T150, TMX, T300, force feedback, steering feel, deadzones, and road testing.',
+    eyebrow: 'Thrustmaster wheel',
+    intro:
+      'Thrustmaster wheels can feel heavy around center, vague at corner entry, or too sharp when the car starts to rotate. Tune the wheel profile until the tire information is readable, then adjust the car.',
+    primaryCta: {
+      label: 'Open Wheel Settings',
+      href: '/settings/forza-horizon-6-wheel',
+    },
+    relatedLinks: [
+      {
+        label: 'Wheel settings guide',
+        href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+      },
+      {
+        label: 'Logitech wheel settings',
+        href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+      },
+      {
+        label: 'Road tune calculator',
+        href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=A&issue=understeer&style=balanced',
+      },
+    ],
+    sections: [
+      {
+        title: 'Balance center feel before force',
+        body: 'If the wheel feels heavy at center, adding more force can hide understeer and make the car harder to place on narrow roads.',
+        bullets: [
+          'Start with readable center feel before increasing force strength.',
+          'Use one stable road car to judge corner entry.',
+          'Avoid tuning every vehicle around a wheel profile that feels wrong everywhere.',
+        ],
+      },
+      {
+        title: 'Use braking zones as the test',
+        body: 'Wheel settings show their problems when you brake and add steering. A good profile lets you feel whether the front tires are loaded or sliding.',
+        bullets: [
+          'Test one smooth braking zone and one bumpy braking zone.',
+          'Reduce harsh behavior before changing brake balance.',
+          'Keep assists and camera consistent during every test.',
+        ],
+      },
+      {
+        title: 'Separate drift feel from road feel',
+        body: 'A profile that feels calm on road routes can feel slow during drift recovery. Keep notes for road, rally, and drift separately.',
+        bullets: [
+          'Use road testing for center feel and understeer.',
+          'Use dirt testing for bumps and oscillation.',
+          'Use drift testing for countersteer speed and recovery.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'fanatec-moza-wheel-settings',
+    title: 'Best Fanatec and Moza Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best Fanatec and Moza wheel settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 Fanatec and Moza wheel settings guide for direct-drive force feedback, oscillation, clipping, damping, and car tuning workflow.',
+    eyebrow: 'Direct-drive wheel',
+    intro:
+      'Direct-drive wheels can make FH6 feel incredible when the profile is readable, but too much force can create oscillation, clipping, and overcorrection. Start with control before strength.',
+    primaryCta: {
+      label: 'Open Wheel Settings',
+      href: '/settings/forza-horizon-6-wheel',
+    },
+    relatedLinks: [
+      {
+        label: 'Wheel settings guide',
+        href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+      },
+      {
+        label: 'Controller comparison',
+        href: '/settings/forza-horizon-6-controller',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+    ],
+    sections: [
+      {
+        title: 'Avoid clipping before chasing strength',
+        body: 'If the wheel is already saturated, stronger settings will not add more useful detail. They only make slides harder to catch.',
+        bullets: [
+          'Lower force if every corner feels like the same heavy wall.',
+          'Use telemetry feel: tire load should change, not flatten.',
+          'Retest after changing device software and in-game settings together.',
+        ],
+      },
+      {
+        title: 'Control oscillation early',
+        body: 'Oscillation can make fast straights, dirt sections, and drift recovery feel unstable even when the car tune is fine.',
+        bullets: [
+          'Use a straight section to check hands-off wobble safely.',
+          'Add damping only enough to calm noise without hiding grip loss.',
+          'Do not fix oscillation by making every car tune softer.',
+        ],
+      },
+      {
+        title: 'Tune the car after the wheel profile',
+        body: 'A powerful wheel makes bad tunes obvious, but it can also exaggerate small setup issues. Stabilize input feel first, then fix the car.',
+        bullets: [
+          'If every car is nervous, adjust the wheel profile.',
+          'If one RWD car snaps, open the oversteer guide.',
+          'Keep separate road, rally, and drift force notes.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-drag-tune-settings',
+    title: 'Best Drag Tune Settings in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best drag tune settings in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 drag tune settings guide for launch, wheelspin, final drive, gear spacing, differential, tire pressure, and speed testing.',
+    eyebrow: 'Drag settings',
+    intro:
+      'A drag tune is won in the first seconds. Before chasing more power, make the launch repeatable, gear spacing useful, and traction consistent.',
+    primaryCta: {
+      label: 'Open Drag Wheelspin Preset',
+      href: '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
+    },
+    relatedLinks: [
+      {
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+      {
+        label: 'Fix slow launch',
+        href: '/games/forza-horizon-6/guides/fix-slow-launch',
+      },
+    ],
+    sections: [
+      {
+        title: 'Fix the launch first',
+        body: 'A car that spins, bogs, or shifts badly off the line cannot show whether the rest of the tune is fast.',
+        bullets: [
+          'Launch from the same marker three times.',
+          'Record whether spin happens instantly or after the first shift.',
+          'Change first gear and launch behavior before touching top gear.',
+        ],
+      },
+      {
+        title: 'Use final drive with restraint',
+        body: 'Final drive changes the whole car. Use it to move the gearbox into the useful range, then adjust individual gears only when needed.',
+        bullets: [
+          'Shorten final drive if the car feels asleep off the line.',
+          'Lengthen final drive if the launch creates useless smoke.',
+          'Retest elapsed time, not only trap speed.',
+        ],
+      },
+      {
+        title: 'Separate drag and speed trap tunes',
+        body: 'A tune built for a launch may not be the fastest speed-trap setup. Keep separate versions when the event goal changes.',
+        bullets: [
+          'Drag tune: launch, shifts, and straight-line pull.',
+          'Speed tune: top-end gearing and aero tradeoffs.',
+          'Weekly tune: consistency under restrictions and traffic.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-rally-tune-settings',
+    title: 'Best Rally Tune Settings in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best rally tune settings in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 rally tune settings guide for dirt, mixed surface, suspension, damping, gearing, braking stability, and AWD traction.',
+    eyebrow: 'Rally settings',
+    intro:
+      'A rally tune should survive bumps, recover after crests, and keep traction on mixed surfaces. Build stability first, then add speed.',
+    primaryCta: {
+      label: 'Open Rally Wheelspin Preset',
+      href: '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Best rally cars',
+        href: '/games/forza-horizon-6/best-rally-cars',
+      },
+      {
+        label: 'Fix unstable braking',
+        href: '/games/forza-horizon-6/guides/fix-unstable-braking',
+      },
+      {
+        label: 'Fix slow launch',
+        href: '/games/forza-horizon-6/guides/fix-slow-launch',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build for bumps before speed',
+        body: 'Rally routes punish cars that only feel good on smooth pavement. Suspension and damping need to keep the tires useful after rough landings.',
+        bullets: [
+          'Use one bumpy exit and one smooth exit for comparison.',
+          'Soften harsh behavior before adding power.',
+          'Retest braking after every suspension change.',
+        ],
+      },
+      {
+        title: 'Keep AWD traction useful',
+        body: 'AWD can hide problems until the car lands, crests, or exits a slow corner. Tune for clean recovery, not only strong launch.',
+        bullets: [
+          'Check if wheelspin appears after bumps or on flat exits.',
+          'Smooth differential behavior before changing every gear.',
+          'Use shorter lower gearing only if it does not create spin.',
+        ],
+      },
+      {
+        title: 'Use mixed-surface testing',
+        body: 'A rally build should feel predictable across dirt, road, wet patches, and uneven transitions.',
+        bullets: [
+          'Record surface type when a problem appears.',
+          'Use one safe weekly tune and one aggressive test tune.',
+          'Compare consistency across runs before chasing one fast split.',
+        ],
+      },
+    ],
+  },
 ];
 
 export function getForzaHorizon6Guide(slug: string) {
