@@ -107,7 +107,7 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
-          title: 'Update List',
+          title: 'FH6 Tune Drops',
           href: Routes.Waitlist,
           external: false,
         },

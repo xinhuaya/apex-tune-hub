@@ -44,16 +44,18 @@ export default async function WaitlistPage() {
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <div className="forza-card p-4">
                 <GaugeIcon className="size-5 text-fuchsia-300" />
-                <h2 className="mt-3 text-base font-semibold">Tool updates</h2>
+                <h2 className="mt-3 text-base font-semibold">Tune presets</h2>
                 <p className="mt-2 text-sm leading-6 text-zinc-400">
-                  Calculator refinements, new presets, and tested setup notes.
+                  Road, drift, rally, and class notes tied back to calculator
+                  settings.
                 </p>
               </div>
               <div className="forza-card p-4">
                 <ListChecksIcon className="size-5 text-cyan-300" />
-                <h2 className="mt-3 text-base font-semibold">Weekly data</h2>
+                <h2 className="mt-3 text-base font-semibold">Weekly routes</h2>
                 <p className="mt-2 text-sm leading-6 text-zinc-400">
-                  Playlist rewards, car pass additions, and database changes.
+                  Playlist rewards, car pass additions, and quick setup picks
+                  for each rotation.
                 </p>
               </div>
             </div>

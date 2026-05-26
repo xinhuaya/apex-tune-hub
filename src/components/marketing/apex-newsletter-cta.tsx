@@ -11,9 +11,9 @@ type ApexNewsletterCtaProps = {
 };
 
 export function ApexNewsletterCta({
-  title = 'Get the next tune update',
-  description = 'Join the Apex Tune Hub update list for new FH6 presets, car pages, weekly playlist notes, and calculator improvements.',
-  eyebrow = 'Update list',
+  title = 'Get the next FH6 tune drop',
+  description = 'New presets, tested car notes, weekly playlist routes, and setup fixes when the FH6 library changes.',
+  eyebrow = 'FH6 tuning drops',
 }: ApexNewsletterCtaProps) {
   if (!websiteConfig.newsletter.enable) {
     return null;
@@ -38,7 +38,7 @@ export function ApexNewsletterCta({
             <div className="mt-5 flex flex-wrap gap-3">
               <Button asChild variant="outline" className="rounded-md">
                 <LocaleLink href="/waitlist">
-                  View update page
+                  View drop list
                   <ArrowRightIcon className="ml-2 size-4" />
                 </LocaleLink>
               </Button>
@@ -53,7 +53,8 @@ export function ApexNewsletterCta({
           <div className="border-t border-white/10 pt-6 lg:border-t-0 lg:border-l lg:pl-8">
             <NewsletterForm />
             <p className="mt-4 text-center text-xs leading-5 text-zinc-500">
-              No spam. Just new presets, tested car notes, and release updates.
+              No spam. Just new presets, tested car notes, and weekly route
+              updates.
             </p>
           </div>
         </div>

@@ -88,7 +88,7 @@ export function NavbarMobile({ className, ...props }: NavbarMobileProps) {
               onClick={() => setOpen(false)}
               className={cn(buttonVariants({ size: 'lg' }), 'w-full')}
             >
-              Join Update List
+              Get FH6 Drops
             </LocaleLink>
 
             <ul className="w-full space-y-1">

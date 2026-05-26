@@ -182,7 +182,7 @@ export function Navbar({ scroll = true }: NavBarProps) {
                 href={Routes.Waitlist}
                 className={buttonVariants({ size: 'sm' })}
               >
-                Join Update List
+                Get FH6 Drops
               </LocaleLink>
             </div>
           </nav>
