@@ -7,6 +7,7 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -14,7 +15,10 @@ import {
   BatteryChargingIcon,
   Gamepad2Icon,
   GaugeIcon,
+  ListChecksIcon,
   MonitorCogIcon,
+  RouteIcon,
+  ShieldCheckIcon,
   SlidersHorizontalIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -56,7 +60,68 @@ const workflowRows = [
   ['Every car feels twitchy', 'Input settings first', 'Controller or wheel'],
   ['One car pushes wide', 'Tune first', 'Understeer guide'],
   ['Stutter appears in traffic', 'Performance first', 'PC or Steam Deck'],
-  ['Drift recovery feels delayed', 'Input plus tune', 'Controller, wheel, drift'],
+  [
+    'Drift recovery feels delayed',
+    'Input plus tune',
+    'Controller, wheel, drift',
+  ],
+];
+
+const settingsAuditSteps = [
+  {
+    title: '1. Stabilize the platform',
+    text: 'Check FPS target, frame pacing, resolution, battery mode, and graphics load before blaming the tune.',
+    href: '/settings/forza-horizon-6-pc',
+  },
+  {
+    title: '2. Normalize the input',
+    text: 'Set controller or wheel deadzones so steering, braking, throttle, and force feedback are readable.',
+    href: '/settings/forza-horizon-6-controller',
+  },
+  {
+    title: '3. Retest the same car',
+    text: 'Drive one route again. If every car improves, settings were the issue; if one car remains bad, tune it.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    title: '4. Save the setup path',
+    text: 'Link the result to a preset, car page, or weekly event note so the fix is repeatable later.',
+    href: '/tools/forza-horizon-6-tune-presets',
+  },
+];
+
+const deviceDecisionCards = [
+  {
+    title: 'Desktop or laptop',
+    body: 'Start with PC settings when the problem is FPS, graphics quality, stutter, or input latency under load.',
+    href: '/settings/forza-horizon-6-pc',
+    icon: MonitorCogIcon,
+  },
+  {
+    title: 'Handheld play',
+    body: 'Start with Steam Deck when battery, thermal limits, handheld readability, or weekly event stability matters.',
+    href: '/settings/forza-horizon-6-steam-deck',
+    icon: BatteryChargingIcon,
+  },
+  {
+    title: 'Wheel rig',
+    body: 'Start with wheel settings when force feedback, steering lock, center feel, or deadzones make every car hard to read.',
+    href: '/settings/forza-horizon-6-wheel',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Controller',
+    body: 'Start with controller settings when throttle, brake, steering, vibration, or drift recovery feels inconsistent.',
+    href: '/settings/forza-horizon-6-controller',
+    icon: Gamepad2Icon,
+  },
+];
+
+const settingsTrustRules = [
+  'Fix global settings before changing car-specific tuning sliders.',
+  'Use the same route, car, weather, and camera when comparing settings changes.',
+  'Separate performance problems from handling problems in internal links.',
+  'Route car-only issues back to tune presets, car pages, and FH6 tuning settings.',
 ];
 
 const settingsFaqs: FaqItem[] = [
@@ -103,6 +168,13 @@ export default function ForzaHorizon6SettingsHubPage() {
             { name: 'Settings', path: pathname },
           ]),
           buildArticleJsonLd({ title, description, path: pathname }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 settings hub pages',
+            items: settingsCards.map((card) => ({
+              name: card.title,
+              path: card.href,
+            })),
+          }),
           buildFaqJsonLd(settingsFaqs),
         ]}
       />
@@ -148,21 +220,71 @@ export default function ForzaHorizon6SettingsHubPage() {
               </h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
                 If every car feels delayed, unstable, or hard to read, fix
-                platform and input settings first. If only one car behaves badly,
-                move to tune settings and car-specific presets.
+                platform and input settings first. If only one car behaves
+                badly, move to tune settings and car-specific presets.
               </p>
+              <div className="mt-5 grid gap-2">
+                {settingsTrustRules.map((rule) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={rule}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-amber-300" />
+                    <span>{rule}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <RouteIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Pick the settings path by device first
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              A settings hub is strongest when it prevents the wrong fix order.
+              Start with the platform or input device, then move to the car tune
+              only after every-car problems are ruled out.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {deviceDecisionCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <LocaleLink
+                  className="forza-card p-4"
+                  href={card.href}
+                  key={card.href}
+                >
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {card.body}
+                  </p>
+                </LocaleLink>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-4">
           {settingsCards.map((card) => {
             const Icon = card.icon;
 
             return (
-              <LocaleLink className="forza-card p-5" href={card.href} key={card.href}>
+              <LocaleLink
+                className="forza-card p-5"
+                href={card.href}
+                key={card.href}
+              >
                 <Icon className="size-5 text-cyan-300" />
                 <h2 className="mt-4 text-lg font-semibold">{card.title}</h2>
                 <p className="mt-3 text-sm leading-6 text-zinc-400">
@@ -171,6 +293,39 @@ export default function ForzaHorizon6SettingsHubPage() {
               </LocaleLink>
             );
           })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Four-step settings audit
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                This audit makes the hub useful for repeat visitors: it tells
+                them when to stay in settings and when to move into tuning.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {settingsAuditSteps.map((step) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40"
+                  href={step.href}
+                  key={step.title}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {step.text}
+                  </p>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
