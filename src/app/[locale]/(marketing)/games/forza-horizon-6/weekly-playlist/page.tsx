@@ -12,8 +12,11 @@ import {
 import {
   CalendarDaysIcon,
   CarIcon,
+  ClipboardCheckIcon,
   GaugeIcon,
+  ListChecksIcon,
   MailIcon,
+  ShieldCheckIcon,
   TrophyIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -32,6 +35,52 @@ const eventRows = [
   ],
   ['Seasonal event', 'Match class and surface', 'Link the closest tune preset'],
   ['Playlist note', 'Record weekly changes', 'Send a short setup summary'],
+];
+
+const weeklyResetBoard = [
+  {
+    label: 'Reward car',
+    status: 'Verify before naming',
+    action: 'Link to Car Pass or car database after the source is clear.',
+  },
+  {
+    label: 'Championship restrictions',
+    status: 'Class and drivetrain first',
+    action: 'Pick a safe A or S1 baseline before chasing extreme builds.',
+  },
+  {
+    label: 'PR stunts',
+    status: 'Surface and run-up matter',
+    action: 'Use gearing and launch notes for speed traps, jumps, and zones.',
+  },
+  {
+    label: 'Photo or collection task',
+    status: 'Fast guide format',
+    action: 'Keep the note short, link the car page, and avoid filler text.',
+  },
+];
+
+const weeklyActionQueue = [
+  'Confirm reward cars, event restrictions, and source status.',
+  'Choose one safe car pick for each race type before adding alternatives.',
+  'Attach each event to a tune preset, calculator, or best-car hub.',
+  'Flag any unverified reward or community rumor instead of presenting it as fact.',
+  'Send a short tune-drop email when the weekly page changes.',
+];
+
+const trustRules = [
+  {
+    title: 'Do not guess rewards',
+    text: 'Keep reward cars and restrictions labelled until an official source or verified in-game view confirms them.',
+  },
+  {
+    title: 'Prefer safe tunes',
+    text: 'Weekly events usually reward repeatable handling more than leaderboard aggression, especially in traffic or weather.',
+  },
+  {
+    title: 'Update links every reset',
+    text: 'Each reset should point players to the best current car list, calculator state, preset URL, or Car Pass tracker row.',
+  },
 ];
 
 const baselineLinks = [
@@ -71,7 +120,7 @@ const weeklyPrepLinks = [
     eventType: 'Dirt or rally',
     carLink: '/games/forza-horizon-6/best-rally-cars',
     tuneLink: '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
-    guideLink: '/games/forza-horizon-6/guides/beginner-tuning',
+    guideLink: '/games/forza-horizon-6/guides/beginner-tuning-guide',
   },
   {
     title: 'Speed and drag prep',
@@ -130,6 +179,17 @@ export default function WeeklyPlaylistPage() {
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
           buildFaqJsonLd(weeklyFaqs),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 weekly playlist preparation links',
+            itemListElement: weeklyPrepLinks.map((item, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: item.title,
+              url: `https://apextunehub.com${item.carLink}`,
+            })),
+          },
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -175,12 +235,52 @@ export default function WeeklyPlaylistPage() {
                 whether the challenge rewards clean consistency or one perfect
                 run.
               </p>
+              <div className="mt-5 grid gap-2">
+                {['Restriction', 'Safe car', 'Tune link', 'One setup note'].map(
+                  (item) => (
+                    <div
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
+                      key={item}
+                    >
+                      {item}
+                    </div>
+                  )
+                )}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Weekly reset board
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Use this board as the repeatable page structure every playlist
+              reset: verify, pick, link, and send the tune drop.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {weeklyResetBoard.map((item) => (
+              <article className="forza-card p-4" key={item.label}>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  {item.status}
+                </p>
+                <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                  {item.label}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.action}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1fr_1.2fr]">
             <span>Section</span>
@@ -219,6 +319,32 @@ export default function WeeklyPlaylistPage() {
           </article>
         </div>
 
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Weekly publishing queue
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                This keeps the page useful even before final reward details are
+                available, and makes the update process repeatable.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {weeklyActionQueue.map((item) => (
+                <div
+                  className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
+                  key={item}
+                >
+                  <GaugeIcon className="mt-0.5 size-4 shrink-0 text-amber-300" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {baselineLinks.map((item) => (
             <LocaleLink
@@ -234,6 +360,18 @@ export default function WeeklyPlaylistPage() {
                 {item.note}
               </p>
             </LocaleLink>
+          ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {trustRules.map((rule) => (
+            <article className="forza-card p-5" key={rule.title}>
+              <ShieldCheckIcon className="size-5 text-fuchsia-300" />
+              <h2 className="mt-4 text-lg font-semibold">{rule.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {rule.text}
+              </p>
+            </article>
           ))}
         </div>
 
