@@ -110,6 +110,54 @@ const problemClusters = [
   ),
 }));
 
+const routePresetPaths = [
+  {
+    title: 'A class road race starts',
+    description:
+      'Use these when the car is easy to drive but still misses apexes or loses exit speed on technical road routes.',
+    guide: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+    guideLabel: 'A class road guide',
+    presets: forzaTunePresets.filter(
+      (preset) =>
+        preset.input.classBand === 'A' && preset.input.raceType === 'road'
+    ),
+  },
+  {
+    title: 'S1 rally and mixed-surface starts',
+    description:
+      'Start here when bumps, crests, and loose exits make a fast build hard to repeat.',
+    guide: '/games/forza-horizon-6/guides/best-s1-rally-tune-settings',
+    guideLabel: 'S1 rally guide',
+    presets: forzaTunePresets.filter(
+      (preset) =>
+        preset.input.classBand === 'S1' &&
+        ['rally', 'dirt'].includes(preset.input.raceType)
+    ),
+  },
+  {
+    title: 'Drag and top-speed starts',
+    description:
+      'Use these for launch behavior, first-shift grip, final drive checks, and fast route speed testing.',
+    guide: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    guideLabel: 'Drag tune guide',
+    presets: forzaTunePresets.filter(
+      (preset) =>
+        preset.input.raceType === 'drag' ||
+        preset.input.handlingIssue === 'poor-top-speed'
+    ),
+  },
+  {
+    title: 'Weekly playlist baseline starts',
+    description:
+      'Pick a reliable baseline quickly, then save event notes for the restriction, surface, and route problem.',
+    guide: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+    guideLabel: 'Weekly checklist',
+    presets: forzaTunePresets.filter((preset) =>
+      ['A', 'S1'].includes(preset.input.classBand)
+    ),
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -226,6 +274,56 @@ export default function ForzaHorizon6TunePresetsPage() {
                   href={cluster.guide}
                 >
                   Read the fix guide
+                  <ArrowRightIcon className="ml-2 size-4" />
+                </LocaleLink>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-300">
+            Route and event paths
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold">
+            Match presets to the route you are tuning for
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+            These paths connect the preset library to practical route guides, so
+            players can move from a baseline setup into the right testing
+            checklist instead of copying settings blindly.
+          </p>
+          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+            {routePresetPaths.map((path) => (
+              <article className="forza-panel p-5" key={path.title}>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold">{path.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {path.description}
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-md border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-sm font-semibold text-cyan-100">
+                    {path.presets.length} presets
+                  </span>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {path.presets.slice(0, 3).map((preset) => (
+                    <LocaleLink
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-zinc-300 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                      href={`/tools/forza-horizon-6-tune-presets/${preset.slug}`}
+                      key={preset.slug}
+                    >
+                      {preset.input.classBand} {preset.input.drivetrain}{' '}
+                      {preset.input.raceType}
+                    </LocaleLink>
+                  ))}
+                </div>
+                <LocaleLink
+                  className="mt-4 inline-flex text-sm font-semibold text-amber-200 hover:text-amber-100"
+                  href={path.guide}
+                >
+                  Open {path.guideLabel}
                   <ArrowRightIcon className="ml-2 size-4" />
                 </LocaleLink>
               </article>
