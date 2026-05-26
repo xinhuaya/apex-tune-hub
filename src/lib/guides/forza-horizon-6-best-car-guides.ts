@@ -16,6 +16,11 @@ export type ForzaHorizon6BestCarGuide = {
     tuneDirection: string;
     href?: string;
   }[];
+  selectionRules: {
+    title: string;
+    description: string;
+  }[];
+  testPlan: string[];
   checkpoints: string[];
 };
 
@@ -63,6 +68,28 @@ export const forzaHorizon6BestCarGuides: Record<
           'Avoid overpowering it early. Test C, B, then A class to find the useful ceiling.',
         href: '/games/forza-horizon-6/cars/1985-toyota-sprinter-trueno-gt-apex',
       },
+    ],
+    selectionRules: [
+      {
+        title: 'Angle before speed',
+        description:
+          'A good drift candidate should hold angle predictably before it chases zone speed or high-power spectacle.',
+      },
+      {
+        title: 'Recoverable mistakes',
+        description:
+          'Prioritize cars that can recover from over-rotation without snapping straight or spinning instantly.',
+      },
+      {
+        title: 'Gearing that stays alive',
+        description:
+          'If the car bogs after transitions, solve gearing before assuming the chassis is wrong.',
+      },
+    ],
+    testPlan: [
+      'Run one low-speed technical drift section to check angle control.',
+      'Run one faster zone to check recovery and gearing.',
+      'Save separate RWD and AWD notes if the car supports both paths.',
     ],
     checkpoints: [
       'Can hold angle without constant correction.',
@@ -112,6 +139,28 @@ export const forzaHorizon6BestCarGuides: Record<
         href: '/games/forza-horizon-6/cars/2003-honda-s2000',
       },
     ],
+    selectionRules: [
+      {
+        title: 'Mixed-grip braking',
+        description:
+          'A rally candidate must slow down cleanly when the route moves between paved and loose surfaces.',
+      },
+      {
+        title: 'Suspension control',
+        description:
+          'Look for cars that absorb bumps without bouncing wide on corner exit.',
+      },
+      {
+        title: 'Short gearing',
+        description:
+          'Technical dirt and mountain routes usually reward usable acceleration more than a tall top gear.',
+      },
+    ],
+    testPlan: [
+      'Run one rough dirt route to check suspension travel.',
+      'Run one mixed-surface route to compare braking and throttle stability.',
+      'Run one tight mountain section to test gearing and rotation.',
+    ],
     checkpoints: [
       'Brakes cleanly on mixed grip.',
       'Does not bottom out on rough route sections.',
@@ -159,6 +208,28 @@ export const forzaHorizon6BestCarGuides: Record<
           'Make a dedicated road build first, then compare against drag and drift builds later.',
         href: '/games/forza-horizon-6/cars/1998-toyota-supra-rz',
       },
+    ],
+    selectionRules: [
+      {
+        title: 'Clean braking zones',
+        description:
+          'Road candidates should stay stable when braking from high speed into medium and slow corners.',
+      },
+      {
+        title: 'Front-end response',
+        description:
+          'If the car washes wide everywhere, fix tire, ARB, differential, and aero direction before adding power.',
+      },
+      {
+        title: 'Route-fit gearing',
+        description:
+          'A road build needs gearing that works on the route, not just a big top-speed number in the garage.',
+      },
+    ],
+    testPlan: [
+      'Run one technical road route to expose understeer.',
+      'Run one fast route to test braking and final drive.',
+      'Compare A and S1 versions before pushing into S2.',
     ],
     checkpoints: [
       'Stable under braking from high speed.',
@@ -235,6 +306,28 @@ export const forzaHorizon6BestCarGuides: Record<
           'Keep it light, compare road and drift suspension, then decide if it deserves S1.',
         href: '/games/forza-horizon-6/cars/2022-toyota-gr86',
       },
+    ],
+    selectionRules: [
+      {
+        title: 'Pick the role first',
+        description:
+          'JDM pages can cover road, drift, touge, rally, and weekly use. Choose one role before tuning.',
+      },
+      {
+        title: 'Keep variants separate',
+        description:
+          'A Supra road tune, drift tune, and drag tune should not share one generic recommendation.',
+      },
+      {
+        title: 'Use lower classes for learning',
+        description:
+          'B and A class builds often teach more about route fit than rushing every popular car into S1.',
+      },
+    ],
+    testPlan: [
+      'Run one road or touge section for braking and rotation.',
+      'Run one drift or street setup only if the car is being positioned for that role.',
+      'Add a car-page link once the build has a clear setup direction.',
     ],
     checkpoints: [
       'Pick the role first: road, drift, touge, rally, or weekly event coverage.',

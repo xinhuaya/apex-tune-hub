@@ -15,6 +15,11 @@ export type ForzaHorizon6ClassCarGuide = {
     why: string;
     tuneLink: string;
   }[];
+  tunePriorities: {
+    title: string;
+    description: string;
+  }[];
+  routeTests: string[];
   checklist: string[];
 };
 
@@ -60,6 +65,28 @@ export const forzaHorizon6ClassCarGuides: Record<
           '/tools/forza-horizon-6-tune-presets/b-rwd-rally-slow-launch-balanced',
       },
     ],
+    tunePriorities: [
+      {
+        title: 'Momentum first',
+        description:
+          'Use tire, brake, and gearing changes that keep the car flowing instead of adding power too early.',
+      },
+      {
+        title: 'Readable exits',
+        description:
+          'A good B class car should let you feel throttle mistakes without instantly hiding them behind AWD grip.',
+      },
+      {
+        title: 'Low-speed balance',
+        description:
+          'Test hairpins and short straights before judging top speed. This class is won by consistency.',
+      },
+    ],
+    routeTests: [
+      'One tight route with repeated second-gear exits.',
+      'One mixed road where the car must brake and rotate several times.',
+      'One weekly-style restriction where upgrades are limited.',
+    ],
     checklist: [
       'Keep power modest until braking and exit behavior are repeatable.',
       'Use short routes to expose understeer and slow launch quickly.',
@@ -103,6 +130,28 @@ export const forzaHorizon6ClassCarGuides: Record<
         tuneLink:
           '/games/forza-horizon-6/guides/japan-drift-setup',
       },
+    ],
+    tunePriorities: [
+      {
+        title: 'Stable front end',
+        description:
+          'A class rewards cars that turn in cleanly without needing extreme aero or power swaps.',
+      },
+      {
+        title: 'Exit traction',
+        description:
+          'If the car lights up the rear tires out of slow corners, fix differential and gearing before adding horsepower.',
+      },
+      {
+        title: 'Build separation',
+        description:
+          'Keep road, street, rally, and drift versions separate so one tune does not become mediocre at everything.',
+      },
+    ],
+    routeTests: [
+      'One technical road route for braking and front-end response.',
+      'One street route with uneven exits and short acceleration zones.',
+      'One mixed-surface event if the car is being considered for weekly use.',
     ],
     checklist: [
       'Test one road route and one street route before naming a car best.',
@@ -148,6 +197,28 @@ export const forzaHorizon6ClassCarGuides: Record<
           '/games/forza-horizon-6/guides/fix-poor-top-speed',
       },
     ],
+    tunePriorities: [
+      {
+        title: 'Brake confidence',
+        description:
+          'S1 pace exposes weak braking quickly. The car should stay calm before turn-in at higher entry speeds.',
+      },
+      {
+        title: 'Gear recovery',
+        description:
+          'Fast S1 cars need shift spacing that keeps the engine alive after medium-speed corners.',
+      },
+      {
+        title: 'Three-run consistency',
+        description:
+          'A good S1 candidate should repeat its pace. One fast run with two messy runs is not a stable recommendation.',
+      },
+    ],
+    routeTests: [
+      'One fast road route with a long braking zone.',
+      'One city or mountain route where exits matter more than top speed.',
+      'One comparison against the same car in A class, if the build allows it.',
+    ],
     checklist: [
       'Confirm the car still brakes predictably at higher speed.',
       'Compare lap consistency over three runs, not one fastest pass.',
@@ -191,6 +262,28 @@ export const forzaHorizon6ClassCarGuides: Record<
         tuneLink:
           '/games/forza-horizon-6/guides/fix-wheelspin',
       },
+    ],
+    tunePriorities: [
+      {
+        title: 'Useful top speed',
+        description:
+          'S2 only makes sense when the route lets the car use the extra speed without losing time in corners.',
+      },
+      {
+        title: 'Aero restraint',
+        description:
+          'Add aero only when it improves a real section of the route. More downforce can hide gearing mistakes.',
+      },
+      {
+        title: 'S1 benchmark',
+        description:
+          'Keep a stable S1 version nearby so the S2 build has to prove it is actually faster.',
+      },
+    ],
+    routeTests: [
+      'One high-speed route where top gear is reached naturally.',
+      'One technical section to check whether the power is hurting exits.',
+      'One speed trap or speed zone if the car is aimed at seasonal objectives.',
     ],
     checklist: [
       'Retest launch, braking, and top speed after every major power change.',

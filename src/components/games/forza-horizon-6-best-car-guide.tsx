@@ -161,6 +161,51 @@ export function ForzaHorizon6BestCarGuidePage({
           </div>
 
           <div className="forza-panel mt-6 p-5">
+            <h2 className="text-xl font-semibold">
+              How to judge this car list
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+              A best-car page should explain the decision, not only name cars.
+              Use these rules to decide whether a candidate deserves a
+              dedicated tune page, a car page update, or a lower-priority note.
+            </p>
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              {guide.selectionRules.map((item) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                  key={item.title}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <h2 className="text-xl font-semibold">Testing plan</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+              These tests decide which cars stay as candidates and which ones
+              deserve deeper tune presets. The same plan also creates useful
+              update notes for repeat visitors.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {guide.testPlan.map((item) => (
+                <div
+                  className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.04] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
             <div className="flex items-center gap-3">
               <ListChecksIcon className="size-5 text-amber-300" />
               <h2 className="text-lg font-semibold">Testing checklist</h2>

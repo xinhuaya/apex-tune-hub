@@ -146,6 +146,51 @@ export function ForzaHorizon6ClassCarGuidePage({
           </div>
 
           <div className="forza-panel mt-6 p-5">
+            <h2 className="text-xl font-semibold">
+              How to choose a {guide.id.toUpperCase()} class car
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+              Treat this page as a shortlist, then use the same tests for every
+              car. The best class pick is the one that repeats clean exits,
+              brakes predictably, and still has room for a focused tune path.
+            </p>
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              {guide.tunePriorities.map((item) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                  key={item.title}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <h2 className="text-xl font-semibold">Route test plan</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+              Before a car moves from candidate to tested, run it through a
+              small repeatable set of routes. This keeps the page honest and
+              makes future tune updates easier to compare.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {guide.routeTests.map((item) => (
+                <div
+                  className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.04] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
             <div className="flex items-center gap-3">
               <ListChecksIcon className="size-5 text-amber-300" />
               <h2 className="text-lg font-semibold">Testing checklist</h2>
