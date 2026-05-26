@@ -56,9 +56,9 @@ const guideGroups = [
     description:
       'Pages for the first wave of search demand: beginners, starter cars, Japan routes, and baseline tuning.',
     slugs: [
+      'japan-launch-tuning-plan',
       'beginner-tuning-guide',
-      'starter-car-tuning',
-      'japan-map-tuning',
+      'best-starter-cars',
       'a-s1-road-racing-tune',
       'gear-ratio-guide',
     ],
@@ -75,7 +75,7 @@ const guideGroups = [
       'fix-wheelspin',
       'fix-slow-launch',
       'fix-unstable-braking',
-      'fix-top-speed',
+      'fix-poor-top-speed',
     ],
   },
   {
@@ -89,8 +89,8 @@ const guideGroups = [
       'logitech-wheel-settings',
       'thrustmaster-wheel-settings',
       'fanatec-moza-wheel-settings',
-      'controller-settings-guide',
-      'steam-deck-settings',
+      'controller-drift-settings',
+      'steam-deck-settings-guide',
     ],
   },
   {
