@@ -32,16 +32,79 @@ const guideClusters = [
     icon: MapIcon,
     title: 'Launch route planning',
     text: 'Start with Japan launch strategy, starter cars, and early route testing before chasing meta picks.',
+    href: '#launch-guides',
   },
   {
     icon: WrenchIcon,
     title: 'Handling fixes',
     text: 'Use problem guides for understeer, oversteer, wheelspin, braking instability, slow launch, and top-speed issues.',
+    href: '#handling-fixes',
   },
   {
     icon: CircleGaugeIcon,
     title: 'Settings and devices',
     text: 'Keep wheel, controller, PC, and Steam Deck guidance separated so every setup note stays testable.',
+    href: '#settings-guides',
+  },
+];
+
+const guideGroups = [
+  {
+    id: 'launch-guides',
+    eyebrow: 'Start here',
+    title: 'Launch and starter guides',
+    description:
+      'Pages for the first wave of search demand: beginners, starter cars, Japan routes, and baseline tuning.',
+    slugs: [
+      'beginner-tuning-guide',
+      'starter-car-tuning',
+      'japan-map-tuning',
+      'a-s1-road-racing-tune',
+      'gear-ratio-guide',
+    ],
+  },
+  {
+    id: 'handling-fixes',
+    eyebrow: 'Problem solver',
+    title: 'Handling symptom fixes',
+    description:
+      'Direct answers for the words players search when a build feels wrong.',
+    slugs: [
+      'fix-understeer',
+      'fix-oversteer',
+      'fix-wheelspin',
+      'fix-slow-launch',
+      'fix-unstable-braking',
+      'fix-top-speed',
+    ],
+  },
+  {
+    id: 'settings-guides',
+    eyebrow: 'Input and device setup',
+    title: 'Wheel, controller, and device settings',
+    description:
+      'Hardware-specific pages for players trying to make FH6 feel consistent before changing the car tune.',
+    slugs: [
+      'wheel-settings-guide',
+      'logitech-wheel-settings',
+      'thrustmaster-wheel-settings',
+      'fanatec-moza-wheel-settings',
+      'controller-settings-guide',
+      'steam-deck-settings',
+    ],
+  },
+  {
+    id: 'event-guides',
+    eyebrow: 'Event builds',
+    title: 'Drift, rally, and drag setup guides',
+    description:
+      'Event-specific tuning pages that connect guide readers to calculator presets and car lists.',
+    slugs: [
+      'japan-drift-setup',
+      'best-drift-tune-settings',
+      'best-rally-tune-settings',
+      'best-drag-tune-settings',
+    ],
   },
 ];
 
@@ -98,6 +161,12 @@ function GuideCard({ guide }: { guide: ForzaHorizon6Guide }) {
       </span>
     </LocaleLink>
   );
+}
+
+function getGuidesBySlug(slugs: string[]) {
+  return slugs
+    .map((slug) => forzaHorizon6Guides.find((guide) => guide.slug === slug))
+    .filter((guide): guide is ForzaHorizon6Guide => Boolean(guide));
 }
 
 export default function ForzaHorizon6GuidesPage() {
@@ -168,7 +237,11 @@ export default function ForzaHorizon6GuidesPage() {
             const Icon = cluster.icon;
 
             return (
-              <article className="forza-card p-5" key={cluster.title}>
+              <LocaleLink
+                className="forza-card group p-5"
+                href={cluster.href}
+                key={cluster.title}
+              >
                 <Icon className="size-6 text-cyan-300" />
                 <h2 className="mt-4 text-lg font-semibold">
                   {cluster.title}
@@ -176,6 +249,67 @@ export default function ForzaHorizon6GuidesPage() {
                 <p className="mt-3 text-sm leading-6 text-zinc-400">
                   {cluster.text}
                 </p>
+                <span className="mt-4 inline-flex items-center text-sm font-semibold text-amber-200">
+                  Jump to cluster
+                  <ArrowRightIcon className="ml-2 size-4 transition group-hover:translate-x-1" />
+                </span>
+              </LocaleLink>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+            Search intent map
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold">
+            Pick the FH6 guide cluster that matches the job
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-zinc-400">
+            These clusters turn the full guide library into search paths:
+            launch planning, handling fixes, device settings, and event builds.
+          </p>
+        </div>
+        <div className="grid gap-5">
+          {guideGroups.map((group) => {
+            const guides = getGuidesBySlug(group.slugs);
+
+            return (
+              <article className="forza-panel p-5" id={group.id} key={group.id}>
+                <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-200">
+                      {group.eyebrow}
+                    </p>
+                    <h3 className="mt-2 text-xl font-semibold">
+                      {group.title}
+                    </h3>
+                    <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-400">
+                      {group.description}
+                    </p>
+                  </div>
+                  <span className="rounded-md border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-sm font-semibold text-cyan-100">
+                    {guides.length} guides
+                  </span>
+                </div>
+                <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                  {guides.map((guide) => (
+                    <LocaleLink
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                      href={`/games/forza-horizon-6/guides/${guide.slug}`}
+                      key={guide.slug}
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                        {guide.eyebrow}
+                      </p>
+                      <h4 className="mt-2 text-sm font-semibold text-zinc-100">
+                        {guide.h1}
+                      </h4>
+                    </LocaleLink>
+                  ))}
+                </div>
               </article>
             );
           })}
