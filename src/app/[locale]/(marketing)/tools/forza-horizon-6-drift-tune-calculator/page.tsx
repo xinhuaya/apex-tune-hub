@@ -7,12 +7,16 @@ import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildHowToJsonLd,
+  buildItemListJsonLd,
   buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
+  CarFrontIcon,
   CircleGaugeIcon,
+  ListChecksIcon,
   RotateCcwIcon,
+  ShieldCheckIcon,
   SlidersHorizontalIcon,
   TimerResetIcon,
 } from 'lucide-react';
@@ -70,6 +74,63 @@ const driftRelatedLinks = [
       'After the car rotates cleanly, tune gear spacing so it does not bog down during transitions.',
     href: '/tools/forza-horizon-6-gear-ratio-calculator',
   },
+];
+
+const driftBuildTypes = [
+  {
+    title: 'RWD angle learner',
+    setup:
+      'Smooth throttle, predictable rear rotation, softer correction window.',
+    test: 'Use one medium-speed corner and watch whether the car snaps back after transition.',
+  },
+  {
+    title: 'AWD speed-zone build',
+    setup:
+      'Enough front pull for recovery without making the car straighten too early.',
+    test: 'Run the same zone twice and check whether speed gains cost too much angle.',
+  },
+  {
+    title: 'Low-power style build',
+    setup:
+      'Keep momentum and usable grip before adding aggressive angle changes.',
+    test: 'If the car bogs mid-corner, fix gearing before reducing grip again.',
+  },
+  {
+    title: 'High-power smoke build',
+    setup:
+      'Control wheelspin, heat, and snapback before chasing more steering lock.',
+    test: 'Use throttle modulation first, then tune diff and gearing in smaller steps.',
+  },
+];
+
+const driftSymptomRows = [
+  {
+    symptom: 'Spins out on entry',
+    firstMove: 'Stabilize rotation',
+    nextLink: '/games/forza-horizon-6/guides/japan-drift-setup',
+  },
+  {
+    symptom: 'Cannot hold angle',
+    firstMove: 'Increase rotation gradually',
+    nextLink: '/games/forza-horizon-6/best-drift-cars',
+  },
+  {
+    symptom: 'Bogs mid-drift',
+    firstMove: 'Check gear spacing',
+    nextLink: '/tools/forza-horizon-6-gear-ratio-calculator',
+  },
+  {
+    symptom: 'Snaps back after transition',
+    firstMove: 'Smooth diff and rear response',
+    nextLink: '/games/forza-horizon-6/tuning-settings',
+  },
+];
+
+const driftTrustRules = [
+  'Use one repeatable corner or drift zone before saving a preset URL.',
+  'Separate RWD learning setups from AWD speed-zone setups in internal links.',
+  'Fix gearing only after the car can hold angle predictably.',
+  'Attach verified drift notes to car pages and best-drift-car hubs later.',
 ];
 
 const driftFaqs = [
@@ -144,11 +205,47 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
             path: pathname,
             steps: driftHowToSteps,
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 drift tuning next steps',
+            items: driftRelatedLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(driftFaqs),
         ]}
       />
       <ForzaDriftTuneCalculator />
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <CarFrontIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+              Choose the drift build before chasing more angle
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Drift setup advice changes fast depending on drivetrain, power,
+              grip, and the kind of zone you are trying to clear. These build
+              types give players a better first decision before they touch
+              differential, gearing, and alignment.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {driftBuildTypes.map((build) => (
+              <article className="forza-card p-4" key={build.title}>
+                <h3 className="text-base font-semibold text-zinc-50">
+                  {build.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-cyan-100">
+                  {build.setup}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {build.test}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="forza-panel p-5">
             <p className="forza-chip">Drift setup workflow</p>
@@ -156,10 +253,10 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
               Build angle without losing control
             </h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
-              Drift tuning is easiest when you separate rotation, grip,
-              gearing, and recovery. The calculator gives you a first direction
-              for the exact problem you feel in the car, then you can test a
-              short section and save the preset URL before refining.
+              Drift tuning is easiest when you separate rotation, grip, gearing,
+              and recovery. The calculator gives you a first direction for the
+              exact problem you feel in the car, then you can test a short
+              section and save the preset URL before refining.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -185,6 +282,26 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.9fr_0.9fr_1fr]">
+            <span>Drift symptom</span>
+            <span>First tuning move</span>
+            <span>Next page</span>
+          </div>
+          {driftSymptomRows.map((row) => (
+            <LocaleLink
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.9fr_0.9fr_1fr]"
+              href={row.nextLink}
+              key={row.symptom}
+            >
+              <span className="font-semibold text-zinc-50">{row.symptom}</span>
+              <span className="text-amber-200">{row.firstMove}</span>
+              <span className="text-zinc-400">{row.nextLink}</span>
+            </LocaleLink>
+          ))}
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
@@ -220,6 +337,34 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
                 </span>
               </LocaleLink>
             ))}
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+                Drift calculator publishing rules
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These guardrails make the drift page useful for long-tail search
+                while keeping recommendations honest until car-specific FH6
+                testing is available.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {driftTrustRules.map((rule) => (
+                <div
+                  className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={rule}
+                >
+                  <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-amber-300" />
+                  <span>{rule}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
