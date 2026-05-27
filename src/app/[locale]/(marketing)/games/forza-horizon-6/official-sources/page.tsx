@@ -6,7 +6,6 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
-  buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
@@ -158,13 +157,17 @@ export default function ForzaHorizon6OfficialSourcesPage() {
             { name: 'Official Sources', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
-          buildItemListJsonLd({
-            title: 'Forza Horizon 6 official source links',
-            items: officialSources.map((source) => ({
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 official source links',
+            itemListElement: officialSources.map((source, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
               name: source.title,
-              path: pathname,
+              url: source.href,
             })),
-          }),
+          },
           buildFaqJsonLd(sourceFaqs),
         ]}
       />
