@@ -49,6 +49,11 @@ const presets = [
 
 const handheldLinks = [
   {
+    title: 'Official source tracker',
+    href: '/games/forza-horizon-6/official-sources',
+    note: 'Check this before changing Verified, platform, or handheld support language.',
+  },
+  {
     title: 'Steam Deck guide',
     href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
     note: 'Use the evergreen guide for testing order and patch update notes.',
@@ -207,6 +212,11 @@ const deckScorecardRows = [
 ];
 
 const steamDeckNextLinks = [
+  {
+    title: 'Official source tracker',
+    href: '/games/forza-horizon-6/official-sources',
+    note: 'Use this before changing Verified status, platform wording, or PC handheld support notes.',
+  },
   {
     title: 'Settings Hub',
     href: '/settings/forza-horizon-6',
