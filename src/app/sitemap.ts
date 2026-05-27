@@ -33,6 +33,7 @@ const staticRoutes = [
   '/games/forza-horizon-6/japan-map',
   '/games/forza-horizon-6/tuning-settings',
   '/games/forza-horizon-6/guides',
+  '/games/forza-horizon-6/official-sources',
   '/games/forza-horizon-6/best-cars',
   ...Object.values(forzaHorizon6ClassCarGuides).map((guide) => guide.pathname),
   ...Object.values(forzaHorizon6MakeCarGuides).map((guide) => guide.pathname),

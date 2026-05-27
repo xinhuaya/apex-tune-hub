@@ -155,11 +155,18 @@ const hubLinks = [
     href: '/games/forza-horizon-6/faq',
     icon: Gamepad2Icon,
   },
+  {
+    title: 'Official Sources',
+    description:
+      'Source tracker for release, platform, Japan map, and car-list updates.',
+    href: '/games/forza-horizon-6/official-sources',
+    icon: ShieldCheckIcon,
+  },
 ];
 
 const hubStats = [
   {
-    value: '17',
+    value: '18',
     label: 'FH6 hubs',
     detail: 'Tools, guide clusters, car pages, settings pages, and weekly trackers.',
   },
@@ -305,13 +312,14 @@ export default function ForzaHorizon6HubPage() {
                 <div>
                   <h2 className="text-lg font-semibold">Source status</h2>
                   <p className="text-sm text-zinc-500">
-                    Launch status checked May 25, 2026.
+                    Official source tracker checked May 28, 2026.
                   </p>
                 </div>
               </div>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-zinc-400">
                 <li>
-                  Now positioned around Japan road, city, and mountain tuning.
+                  Japan road, city, and mountain tuning copy routes through the
+                  official source tracker.
                 </li>
                 <li>
                   Launch pages prioritize repeatable A, S1, drift, and rally
@@ -321,7 +329,10 @@ export default function ForzaHorizon6HubPage() {
                   Steam Deck and PC settings pages support handheld and desktop
                   players.
                 </li>
-                <li>PS5 version planned for later in 2026.</li>
+                <li>
+                  Platform and PS5 copy should be updated from the official FAQ
+                  before changing hub claims.
+                </li>
               </ul>
               <div className="mt-5 grid gap-2">
                 {ecosystemRows.map(([label, text]) => (

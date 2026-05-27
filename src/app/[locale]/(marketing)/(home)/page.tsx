@@ -70,6 +70,10 @@ const homepageItemList = [
     name: 'Forza Horizon 6 Guides',
     path: '/games/forza-horizon-6/guides',
   },
+  {
+    name: 'Forza Horizon 6 Official Sources',
+    path: '/games/forza-horizon-6/official-sources',
+  },
 ];
 
 const stats = [
