@@ -1,6 +1,7 @@
 const INDEXNOW_KEY = 'ea52c6b28bddfc74821b5046a67dc918';
 const DEFAULT_BASE_URL = 'https://apextunehub.com';
 const DEFAULT_ENDPOINT = 'https://api.indexnow.org/indexnow';
+const SUPPLEMENTAL_PATHS = ['/llms.txt', '/feed.xml'];
 
 type SubmitOptions = {
   baseUrl: string;
@@ -96,10 +97,13 @@ async function main() {
   const options = parseArgs(process.argv.slice(2));
   const base = new URL(options.baseUrl);
   const keyLocation = `${options.baseUrl}/${INDEXNOW_KEY}.txt`;
+  const supplementalUrls = SUPPLEMENTAL_PATHS.map(
+    (path) => `${options.baseUrl}${path}`
+  );
   const sitemapUrls =
     options.explicitUrls.length > 0
       ? options.explicitUrls
-      : await fetchSitemapUrls(options.baseUrl);
+      : [...(await fetchSitemapUrls(options.baseUrl)), ...supplementalUrls];
 
   const urlList = sameHostUrls([...new Set(sitemapUrls)], base.host).slice(
     0,
