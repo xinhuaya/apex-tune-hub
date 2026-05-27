@@ -16,6 +16,8 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
@@ -24,11 +26,15 @@ import {
   ArrowLeftIcon,
   CalendarClockIcon,
   CarIcon,
+  ClipboardCheckIcon,
   FlagIcon,
   GaugeIcon,
   LinkIcon,
+  ListChecksIcon,
   RadioTowerIcon,
   RotateCcwIcon,
+  RouteIcon,
+  ShieldCheckIcon,
   WrenchIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -167,6 +173,78 @@ function getPrimarySetupGuide(car: ForzaHorizon6Car) {
   };
 }
 
+function getRoleMatrix(car: ForzaHorizon6Car, title: string) {
+  const profile =
+    `${car.bestUse} ${car.tuneDirection} ${car.type}`.toLowerCase();
+  const classGuide = getClassGuide(car);
+  const makeGuide = getMakeGuide(car);
+  const firstRole = profile.includes('drift')
+    ? {
+        value: 'Drift / street',
+        href: '/games/forza-horizon-6/best-drift-cars',
+      }
+    : profile.includes('drag')
+      ? {
+          value: 'Drag / speed',
+          href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+        }
+      : profile.includes('rally') || profile.includes('dirt')
+        ? {
+            value: 'Rally / mixed',
+            href: '/games/forza-horizon-6/best-rally-cars',
+          }
+        : {
+            value: 'Road / handling',
+            href: '/games/forza-horizon-6/best-road-racing-cars',
+          };
+
+  return [
+    {
+      title: 'Best first class',
+      value: `${car.stockClass} ${car.stockPi}`,
+      href: classGuide.pathname,
+      body: `${getClassPlan(car)} Use the ${classGuide.h1.toLowerCase()} page to compare nearby candidates before adding more PI.`,
+    },
+    {
+      title: 'Best first role',
+      value: firstRole.value,
+      href: firstRole.href,
+      body: car.bestUse,
+    },
+    {
+      title: 'Manufacturer context',
+      value: car.make,
+      href: makeGuide?.pathname ?? '/games/forza-horizon-6/cars',
+      body: makeGuide
+        ? `Compare ${title} against other ${car.make} candidates before deciding if it deserves a dedicated tune preset.`
+        : `Use the car database to compare ${title} with other FH6 launch candidates.`,
+    },
+  ];
+}
+
+function getEvidenceWorkflow(car: ForzaHorizon6Car, title: string): FaqItem[] {
+  return [
+    {
+      question: '1. Confirm the car role',
+      answer: `Start by deciding whether ${title} is being tested for road, street, drift, rally, drag, weekly restrictions, or collection value.`,
+    },
+    {
+      question: '2. Pick the first class target',
+      answer: `${title} starts at ${car.stockClass} ${car.stockPi}. Keep the first test close to that baseline unless the route clearly needs a different PI range.`,
+    },
+    {
+      question: '3. Match a preset or calculator state',
+      answer:
+        'Use the closest preset link or generate a calculator state so the setup can be repeated and refined later.',
+    },
+    {
+      question: '4. Promote only after evidence',
+      answer:
+        'Move the car from candidate notes to stronger recommendations only after route notes, handling changes, and patch freshness are visible.',
+    },
+  ];
+}
+
 function getCarTunePath(
   car: ForzaHorizon6Car,
   recommendedPresets: typeof forzaTunePresets
@@ -217,7 +295,8 @@ function getCarTunePath(
   ];
 
   return links.filter(
-    (link, index) => links.findIndex((item) => item.href === link.href) === index
+    (link, index) =>
+      links.findIndex((item) => item.href === link.href) === index
   );
 }
 
@@ -270,6 +349,8 @@ export default async function ForzaHorizon6CarPage({
   const buildCards = getBuildCards(car, title);
   const classGuide = getClassGuide(car);
   const makeGuide = getMakeGuide(car);
+  const roleMatrix = getRoleMatrix(car, title);
+  const evidenceWorkflow = getEvidenceWorkflow(car, title);
   const relatedHubs = [
     {
       title: classGuide.h1,
@@ -312,6 +393,12 @@ export default async function ForzaHorizon6CarPage({
       body: 'Use the tune-code workflow when a real in-game share code is verified. Until then, keep this as a transparent preset and calculator path.',
     },
   ];
+  const buildEvidenceChecks = [
+    `${title} has stock baseline ${car.stockClass} ${car.stockPi}.`,
+    `${recommendedPresets.length} matching preset${recommendedPresets.length === 1 ? '' : 's'} currently connect to this car.`,
+    `Testing status: ${car.testingStatus}.`,
+    `Acquisition note: ${car.acquisition}.`,
+  ];
   const faqs: FaqItem[] = [
     {
       question: `Is the ${title} good in Forza Horizon 6?`,
@@ -345,20 +432,27 @@ export default async function ForzaHorizon6CarPage({
             description: `${title} tune notes for starter builds, road setup, alternate presets, weekly use, and testing status.`,
             path: pathname,
           }),
+          buildHowToJsonLd({
+            title: `How to build ${title} in Forza Horizon 6`,
+            description: `A conservative workflow for turning ${title} from a candidate car page into a tested Forza Horizon 6 tune path.`,
+            path: pathname,
+            steps: evidenceWorkflow,
+          }),
+          buildItemListJsonLd({
+            title: `${title} related FH6 tuning links`,
+            items: [...carTunePath, ...relatedEcosystem].map((item) => ({
+              name: item.title,
+              path: item.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: `${title} role and comparison pages`,
+            items: roleMatrix.map((item) => ({
+              name: item.title,
+              path: item.href,
+            })),
+          }),
           buildFaqJsonLd(faqs),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: `${title} related FH6 tuning links`,
-            itemListElement: [...carTunePath, ...relatedEcosystem].map(
-              (item, index) => ({
-                '@type': 'ListItem',
-                position: index + 1,
-                name: item.title,
-                url: `https://apextunehub.com${item.href}`,
-              })
-            ),
-          },
         ]}
       />
       <main className="forza-page text-zinc-50">
@@ -434,12 +528,56 @@ export default async function ForzaHorizon6CarPage({
                     </div>
                   ))}
                 </dl>
+                <div className="mt-5 grid gap-2">
+                  {buildEvidenceChecks.slice(0, 3).map((item) => (
+                    <div
+                      className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                      key={item}
+                    >
+                      <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+            <div className="forza-panel p-5">
+              <RouteIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Car role and build map
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                A useful FH6 car page should answer three questions quickly:
+                which class to start in, what role the car should serve, and
+                which comparison hub deserves the next click.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {roleMatrix.map((item) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                  href={item.href}
+                  key={item.title}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    {item.title}
+                  </p>
+                  <h3 className="mt-3 text-xl font-semibold text-zinc-100">
+                    {item.value}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.body}
+                  </p>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+
           <div className="grid gap-4 lg:grid-cols-4">
             {buildCards.map((card) => {
               const Icon = card.icon;
@@ -460,6 +598,37 @@ export default async function ForzaHorizon6CarPage({
                 </LocaleLink>
               );
             })}
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+              <div>
+                <ClipboardCheckIcon className="size-6 text-cyan-300" />
+                <h2 className="mt-4 text-xl font-semibold">
+                  Evidence workflow before stronger tune claims
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  This keeps the car database trustworthy while FH6 testing is
+                  still expanding. A page can rank early, but stronger claims
+                  need repeatable route notes and setup evidence.
+                </p>
+              </div>
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+                {evidenceWorkflow.map((step) => (
+                  <article
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                    key={step.question}
+                  >
+                    <h3 className="text-sm font-semibold text-zinc-100">
+                      {step.question}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {step.answer}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="forza-panel mt-6 p-5">
@@ -575,7 +744,10 @@ export default async function ForzaHorizon6CarPage({
             </article>
 
             <article className="forza-card p-5">
-              <h2 className="text-xl font-semibold">Testing checklist</h2>
+              <div className="flex items-center gap-3">
+                <ListChecksIcon className="size-5 text-cyan-300" />
+                <h2 className="text-xl font-semibold">Testing checklist</h2>
+              </div>
               <ul className="mt-4 grid gap-2 text-sm leading-6 text-zinc-400 md:grid-cols-2">
                 <li>Record route, class, drivetrain, and assists.</li>
                 <li>Save tune screenshot or exported setup notes.</li>
@@ -583,6 +755,25 @@ export default async function ForzaHorizon6CarPage({
                 <li>Update this page after major balance patches.</li>
               </ul>
             </article>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="flex items-center gap-3">
+              <ShieldCheckIcon className="size-5 text-amber-300" />
+              <h2 className="text-xl font-semibold">
+                Current evidence snapshot
+              </h2>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {buildEvidenceChecks.map((item) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
 
           {recommendedPresets.length > 0 ? (
