@@ -11,7 +11,7 @@ type BreadcrumbItem = {
 };
 
 const siteName = 'Apex Tune Hub';
-const modifiedDate = '2026-05-25';
+const modifiedDate = '2026-05-27';
 
 export function absoluteUrl(path: string) {
   return `${getBaseUrl()}${path}`;
