@@ -175,6 +175,39 @@ export default async function ForzaHorizon6GuidePage({
     ['Deep-dive blocks', `${guide.deepDive?.length ?? 0} groups`],
     ['Related guides', `${relatedGuides.length} contextual next reads`],
   ];
+  const guideTestNoteRows = [
+    [
+      'Car and class',
+      'Record the exact car, PI class, drivetrain, and upgrade direction.',
+    ],
+    [
+      'Route or event',
+      'Name the route section, drift zone, speed trap, or weekly restriction.',
+    ],
+    [
+      'Setup change',
+      'Write one changed setting group instead of listing every slider.',
+    ],
+    ['Result', 'Keep, undo, or retest the change with the same car and route.'],
+    [
+      'Next action',
+      `Open ${guide.primaryCta.label} or a related guide if the issue remains.`,
+    ],
+  ];
+  const guideDecisionCards = [
+    {
+      title: 'Keep the change',
+      text: 'The car improves in the target section without creating a new problem elsewhere.',
+    },
+    {
+      title: 'Retest smaller',
+      text: 'The direction is useful, but the car now feels nervous, dull, slow, or inconsistent.',
+    },
+    {
+      title: 'Undo and reroute',
+      text: 'The change hides the real issue. Move to the linked calculator, settings page, or related guide.',
+    },
+  ];
   const faqs: FaqItem[] = [
     {
       question: `What is the best first step for ${guide.h1}?`,
@@ -223,6 +256,13 @@ export default async function ForzaHorizon6GuidePage({
             items: relatedGuides.map((item) => ({
               name: item.h1,
               path: `/games/forza-horizon-6/guides/${item.slug}`,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: `${guide.h1} guide decision outcomes`,
+            items: guideDecisionCards.map((item) => ({
+              name: item.title,
+              path: pathname,
             })),
           }),
           buildFaqJsonLd(faqs),
@@ -411,6 +451,56 @@ export default async function ForzaHorizon6GuidePage({
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
+              <div>
+                <RadioTowerIcon className="size-6 text-cyan-300" />
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  Guide test note template
+                </p>
+                <h2 className="mt-3 text-xl font-semibold">
+                  Turn this guide into one repeatable setup note
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  A guide page should leave the player with a short test note,
+                  not a pile of disconnected slider ideas. These fields keep
+                  each FH6 guide useful after the first read.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-md border border-white/10">
+                <div className="grid border-b border-white/10 bg-white/[0.03] px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.68fr_1.32fr]">
+                  <span>Field</span>
+                  <span>What to capture</span>
+                </div>
+                {guideTestNoteRows.map(([field, note]) => (
+                  <div
+                    className="grid gap-2 border-b border-white/10 px-4 py-3 text-sm last:border-b-0 md:grid-cols-[0.68fr_1.32fr]"
+                    key={field}
+                  >
+                    <span className="font-semibold text-zinc-100">{field}</span>
+                    <span className="leading-6 text-zinc-400">{note}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              {guideDecisionCards.map((card) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={card.title}
+                >
+                  <h3 className="text-base font-semibold text-zinc-100">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {card.text}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
 
