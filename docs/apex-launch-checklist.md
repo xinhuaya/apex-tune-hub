@@ -39,6 +39,7 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Open `/`, `/games/forza-horizon-6`, `/tools/forza-horizon-6-tune-calculator`, `/games/forza-horizon-6/guides`, and one preset detail page.
 - [x] Submit `/sitemap.xml` in Google Search Console.
 - [x] Submit `/sitemap.xml` in Bing Webmaster Tools.
+- [x] Submit public sitemap URLs through IndexNow.
 - [ ] Test the update-list form with a real email address.
 - [ ] Check that confirmation email subject says `You are on the Apex Tune Hub update list`.
 - [ ] Search `site:apextunehub.com forza horizon 6` after Google starts indexing.
