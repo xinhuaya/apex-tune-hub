@@ -49,6 +49,12 @@ export default async function LocaleLayout({
   return (
     <html suppressHydrationWarning lang={locale}>
       <head>
+        <link
+          href="https://apextunehub.com/feed.xml"
+          rel="alternate"
+          title="Apex Tune Hub Updates"
+          type="application/rss+xml"
+        />
         <AffonsoScript />
         <PromotekitScript />
       </head>

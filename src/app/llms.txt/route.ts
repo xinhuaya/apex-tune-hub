@@ -74,6 +74,7 @@ ${formatLinks(officialSources)}
 
 - [Sitemap](${baseUrl}/sitemap.xml)
 - [Robots](${baseUrl}/robots.txt)
+- [RSS feed](${baseUrl}/feed.xml)
 
 ## Update Policy
 
