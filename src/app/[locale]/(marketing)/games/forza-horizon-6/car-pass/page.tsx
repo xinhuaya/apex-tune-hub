@@ -6,16 +6,24 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
+  type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
   BadgeCheckIcon,
   CalendarDaysIcon,
   CarIcon,
   ExternalLinkIcon,
+  GitBranchIcon,
+  ListChecksIcon,
   RadioTowerIcon,
   RouteIcon,
   ShieldCheckIcon,
+  SlidersHorizontalIcon,
+  TimerIcon,
+  WrenchIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -80,7 +88,7 @@ const carPassFacts = [
   },
 ];
 
-const carPassFaqs = [
+const carPassFaqs: FaqItem[] = [
   {
     question: 'What is the Forza Horizon 6 Car Pass tracker?',
     answer:
@@ -97,25 +105,45 @@ const carPassFaqs = [
       'Transparent labels prevent fake certainty. Cars should move into tested notes only after official source checks and route or event testing.',
   },
 ];
-const carPassWorkflow = [
+
+const carPassWorkflow: FaqItem[] = [
+  {
+    question: '1. Verify source first',
+    answer:
+      'Keep the car labelled To verify until the official source, timing, and release window are clear.',
+  },
+  {
+    question: '2. Create the car page',
+    answer:
+      'Add class, PI, acquisition, testing status, source URL, and first tune direction before promoting the car.',
+  },
+  {
+    question: '3. Pick a baseline preset',
+    answer:
+      'Match the car to a road, drift, rally, dirt, street, or drag preset instead of publishing a vague setup note.',
+  },
+  {
+    question: '4. Link the weekly tracker',
+    answer:
+      'Add the car to weekly playlist prep when it appears in challenges, rewards, or seasonal restrictions.',
+  },
+];
+
+const workflowLinks = [
   {
     title: 'Verify source first',
-    text: 'Keep the car labelled To verify until the official source, timing, and release window are clear.',
     href: '/games/forza-horizon-6/faq',
   },
   {
     title: 'Create the car page',
-    text: 'Add class, PI, acquisition, testing status, source URL, and first tune direction before promoting the car.',
     href: '/games/forza-horizon-6/cars',
   },
   {
     title: 'Pick a baseline preset',
-    text: 'Match the car to a road, drift, rally, dirt, street, or drag preset instead of publishing a vague setup note.',
     href: '/tools/forza-horizon-6-tune-presets',
   },
   {
     title: 'Link the weekly tracker',
-    text: 'Add the car to weekly playlist prep when it appears in challenges, rewards, or seasonal restrictions.',
     href: '/games/forza-horizon-6/weekly-playlist',
   },
 ];
@@ -126,6 +154,79 @@ const weeklyTuneChecklist = [
   'Pick a baseline preset and calculator path before writing final notes.',
   'Add a car detail page only when the tune direction is specific enough.',
   'Update the weekly playlist page if the car becomes a challenge or reward.',
+];
+
+const carPassStatusLadder = [
+  {
+    status: 'Official fact',
+    text: 'Only use this for facts visible on official Xbox, Forza, or in-game source material.',
+  },
+  {
+    status: 'To verify',
+    text: 'Use this for expected weekly rows, rumors, or incomplete source details.',
+  },
+  {
+    status: 'Car page ready',
+    text: 'Use this after car name, year, source URL, class direction, and acquisition note exist.',
+  },
+  {
+    status: 'Tune path ready',
+    text: 'Use this after the car has a preset, calculator path, or route-specific setup note.',
+  },
+];
+
+const carPassFields = [
+  'Week number',
+  'Release date',
+  'Car name',
+  'Model year',
+  'Source URL',
+  'Stock class',
+  'Likely first role',
+  'Preset link',
+  'Car page URL',
+  'Testing status',
+];
+
+const tuneRoutingLinks = [
+  {
+    title: 'Road candidate',
+    href: '/games/forza-horizon-6/best-road-racing-cars',
+    text: 'Use when the weekly car looks like a road, street, or handling candidate.',
+  },
+  {
+    title: 'Drift candidate',
+    href: '/games/forza-horizon-6/best-drift-cars',
+    text: 'Use when the car needs angle, transition, differential, and gearing notes.',
+  },
+  {
+    title: 'Rally candidate',
+    href: '/games/forza-horizon-6/best-rally-cars',
+    text: 'Use when the car needs mixed-surface braking, suspension travel, or rough-route testing.',
+  },
+  {
+    title: 'Tune codes',
+    href: '/tools/forza-horizon-6-tune-codes',
+    text: 'Only promote a Car Pass setup into a share-code row after in-game verification.',
+  },
+];
+
+const sourceAuditCards = [
+  {
+    title: 'Official store facts',
+    text: 'The page can safely use official Car Pass total, cadence, release start, and bundle inclusion facts.',
+    icon: BadgeCheckIcon,
+  },
+  {
+    title: 'No future-car guessing',
+    text: 'Do not create rows for unreleased weekly cars unless the source is visible and linked.',
+    icon: ShieldCheckIcon,
+  },
+  {
+    title: 'Retest after release',
+    text: 'A verified car still needs class, route, and setup notes before it becomes a recommendation.',
+    icon: TimerIcon,
+  },
 ];
 
 export async function generateMetadata({
@@ -154,17 +255,28 @@ export default function CarPassTrackerPage() {
             { name: 'Car Pass Tracker', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
-          buildFaqJsonLd(carPassFaqs),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: 'Forza Horizon 6 Car Pass tracking rows',
-            itemListElement: trackerRows.map((row, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
-              name: `${row.week}: ${row.car}`,
+          buildHowToJsonLd({
+            title: 'How to update the Forza Horizon 6 Car Pass tracker',
+            description:
+              'A source-first workflow for turning weekly FH6 Car Pass drops into car pages and tune paths.',
+            path: pathname,
+            steps: carPassWorkflow,
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Car Pass workflow links',
+            items: workflowLinks.map((item) => ({
+              name: item.title,
+              path: item.href,
             })),
-          },
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Car Pass tune routing links',
+            items: tuneRoutingLinks.map((item) => ({
+              name: item.title,
+              path: item.href,
+            })),
+          }),
+          buildFaqJsonLd(carPassFaqs),
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -233,6 +345,21 @@ export default function CarPassTrackerPage() {
                 Car Pass car, then jump into calculator presets, weekly playlist
                 prep, and car-specific notes.
               </p>
+              <div className="mt-5 grid gap-2">
+                {[
+                  'Official source before row promotion.',
+                  'Car page before final recommendation.',
+                  'Preset link before tune-code claim.',
+                ].map((item) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={item}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
               <div className="mt-5 space-y-3">
                 {officialSourceCards.map((source) => (
                   <a
@@ -260,6 +387,35 @@ export default function CarPassTrackerPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <GitBranchIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Car Pass update workflow
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The tracker should move each weekly car through the same path:
+              source check, car page, baseline preset, and weekly playlist
+              routing.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {carPassWorkflow.map((step) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={step.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {step.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {step.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.7fr_1fr_1fr_1.2fr_0.8fr]">
             <span>Week</span>
@@ -280,6 +436,32 @@ export default function CarPassTrackerPage() {
               <span className="text-zinc-300">{row.status}</span>
             </div>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <SlidersHorizontalIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Tracker fields for future weekly cars
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These fields make it possible to expand from a high-level
+                tracker into a real weekly car database after official rows are
+                visible.
+              </p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {carPassFields.map((field) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200"
+                  key={field}
+                >
+                  {field}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -312,6 +494,36 @@ export default function CarPassTrackerPage() {
         <div className="forza-panel mt-6 p-5">
           <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
+              <ListChecksIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Car Pass row status ladder
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Use these labels to avoid fake certainty while still giving
+                returning visitors a clear update status.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-4">
+              {carPassStatusLadder.map((item) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={item.status}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.status}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
               <ShieldCheckIcon className="size-6 text-cyan-300" />
               <h2 className="mt-4 text-xl font-semibold">
                 Weekly car tune checklist
@@ -336,9 +548,38 @@ export default function CarPassTrackerPage() {
         </div>
 
         <div className="forza-panel mt-6 p-5">
-          <h2 className="text-xl font-semibold">Car Pass publishing workflow</h2>
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <WrenchIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Tune routing after each weekly drop
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Once a car is verified, route it into the right content cluster
+                instead of leaving it as one isolated tracker row.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {tuneRoutingLinks.map((item) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40 hover:text-cyan-100"
+                  href={item.href}
+                  key={item.href}
+                >
+                  <strong className="block text-zinc-100">{item.title}</strong>
+                  <span className="mt-2 block leading-6 text-zinc-400">
+                    {item.text}
+                  </span>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <h2 className="text-xl font-semibold">Car Pass publishing links</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-4">
-            {carPassWorkflow.map((item) => (
+            {workflowLinks.map((item, index) => (
               <LocaleLink
                 className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40"
                 href={item.href}
@@ -346,10 +587,39 @@ export default function CarPassTrackerPage() {
               >
                 <strong className="block text-zinc-100">{item.title}</strong>
                 <span className="mt-2 block leading-6 text-zinc-400">
-                  {item.text}
+                  {carPassWorkflow[index]?.answer}
                 </span>
               </LocaleLink>
             ))}
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="flex items-center gap-3">
+            <BadgeCheckIcon className="size-5 text-cyan-300" />
+            <h2 className="text-xl font-semibold">
+              Source audit for this tracker
+            </h2>
+          </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {sourceAuditCards.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={item.title}
+                >
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-sm font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.text}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
 
