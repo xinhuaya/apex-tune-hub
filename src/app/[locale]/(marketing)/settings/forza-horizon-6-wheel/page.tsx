@@ -6,13 +6,16 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
+  ClipboardCheckIcon,
   Disc3Icon,
   GaugeIcon,
+  GitBranchIcon,
   ListChecksIcon,
   RotateCcwIcon,
   ShieldCheckIcon,
@@ -77,6 +80,64 @@ const wheelFeelProfiles = [
   },
 ];
 
+const wheelbaseRoutes = [
+  {
+    title: 'Entry wheelbase',
+    priority: 'Clarity over strength',
+    body: 'Use lighter force, readable center feel, and conservative damping so gear or belt noise does not hide grip changes.',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Mid-range belt or hybrid wheel',
+    priority: 'Balance center feel and corner load',
+    body: 'Tune steering response and road texture together before increasing overall force feedback strength.',
+    icon: SlidersHorizontalIcon,
+  },
+  {
+    title: 'Direct drive wheelbase',
+    priority: 'Control clipping and oscillation',
+    body: 'Use device software and in-game force settings as one profile so self-aligning force stays fast but not violent.',
+    icon: Disc3Icon,
+  },
+  {
+    title: 'Drift or rally rig',
+    priority: 'Fast recovery without fighting the car',
+    body: 'Keep the wheel quick enough to catch transitions while avoiding heavy force that masks rear grip loss.',
+    icon: RotateCcwIcon,
+  },
+];
+
+const wheelPriorityRows = [
+  {
+    group: 'Force feedback strength',
+    firstMove:
+      'Lower strength when the wheel feels heavy, clips, or hides understeer.',
+    why: 'Too much force makes every car feel numb and can lead to tuning the wrong slider.',
+  },
+  {
+    group: 'Damper and center feel',
+    firstMove:
+      'Adjust damping before chasing sharper alignment on one road car.',
+    why: 'A vague or heavy center can make turn-in feel wrong across the whole garage.',
+  },
+  {
+    group: 'Deadzone and linearity',
+    firstMove:
+      'Remove sloppy center input before judging ARBs, toe, or differential.',
+    why: 'Small steering inputs decide road racing precision and drift recovery.',
+  },
+  {
+    group: 'Device software profile',
+    firstMove: 'Record wheelbase software settings alongside in-game settings.',
+    why: 'Direct drive and advanced bases can change feel outside the game menu.',
+  },
+  {
+    group: 'Car and surface test set',
+    firstMove: 'Test one road car, one dirt/rally car, and one drift car.',
+    why: 'A wheel profile should be readable across driving jobs before tuning one car.',
+  },
+];
+
 const wheelSymptomRows = [
   {
     symptom: 'Wheel feels too heavy',
@@ -113,6 +174,37 @@ const wheelTestLoop = [
   'Record wheelbase, pedals, assists, steering lock, and any device software profile.',
   'Change one group at a time: force strength, damper, deadzone, or steering response.',
   'If every car improves, keep the wheel setting; if one car remains wrong, tune that car.',
+];
+
+const wheelValidationSteps = [
+  {
+    question: '1. Record the wheelbase profile',
+    answer:
+      'Write down wheelbase, pedals, steering lock, device software profile, assists, and in-game force feedback settings.',
+  },
+  {
+    question: '2. Test three driving jobs',
+    answer:
+      'Run one stable road car, one dirt or rally car, and one drift candidate before deciding whether the wheel profile is readable.',
+  },
+  {
+    question: '3. Change one wheel group',
+    answer:
+      'Adjust force strength, damper, deadzone, linearity, or device software one group at a time, then repeat the same route.',
+  },
+  {
+    question: '4. Move to car tuning only after the wheel is readable',
+    answer:
+      'If every car improves, keep the wheel setting. If only one car remains wrong, move to tune calculator or drift calculator.',
+  },
+];
+
+const wheelScorecardRows = [
+  ['Center feel', 'Can you hold a clean line without fighting the wheel?'],
+  ['Corner load', 'Can you sense front grip without force clipping?'],
+  ['Straight stability', 'Does the wheel avoid oscillation on fast roads?'],
+  ['Drift transition', 'Can the wheel self-align without violent snapback?'],
+  ['Surface detail', 'Can bumps and dirt communicate grip without noise?'],
 ];
 
 const wheelNextLinks = [
@@ -158,6 +250,17 @@ const wheelFaqs: FaqItem[] = [
     answer:
       'Often yes. Wheel users may need gentler steering response and more predictable rear behavior, especially on drift and high-power RWD builds.',
   },
+  {
+    question: 'How do I know if my FH6 wheel force feedback is clipping?',
+    answer:
+      'If the wheel feels heavy but road texture and grip loss disappear, reduce force feedback strength and retest before changing the car tune.',
+  },
+  {
+    question:
+      'Should direct drive wheels use the same FH6 settings as Logitech wheels?',
+    answer:
+      'No. Direct drive wheelbases should track device software, steering lock, force strength, and damping separately from entry wheels.',
+  },
 ];
 
 export async function generateMetadata({
@@ -192,6 +295,13 @@ export default function ForzaHorizon6WheelSettingsPage() {
               name: link.title,
               path: link.href,
             })),
+          }),
+          buildHowToJsonLd({
+            title: 'How to test Forza Horizon 6 wheel settings',
+            description:
+              'A repeatable wheel testing workflow for FH6 force feedback, center feel, deadzones, clipping, and car tuning decisions.',
+            path: pathname,
+            steps: wheelValidationSteps,
           }),
           buildFaqJsonLd(wheelFaqs),
         ]}
@@ -257,6 +367,40 @@ export default function ForzaHorizon6WheelSettingsPage() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
+            <GitBranchIcon className="size-6 text-cyan-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Pick the wheelbase path first
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Wheel settings depend heavily on the base, pedals, software, and
+              driving job. Start with the wheelbase path before judging one car
+              tune.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {wheelbaseRoutes.map((route) => {
+              const Icon = route.icon;
+
+              return (
+                <article className="forza-card p-4" key={route.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {route.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold text-amber-200">
+                    {route.priority}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    {route.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
             <ListChecksIcon className="size-6 text-amber-300" />
             <h2 className="mt-4 text-2xl font-semibold">
               Choose wheel feel by driving job
@@ -314,6 +458,24 @@ export default function ForzaHorizon6WheelSettingsPage() {
         </div>
 
         <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_1.15fr_1.2fr]">
+            <span>Wheel group</span>
+            <span>First move</span>
+            <span>Why it matters</span>
+          </div>
+          {wheelPriorityRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_1.15fr_1.2fr]"
+              key={row.group}
+            >
+              <span className="font-semibold text-zinc-50">{row.group}</span>
+              <span className="leading-6 text-amber-200">{row.firstMove}</span>
+              <span className="leading-6 text-zinc-400">{row.why}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
           <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
             <span>Wheel symptom</span>
             <span>Likely cause</span>
@@ -330,6 +492,31 @@ export default function ForzaHorizon6WheelSettingsPage() {
               <span className="leading-6 text-zinc-400">{row.firstMove}</span>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">Wheel scorecard</h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                A good wheel profile is readable across surfaces and car jobs.
+                Use this scorecard before changing springs, ARBs, or drift
+                differential on one car.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {wheelScorecardRows.map(([metric, note]) => (
+                <div
+                  className="grid gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm md:grid-cols-[0.7fr_1.3fr]"
+                  key={metric}
+                >
+                  <span className="font-semibold text-zinc-100">{metric}</span>
+                  <span className="leading-6 text-zinc-400">{note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">

@@ -6,12 +6,15 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
+  ClipboardCheckIcon,
   GaugeIcon,
+  GitBranchIcon,
   Gamepad2Icon,
   ListChecksIcon,
   RouteIcon,
@@ -78,6 +81,66 @@ const controllerFeelProfiles = [
   },
 ];
 
+const controllerDeviceRoutes = [
+  {
+    title: 'Standard Xbox controller',
+    priority: 'Smooth steering, throttle, and braking',
+    body: 'Use this as the default path for road racing, weekly events, and general car testing before tuning one vehicle.',
+    icon: Gamepad2Icon,
+  },
+  {
+    title: 'Elite / pro controller',
+    priority: 'Trigger control and consistent inputs',
+    body: 'Track paddle layout, trigger stops, and sensitivity choices so hardware changes do not get mistaken for tune changes.',
+    icon: SlidersHorizontalIcon,
+  },
+  {
+    title: 'Handheld controller layout',
+    priority: 'Stable inputs after frame pacing',
+    body: 'Use this when Steam Deck or handheld performance is already stable but steering, braking, or drift recovery still feels late.',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Drift-focused setup',
+    priority: 'Countersteer and throttle recovery',
+    body: 'Use this when transitions, snapback, or wheelspin are the remaining problem after basic road control feels predictable.',
+    icon: ZapIcon,
+  },
+];
+
+const controllerPriorityRows = [
+  {
+    group: 'Steering response',
+    firstMove:
+      'Calm steering before changing alignment or anti-roll bars on every car.',
+    why: 'Twitchy global steering makes stable road tunes feel worse than they are.',
+  },
+  {
+    group: 'Throttle modulation',
+    firstMove:
+      'Smooth trigger response before chasing wheelspin with differential or tire-pressure changes.',
+    why: 'High-power AWD and RWD builds can feel broken when throttle input is too abrupt.',
+  },
+  {
+    group: 'Brake feel',
+    firstMove:
+      'Check braking input and frame pacing before changing brake balance on one car.',
+    why: 'Delayed braking can be a device or performance issue, not a setup issue.',
+  },
+  {
+    group: 'Vibration and feedback',
+    firstMove:
+      'Keep enough vibration to read tire slip, but reduce distracting rumble.',
+    why: 'Readable grip loss helps with both road exits and drift recovery.',
+  },
+  {
+    group: 'Assist and camera consistency',
+    firstMove:
+      'Lock assists, camera, route, and class before comparing controller changes.',
+    why: 'Changing multiple variables makes it impossible to tell whether controls or tune fixed the car.',
+  },
+];
+
 const controllerSymptomRows = [
   {
     symptom: 'Every car feels twitchy',
@@ -114,6 +177,43 @@ const controllerTestLoop = [
   'Change one input group at a time: steering, throttle, braking, or vibration.',
   'If every car improves, keep the controller change; if only one car improves, tune the car.',
   'Save the final path as controller settings plus tune preset notes.',
+];
+
+const controllerValidationSteps = [
+  {
+    question: '1. Lock the test setup',
+    answer:
+      'Use the same car, class, assists, camera, route, and device before changing controller settings.',
+  },
+  {
+    question: '2. Change one input group',
+    answer:
+      'Adjust steering, throttle, braking, or vibration one group at a time, then repeat the same route.',
+  },
+  {
+    question: '3. Separate every-car issues from one-car issues',
+    answer:
+      'Keep the controller change if every car improves. Move to tuning if only one car still understeers, oversteers, or spins.',
+  },
+  {
+    question: '4. Save the fix path',
+    answer:
+      'Record controller setting, car, tune preset, and route so weekly events and future builds can reuse the setup.',
+  },
+];
+
+const controllerScorecardRows = [
+  [
+    'Steering precision',
+    'Can the car hold a line without constant correction?',
+  ],
+  ['Throttle exits', 'Can high-power cars launch and exit corners smoothly?'],
+  ['Brake confidence', 'Can you trail brake without sudden lock or delay?'],
+  ['Drift recovery', 'Can you catch snapback and hold angle repeatedly?'],
+  [
+    'Weekly reliability',
+    'Does the setup stay calm in traffic, weather, and retries?',
+  ],
 ];
 
 const controllerNextLinks = [
@@ -160,6 +260,16 @@ const controllerFaqs: FaqItem[] = [
     answer:
       'Controller settings are easier for most players and work well for road, drift, and weekly events. Wheel settings can feel better after a dedicated force feedback profile.',
   },
+  {
+    question: 'Should I change controller deadzones before tuning a car?',
+    answer:
+      'Yes, if every car feels twitchy, delayed, or inconsistent. Tune the car only after the controller feels predictable across multiple vehicles.',
+  },
+  {
+    question: 'What is the best controller test route for FH6?',
+    answer:
+      'Use one road section with braking zones, one high-speed section, and one drift or low-grip section while keeping the same car and assists.',
+  },
 ];
 
 export async function generateMetadata({
@@ -194,6 +304,13 @@ export default function ForzaHorizon6ControllerSettingsPage() {
               name: link.title,
               path: link.href,
             })),
+          }),
+          buildHowToJsonLd({
+            title: 'How to test Forza Horizon 6 controller settings',
+            description:
+              'A repeatable controller testing workflow for FH6 steering, throttle, braking, vibration, and tuning decisions.',
+            path: pathname,
+            steps: controllerValidationSteps,
           }),
           buildFaqJsonLd(controllerFaqs),
         ]}
@@ -255,6 +372,40 @@ export default function ForzaHorizon6ControllerSettingsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <GitBranchIcon className="size-6 text-fuchsia-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Pick the controller path first
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Controller advice gets messy when hardware, assists, and tuning
+              are mixed together. Start with the device path, then move into a
+              single input group.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {controllerDeviceRoutes.map((route) => {
+              const Icon = route.icon;
+
+              return (
+                <article className="forza-card p-4" key={route.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {route.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold text-amber-200">
+                    {route.priority}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    {route.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
             <GaugeIcon className="size-6 text-amber-300" />
@@ -324,6 +475,24 @@ export default function ForzaHorizon6ControllerSettingsPage() {
         </div>
 
         <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_1.15fr_1.2fr]">
+            <span>Input group</span>
+            <span>First move</span>
+            <span>Why it matters</span>
+          </div>
+          {controllerPriorityRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_1.15fr_1.2fr]"
+              key={row.group}
+            >
+              <span className="font-semibold text-zinc-50">{row.group}</span>
+              <span className="leading-6 text-amber-200">{row.firstMove}</span>
+              <span className="leading-6 text-zinc-400">{row.why}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
           <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
             <span>Controller symptom</span>
             <span>Likely cause</span>
@@ -340,6 +509,33 @@ export default function ForzaHorizon6ControllerSettingsPage() {
               <span className="leading-6 text-zinc-400">{row.firstMove}</span>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Controller scorecard
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Judge the change by driving feel, not just by whether the car
+                survives one lap. A good controller profile should make several
+                car types easier to read.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {controllerScorecardRows.map(([metric, note]) => (
+                <div
+                  className="grid gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm md:grid-cols-[0.7fr_1.3fr]"
+                  key={metric}
+                >
+                  <span className="font-semibold text-zinc-100">{metric}</span>
+                  <span className="leading-6 text-zinc-400">{note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
