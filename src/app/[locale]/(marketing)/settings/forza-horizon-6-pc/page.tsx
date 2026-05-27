@@ -6,11 +6,15 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   buildItemListJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
+  ClipboardCheckIcon,
+  CpuIcon,
   GaugeIcon,
+  HardDriveIcon,
   ListChecksIcon,
   MonitorCogIcon,
   RouteIcon,
@@ -62,6 +66,66 @@ const pcProfileCards = [
   },
 ];
 
+const pcHardwareRoutes = [
+  {
+    title: 'Entry-level or older GPU',
+    priority: 'Stability, readable roads, lower spikes',
+    firstMoves:
+      'Use a frame cap, reduce reflections and shadows first, then lower crowd or traffic-heavy settings if city routes still hitch.',
+    icon: HardDriveIcon,
+  },
+  {
+    title: 'Mid-range desktop',
+    priority: 'Balanced visuals with consistent frame time',
+    firstMoves:
+      'Keep texture clarity if VRAM is stable, then tune shadows, reflections, particles, and density around the benchmark route.',
+    icon: MonitorCogIcon,
+  },
+  {
+    title: 'High-end / high-refresh PC',
+    priority: 'Frame pacing before maxed settings',
+    firstMoves:
+      'Cap below unstable peaks, check heat and VRAM pressure, then raise draw distance, reflections, and cockpit detail gradually.',
+    icon: CpuIcon,
+  },
+  {
+    title: 'Gaming laptop',
+    priority: 'Power mode, heat, and sustained pace',
+    firstMoves:
+      'Test plugged in, confirm the performance power plan, watch thermals after several races, and avoid judging only the first run.',
+    icon: ThermometerIcon,
+  },
+];
+
+const pcSettingPriorityRows = [
+  {
+    group: 'Frame cap and display mode',
+    lowerFirst: 'Set a stable cap before reducing image quality.',
+    why: 'A predictable frame target makes input feel easier to judge during braking and corner exits.',
+  },
+  {
+    group: 'Shadows and reflections',
+    lowerFirst:
+      'Lower one step when rain, city streets, or night routes stutter.',
+    why: 'These settings can create visible spikes without changing the car tune at all.',
+  },
+  {
+    group: 'Crowd, traffic, and scenery density',
+    lowerFirst: 'Reduce when packed events or urban sections hitch.',
+    why: 'Dense routes are better stress tests than empty highway pulls.',
+  },
+  {
+    group: 'Resolution scale and upscaling',
+    lowerFirst: 'Use only after frame pacing is understood.',
+    why: 'Upscaling can help performance, but too much softness can hide braking points and road texture.',
+  },
+  {
+    group: 'Motion blur and camera effects',
+    lowerFirst: 'Disable or reduce if speed reads poorly.',
+    why: 'Clarity matters for racing lines, traffic gaps, and drift recovery.',
+  },
+];
+
 const pcBottleneckRows = [
   {
     symptom: 'Sharp stutter in city traffic',
@@ -94,6 +158,37 @@ const benchmarkSteps = [
   'Use the same car, camera, traffic setting, and controller or wheel profile.',
   'Change only one setting group before each retest.',
   'Keep the setting only if frame pacing and input feel improve, not just average FPS.',
+];
+
+const pcValidationSteps = [
+  {
+    question: '1. Lock the test route',
+    answer:
+      'Choose one city section, one high-speed road, and one weather-heavy segment before changing settings.',
+  },
+  {
+    question: '2. Record the starting profile',
+    answer:
+      'Write down preset, frame cap, display mode, upscaling state, controller or wheel device, and whether the PC is thermally stable.',
+  },
+  {
+    question: '3. Change one setting group',
+    answer:
+      'Adjust one group such as shadows, reflections, density, upscaling, or frame cap, then repeat the exact same route.',
+  },
+  {
+    question: '4. Keep only useful changes',
+    answer:
+      'Keep the change only if stutter, input feel, heat, or frame pacing improves without making braking points harder to read.',
+  },
+];
+
+const pcScorecardRows = [
+  ['Average FPS', 'Helpful, but not enough by itself'],
+  ['1% lows / frame pacing', 'Most important for corner consistency'],
+  ['Input feel', 'Brake, steering, and throttle response under load'],
+  ['Heat after several events', 'Critical for laptops and compact PCs'],
+  ['Visual readability', 'Road edges, traffic, reflections, and cockpit cues'],
 ];
 
 const pcNextLinks = [
@@ -139,6 +234,16 @@ const pcFaqs = [
     answer:
       'Use one repeatable route with city driving, high-speed road, weather, and dense scenery while changing only one setting group at a time.',
   },
+  {
+    question: 'Which FH6 PC settings should I lower first for stutter?',
+    answer:
+      'Start with frame cap stability, then lower shadows, reflections, particles, and density settings around the same city or rain route.',
+  },
+  {
+    question: 'What if FH6 only feels delayed in rain or traffic?',
+    answer:
+      'Treat it as a load spike first. Reduce expensive visual settings, retest the same route, then move to controller or wheel settings if performance is stable.',
+  },
 ];
 
 export async function generateMetadata({
@@ -173,6 +278,13 @@ export default function ForzaHorizon6PcSettingsPage() {
               name: link.title,
               path: link.href,
             })),
+          }),
+          buildHowToJsonLd({
+            title: 'How to test Forza Horizon 6 PC settings',
+            description:
+              'A repeatable PC settings workflow for testing FH6 frame pacing, stutter, heat, and input feel.',
+            path: pathname,
+            steps: pcValidationSteps,
           }),
           buildFaqJsonLd(pcFaqs),
         ]}
@@ -240,6 +352,40 @@ export default function ForzaHorizon6PcSettingsPage() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
+            <CpuIcon className="size-6 text-fuchsia-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Pick the PC hardware route first
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The best FH6 PC settings are not one universal preset. Start from
+              the machine type, then test the same route so every change has a
+              clear reason.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {pcHardwareRoutes.map((route) => {
+              const Icon = route.icon;
+
+              return (
+                <article className="forza-card p-4" key={route.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {route.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold text-amber-200">
+                    {route.priority}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    {route.firstMoves}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
             <ListChecksIcon className="size-6 text-amber-300" />
             <h2 className="mt-4 text-2xl font-semibold">
               Choose the PC tuning goal before changing visuals
@@ -297,6 +443,24 @@ export default function ForzaHorizon6PcSettingsPage() {
         </div>
 
         <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_1.15fr_1.2fr]">
+            <span>Setting group</span>
+            <span>First adjustment</span>
+            <span>Why it matters</span>
+          </div>
+          {pcSettingPriorityRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_1.15fr_1.2fr]"
+              key={row.group}
+            >
+              <span className="font-semibold text-zinc-50">{row.group}</span>
+              <span className="leading-6 text-amber-200">{row.lowerFirst}</span>
+              <span className="leading-6 text-zinc-400">{row.why}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
           <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
             <span>PC symptom</span>
             <span>Likely bottleneck</span>
@@ -312,6 +476,33 @@ export default function ForzaHorizon6PcSettingsPage() {
               <span className="leading-6 text-zinc-400">{row.firstMove}</span>
             </div>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                PC settings scorecard
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Use this scorecard before declaring a setting better. A higher
+                average FPS is not a win if braking points, heat, or input feel
+                get worse.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {pcScorecardRows.map(([metric, note]) => (
+                <div
+                  className="grid gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm md:grid-cols-[0.7fr_1.3fr]"
+                  key={metric}
+                >
+                  <span className="font-semibold text-zinc-100">{metric}</span>
+                  <span className="leading-6 text-zinc-400">{note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
