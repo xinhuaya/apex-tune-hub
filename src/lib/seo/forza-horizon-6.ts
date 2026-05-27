@@ -170,6 +170,7 @@ export function buildWebSiteJsonLd() {
     '@type': 'WebSite',
     name: siteName,
     url: getBaseUrl(),
+    logo: absoluteUrl('/android-chrome-512x512.png'),
     description:
       'Racing tune calculators, car setup data, settings guides, and weekly trackers for Forza Horizon 6.',
     publisher: {
