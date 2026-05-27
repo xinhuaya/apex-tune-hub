@@ -6,16 +6,19 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
   BatteryChargingIcon,
+  ClipboardCheckIcon,
   Gamepad2Icon,
   GaugeIcon,
   ListChecksIcon,
   MonitorCogIcon,
+  RouteIcon,
   ShieldCheckIcon,
   ThermometerIcon,
   ZapIcon,
@@ -80,6 +83,64 @@ const handheldDecisionCards = [
   },
 ];
 
+const deckScenarioCards = [
+  {
+    title: 'Steam Deck LCD',
+    priority: 'Stable frame pacing and readable roads',
+    body: 'Start with the balanced handheld run, then lower expensive visuals if packed city, rain, or weekly starts feel uneven.',
+    icon: MonitorCogIcon,
+  },
+  {
+    title: 'Steam Deck OLED',
+    priority: 'Smoothness, battery, and display clarity',
+    body: 'Keep the same route and FPS target while judging battery estimate, heat, and whether night or rain routes remain easy to read.',
+    icon: BatteryChargingIcon,
+  },
+  {
+    title: 'Docked or plugged in',
+    priority: 'More visual budget without heat spikes',
+    body: 'Spend extra power on clarity only after the same event loop stays stable for several runs.',
+    icon: ZapIcon,
+  },
+  {
+    title: 'Travel / battery-first',
+    priority: 'Longer sessions and lower heat',
+    body: 'Use a conservative FPS target and lower density-heavy settings before judging car handling.',
+    icon: ThermometerIcon,
+  },
+];
+
+const deckSettingPriorityRows = [
+  {
+    group: 'FPS target',
+    firstMove:
+      'Choose 40 FPS for balanced play or 30 FPS for battery-first sessions.',
+    why: 'A stable lower target often feels better than a higher target that drops in traffic or rain.',
+  },
+  {
+    group: 'Power and thermal budget',
+    firstMove: 'Test plugged-in and battery behavior separately.',
+    why: 'A setting can feel good for one short run and still fade after several weekly-event retries.',
+  },
+  {
+    group: 'Reflections, shadows, and particles',
+    firstMove: 'Lower these first when weather or city sections stutter.',
+    why: 'They can affect frame pacing without meaning the car tune is bad.',
+  },
+  {
+    group: 'Screen readability',
+    firstMove:
+      'Keep roads, braking points, and traffic gaps readable before chasing extra effects.',
+    why: 'Handheld play needs clear visual information more than maxed quality.',
+  },
+  {
+    group: 'Controller feel',
+    firstMove:
+      'Pair graphics changes with controller settings if inputs still feel late.',
+    why: 'Frame pacing and input response are tied together on a handheld racing setup.',
+  },
+];
+
 const handheldTroubleshootingRows = [
   {
     symptom: 'Corners feel delayed',
@@ -112,6 +173,37 @@ const handheldTestLoop = [
   'Record LCD or OLED model, FPS target, battery estimate, and plugged-in status.',
   'Change only one graphics or power group before each retest.',
   'Move to car tuning only after every-car input and frame pacing feel stable.',
+];
+
+const steamDeckValidationSteps = [
+  {
+    question: '1. Pick the handheld scenario',
+    answer:
+      'Choose LCD, OLED, plugged-in, or battery-first before changing graphics so the target is clear.',
+  },
+  {
+    question: '2. Lock the FPS target',
+    answer:
+      'Start with a stable FPS target, then repeat one city route, one high-speed route, and one weekly-style event start.',
+  },
+  {
+    question: '3. Change one budget group',
+    answer:
+      'Adjust one group such as reflections, shadows, density, power profile, or screen clarity before each retest.',
+  },
+  {
+    question: '4. Move to input or tuning only after stability',
+    answer:
+      'If every car feels better, keep the device setting. If only one car still feels wrong, use controller settings or the tune calculator.',
+  },
+];
+
+const deckScorecardRows = [
+  ['Frame pacing', 'Main signal for corner and braking consistency'],
+  ['Battery estimate', 'Important for travel and weekly retries'],
+  ['Heat over time', 'Check after several races, not only the first event'],
+  ['Input feel', 'Steering, braking, and drift recovery under load'],
+  ['Readability', 'Road edges, traffic, UI text, and night/rain visibility'],
 ];
 
 const steamDeckNextLinks = [
@@ -157,6 +249,16 @@ const steamDeckFaqs: FaqItem[] = [
     answer:
       'Yes. Unstable frame pacing can make braking, steering, and drift recovery feel inconsistent, so tune graphics and input settings together.',
   },
+  {
+    question: 'Should Steam Deck LCD and OLED settings be tracked separately?',
+    answer:
+      'Yes. Record the model, FPS target, power state, and battery estimate so future updates can compare handheld results cleanly.',
+  },
+  {
+    question: 'What should I lower first if FH6 stutters on Steam Deck?',
+    answer:
+      'Lock the FPS target first, then reduce reflections, shadows, particles, or density-heavy settings on the same test route.',
+  },
 ];
 
 export async function generateMetadata({
@@ -191,6 +293,13 @@ export default function SteamDeckSettingsPage() {
               name: link.title,
               path: link.href,
             })),
+          }),
+          buildHowToJsonLd({
+            title: 'How to test Forza Horizon 6 Steam Deck settings',
+            description:
+              'A repeatable Steam Deck testing workflow for FH6 FPS targets, battery, heat, readability, and input feel.',
+            path: pathname,
+            steps: steamDeckValidationSteps,
           }),
           buildFaqJsonLd(steamDeckFaqs),
         ]}
@@ -260,6 +369,40 @@ export default function SteamDeckSettingsPage() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
+            <RouteIcon className="size-6 text-lime-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Pick the handheld scenario first
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Steam Deck tuning depends on the play mode. Choose the scenario,
+              lock the FPS target, then test the same route before touching car
+              settings.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {deckScenarioCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <article className="forza-card p-4" key={card.title}>
+                  <Icon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold text-amber-200">
+                    {card.priority}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    {card.body}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
             <ListChecksIcon className="size-6 text-amber-300" />
             <h2 className="mt-4 text-2xl font-semibold">
               Choose the handheld goal before tuning visuals
@@ -321,6 +464,24 @@ export default function SteamDeckSettingsPage() {
         </div>
 
         <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_1.15fr_1.2fr]">
+            <span>Handheld setting</span>
+            <span>First move</span>
+            <span>Why it matters</span>
+          </div>
+          {deckSettingPriorityRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_1.15fr_1.2fr]"
+              key={row.group}
+            >
+              <span className="font-semibold text-zinc-50">{row.group}</span>
+              <span className="leading-6 text-amber-200">{row.firstMove}</span>
+              <span className="leading-6 text-zinc-400">{row.why}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
           <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.75fr_1.4fr]">
             <span>Handheld symptom</span>
             <span>Likely cause</span>
@@ -336,6 +497,33 @@ export default function SteamDeckSettingsPage() {
               <span className="leading-6 text-zinc-400">{row.firstMove}</span>
             </div>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Steam Deck scorecard
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Track more than FPS. The useful setting is the one that keeps
+                the run readable, cool, and predictable across the whole event
+                loop.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              {deckScorecardRows.map(([metric, note]) => (
+                <div
+                  className="grid gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm md:grid-cols-[0.7fr_1.3fr]"
+                  key={metric}
+                >
+                  <span className="font-semibold text-zinc-100">{metric}</span>
+                  <span className="leading-6 text-zinc-400">{note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
