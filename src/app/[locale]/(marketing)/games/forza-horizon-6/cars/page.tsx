@@ -113,6 +113,62 @@ const updateQueue = [
   'When a car appears in Car Pass or Weekly Playlist content, link both pages back to the car detail page.',
 ];
 
+const databaseCoverageRows = [
+  {
+    area: 'Core metadata',
+    current: 'Make, model, year, type, class, PI',
+    next: 'Add release source freshness and patch notes when official data changes.',
+  },
+  {
+    area: 'Tune metadata',
+    current: 'Best use and first tune direction',
+    next: 'Attach matched preset URLs, tune-code status, and route-specific notes.',
+  },
+  {
+    area: 'Discovery metadata',
+    current: 'Class hubs, manufacturer hubs, and role groups',
+    next: 'Add searchable filters once the database grows beyond the starter slice.',
+  },
+  {
+    area: 'Update metadata',
+    current: 'Candidate and needs-testing labels',
+    next: 'Track last-tested date, weekly use, and source verification status.',
+  },
+];
+
+const testingStatusRows = [
+  {
+    status: 'candidate',
+    meaning:
+      'A good starting page with role, class, and tune direction, but not enough route evidence yet.',
+  },
+  {
+    status: 'needs-testing',
+    meaning:
+      'A car worth keeping visible, but the next update should add a route, class, or handling note.',
+  },
+  {
+    status: 'tested',
+    meaning:
+      'Future state: the car has repeatable route notes, setup evidence, and a clear reason to recommend it.',
+  },
+];
+
+const carDatabaseConversionPaths = [
+  {
+    title: 'Save a favorite car',
+    text: 'Future paid layer: let users save cars, notes, and preferred class targets after traffic appears.',
+  },
+  {
+    title: 'Compare two candidates',
+    text: 'Turn class, PI, role, tune direction, and testing status into a comparison workflow.',
+  },
+  {
+    title: 'Export a garage plan',
+    text: 'Let weekly players export a safe road car, drift car, rally car, and speed/drag option.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -214,16 +270,19 @@ export default function ForzaHorizon6CarsPage() {
                 visible until real route testing is added.
               </p>
               <div className="mt-5 grid gap-2">
-                {['Role first', 'Class next', 'Preset link', 'Testing status'].map(
-                  (item) => (
-                    <div
-                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
-                      key={item}
-                    >
-                      {item}
-                    </div>
-                  )
-                )}
+                {[
+                  'Role first',
+                  'Class next',
+                  'Preset link',
+                  'Testing status',
+                ].map((item) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -238,14 +297,18 @@ export default function ForzaHorizon6CarsPage() {
               Browse by role, not just by name
             </h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
-              Most players arrive with a problem: road grip, drift control, or
-              a weekly restriction. These role groups point them to the right
-              hub before they choose a specific car.
+              Most players arrive with a problem: road grip, drift control, or a
+              weekly restriction. These role groups point them to the right hub
+              before they choose a specific car.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             {useCaseGroups.map((group) => (
-              <LocaleLink className="forza-card p-4" href={group.href} key={group.title}>
+              <LocaleLink
+                className="forza-card p-4"
+                href={group.href}
+                key={group.title}
+              >
                 <WrenchIcon className="size-5 text-cyan-300" />
                 <h3 className="mt-3 text-base font-semibold text-zinc-100">
                   {group.title}
@@ -323,6 +386,52 @@ export default function ForzaHorizon6CarsPage() {
           </div>
         </div>
 
+        <div className="mb-6 grid gap-4 lg:grid-cols-[1fr_0.95fr]">
+          <div className="forza-panel overflow-hidden">
+            <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_1.1fr_1.3fr]">
+              <span>Coverage area</span>
+              <span>Current data</span>
+              <span>Next expansion</span>
+            </div>
+            {databaseCoverageRows.map((row) => (
+              <div
+                className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.8fr_1.1fr_1.3fr]"
+                key={row.area}
+              >
+                <span className="font-semibold text-zinc-50">{row.area}</span>
+                <span className="leading-6 text-cyan-100">{row.current}</span>
+                <span className="leading-6 text-zinc-400">{row.next}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="forza-panel p-5">
+            <ShieldCheckIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-xl font-semibold">
+              Testing status legend
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              These labels keep the database transparent while it grows from a
+              starter slice into tested recommendations.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {testingStatusRows.map((row) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                  key={row.status}
+                >
+                  <strong className="text-sm text-zinc-100">
+                    {row.status}
+                  </strong>
+                  <p className="mt-1 text-sm leading-6 text-zinc-400">
+                    {row.meaning}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2">
           {forzaHorizon6Cars.map((car) => (
             <LocaleLink
@@ -387,6 +496,37 @@ export default function ForzaHorizon6CarsPage() {
               </p>
             </article>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <DatabaseIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Future garage product paths
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                The free car database should create useful SEO traffic first.
+                These are the natural member features to build only after the
+                car pages show repeat usage.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {carDatabaseConversionPaths.map((path) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={path.title}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {path.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {path.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
