@@ -7,14 +7,18 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
   buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
   ArrowRightIcon,
   BatteryChargingIcon,
+  ClipboardCheckIcon,
+  CpuIcon,
   Gamepad2Icon,
   GaugeIcon,
+  GitBranchIcon,
   ListChecksIcon,
   MonitorCogIcon,
   RouteIcon,
@@ -32,25 +36,25 @@ const description =
 const settingsCards = [
   {
     title: 'Best PC settings',
-    text: 'Use this for balanced visuals, frame pacing, low-end PC notes, high-end checks, and repeatable benchmark routes.',
+    text: 'Use this for hardware routes, frame pacing, stutter fixes, scorecards, low-end PC notes, and repeatable benchmark routes.',
     href: '/settings/forza-horizon-6-pc',
     icon: MonitorCogIcon,
   },
   {
     title: 'Steam Deck settings',
-    text: 'Use this for handheld FPS targets, battery-first profiles, plugged-in testing, and weekly event stability.',
+    text: 'Use this for LCD/OLED scenarios, handheld FPS targets, battery-first profiles, plugged-in testing, and weekly event stability.',
     href: '/settings/forza-horizon-6-steam-deck',
     icon: BatteryChargingIcon,
   },
   {
     title: 'Wheel settings',
-    text: 'Use this for force feedback, deadzones, steering feel, and brand-specific test loops before changing every tune.',
+    text: 'Use this for wheelbase paths, force feedback, clipping, oscillation, deadzones, steering feel, and brand-specific test loops.',
     href: '/settings/forza-horizon-6-wheel',
     icon: GaugeIcon,
   },
   {
     title: 'Controller settings',
-    text: 'Use this for steering, throttle, braking, vibration, drift recovery, and consistency across weekly events.',
+    text: 'Use this for controller paths, steering, throttle, braking, vibration, drift recovery, and consistency across weekly events.',
     href: '/settings/forza-horizon-6-controller',
     icon: Gamepad2Icon,
   },
@@ -117,11 +121,84 @@ const deviceDecisionCards = [
   },
 ];
 
+const settingsDecisionMatrix = [
+  {
+    symptom: 'Stutter, frame-time spikes, or heat',
+    start: 'PC or Steam Deck settings',
+    then: 'Retest the same route before changing tune sliders.',
+    href: '/settings/forza-horizon-6-pc',
+  },
+  {
+    symptom: 'Every car feels twitchy or delayed',
+    start: 'Controller or wheel settings',
+    then: 'Normalize input feel before changing alignment or differential.',
+    href: '/settings/forza-horizon-6-controller',
+  },
+  {
+    symptom: 'Only one car understeers, spins, or snaps',
+    start: 'Tune calculator or tuning settings',
+    then: 'Keep platform and input settings fixed while tuning the car.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    symptom: 'Weekly events fail after several retries',
+    start: 'Stable platform plus conservative input',
+    then: 'Use weekly playlist restrictions after the baseline is stable.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+];
+
+const clusterReadinessCards = [
+  {
+    title: 'Performance layer',
+    icon: CpuIcon,
+    text: 'PC and Steam Deck pages now separate hardware route, FPS target, heat, readability, and scorecard checks.',
+  },
+  {
+    title: 'Input layer',
+    icon: Gamepad2Icon,
+    text: 'Controller and wheel pages now separate device path, input group, scorecard checks, and car-tuning handoff.',
+  },
+  {
+    title: 'Tuning handoff',
+    icon: SlidersHorizontalIcon,
+    text: 'Every-car problems stay in settings; one-car problems route to tune calculator, drift calculator, and tuning settings.',
+  },
+  {
+    title: 'Repeatable testing',
+    icon: ClipboardCheckIcon,
+    text: 'Each setting path pushes users toward same car, same route, one-change-at-a-time testing.',
+  },
+];
+
 const settingsTrustRules = [
   'Fix global settings before changing car-specific tuning sliders.',
   'Use the same route, car, weather, and camera when comparing settings changes.',
   'Separate performance problems from handling problems in internal links.',
   'Route car-only issues back to tune presets, car pages, and FH6 tuning settings.',
+];
+
+const settingsHowToSteps: FaqItem[] = [
+  {
+    question: '1. Identify whether the problem affects every car',
+    answer:
+      'If every car feels unstable, delayed, or hard to read, start with platform or input settings before tuning one vehicle.',
+  },
+  {
+    question: '2. Choose the matching settings page',
+    answer:
+      'Use PC or Steam Deck for performance and readability issues; use controller or wheel for steering, braking, throttle, and force-feedback issues.',
+  },
+  {
+    question: '3. Retest with one controlled route',
+    answer:
+      'Keep the same car, class, assists, camera, weather, and route while changing one setting group at a time.',
+  },
+  {
+    question: '4. Route one-car problems to tuning',
+    answer:
+      'When platform and input are stable but one car remains wrong, move to tune calculator, drift calculator, presets, or car setup pages.',
+  },
 ];
 
 const settingsFaqs: FaqItem[] = [
@@ -139,6 +216,16 @@ const settingsFaqs: FaqItem[] = [
     question: 'Which page should Steam Deck and handheld players use?',
     answer:
       'Start with the Steam Deck settings page, then use controller settings and weekly playlist notes for stable handheld event runs.',
+  },
+  {
+    question: 'Should I use the settings hub or a tuning calculator first?',
+    answer:
+      'Use the settings hub first when every car has the same issue. Use the tuning calculator first when one car has a specific handling problem.',
+  },
+  {
+    question: 'How should I compare FH6 settings changes?',
+    answer:
+      'Use the same route, car, assists, camera, weather, and input device while changing one platform or input group at a time.',
   },
 ];
 
@@ -174,6 +261,20 @@ export default function ForzaHorizon6SettingsHubPage() {
               name: card.title,
               path: card.href,
             })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 settings decision paths',
+            items: settingsDecisionMatrix.map((row) => ({
+              name: row.symptom,
+              path: row.href,
+            })),
+          }),
+          buildHowToJsonLd({
+            title: 'How to choose the right Forza Horizon 6 settings page',
+            description:
+              'A decision workflow for choosing PC, Steam Deck, controller, wheel, or tuning pages before changing FH6 setup sliders.',
+            path: pathname,
+            steps: settingsHowToSteps,
           }),
           buildFaqJsonLd(settingsFaqs),
         ]}
@@ -275,6 +376,39 @@ export default function ForzaHorizon6SettingsHubPage() {
           </div>
         </div>
 
+        <div className="forza-panel mb-10 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <GitBranchIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Settings cluster map
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                The settings cluster now has two layers: performance first, then
+                input feel. Use the tuning tools only after the global issue is
+                ruled out.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {clusterReadinessCards.map((card) => {
+                const Icon = card.icon;
+
+                return (
+                  <article className="forza-card p-4" key={card.title}>
+                    <Icon className="size-5 text-cyan-300" />
+                    <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {card.text}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-4">
           {settingsCards.map((card) => {
             const Icon = card.icon;
@@ -297,6 +431,25 @@ export default function ForzaHorizon6SettingsHubPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel mb-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.9fr_0.8fr_1.3fr]">
+            <span>Symptom</span>
+            <span>Start here</span>
+            <span>Then</span>
+          </div>
+          {settingsDecisionMatrix.map((row) => (
+            <LocaleLink
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.9fr_0.8fr_1.3fr]"
+              href={row.href}
+              key={row.symptom}
+            >
+              <span className="font-semibold text-zinc-50">{row.symptom}</span>
+              <span className="text-amber-200">{row.start}</span>
+              <span className="leading-6 text-zinc-400">{row.then}</span>
+            </LocaleLink>
+          ))}
+        </div>
+
         <div className="forza-panel p-5">
           <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
