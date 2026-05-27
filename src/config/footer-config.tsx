@@ -91,6 +91,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           href: Routes.ForzaHorizon6SteamDeck,
           external: false,
         },
+        {
+          title: 'Official Sources',
+          href: Routes.ForzaHorizon6OfficialSources,
+          external: false,
+        },
       ],
     },
     {

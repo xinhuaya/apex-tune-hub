@@ -110,6 +110,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Official Sources',
+          description: 'Release, platform, map, and car-list source tracker',
+          icon: <ShieldCheckIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6OfficialSources,
+          external: false,
+        },
+        {
           title: 'Tune Presets',
           description: 'Shareable S1, A, road, rally, and street baselines',
           icon: <LinkIcon className="size-4 shrink-0" />,

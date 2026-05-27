@@ -20,6 +20,7 @@ export enum Routes {
   ForzaHorizon6Cars = '/games/forza-horizon-6/cars',
   ForzaHorizon6CarPass = '/games/forza-horizon-6/car-pass',
   ForzaHorizon6Faq = '/games/forza-horizon-6/faq',
+  ForzaHorizon6OfficialSources = '/games/forza-horizon-6/official-sources',
   ForzaHorizon6WeeklyPlaylist = '/games/forza-horizon-6/weekly-playlist',
   ForzaHorizon6Controller = '/settings/forza-horizon-6-controller',
   ForzaHorizon6Pc = '/settings/forza-horizon-6-pc',
