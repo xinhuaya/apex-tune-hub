@@ -43,6 +43,7 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Submit `/sitemap.xml` in Bing Webmaster Tools.
 - [x] Submit public sitemap URLs through IndexNow.
 - [x] Include `/llms.txt` and `/feed.xml` in the IndexNow helper script.
+- [x] Re-submit IndexNow after discovery updates; accepted 87 URLs.
 - [x] Verify `/games/forza-horizon-6/official-sources`, `/llms.txt`, and `/feed.xml` return `200`.
 - [ ] Test the update-list form with a real email address.
 - [ ] Check that confirmation email subject says `You are on the Apex Tune Hub update list`.
