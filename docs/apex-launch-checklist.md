@@ -25,22 +25,23 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 
 ## Before Deploy
 
-- Confirm the production domain is `apextunehub.com` and set `NEXT_PUBLIC_BASE_URL`.
-- Replace the local `BETTER_AUTH_SECRET`.
-- Connect a production Postgres database.
-- Configure Resend or Beehiiv so update-list forms can capture emails.
-- Confirm `pnpm build` passes locally.
-- Confirm `/sitemap.xml` includes FH6 guides, preset pages, and car pages.
-- Confirm `/robots.txt` blocks dashboard and account pages, but not public FH6 settings pages.
+- [x] Confirm the production domain is `apextunehub.com` and set `NEXT_PUBLIC_BASE_URL`.
+- [ ] Replace the local `BETTER_AUTH_SECRET`.
+- [ ] Connect a production Postgres database.
+- [ ] Configure Resend or Beehiiv so update-list forms can capture emails.
+- [x] Confirm `pnpm build` passes locally.
+- [x] Confirm `/sitemap.xml` includes FH6 guides, preset pages, and car pages.
+- [x] Confirm `/sitemap.xml` includes `lastmod`, `changefreq`, and `priority`.
+- [x] Confirm `/robots.txt` blocks dashboard and account pages, but not public FH6 settings pages.
 
 ## After Deploy
 
-- Open `/`, `/games/forza-horizon-6`, `/tools/forza-horizon-6-tune-calculator`, `/games/forza-horizon-6/guides`, and one preset detail page.
-- Submit `/sitemap.xml` in Google Search Console.
-- Submit `/sitemap.xml` in Bing Webmaster Tools.
-- Test the update-list form with a real email address.
-- Check that confirmation email subject says `You are on the Apex Tune Hub update list`.
-- Search `site:apextunehub.com forza horizon 6` after Google starts indexing.
+- [x] Open `/`, `/games/forza-horizon-6`, `/tools/forza-horizon-6-tune-calculator`, `/games/forza-horizon-6/guides`, and one preset detail page.
+- [x] Submit `/sitemap.xml` in Google Search Console.
+- [x] Submit `/sitemap.xml` in Bing Webmaster Tools.
+- [ ] Test the update-list form with a real email address.
+- [ ] Check that confirmation email subject says `You are on the Apex Tune Hub update list`.
+- [ ] Search `site:apextunehub.com forza horizon 6` after Google starts indexing.
 
 ## First 14 Days
 
@@ -52,7 +53,8 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 
 ## Human Inputs Needed
 
-- Deployment platform account, usually Vercel.
+- Production `BETTER_AUTH_SECRET`.
 - Database provider and connection string.
 - Newsletter provider API key and audience/publication ID.
 - Analytics IDs, if analytics are enabled.
+- First real newsletter subscription test.
