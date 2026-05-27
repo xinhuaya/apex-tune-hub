@@ -10,13 +10,19 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
   ArrowRightIcon,
   BadgeCheckIcon,
+  CarFrontIcon,
+  FlagIcon,
   GaugeIcon,
+  GitBranchIcon,
   ListChecksIcon,
+  RouteIcon,
+  ShieldCheckIcon,
 } from 'lucide-react';
 
 export function ForzaHorizon6ClassCarGuidePage({
@@ -27,6 +33,55 @@ export function ForzaHorizon6ClassCarGuidePage({
   const relatedClassGuides = Object.values(forzaHorizon6ClassCarGuides).filter(
     (item) => item.id !== guide.id
   );
+  const bestForRoles = guide.bestFor
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const workflowSteps = [
+    {
+      title: 'Start near stock',
+      body: 'Use the car close to its natural PI range first, then decide whether the next upgrade solves a real route problem.',
+    },
+    {
+      title: 'Choose one role',
+      body: `Keep ${guide.id.toUpperCase()} builds focused on one job before mixing road, street, rally, drift, and speed objectives.`,
+    },
+    {
+      title: 'Attach a tune path',
+      body: 'Every candidate should point to a preset, calculator state, or guide so the recommendation can be repeated.',
+    },
+    {
+      title: 'Compare sideways',
+      body: 'Check the neighboring class before pushing PI higher. A cleaner lower-class build often beats a messy power build.',
+    },
+  ];
+  const classRouteLinks = [
+    {
+      title: 'Tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+      body: 'Build a repeatable setup from class, drivetrain, race type, and handling problem.',
+    },
+    {
+      title: 'Tune presets',
+      href: '/tools/forza-horizon-6-tune-presets',
+      body: 'Open a baseline preset when the shortlist car already has a matching problem pattern.',
+    },
+    {
+      title: 'Car database',
+      href: '/games/forza-horizon-6/cars',
+      body: 'Compare class, PI, role, acquisition, and tune direction before committing to a build.',
+    },
+    {
+      title: 'Weekly playlist',
+      href: '/games/forza-horizon-6/weekly-playlist',
+      body: 'Use seasonal restrictions to decide which class candidates deserve the next content update.',
+    },
+  ];
+  const evidenceChecks = [
+    `${guide.picks.length} ${guide.id.toUpperCase()} class candidates have matching tune paths.`,
+    `${guide.routeTests.length} route tests define how the shortlist should be validated.`,
+    `Class goal: ${guide.classGoal}`,
+  ];
   const faqs: FaqItem[] = [
     {
       question: `What are the best picks for ${guide.h1}?`,
@@ -56,6 +111,20 @@ export function ForzaHorizon6ClassCarGuidePage({
             title: guide.h1,
             description: guide.description,
             path: guide.pathname,
+          }),
+          buildItemListJsonLd({
+            title: `${guide.h1} candidate cars`,
+            items: guide.picks.map((pick) => ({
+              name: pick.car,
+              path: pick.tuneLink,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: `${guide.h1} next build pages`,
+            items: classRouteLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
           }),
           buildFaqJsonLd(faqs),
         ]}
@@ -110,12 +179,78 @@ export function ForzaHorizon6ClassCarGuidePage({
                     </strong>
                   </div>
                 </div>
+                <div className="mt-5 grid gap-2">
+                  {evidenceChecks.map((item) => (
+                    <div
+                      className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                      key={item}
+                    >
+                      <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+            <div className="forza-panel p-5">
+              <GitBranchIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Class build workflow
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Class pages should help players decide whether a car belongs in
+                this PI range before they spend upgrades. Use this workflow to
+                move from candidate list to repeatable tune path.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {workflowSteps.map((step) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={step.title}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {step.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mb-6 p-5">
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+              <div>
+                <FlagIcon className="size-6 text-fuchsia-300" />
+                <h2 className="mt-4 text-xl font-semibold">
+                  {guide.id.toUpperCase()} class role map
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  These roles explain why this class exists on the site. They
+                  also help decide which candidate should become a car page,
+                  preset page, or weekly-event note next.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {bestForRoles.map((role) => (
+                  <div
+                    className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.04] px-4 py-3 text-sm font-semibold text-cyan-100"
+                    key={role}
+                  >
+                    {role}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="grid gap-4 lg:grid-cols-3">
             {guide.picks.map((pick) => (
               <article className="forza-card p-5" key={pick.car}>
@@ -138,6 +273,7 @@ export function ForzaHorizon6ClassCarGuidePage({
                   className="mt-5 inline-flex text-sm font-semibold text-cyan-200 hover:text-cyan-100"
                   href={pick.tuneLink}
                 >
+                  <CarFrontIcon className="mr-2 size-4" />
                   Open matching tune path
                   <ArrowRightIcon className="ml-2 size-4" />
                 </LocaleLink>
@@ -192,6 +328,29 @@ export function ForzaHorizon6ClassCarGuidePage({
 
           <div className="forza-panel mt-6 p-5">
             <div className="flex items-center gap-3">
+              <RouteIcon className="size-5 text-cyan-300" />
+              <h2 className="text-lg font-semibold">
+                Next pages after choosing a class candidate
+              </h2>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {classRouteLinks.map((link) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300 transition hover:border-fuchsia-300/40 hover:text-fuchsia-100"
+                  href={link.href}
+                  key={link.href}
+                >
+                  <strong className="block text-zinc-100">{link.title}</strong>
+                  <span className="mt-2 block leading-6 text-zinc-400">
+                    {link.body}
+                  </span>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="flex items-center gap-3">
               <ListChecksIcon className="size-5 text-amber-300" />
               <h2 className="text-lg font-semibold">Testing checklist</h2>
             </div>
@@ -199,6 +358,25 @@ export function ForzaHorizon6ClassCarGuidePage({
               {guide.checklist.map((item) => (
                 <div
                   className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="flex items-center gap-3">
+              <ShieldCheckIcon className="size-5 text-cyan-300" />
+              <h2 className="text-lg font-semibold">
+                Evidence checklist before stronger rankings
+              </h2>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {evidenceChecks.map((item) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-zinc-300"
                   key={item}
                 >
                   {item}
