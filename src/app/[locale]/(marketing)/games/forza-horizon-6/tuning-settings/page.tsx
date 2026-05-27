@@ -14,6 +14,7 @@ import {
 import {
   ArrowRightIcon,
   CarFrontIcon,
+  ClipboardCheckIcon,
   GaugeIcon,
   ListChecksIcon,
   RouteIcon,
@@ -227,6 +228,32 @@ const symptomMap = [
   },
 ];
 
+const sliderRiskMatrix = [
+  {
+    level: 'Low-risk first pass',
+    settings: 'Final drive, tire pressure, brake balance',
+    rule: 'Use these to diagnose a direction, then retest the same launch, corner, or braking zone.',
+  },
+  {
+    level: 'Medium-risk balance pass',
+    settings: 'ARBs, diff accel/decel, aero balance',
+    rule: 'Move one axle or one differential value at a time so the car does not trade one problem for another.',
+  },
+  {
+    level: 'High-risk fine pass',
+    settings: 'Toe, damping, individual gears, spring rate',
+    rule: 'Use smaller changes and keep a rollback note because these can mask the original issue.',
+  },
+];
+
+const tuningTestLogRows = [
+  ['Route section', 'Corner, straight, launch marker, or drift transition'],
+  ['Before symptom', 'What the car did before the slider change'],
+  ['Slider changed', 'One setting group and the direction moved'],
+  ['After result', 'Keep, undo, or retest with a smaller change'],
+  ['Next link', 'Calculator, preset, car page, or specialized guide'],
+];
+
 const faqs: FaqItem[] = [
   {
     question: 'What tuning setting should I change first in Forza Horizon 6?',
@@ -288,6 +315,13 @@ export default function ForzaHorizon6TuningSettingsPage() {
             items: followupLinks.map((link) => ({
               name: link.title,
               path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tuning slider risk matrix',
+            items: sliderRiskMatrix.map((row) => ({
+              name: row.level,
+              path: pathname,
             })),
           }),
           buildFaqJsonLd(faqs),
@@ -517,6 +551,57 @@ export default function ForzaHorizon6TuningSettingsPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <ClipboardCheckIcon className="size-6 text-cyan-300" />
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Tuning test log template
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Record enough detail to know whether a slider worked
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              A tuning guide becomes more useful when the player can capture the
+              exact route section, before symptom, slider change, result, and
+              next link instead of relying on memory.
+            </p>
+          </div>
+          <div className="forza-panel overflow-hidden">
+            <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.7fr_1.3fr]">
+              <span>Field</span>
+              <span>What to write</span>
+            </div>
+            {tuningTestLogRows.map(([field, note]) => (
+              <div
+                className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.7fr_1.3fr]"
+                key={field}
+              >
+                <span className="font-semibold text-zinc-50">{field}</span>
+                <span className="text-zinc-400">{note}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {sliderRiskMatrix.map((row) => (
+            <article
+              className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+              key={row.level}
+            >
+              <h3 className="text-base font-semibold text-zinc-100">
+                {row.level}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-cyan-100">
+                {row.settings}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">{row.rule}</p>
+            </article>
+          ))}
         </div>
       </section>
 

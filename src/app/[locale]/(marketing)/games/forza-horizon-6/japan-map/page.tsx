@@ -14,6 +14,7 @@ import {
 import {
   ArrowRightIcon,
   CarFrontIcon,
+  ClipboardCheckIcon,
   CloudRainIcon,
   GaugeIcon,
   GitBranchIcon,
@@ -207,6 +208,50 @@ const nextPlannerLinks = [
   },
 ];
 
+const routeStatusCards = [
+  {
+    title: 'Scouting',
+    text: 'The route type is known, but car, class, and surface notes still need a slower baseline run.',
+    next: 'Use B or A class before creating a faster preset path.',
+  },
+  {
+    title: 'Baseline saved',
+    text: 'The same route has a car, class, handling symptom, and matching calculator or preset URL.',
+    next: 'Add a second run with the same settings before promoting the note.',
+  },
+  {
+    title: 'Tune-linked',
+    text: 'The route note links to a specific guide, preset, calculator result, or car page.',
+    next: 'Send weekly playlist and Car Pass readers here when the event matches the surface.',
+  },
+  {
+    title: 'Verified later',
+    text: 'The note has in-game evidence, last-tested date, and a real share-code path when available.',
+    next: 'Only then move it into a public tune-code or route database row.',
+  },
+];
+
+const routeCaptureExamples = [
+  [
+    'Mountain hairpin',
+    'A class RWD',
+    'Rear snaps on lift',
+    '/games/forza-horizon-6/guides/fix-oversteer',
+  ],
+  [
+    'Wet city sprint',
+    'S1 AWD',
+    'Unstable braking',
+    '/games/forza-horizon-6/guides/fix-unstable-braking',
+  ],
+  [
+    'Long speed route',
+    'S2 AWD',
+    'Runs out of gearing',
+    '/tools/forza-horizon-6-gear-ratio-calculator',
+  ],
+];
+
 const faqs: FaqItem[] = [
   {
     question: 'Does this page show an official Forza Horizon 6 map?',
@@ -270,6 +315,13 @@ export default function ForzaHorizon6JapanMapPage() {
             items: nextPlannerLinks.map((link) => ({
               name: link.title,
               path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Japan route testing statuses',
+            items: routeStatusCards.map((status) => ({
+              name: status.title,
+              path: pathname,
             })),
           }),
           buildFaqJsonLd(faqs),
@@ -482,6 +534,68 @@ export default function ForzaHorizon6JapanMapPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="forza-panel p-5">
+            <ClipboardCheckIcon className="size-6 text-cyan-300" />
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Route test status board
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Do not publish a route claim before the note has a status
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              This keeps the Japan map page useful before launch without
+              pretending every road, route, and share code has already been
+              tested in-game.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {routeStatusCards.map((status) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={status.title}
+              >
+                <h3 className="text-base font-semibold text-zinc-100">
+                  {status.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {status.text}
+                </p>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">
+                  {status.next}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="forza-panel mt-5 overflow-hidden">
+          <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_0.7fr_0.9fr_1.1fr]">
+            <span>Route note</span>
+            <span>Class</span>
+            <span>Problem</span>
+            <span>Next link</span>
+          </div>
+          {routeCaptureExamples.map(([route, carClass, problem, href]) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.8fr_0.7fr_0.9fr_1.1fr]"
+              key={`${route}-${carClass}`}
+            >
+              <span className="font-semibold text-zinc-50">{route}</span>
+              <span className="text-zinc-400">{carClass}</span>
+              <span className="text-zinc-400">{problem}</span>
+              <LocaleLink
+                className="text-cyan-200 hover:text-cyan-100"
+                href={href}
+              >
+                Open matching path
+              </LocaleLink>
+            </div>
+          ))}
         </div>
       </section>
 
