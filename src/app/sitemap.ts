@@ -13,8 +13,10 @@ import type { MetadataRoute } from 'next';
 import type { Locale } from 'next-intl';
 
 type Href = Parameters<typeof getLocalePathname>[0]['href'];
+type SitemapEntry = MetadataRoute.Sitemap[number];
 
 export const revalidate = 0;
+const sitemapLastModified = new Date('2026-05-27');
 
 /**
  * static routes for sitemap, you may change the routes for your own
@@ -217,10 +219,58 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
   }
 
-  return sitemapList;
+  return sitemapList.map((entry) => ({
+    ...entry,
+    lastModified: sitemapLastModified,
+    changeFrequency: getChangeFrequency(entry.url),
+    priority: getPriority(entry.url),
+  }));
 }
 
 function getUrl(href: Href, locale: Locale) {
   const pathname = getLocalePathname({ locale, href });
   return getBaseUrl() + pathname;
+}
+
+function getChangeFrequency(url: string): SitemapEntry['changeFrequency'] {
+  if (
+    url.includes('/weekly-playlist') ||
+    url.includes('/car-pass') ||
+    url.includes('/tune-codes')
+  ) {
+    return 'weekly';
+  }
+
+  if (
+    url.includes('/games/forza-horizon-6') ||
+    url.includes('/tools/forza-horizon-6') ||
+    url.includes('/settings/forza-horizon-6')
+  ) {
+    return 'monthly';
+  }
+
+  return 'yearly';
+}
+
+function getPriority(url: string) {
+  if (url.endsWith('/')) {
+    return 1;
+  }
+
+  if (
+    url.includes('/tools/forza-horizon-6-tune-calculator') ||
+    url.includes('/games/forza-horizon-6') ||
+    url.includes('/waitlist')
+  ) {
+    return 0.9;
+  }
+
+  if (
+    url.includes('/tools/forza-horizon-6') ||
+    url.includes('/settings/forza-horizon-6')
+  ) {
+    return 0.8;
+  }
+
+  return 0.6;
 }
