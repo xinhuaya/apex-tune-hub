@@ -1,3 +1,4 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -93,6 +94,47 @@ const launchSignals = [
     label: 'Playlist loop',
     value: 'Weekly picks and tune notes',
     icon: CalendarDaysIcon,
+  },
+];
+
+const entryPaths = [
+  {
+    title: 'I need a setup now',
+    href: '/tools/forza-horizon-6-tune-calculator',
+    action: 'Open calculator, save the baseline, then test one route.',
+    icon: SlidersHorizontalIcon,
+  },
+  {
+    title: 'I need the right car',
+    href: '/games/forza-horizon-6/best-cars',
+    action: 'Pick role first: road, drift, rally, class, JDM, or weekly.',
+    icon: CarFrontIcon,
+  },
+  {
+    title: 'I need weekly prep',
+    href: '/games/forza-horizon-6/weekly-playlist',
+    action: 'Check restrictions, reward cars, safe picks, and tune links.',
+    icon: CalendarDaysIcon,
+  },
+];
+
+const productPathRows = [
+  {
+    layer: 'Free tool',
+    value: 'Tune calculators, presets, car pages, settings, weekly trackers',
+    reason:
+      'Search visitors get an answer before being asked to join anything.',
+  },
+  {
+    layer: 'Email layer',
+    value: 'Weekly tune drops, Car Pass notes, candidate promotions',
+    reason:
+      'Repeat traffic grows around actual FH6 updates, not generic posts.',
+  },
+  {
+    layer: 'Member layer',
+    value: 'Saved tunes, favorite cars, exportable garage plans',
+    reason: 'Paid features appear only after the free workflow proves useful.',
   },
 ];
 
@@ -242,6 +284,58 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <MapPinnedIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Pick the fastest entry path
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The homepage should send players into a working FH6 task within
+              one click: tune a car, choose a car, or prep the weekly playlist.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {entryPaths.map((path) => {
+              const Icon = path.icon;
+
+              return (
+                <LocaleLink
+                  className="forza-card p-4"
+                  href={path.href}
+                  key={path.title}
+                >
+                  <Icon className="size-5 text-cyan-300" />
+                  <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                    {path.title}
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {path.action}
+                  </p>
+                </LocaleLink>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="forza-panel mb-10 overflow-hidden">
+          <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.7fr_1.2fr_1.3fr]">
+            <span>Layer</span>
+            <span>Value</span>
+            <span>Why it matters</span>
+          </div>
+          {productPathRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.7fr_1.2fr_1.3fr]"
+              key={row.layer}
+            >
+              <span className="font-semibold text-zinc-50">{row.layer}</span>
+              <span className="leading-6 text-cyan-100">{row.value}</span>
+              <span className="leading-6 text-zinc-400">{row.reason}</span>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-6 md:grid-cols-3">
           {[
             [
@@ -266,6 +360,10 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      <ApexNewsletterCta
+        description="Get new FH6 presets, weekly setup picks, Car Pass source notes, and car-database updates as Apex Tune Hub grows."
+        title="Follow the next FH6 tune drop"
+      />
     </main>
   );
 }

@@ -15,6 +15,36 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
+const dropCadenceRows = [
+  {
+    cadence: 'Weekly reset',
+    content: 'Safe picks, restrictions, reward-car notes, and tune paths.',
+  },
+  {
+    cadence: 'Car Pass drop',
+    content: 'Source check, car-page link, first role, and preset direction.',
+  },
+  {
+    cadence: 'Guide update',
+    content: 'New handling fixes, settings pages, and route-specific tests.',
+  },
+];
+
+const waitlistValueCards = [
+  {
+    title: 'Short setup notes',
+    text: 'One useful weekly tune note instead of a long generic newsletter.',
+  },
+  {
+    title: 'Car-page updates',
+    text: 'New candidate promotions, preset matches, and retest labels.',
+  },
+  {
+    title: 'Tool changes',
+    text: 'Calculator refinements when presets, routes, or car behavior change.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -76,6 +106,47 @@ export default async function WaitlistPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-8 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <BellIcon className="size-6 text-cyan-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              What the drop list sends
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The list should be practical: short setup changes, verified weekly
+              links, and car updates that point back to a working tool.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {waitlistValueCards.map((card) => (
+              <article className="forza-card p-4" key={card.title}>
+                <h2 className="text-base font-semibold text-zinc-50">
+                  {card.title}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {card.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="forza-panel mb-8 overflow-hidden">
+          <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_1.4fr]">
+            <span>Trigger</span>
+            <span>Update content</span>
+          </div>
+          {dropCadenceRows.map((row) => (
+            <div
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.8fr_1.4fr]"
+              key={row.cadence}
+            >
+              <span className="font-semibold text-zinc-50">{row.cadence}</span>
+              <span className="leading-6 text-zinc-400">{row.content}</span>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-3">
           {[
             {
