@@ -7,6 +7,8 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -14,9 +16,13 @@ import {
   CarFrontIcon,
   CloudRainIcon,
   GaugeIcon,
+  GitBranchIcon,
+  ListChecksIcon,
   MapIcon,
   MountainIcon,
   RouteIcon,
+  ShieldCheckIcon,
+  SlidersHorizontalIcon,
   TimerIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -78,11 +84,127 @@ const routeTypes = [
   },
 ];
 
-const routeWorkflow = [
-  ['Learn the route', 'Use A or B class before pushing S1 and S2 builds.'],
-  ['Name the problem', 'Understeer, oversteer, wheelspin, slow launch, braking, or speed.'],
-  ['Open a preset', 'Start with the closest tune link, then adjust one group at a time.'],
-  ['Save the note', 'Record car, class, route type, weather, assists, and last-tested date.'],
+const routeWorkflow: FaqItem[] = [
+  {
+    question: '1. Learn the route',
+    answer: 'Use A or B class before pushing S1 and S2 builds.',
+  },
+  {
+    question: '2. Name the problem',
+    answer: 'Understeer, oversteer, wheelspin, slow launch, braking, or speed.',
+  },
+  {
+    question: '3. Open a preset',
+    answer:
+      'Start with the closest tune link, then adjust one group at a time.',
+  },
+  {
+    question: '4. Save the note',
+    answer:
+      'Record car, class, route type, weather, assists, and last-tested date.',
+  },
+];
+
+const routeRegions = [
+  {
+    title: 'Urban route notes',
+    focus: 'Street circuits, traffic recovery, braking markers',
+    firstClass: 'B / A',
+    href: '/games/forza-horizon-6/best-a-class-cars',
+    text: 'Start lower so braking and throttle mistakes are visible before speed hides them.',
+  },
+  {
+    title: 'Mountain route notes',
+    focus: 'Hairpins, elevation changes, touge-style exits',
+    firstClass: 'B / A / S1',
+    href: '/games/forza-horizon-6/best-rally-cars',
+    text: 'Use gearing and rotation notes first, then decide whether the route rewards more power.',
+  },
+  {
+    title: 'Wet-road route notes',
+    focus: 'Long braking zones, mid-corner recovery, AWD stability',
+    firstClass: 'A / S1',
+    href: '/games/forza-horizon-6/guides/fix-unstable-braking',
+    text: 'Treat wet roads as a braking and recovery test, not only a tire-grip test.',
+  },
+  {
+    title: 'Dirt route notes',
+    focus: 'Suspension travel, launch response, rough exits',
+    firstClass: 'A / S1',
+    href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+    text: 'Record bumps and crests separately so the fix does not become a generic rally setup.',
+  },
+  {
+    title: 'Drift zone notes',
+    focus: 'Initiation, linked transitions, angle recovery',
+    firstClass: 'B / A / S1',
+    href: '/games/forza-horizon-6/best-drift-cars',
+    text: 'Build a drift note around recovery and repeatability before chasing high power.',
+  },
+  {
+    title: 'Speed route notes',
+    focus: 'Final drive, aero, top-end pull, long straight evidence',
+    firstClass: 'S1 / S2',
+    href: '/games/forza-horizon-6/best-s2-class-cars',
+    text: 'Use S2 only when the route actually gives the car time to use top speed.',
+  },
+];
+
+const classLearningLadder = [
+  {
+    title: 'B class scouting',
+    href: '/games/forza-horizon-6/best-b-class-cars',
+    text: 'Use this for first reads on unfamiliar city, mountain, and technical roads.',
+  },
+  {
+    title: 'A class baseline',
+    href: '/games/forza-horizon-6/best-a-class-cars',
+    text: 'Use this for the main evergreen route-testing layer before moving to faster classes.',
+  },
+  {
+    title: 'S1 route pressure',
+    href: '/games/forza-horizon-6/best-s1-class-cars',
+    text: 'Use this after braking and exit behavior are repeatable in lower classes.',
+  },
+  {
+    title: 'S2 speed proof',
+    href: '/games/forza-horizon-6/best-s2-class-cars',
+    text: 'Use this only when top speed or high aero grip clearly beats a cleaner S1 setup.',
+  },
+];
+
+const plannerFields = [
+  'Route type',
+  'Weather or surface',
+  'Class and PI',
+  'Car and drivetrain',
+  'Main handling issue',
+  'Preset or calculator URL',
+  'Route test result',
+  'Last tested date',
+];
+
+const nextPlannerLinks = [
+  {
+    title: 'Car database',
+    href: '/games/forza-horizon-6/cars',
+    text: 'Attach route notes to exact cars, stock class, role, and candidate status.',
+  },
+  {
+    title: 'Tune presets',
+    href: '/tools/forza-horizon-6-tune-presets',
+    text: 'Start from a shareable baseline before saving route-specific adjustments.',
+  },
+  {
+    title: 'Weekly playlist',
+    href: '/games/forza-horizon-6/weekly-playlist',
+    text: 'Use route restrictions and rewards to decide which notes deserve updates.',
+  },
+  {
+    title: 'Tune codes',
+    href: '/tools/forza-horizon-6-tune-codes',
+    text: 'Only promote route notes into real share-code rows after in-game verification.',
+  },
 ];
 
 const faqs: FaqItem[] = [
@@ -129,6 +251,27 @@ export default function ForzaHorizon6JapanMapPage() {
             { name: 'Japan Map Planner', path: pathname },
           ]),
           buildArticleJsonLd({ title, description, path: pathname }),
+          buildHowToJsonLd({
+            title: 'How to plan a Forza Horizon 6 Japan route tune',
+            description:
+              'A route-first workflow for choosing class, preset, car, and testing notes for Forza Horizon 6 Japan routes.',
+            path: pathname,
+            steps: routeWorkflow,
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Japan route types',
+            items: routeTypes.map((route) => ({
+              name: route.title,
+              path: route.guide,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Japan route planning links',
+            items: nextPlannerLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(faqs),
         ]}
       />
@@ -175,15 +318,66 @@ export default function ForzaHorizon6JapanMapPage() {
               <h2 className="mt-4 text-xl font-semibold">Planner rule</h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
                 Route type decides the first tune direction. Use a lower class
-                to learn the road, then promote the same car only when the
-                route feels repeatable.
+                to learn the road, then promote the same car only when the route
+                feels repeatable.
               </p>
+              <div className="mt-5 grid gap-2">
+                {[
+                  `${routeTypes.length} route types mapped to tune paths.`,
+                  `${routeRegions.length} route-note groups for future expansion.`,
+                  'This page does not claim to reproduce the official map.',
+                ].map((item) => (
+                  <div
+                    className="flex items-start gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm leading-6 text-zinc-300"
+                    key={item}
+                  >
+                    <ShieldCheckIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <GitBranchIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Japan route-note framework
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Route pages should not become generic scenery pages. Each route
+              note needs a surface, class target, handling problem, tune link,
+              and a place to send the reader next.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {routeRegions.map((region) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                href={region.href}
+                key={region.title}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  {region.firstClass}
+                </p>
+                <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                  {region.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {region.focus}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-zinc-500">
+                  {region.text}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-3">
           {routeTypes.map((route) => {
             const Icon = route.icon;
@@ -216,20 +410,110 @@ export default function ForzaHorizon6JapanMapPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <SlidersHorizontalIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Class ladder for learning routes
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Use the class ladder to decide when a car should stay easy to
+                read and when the route is ready for higher-speed testing.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-4">
+              {classLearningLadder.map((item) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-fuchsia-300/40"
+                  href={item.href}
+                  key={item.href}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.text}
+                  </p>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.8fr_1.4fr]">
             <span>Step</span>
             <span>What to record</span>
           </div>
-          {routeWorkflow.map(([step, note]) => (
+          {routeWorkflow.map((step) => (
             <div
               className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.8fr_1.4fr]"
-              key={step}
+              key={step.question}
             >
-              <span className="font-semibold text-zinc-50">{step}</span>
-              <span className="text-zinc-400">{note}</span>
+              <span className="font-semibold text-zinc-50">
+                {step.question}
+              </span>
+              <span className="text-zinc-400">{step.answer}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Route note fields to collect later
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              These fields make the page ready for a future route database or
+              member notes feature without requiring fake map data today.
+            </p>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {plannerFields.map((field) => (
+              <div
+                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200"
+                key={field}
+              >
+                {field}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Internal route network
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Where to go after picking a Japan route type
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              These links keep the route planner connected to the useful parts
+              of Apex Tune Hub: cars, presets, weekly restrictions, and future
+              verified share-code rows.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {nextPlannerLinks.map((link) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40 hover:text-cyan-100"
+                href={link.href}
+                key={link.href}
+              >
+                <strong className="block text-zinc-100">{link.title}</strong>
+                <span className="mt-2 block leading-6 text-zinc-400">
+                  {link.text}
+                </span>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
       </section>
 
