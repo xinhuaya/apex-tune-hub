@@ -6,6 +6,8 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
@@ -14,9 +16,13 @@ import {
   CarIcon,
   ClipboardCheckIcon,
   GaugeIcon,
+  GitBranchIcon,
   ListChecksIcon,
   MailIcon,
+  RadioTowerIcon,
+  RouteIcon,
   ShieldCheckIcon,
+  SlidersHorizontalIcon,
   TrophyIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -68,6 +74,29 @@ const weeklyActionQueue = [
   'Send a short tune-drop email when the weekly page changes.',
 ];
 
+const weeklyPublishingSteps: FaqItem[] = [
+  {
+    question: '1. Verify the reset details',
+    answer:
+      'Check reward cars, event restrictions, surface type, class limits, and source status before naming a final recommendation.',
+  },
+  {
+    question: '2. Pick safe first builds',
+    answer:
+      'Choose one conservative car and tune path for each event type before adding aggressive alternatives.',
+  },
+  {
+    question: '3. Attach internal links',
+    answer:
+      'Connect every event note to a car page, preset URL, calculator, tune-code workflow, or best-car hub.',
+  },
+  {
+    question: '4. Publish the short setup note',
+    answer:
+      'Keep the weekly update compact: restriction, safe car, tune link, route problem, and retest status.',
+  },
+];
+
 const trustRules = [
   {
     title: 'Do not guess rewards',
@@ -80,6 +109,65 @@ const trustRules = [
   {
     title: 'Update links every reset',
     text: 'Each reset should point players to the best current car list, calculator state, preset URL, or Car Pass tracker row.',
+  },
+];
+
+const weeklyFieldTemplate = [
+  'Week or season label',
+  'Event name',
+  'Reward car or prize',
+  'Class restriction',
+  'Drivetrain restriction',
+  'Surface and route type',
+  'Safe car pick',
+  'Tune or preset URL',
+  'Last verified time',
+  'Update status',
+];
+
+const retentionLoops = [
+  {
+    title: 'Search Console loop',
+    href: '/games/forza-horizon-6/faq',
+    text: 'Use rising weekly queries to decide which event note, car page, or guide needs expansion.',
+  },
+  {
+    title: 'Newsletter loop',
+    href: '/waitlist',
+    text: 'Send one short weekly setup note instead of a long generic newsletter.',
+  },
+  {
+    title: 'Tune-code loop',
+    href: '/tools/forza-horizon-6-tune-codes',
+    text: 'Promote verified weekly setups into code rows only after source, car, class, and route are clear.',
+  },
+  {
+    title: 'Car-page loop',
+    href: '/games/forza-horizon-6/cars',
+    text: 'When a reward car is verified, connect the weekly note back to its car detail page.',
+  },
+];
+
+const weeklyContentSlots = [
+  {
+    title: 'Confirmed this week',
+    icon: ShieldCheckIcon,
+    text: 'Use only after rewards, restrictions, and event types are verified.',
+  },
+  {
+    title: 'Safe baseline picks',
+    icon: CarIcon,
+    text: 'One reliable car and preset per event type keeps the page useful fast.',
+  },
+  {
+    title: 'Needs retest',
+    icon: RadioTowerIcon,
+    text: 'Use this slot when a patch, route, or reward change makes an older setup uncertain.',
+  },
+  {
+    title: 'Next update',
+    icon: CalendarDaysIcon,
+    text: 'Queue pages to refresh: reward car, class hub, preset, guide, or tune-code row.',
   },
 ];
 
@@ -105,7 +193,8 @@ const weeklyPrepLinks = [
     title: 'Road championship prep',
     eventType: 'Road or street',
     carLink: '/games/forza-horizon-6/best-road-racing-cars',
-    tuneLink: '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
+    tuneLink:
+      '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
     guideLink: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
   },
   {
@@ -119,14 +208,16 @@ const weeklyPrepLinks = [
     title: 'Dirt and rally prep',
     eventType: 'Dirt or rally',
     carLink: '/games/forza-horizon-6/best-rally-cars',
-    tuneLink: '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
+    tuneLink:
+      '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
     guideLink: '/games/forza-horizon-6/guides/beginner-tuning-guide',
   },
   {
     title: 'Speed and drag prep',
     eventType: 'Speed trap or drag',
     carLink: '/games/forza-horizon-6/best-cars',
-    tuneLink: '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
+    tuneLink:
+      '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
     guideLink: '/tools/forza-horizon-6-gear-ratio-calculator',
   },
 ];
@@ -178,18 +269,28 @@ export default function WeeklyPlaylistPage() {
             { name: 'Weekly Playlist', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
-          buildFaqJsonLd(weeklyFaqs),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: 'Forza Horizon 6 weekly playlist preparation links',
-            itemListElement: weeklyPrepLinks.map((item, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
+          buildHowToJsonLd({
+            title: 'How to update the Forza Horizon 6 weekly playlist page',
+            description:
+              'A repeatable workflow for publishing FH6 weekly playlist notes without guessing rewards or restrictions.',
+            path: pathname,
+            steps: weeklyPublishingSteps,
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 weekly playlist preparation links',
+            items: weeklyPrepLinks.map((item) => ({
               name: item.title,
-              url: `https://apextunehub.com${item.carLink}`,
+              path: item.carLink,
             })),
-          },
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 weekly playlist retention links',
+            items: retentionLoops.map((item) => ({
+              name: item.title,
+              path: item.href,
+            })),
+          }),
+          buildFaqJsonLd(weeklyFaqs),
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -255,10 +356,37 @@ export default function WeeklyPlaylistPage() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
-            <ListChecksIcon className="size-6 text-amber-300" />
+            <GitBranchIcon className="size-6 text-cyan-300" />
             <h2 className="mt-4 text-2xl font-semibold">
-              Weekly reset board
+              Weekly publishing workflow
             </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              This turns the page into a repeatable operating system: verify the
+              reset, pick safe builds, attach internal links, then publish a
+              compact update that can be reused in email and social posts.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {weeklyPublishingSteps.map((step) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={step.question}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {step.question}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {step.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <ListChecksIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">Weekly reset board</h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
               Use this board as the repeatable page structure every playlist
               reset: verify, pick, link, and send the tune drop.
@@ -281,6 +409,42 @@ export default function WeeklyPlaylistPage() {
           </div>
         </div>
 
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <SlidersHorizontalIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Weekly content slots
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Keep the live page structured even when official details are
+                incomplete. Slots make it clear what is verified, what is safe,
+                and what still needs retesting.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {weeklyContentSlots.map((slot) => {
+                const Icon = slot.icon;
+
+                return (
+                  <article
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                    key={slot.title}
+                  >
+                    <Icon className="size-5 text-cyan-300" />
+                    <h3 className="mt-3 text-sm font-semibold text-zinc-100">
+                      {slot.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {slot.text}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1fr_1.2fr]">
             <span>Section</span>
@@ -297,6 +461,31 @@ export default function WeeklyPlaylistPage() {
               <span className="text-zinc-400">{action}</span>
             </div>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <RouteIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Weekly update fields to collect
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These fields prepare the page for future structured weekly
+                entries without forcing fake current-week data into the site.
+              </p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {weeklyFieldTemplate.map((field) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200"
+                  key={field}
+                >
+                  {field}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -408,6 +597,36 @@ export default function WeeklyPlaylistPage() {
                   ))}
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Retention loop
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Turn weekly updates into repeat visits
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The weekly page should create a reason to come back: short setup
+              notes, clear verified status, and links to pages that can improve
+              after every reset.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {retentionLoops.map((loop) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40 hover:text-cyan-100"
+                href={loop.href}
+                key={loop.href}
+              >
+                <strong className="block text-zinc-100">{loop.title}</strong>
+                <span className="mt-2 block leading-6 text-zinc-400">
+                  {loop.text}
+                </span>
+              </LocaleLink>
             ))}
           </div>
         </div>
