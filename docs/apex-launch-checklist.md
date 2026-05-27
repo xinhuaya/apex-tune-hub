@@ -33,6 +33,8 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Confirm `/sitemap.xml` includes FH6 guides, preset pages, and car pages.
 - [x] Confirm `/sitemap.xml` includes `lastmod`, `changefreq`, and `priority`.
 - [x] Confirm `/robots.txt` blocks dashboard and account pages, but not public FH6 settings pages.
+- [x] Publish `/games/forza-horizon-6/official-sources` for official FH6 source tracking.
+- [x] Publish `/llms.txt` and `/feed.xml` for AI/RSS discovery.
 
 ## After Deploy
 
@@ -40,6 +42,7 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Submit `/sitemap.xml` in Google Search Console.
 - [x] Submit `/sitemap.xml` in Bing Webmaster Tools.
 - [x] Submit public sitemap URLs through IndexNow.
+- [x] Verify `/games/forza-horizon-6/official-sources`, `/llms.txt`, and `/feed.xml` return `200`.
 - [ ] Test the update-list form with a real email address.
 - [ ] Check that confirmation email subject says `You are on the Apex Tune Hub update list`.
 - [ ] Search `site:apextunehub.com forza horizon 6` after Google starts indexing.
