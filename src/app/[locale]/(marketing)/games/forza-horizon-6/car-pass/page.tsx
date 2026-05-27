@@ -229,6 +229,79 @@ const sourceAuditCards = [
   },
 ];
 
+const officialSourceSnapshot = [
+  {
+    label: 'Confirmed total',
+    value: '30 Car Pass cars',
+    source: 'Xbox Store listing',
+    href: officialSourceCards[0].href,
+  },
+  {
+    label: 'Cadence',
+    value: 'One new vehicle each week from May 19',
+    source: 'Xbox Store listing',
+    href: officialSourceCards[0].href,
+  },
+  {
+    label: 'Included with',
+    value: 'Deluxe, Premium, and Premium Upgrade',
+    source: 'Forza official resources',
+    href: officialSourceCards[1].href,
+  },
+  {
+    label: 'Tracker policy',
+    value: 'Do not name future weekly cars until source-visible',
+    source: 'Apex editorial rule',
+    href: '/games/forza-horizon-6/faq',
+  },
+];
+
+const weeklyCarRowTemplate = [
+  {
+    field: 'Source status',
+    rule: 'Official, source-visible, community report, or to verify.',
+  },
+  {
+    field: 'First tune role',
+    rule: 'Road, drift, rally, drag, street, weekly, collection, or unknown.',
+  },
+  {
+    field: 'Setup link',
+    rule: 'Calculator state, preset URL, car page, or guide path.',
+  },
+  {
+    field: 'Update action',
+    rule: 'Create car page, retest route, add code row, or wait for source.',
+  },
+];
+
+const carPassRetentionPaths = [
+  {
+    title: 'When the car is road-focused',
+    link: '/games/forza-horizon-6/best-road-racing-cars',
+    action:
+      'Attach a safe road preset and compare it against the road candidate hub.',
+  },
+  {
+    title: 'When the car is drift-focused',
+    link: '/tools/forza-horizon-6-drift-tune-calculator',
+    action:
+      'Send readers to drift setup, then back to the car page once a role is clear.',
+  },
+  {
+    title: 'When the car is a weekly reward',
+    link: '/games/forza-horizon-6/weekly-playlist',
+    action:
+      'Add the event restriction, safe pick, setup row, and retest status.',
+  },
+  {
+    title: 'When a real share code exists',
+    link: '/tools/forza-horizon-6-tune-codes',
+    action:
+      'Promote only after car, source, creator, class, and route are recorded.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -620,6 +693,108 @@ export default function CarPassTrackerPage() {
                 </article>
               );
             })}
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <RadioTowerIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Official source snapshot
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These are the facts the tracker can safely repeat. Future weekly
+                car names should stay out of the live page until they have the
+                same source clarity.
+              </p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                Source check: May 27, 2026
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {officialSourceSnapshot.map((item) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={item.label}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    {item.label}
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold text-zinc-100">
+                    {item.value}
+                  </h3>
+                  <a
+                    className="mt-3 inline-flex text-sm font-semibold text-amber-200 hover:text-amber-100"
+                    href={item.href}
+                    rel="noreferrer"
+                    target={
+                      item.href.startsWith('https://') ? '_blank' : undefined
+                    }
+                  >
+                    {item.source}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="forza-panel p-5">
+            <div className="flex items-center gap-3">
+              <ListChecksIcon className="size-5 text-amber-300" />
+              <h2 className="text-xl font-semibold">Weekly car row template</h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              When the first real weekly rows are added, this template keeps the
+              tracker useful without creating a thin list of car names.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {weeklyCarRowTemplate.map((item) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={item.field}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.field}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.rule}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel p-5">
+            <div className="flex items-center gap-3">
+              <GitBranchIcon className="size-5 text-fuchsia-300" />
+              <h2 className="text-xl font-semibold">
+                Car Pass retention paths
+              </h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Every verified Car Pass row should send readers deeper into one of
+              these paths, then back into the weekly tracker when the next drop
+              arrives.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {carPassRetentionPaths.map((item) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-cyan-300/40"
+                  href={item.link}
+                  key={item.title}
+                >
+                  <strong className="text-sm text-zinc-100">
+                    {item.title}
+                  </strong>
+                  <span className="mt-1 block text-sm leading-6 text-zinc-400">
+                    {item.action}
+                  </span>
+                </LocaleLink>
+              ))}
+            </div>
           </div>
         </div>
 
