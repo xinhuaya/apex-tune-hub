@@ -314,6 +314,7 @@ function ToolShell({
   result: CalculationResult;
   shareUrl: string;
 }) {
+  const [copiedNotes, setCopiedNotes] = useState(false);
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
   const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
@@ -324,6 +325,8 @@ function ToolShell({
 
   async function copyResult() {
     await writeClipboard(formatResultForClipboard(result));
+    setCopiedNotes(true);
+    window.setTimeout(() => setCopiedNotes(false), 1800);
   }
 
   async function copyPresetUrl() {
@@ -382,7 +385,7 @@ function ToolShell({
               type="button"
               onClick={copyResult}
             >
-              Copy setup notes
+              {copiedNotes ? 'Notes copied' : 'Copy setup notes'}
             </button>
             <button
               className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-amber-300/30 bg-amber-300/10 px-4 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/15 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
