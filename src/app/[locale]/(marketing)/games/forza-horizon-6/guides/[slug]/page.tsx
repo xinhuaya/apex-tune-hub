@@ -144,6 +144,7 @@ export default async function ForzaHorizon6GuidePage({
   const relatedGuides = getRelatedGuides(guide);
   const pathname = `/games/forza-horizon-6/guides/${guide.slug}`;
   const guideCluster = getGuideCluster(guide);
+  const primaryActionLabel = guide.primaryCta.label.replace(/^Open\s+/i, '');
   const guideActionCards = [
     {
       title: 'Problem',
@@ -191,7 +192,7 @@ export default async function ForzaHorizon6GuidePage({
     ['Result', 'Keep, undo, or retest the change with the same car and route.'],
     [
       'Next action',
-      `Open ${guide.primaryCta.label} or a related guide if the issue remains.`,
+      `Open the ${primaryActionLabel} or a related guide if the issue remains.`,
     ],
   ];
   const guideDecisionCards = [
