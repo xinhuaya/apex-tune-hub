@@ -1,3 +1,4 @@
+import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -189,6 +190,81 @@ const guideLinks = [
   },
 ];
 
+const roleDecisionMatrix = [
+  {
+    playerGoal: 'Win weekly events safely',
+    firstPage: 'Weekly Playlist',
+    href: '/games/forza-horizon-6/weekly-playlist',
+    nextAction: 'Pick a legal car, then attach one stable preset.',
+  },
+  {
+    playerGoal: 'Find a road racing car',
+    firstPage: 'Best Road Racing Cars',
+    href: '/games/forza-horizon-6/best-road-racing-cars',
+    nextAction: 'Compare A, S1, and S2 candidates before adding power.',
+  },
+  {
+    playerGoal: 'Build a drift car',
+    firstPage: 'Best Drift Cars',
+    href: '/games/forza-horizon-6/best-drift-cars',
+    nextAction: 'Open the drift calculator and test angle recovery.',
+  },
+  {
+    playerGoal: 'Use a Japan/JDM favorite',
+    firstPage: 'Best JDM Cars',
+    href: '/games/forza-horizon-6/best-jdm-cars',
+    nextAction: 'Choose road, drift, touge, rally, or weekly use first.',
+  },
+  {
+    playerGoal: 'Tune by class',
+    firstPage: 'Class hubs',
+    href: '/games/forza-horizon-6/best-a-class-cars',
+    nextAction: 'Start with B, A, or S1 before pushing into S2.',
+  },
+];
+
+const recommendationStatusCards = [
+  {
+    title: 'Candidate',
+    text: 'A plausible car with clear role, class, and setup direction, but no route evidence yet.',
+  },
+  {
+    title: 'Needs testing',
+    text: 'A useful search or garage target that still needs route, class, or weekly-event notes.',
+  },
+  {
+    title: 'Preset linked',
+    text: 'The car has a calculator state or preset URL that explains the first tune path.',
+  },
+  {
+    title: 'Recommended',
+    text: 'Future state: the car has repeatable route evidence and a reason to beat alternatives.',
+  },
+];
+
+const garageExpansionRows = [
+  {
+    cluster: 'Role pages',
+    current: `${bestCarGuides.length} hubs`,
+    next: 'Add route evidence, preset links, and screenshots after testing.',
+  },
+  {
+    cluster: 'Class pages',
+    current: `${classCarGuides.length} hubs`,
+    next: 'Split B, A, S1, and S2 recommendations by weekly and route use.',
+  },
+  {
+    cluster: 'Manufacturer pages',
+    current: `${makeCarGuides.length} hubs`,
+    next: 'Use Toyota, Honda, and Mazda pages as Japan-focused car clusters.',
+  },
+  {
+    cluster: 'Car database',
+    current: '10 starter pages',
+    next: 'Promote only the cars that earn specific tune and route notes.',
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -369,6 +445,27 @@ export default function BestCarsPage() {
           </div>
         </div>
 
+        <div className="forza-panel mb-6 overflow-hidden">
+          <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1fr_1.3fr]">
+            <span>Player goal</span>
+            <span>Open first</span>
+            <span>Next action</span>
+          </div>
+          {roleDecisionMatrix.map((row) => (
+            <LocaleLink
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[1fr_1fr_1.3fr]"
+              href={row.href}
+              key={row.playerGoal}
+            >
+              <span className="font-semibold text-zinc-50">
+                {row.playerGoal}
+              </span>
+              <span className="text-amber-200">{row.firstPage}</span>
+              <span className="leading-6 text-zinc-400">{row.nextAction}</span>
+            </LocaleLink>
+          ))}
+        </div>
+
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1fr_0.7fr_1.5fr]">
             <span>Category</span>
@@ -388,6 +485,55 @@ export default function BestCarsPage() {
               <span className="text-zinc-400">{row.note}</span>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="forza-panel p-5">
+            <ShieldCheckIcon className="size-6 text-cyan-300" />
+            <h2 className="mt-4 text-xl font-semibold">
+              Recommendation status ladder
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              This keeps the page honest while still letting it rank for
+              best-car intent. A car should not look final until its route,
+              class, and tune evidence are visible.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {recommendationStatusCards.map((item) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={item.title}
+                >
+                  <h3 className="text-sm font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {item.text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel overflow-hidden">
+            <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-amber-200 md:grid-cols-[0.9fr_0.7fr_1.3fr]">
+              <span>Cluster</span>
+              <span>Current</span>
+              <span>Next expansion</span>
+            </div>
+            {garageExpansionRows.map((row) => (
+              <div
+                className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.9fr_0.7fr_1.3fr]"
+                key={row.cluster}
+              >
+                <span className="font-semibold text-zinc-50">
+                  {row.cluster}
+                </span>
+                <span className="text-cyan-200">{row.current}</span>
+                <span className="leading-6 text-zinc-400">{row.next}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
@@ -530,6 +676,10 @@ export default function BestCarsPage() {
           </LocaleLink>
         </div>
       </section>
+      <ApexNewsletterCta
+        description="Get FH6 best-car updates, candidate promotions, preset links, and weekly event testing notes as the garage grows."
+        title="Follow the FH6 best-car list"
+      />
     </main>
   );
 }
