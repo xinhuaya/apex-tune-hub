@@ -13,6 +13,15 @@ type BreadcrumbItem = {
 const siteName = 'Apex Tune Hub';
 const modifiedDate = '2026-05-28';
 
+function buildOrganizationJsonLd() {
+  return {
+    '@type': 'Organization',
+    name: siteName,
+    url: getBaseUrl(),
+    logo: absoluteUrl('/android-chrome-512x512.png'),
+  };
+}
+
 export function absoluteUrl(path: string) {
   return `${getBaseUrl()}${path}`;
 }
@@ -67,11 +76,7 @@ export function buildArticleJsonLd({
       name: siteName,
       url: getBaseUrl(),
     },
-    publisher: {
-      '@type': 'Organization',
-      name: siteName,
-      url: getBaseUrl(),
-    },
+    publisher: buildOrganizationJsonLd(),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': absoluteUrl(path),
@@ -129,11 +134,7 @@ export function buildSoftwareApplicationJsonLd({
       priceCurrency: 'USD',
     },
     featureList,
-    publisher: {
-      '@type': 'Organization',
-      name: siteName,
-      url: getBaseUrl(),
-    },
+    publisher: buildOrganizationJsonLd(),
   };
 }
 
