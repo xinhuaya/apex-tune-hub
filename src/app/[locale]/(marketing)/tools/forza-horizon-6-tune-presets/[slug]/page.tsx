@@ -12,6 +12,8 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildItemListJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
   calculateTune,
@@ -27,7 +29,16 @@ import {
   getRelatedForzaTunePresets,
   type ForzaTunePreset,
 } from '@/lib/tuning/forza-horizon-6-presets';
-import { ArrowRightIcon, ClipboardListIcon, GaugeIcon } from 'lucide-react';
+import {
+  ArrowRightIcon,
+  ClipboardCheckIcon,
+  ClipboardListIcon,
+  GaugeIcon,
+  GitBranchIcon,
+  LinkIcon,
+  RouteIcon,
+  ShieldCheckIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -69,7 +80,9 @@ const issueGuideMap: Record<HandlingIssue, { label: string; href: string }> = {
   },
 };
 
-const classGuideMap: Partial<Record<ClassBand, { label: string; href: string }>> = {
+const classGuideMap: Partial<
+  Record<ClassBand, { label: string; href: string }>
+> = {
   B: {
     label: 'Best B class cars',
     href: '/games/forza-horizon-6/best-b-class-cars',
@@ -158,7 +171,8 @@ function getPresetGuideLinks(preset: ForzaTunePreset) {
   ].filter((link): link is { label: string; href: string } => Boolean(link));
 
   return links.filter(
-    (link, index) => links.findIndex((item) => item.href === link.href) === index
+    (link, index) =>
+      links.findIndex((item) => item.href === link.href) === index
   );
 }
 
@@ -219,6 +233,59 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
       )}, then adjust the live calculator if your build has a different drivetrain, class, or handling problem.`,
     },
   ];
+  const presetValidationSteps = [
+    {
+      question: '1. Confirm the preset context',
+      answer: `Use this preset only when the car matches ${preset.input.classBand} class, ${preset.input.drivetrain}, ${preset.input.raceType}, and the first problem is ${preset.input.handlingIssue}.`,
+    },
+    {
+      question: '2. Open the live calculator state',
+      answer:
+        'Use the calculator link before testing so the baseline remains adjustable instead of becoming a static copy-paste tune.',
+    },
+    {
+      question: '3. Test one route twice',
+      answer:
+        'Drive the same route, weather, assists, and input device twice before deciding whether the preset helped.',
+    },
+    {
+      question: '4. Save only repeatable changes',
+      answer:
+        'Move from this baseline to a car-specific setup only after the same symptom improves across repeatable runs.',
+    },
+  ];
+  const presetWorkflowCards = [
+    {
+      title: 'Start with the symptom',
+      text: `This page is for ${preset.input.handlingIssue} first. Avoid changing gearing, alignment, and differential all at once.`,
+      icon: RouteIcon,
+    },
+    {
+      title: 'Open calculator state',
+      text: 'The live preset keeps class, drivetrain, race type, issue, and style editable for your exact build.',
+      icon: GaugeIcon,
+    },
+    {
+      title: 'Record car fit',
+      text: `Start with cars similar to ${preset.targetCars.slice(0, 2).join(' or ')} before promoting the preset as a stronger recommendation.`,
+      icon: ClipboardCheckIcon,
+    },
+    {
+      title: 'Handoff to guides',
+      text: 'Use the guide path to understand why the preset changes that slider group before making deeper edits.',
+      icon: LinkIcon,
+    },
+  ];
+  const presetScorecardRows = [
+    [
+      'Preset context',
+      `${preset.input.classBand} ${preset.input.drivetrain} ${preset.input.raceType}`,
+    ],
+    ['Primary issue', preset.input.handlingIssue],
+    ['Driving style', preset.input.drivingStyle],
+    ['Target cars', preset.targetCars.join(', ')],
+    ['Related presets', `${relatedPresets.length} closest alternatives`],
+  ];
 
   return (
     <main className="forza-page text-zinc-50">
@@ -237,6 +304,26 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
             title: preset.title,
             description: preset.description,
             path: pathname,
+          }),
+          buildHowToJsonLd({
+            title: `How to test ${preset.h1}`,
+            description: preset.description,
+            path: pathname,
+            steps: presetValidationSteps,
+          }),
+          buildItemListJsonLd({
+            title: `${preset.h1} guide path`,
+            items: guideLinks.map((link) => ({
+              name: link.label,
+              path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: `${preset.h1} related presets`,
+            items: relatedPresets.map((item) => ({
+              name: item.h1,
+              path: `/tools/forza-horizon-6-tune-presets/${item.slug}`,
+            })),
           }),
           buildFaqJsonLd(presetFaqs),
         ]}
@@ -299,6 +386,36 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div className="space-y-4">
           <article className="forza-panel p-5">
+            <GitBranchIcon className="size-6 text-fuchsia-300" />
+            <h2 className="mt-4 text-xl font-semibold">Preset execution map</h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Use this map to turn a shareable preset URL into a repeatable test
+              path. The goal is a car-specific setup only after the baseline
+              proves useful.
+            </p>
+            <div className="mt-5 grid gap-3">
+              {presetWorkflowCards.map((card) => {
+                const Icon = card.icon;
+
+                return (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                    key={card.title}
+                  >
+                    <Icon className="size-5 text-cyan-300" />
+                    <h3 className="mt-3 text-sm font-semibold text-zinc-100">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {card.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+
+          <article className="forza-panel p-5">
             <ClipboardListIcon className="size-6 text-amber-300" />
             <h2 className="mt-4 text-xl font-semibold">When to use it</h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
@@ -338,7 +455,29 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
           </article>
 
           <article className="forza-panel p-5">
-            <h2 className="text-xl font-semibold">Guide path for this preset</h2>
+            <ShieldCheckIcon className="size-6 text-cyan-300" />
+            <h2 className="mt-4 text-xl font-semibold">Preset scorecard</h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Check this before saving the preset as a car-specific tune. If the
+              context does not match, open the live calculator and adjust first.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {presetScorecardRows.map(([metric, value]) => (
+                <div
+                  className="grid gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm md:grid-cols-[0.7fr_1.3fr]"
+                  key={metric}
+                >
+                  <span className="font-semibold text-zinc-100">{metric}</span>
+                  <span className="leading-6 text-zinc-400">{value}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="forza-panel p-5">
+            <h2 className="text-xl font-semibold">
+              Guide path for this preset
+            </h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
               Use these pages to move from a baseline preset into the exact
               handling fix, event setup, class list, and testing checklist.
@@ -387,16 +526,28 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
 
       <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
         <div className="forza-panel p-5">
-          <h2 className="text-xl font-semibold">Testing checklist</h2>
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            {preset.checklist.map((item) => (
-              <div
-                className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
-                key={item}
-              >
-                {item}
-              </div>
-            ))}
+          <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">Testing checklist</h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Run this before copying the generated baseline into a car page,
+                Discord note, or tune-code workflow.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {[
+                ...presetValidationSteps.map((step) => step.answer),
+                ...preset.checklist,
+              ].map((item) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-zinc-300"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
           <pre className="mt-5 max-h-56 overflow-auto rounded-md border border-white/10 bg-black/40 p-4 text-xs leading-5 text-zinc-400">
             {formatResultForClipboard(result)}
