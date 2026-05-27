@@ -222,6 +222,82 @@ const weeklyPrepLinks = [
   },
 ];
 
+const weeklyEventTemplates = [
+  {
+    title: 'Championship race',
+    restriction: 'Class, drivetrain, surface, and weather',
+    safePick: 'Start with stable A/S1 road or rally candidates.',
+    tunePath: '/tools/forza-horizon-6-tune-calculator',
+    guidePath: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+  },
+  {
+    title: 'Drift zone',
+    restriction: 'Target score, zone shape, and car layout',
+    safePick: 'Use a repeatable RWD baseline before chasing angle.',
+    tunePath: '/tools/forza-horizon-6-drift-tune-calculator',
+    guidePath: '/games/forza-horizon-6/guides/japan-drift-setup',
+  },
+  {
+    title: 'Speed trap or speed zone',
+    restriction: 'Run-up length, surface, traffic, and top-speed demand',
+    safePick: 'Pick a car that reaches useful speed without unstable exits.',
+    tunePath: '/tools/forza-horizon-6-gear-ratio-calculator',
+    guidePath: '/games/forza-horizon-6/japan-map',
+  },
+  {
+    title: 'Reward-car spotlight',
+    restriction: 'Source status, unlock window, and car role',
+    safePick: 'Link the car page only after reward details are verified.',
+    tunePath: '/games/forza-horizon-6/cars',
+    guidePath: '/games/forza-horizon-6/car-pass',
+  },
+];
+
+const weeklyEmailBlocks = [
+  {
+    label: 'Subject line',
+    example: 'FH6 weekly safe picks: road, drift, speed, and reward notes',
+  },
+  {
+    label: 'Opening line',
+    example:
+      'This week, start with the verified restrictions first, then use these conservative tune paths.',
+  },
+  {
+    label: 'Setup rows',
+    example:
+      'Event, restriction, safe car, tune link, one weakness, and retest status.',
+  },
+  {
+    label: 'Return link',
+    example:
+      'Send readers back to the weekly tracker so Search Console, email, and tune pages reinforce each other.',
+  },
+];
+
+const weeklyStatusLadder = [
+  {
+    status: 'Draft',
+    meaning:
+      'Use while rewards or restrictions are still unconfirmed. Do not name final cars yet.',
+  },
+  {
+    status: 'Verified',
+    meaning:
+      'Use after event type, restriction, reward, and source timing are checked.',
+  },
+  {
+    status: 'Tune linked',
+    meaning:
+      'Use after the row has a calculator state, preset URL, guide, or car-page path.',
+  },
+  {
+    status: 'Retest needed',
+    meaning:
+      'Use when a patch, route condition, or new car option may change the recommendation.',
+  },
+];
+
 const pathname = '/games/forza-horizon-6/weekly-playlist';
 const title = 'Forza Horizon 6 Weekly Playlist Tracker - Apex Tune Hub';
 const description =
@@ -598,6 +674,119 @@ export default function WeeklyPlaylistPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <CalendarDaysIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Weekly event template cards
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These cards are the working template for future live playlist
+                updates. Each row should stay small enough to refresh quickly:
+                restriction, safe pick, tune path, and one guide route.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {weeklyEventTemplates.map((item) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={item.title}
+                >
+                  <h3 className="text-base font-semibold text-zinc-100">
+                    {item.title}
+                  </h3>
+                  <dl className="mt-3 grid gap-3 text-sm leading-6">
+                    <div>
+                      <dt className="font-semibold text-cyan-200">
+                        Restriction to verify
+                      </dt>
+                      <dd className="text-zinc-400">{item.restriction}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-amber-200">
+                        Safe first pick
+                      </dt>
+                      <dd className="text-zinc-400">{item.safePick}</dd>
+                    </div>
+                  </dl>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <LocaleLink
+                      className="rounded-md border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/50"
+                      href={item.tunePath}
+                    >
+                      Tune path
+                    </LocaleLink>
+                    <LocaleLink
+                      className="rounded-md border border-white/10 px-3 py-2 text-xs font-semibold text-zinc-300 transition hover:border-amber-300/40 hover:text-amber-100"
+                      href={item.guidePath}
+                    >
+                      Guide path
+                    </LocaleLink>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_0.95fr]">
+          <div className="forza-panel p-5">
+            <div className="flex items-center gap-3">
+              <MailIcon className="size-5 text-cyan-300" />
+              <h2 className="text-xl font-semibold">
+                Weekly email note format
+              </h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The weekly tracker should feed a short email, not a long generic
+              blast. This format turns each page update into a repeat visit and
+              gives the newsletter a useful reason to exist.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {weeklyEmailBlocks.map((block) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={block.label}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    {block.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {block.example}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="forza-panel p-5">
+            <div className="flex items-center gap-3">
+              <RadioTowerIcon className="size-5 text-fuchsia-300" />
+              <h2 className="text-xl font-semibold">Playlist status ladder</h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Use these labels so readers can tell whether a weekly row is still
+              a planning note or already connected to a reliable setup.
+            </p>
+            <div className="mt-4 grid gap-2">
+              {weeklyStatusLadder.map((item) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3"
+                  key={item.status}
+                >
+                  <strong className="text-sm text-zinc-100">
+                    {item.status}
+                  </strong>
+                  <p className="mt-1 text-sm leading-6 text-zinc-400">
+                    {item.meaning}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
