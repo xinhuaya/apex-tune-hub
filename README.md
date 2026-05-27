@@ -23,15 +23,15 @@ http://localhost:3017
 - Starter car database with car detail pages
 - Evergreen guide cluster for beginner tuning, handling fixes, gearing, wheel settings, and Steam Deck settings
 - Newsletter/update-list CTA across high-intent pages
-- Sitemap and robots rules tuned for the public FH6 pages
+- Sitemap, robots, structured data, and IndexNow tuned for the public FH6 pages
+- Production domain: `https://apextunehub.com`
 
 ## Launch Checklist
 
-- Set `NEXT_PUBLIC_BASE_URL` to the production domain.
-- Replace local auth and provider secrets before deployment.
-- Configure Resend or Beehiiv for newsletter capture.
-- Add Google Search Console and Bing Webmaster after the first deploy.
-- Submit `/sitemap.xml` once the production domain is live.
+- `NEXT_PUBLIC_BASE_URL` is set to the production domain.
+- Google Search Console, Bing Webmaster Tools, and IndexNow have received the sitemap.
+- `/sitemap.xml` includes FH6 guides, preset pages, car pages, freshness metadata, and hreflang alternates.
+- Remaining manual items: replace local auth/provider secrets, connect production database, configure Resend or Beehiiv, and test the update-list form with a real email address.
 
 ## Notes
 
