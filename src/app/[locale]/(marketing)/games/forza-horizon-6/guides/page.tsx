@@ -10,12 +10,16 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildHowToJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
   ArrowRightIcon,
   BookOpenIcon,
   CircleGaugeIcon,
+  ClipboardCheckIcon,
+  GitBranchIcon,
   ListChecksIcon,
   MapIcon,
   RadioTowerIcon,
@@ -48,6 +52,33 @@ const guideClusters = [
     title: 'Settings and devices',
     text: 'Keep wheel, controller, PC, and Steam Deck guidance separated so every setup note stays testable.',
     href: '#settings-guides',
+  },
+];
+
+const guideRouterRows = [
+  {
+    problem: 'I do not know what to tune first',
+    start: 'Beginner tuning guide',
+    next: 'Then open the tune calculator with one handling issue selected.',
+    href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+  },
+  {
+    problem: 'The car pushes wide or spins out',
+    start: 'Handling symptom fixes',
+    next: 'Use understeer, oversteer, wheelspin, braking, launch, or top-speed guides.',
+    href: '#handling-fixes',
+  },
+  {
+    problem: 'My device makes every car feel wrong',
+    start: 'Settings and devices',
+    next: 'Use wheel, controller, PC, or Steam Deck settings before changing the car.',
+    href: '#settings-guides',
+  },
+  {
+    problem: 'I need a build for an event type',
+    start: 'Event build guides',
+    next: 'Use road, drift, rally, drag, or weekly playlist tuning checklists.',
+    href: '#event-guides',
   },
 ];
 
@@ -133,6 +164,29 @@ const guideFaqs = [
   },
 ];
 
+const guideHowToSteps = [
+  {
+    question: '1. Choose the player problem',
+    answer:
+      'Start from the search intent: beginner help, handling symptom, device setup, or event build.',
+  },
+  {
+    question: '2. Open the matching guide cluster',
+    answer:
+      'Use launch guides for early routing, handling fixes for car symptoms, settings guides for every-car issues, and event guides for build targets.',
+  },
+  {
+    question: '3. Follow one tool handoff',
+    answer:
+      'Each guide should send the player to one calculator, preset, car hub, settings page, or weekly tracker.',
+  },
+  {
+    question: '4. Keep related reads contextual',
+    answer:
+      'Next reads should stay in the same problem family instead of sending every guide to the same generic pages.',
+  },
+];
+
 const guideWorkflow = [
   'Start every new guide with the player problem: event type, handling symptom, device setup, or weekly restriction.',
   'Link each guide to one calculator, one preset or car hub, and one broader FH6 topic page.',
@@ -155,6 +209,25 @@ const guideDestinations = [
     title: 'Weekly destination',
     body: 'Send repeat visitors to weekly playlist notes, Car Pass tracking, and FH6 tune drops.',
     href: '/games/forza-horizon-6/weekly-playlist',
+  },
+];
+
+const guideClusterStats = [
+  {
+    label: 'Guides',
+    value: `${forzaHorizon6Guides.length}`,
+  },
+  {
+    label: 'Clusters',
+    value: `${guideGroups.length}`,
+  },
+  {
+    label: 'Problem routes',
+    value: `${guideRouterRows.length}`,
+  },
+  {
+    label: 'SEO schema',
+    value: 'FAQ + HowTo + ItemList',
   },
 ];
 
@@ -212,18 +285,28 @@ export default function ForzaHorizon6GuidesPage() {
             { name: 'Guides', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
-          buildFaqJsonLd(guideFaqs),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: 'Forza Horizon 6 guide index',
-            itemListElement: forzaHorizon6Guides.map((guide, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 guide index',
+            items: forzaHorizon6Guides.map((guide) => ({
               name: guide.h1,
-              url: `https://apextunehub.com/games/forza-horizon-6/guides/${guide.slug}`,
+              path: `/games/forza-horizon-6/guides/${guide.slug}`,
             })),
-          },
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 guide router',
+            items: guideRouterRows.map((row) => ({
+              name: row.problem,
+              path: row.href.startsWith('#') ? pathname : row.href,
+            })),
+          }),
+          buildHowToJsonLd({
+            title: 'How to choose a Forza Horizon 6 guide',
+            description:
+              'A guide routing workflow for choosing FH6 launch, handling, settings, and event build pages.',
+            path: pathname,
+            steps: guideHowToSteps,
+          }),
+          buildFaqJsonLd(guideFaqs),
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -270,12 +353,17 @@ export default function ForzaHorizon6GuidesPage() {
                 fixes based on the event you are trying to finish.
               </p>
               <div className="mt-5 grid gap-2">
-                {['Problem', 'Tool', 'Car path', 'Weekly update'].map((item) => (
+                {guideClusterStats.map((item) => (
                   <div
-                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
-                    key={item}
+                    className="flex items-center justify-between rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm"
+                    key={item.label}
                   >
-                    {item}
+                    <span className="font-semibold text-zinc-300">
+                      {item.label}
+                    </span>
+                    <span className="font-semibold text-cyan-200">
+                      {item.value}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -296,9 +384,7 @@ export default function ForzaHorizon6GuidesPage() {
                 key={cluster.title}
               >
                 <Icon className="size-6 text-cyan-300" />
-                <h2 className="mt-4 text-lg font-semibold">
-                  {cluster.title}
-                </h2>
+                <h2 className="mt-4 text-lg font-semibold">{cluster.title}</h2>
                 <p className="mt-3 text-sm leading-6 text-zinc-400">
                   {cluster.text}
                 </p>
@@ -309,6 +395,25 @@ export default function ForzaHorizon6GuidesPage() {
               </LocaleLink>
             );
           })}
+        </div>
+
+        <div className="forza-panel mt-6 overflow-hidden">
+          <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.9fr_0.75fr_1.35fr]">
+            <span>Player problem</span>
+            <span>Start here</span>
+            <span>Next step</span>
+          </div>
+          {guideRouterRows.map((row) => (
+            <LocaleLink
+              className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.9fr_0.75fr_1.35fr]"
+              href={row.href}
+              key={row.problem}
+            >
+              <span className="font-semibold text-zinc-50">{row.problem}</span>
+              <span className="text-amber-200">{row.start}</span>
+              <span className="leading-6 text-zinc-400">{row.next}</span>
+            </LocaleLink>
+          ))}
         </div>
 
         <div className="forza-panel mt-6 p-5">
@@ -339,7 +444,11 @@ export default function ForzaHorizon6GuidesPage() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {guideDestinations.map((item) => (
-            <LocaleLink className="forza-card p-5" href={item.href} key={item.href}>
+            <LocaleLink
+              className="forza-card p-5"
+              href={item.href}
+              key={item.href}
+            >
               <RadioTowerIcon className="size-5 text-fuchsia-300" />
               <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
               <p className="mt-2 text-sm leading-6 text-zinc-400">
@@ -355,6 +464,38 @@ export default function ForzaHorizon6GuidesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <GitBranchIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Guide cluster workflow
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Every new guide should enter this map with one problem, one
+                matching cluster, one tool handoff, and one contextual next
+                read.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {guideHowToSteps.map((step) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={step.question}
+                >
+                  <ClipboardCheckIcon className="size-5 text-cyan-300" />
+                  <h3 className="mt-3 text-sm font-semibold text-zinc-100">
+                    {step.question}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {step.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="mb-6 max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
             Search intent map
@@ -363,8 +504,8 @@ export default function ForzaHorizon6GuidesPage() {
             Pick the FH6 guide cluster that matches the job
           </h2>
           <p className="mt-3 text-sm leading-6 text-zinc-400">
-            These clusters turn the full guide library into search paths:
-            launch planning, handling fixes, device settings, and event builds.
+            These clusters turn the full guide library into search paths: launch
+            planning, handling fixes, device settings, and event builds.
           </p>
         </div>
         <div className="grid gap-5">

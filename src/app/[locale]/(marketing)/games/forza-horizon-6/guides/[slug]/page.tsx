@@ -12,6 +12,7 @@ import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildHowToJsonLd,
+  buildItemListJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -19,6 +20,11 @@ import {
   ArrowRightIcon,
   BookOpenIcon,
   CheckCircle2Icon,
+  ClipboardCheckIcon,
+  GaugeIcon,
+  GitBranchIcon,
+  RadioTowerIcon,
+  RouteIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -32,6 +38,79 @@ export function generateStaticParams() {
   return forzaHorizon6Guides.map((guide) => ({
     slug: guide.slug,
   }));
+}
+
+function getGuideCluster(guide: { slug: string; eyebrow: string }) {
+  const key = `${guide.slug} ${guide.eyebrow}`.toLowerCase();
+
+  if (
+    key.includes('wheel') ||
+    key.includes('controller') ||
+    key.includes('steam-deck') ||
+    key.includes('settings')
+  ) {
+    return 'Settings and devices';
+  }
+
+  if (
+    key.includes('fix-') ||
+    key.includes('understeer') ||
+    key.includes('oversteer') ||
+    key.includes('wheelspin') ||
+    key.includes('braking') ||
+    key.includes('top-speed') ||
+    key.includes('launch')
+  ) {
+    return 'Handling fixes';
+  }
+
+  if (
+    key.includes('drift') ||
+    key.includes('rally') ||
+    key.includes('drag') ||
+    key.includes('road')
+  ) {
+    return 'Event builds';
+  }
+
+  return 'Launch and starter guides';
+}
+
+function guideSlugFromHref(href: string) {
+  const match = href.match(/\/games\/forza-horizon-6\/guides\/([^/?#]+)/);
+
+  return match?.[1];
+}
+
+function uniqueGuides(guides: typeof forzaHorizon6Guides) {
+  const seen = new Set<string>();
+
+  return guides.filter((guide) => {
+    if (seen.has(guide.slug)) {
+      return false;
+    }
+
+    seen.add(guide.slug);
+    return true;
+  });
+}
+
+function getRelatedGuides(guide: (typeof forzaHorizon6Guides)[number]) {
+  const explicitSlugs = guide.relatedLinks
+    .map((link) => guideSlugFromHref(link.href))
+    .filter((slug): slug is string => Boolean(slug));
+  const explicitGuides = explicitSlugs
+    .map((slug) => getForzaHorizon6Guide(slug))
+    .filter((item): item is (typeof forzaHorizon6Guides)[number] =>
+      Boolean(item)
+    );
+  const sameClusterGuides = forzaHorizon6Guides.filter(
+    (item) =>
+      item.slug !== guide.slug &&
+      getGuideCluster(item) === getGuideCluster(guide)
+  );
+
+  return uniqueGuides([...explicitGuides, ...sameClusterGuides]).slice(0, 3);
 }
 
 export async function generateMetadata({
@@ -62,10 +141,40 @@ export default async function ForzaHorizon6GuidePage({
     notFound();
   }
 
-  const relatedGuides = forzaHorizon6Guides
-    .filter((item) => item.slug !== guide.slug)
-    .slice(0, 3);
+  const relatedGuides = getRelatedGuides(guide);
   const pathname = `/games/forza-horizon-6/guides/${guide.slug}`;
+  const guideCluster = getGuideCluster(guide);
+  const guideActionCards = [
+    {
+      title: 'Problem',
+      text: guide.intro,
+      icon: RouteIcon,
+    },
+    {
+      title: 'First action',
+      text: `Start with ${guide.primaryCta.label.toLowerCase()} before changing unrelated setup groups.`,
+      icon: GaugeIcon,
+    },
+    {
+      title: 'Validation loop',
+      text: 'Keep the same car, route, assists, device, and weather while testing one change at a time.',
+      icon: ClipboardCheckIcon,
+    },
+    {
+      title: 'Next handoff',
+      text: `Route unresolved questions into ${relatedGuides
+        .map((item) => item.h1)
+        .join(', ')}.`,
+      icon: RadioTowerIcon,
+    },
+  ];
+  const guideScorecardRows = [
+    ['Search intent', guideCluster],
+    ['Primary tool', guide.primaryCta.label],
+    ['Main sections', `${guide.sections.length} setup steps`],
+    ['Deep-dive blocks', `${guide.deepDive?.length ?? 0} groups`],
+    ['Related guides', `${relatedGuides.length} contextual next reads`],
+  ];
   const faqs: FaqItem[] = [
     {
       question: `What is the best first step for ${guide.h1}?`,
@@ -108,6 +217,13 @@ export default async function ForzaHorizon6GuidePage({
             description: guide.description,
             path: pathname,
             steps: howToSteps,
+          }),
+          buildItemListJsonLd({
+            title: `${guide.h1} related FH6 guides`,
+            items: relatedGuides.map((item) => ({
+              name: item.h1,
+              path: `/games/forza-horizon-6/guides/${item.slug}`,
+            })),
           }),
           buildFaqJsonLd(faqs),
         ]}
@@ -156,6 +272,11 @@ export default async function ForzaHorizon6GuidePage({
               <div className="forza-panel p-5">
                 <BookOpenIcon className="size-7 text-cyan-300" />
                 <h2 className="mt-4 text-xl font-semibold">Related tools</h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  Cluster: {guideCluster}. Use these links to move from the
+                  guide answer into a tool, settings page, car hub, or follow-up
+                  guide.
+                </p>
                 <div className="mt-4 grid gap-3">
                   {guide.relatedLinks.map((link) => (
                     <LocaleLink
@@ -173,6 +294,37 @@ export default async function ForzaHorizon6GuidePage({
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-6 grid gap-4 lg:grid-cols-[0.76fr_1.24fr]">
+            <div className="forza-panel p-5">
+              <GitBranchIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Guide execution map
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                This guide should answer the immediate problem, send the player
+                into the right tool, then keep the next read context-specific
+                instead of sending every page to the same generic list.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {guideActionCards.map((card) => {
+                const Icon = card.icon;
+
+                return (
+                  <article className="forza-card p-4" key={card.title}>
+                    <Icon className="size-5 text-cyan-300" />
+                    <h2 className="mt-3 text-base font-semibold text-zinc-100">
+                      {card.title}
+                    </h2>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {card.text}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="grid gap-5 lg:grid-cols-3">
             {guide.sections.map((section) => (
               <article className="forza-card p-5" key={section.title}>
@@ -233,6 +385,34 @@ export default async function ForzaHorizon6GuidePage({
               </div>
             </div>
           ))}
+
+          <div className="forza-panel mt-6 p-5">
+            <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+              <div>
+                <ClipboardCheckIcon className="size-6 text-amber-300" />
+                <h2 className="mt-4 text-xl font-semibold">
+                  Guide routing scorecard
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  Use this to keep guide pages consistent: one search intent,
+                  one primary action, and contextual next reads.
+                </p>
+              </div>
+              <div className="grid gap-2">
+                {guideScorecardRows.map(([metric, value]) => (
+                  <div
+                    className="grid gap-2 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm md:grid-cols-[0.7fr_1.3fr]"
+                    key={metric}
+                  >
+                    <span className="font-semibold text-zinc-100">
+                      {metric}
+                    </span>
+                    <span className="leading-6 text-zinc-400">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <div className="forza-panel mt-6 p-5">
             <h2 className="text-xl font-semibold">FAQ</h2>
