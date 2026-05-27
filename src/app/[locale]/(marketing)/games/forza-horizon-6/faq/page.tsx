@@ -6,18 +6,24 @@ import { constructMetadata } from '@/lib/metadata';
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
+  buildItemListJsonLd,
   buildWebPageJsonLd,
   type FaqItem,
 } from '@/lib/seo/forza-horizon-6';
 import {
   CarIcon,
+  ExternalLinkIcon,
   Gamepad2Icon,
   GaugeIcon,
+  GitBranchIcon,
   HelpCircleIcon,
   ListChecksIcon,
+  MapIcon,
   MonitorIcon,
   RadioTowerIcon,
+  SearchIcon,
   ShieldCheckIcon,
+  TimerIcon,
   WrenchIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -58,6 +64,36 @@ const faqs: FaqItem[] = [
     question: 'Are Apex Tune Hub tunes official?',
     answer:
       'No. Apex Tune Hub is independent. Calculator outputs are baseline setup notes that should be tested in-game.',
+  },
+  {
+    question: 'Where should I start if I only want a quick tune?',
+    answer:
+      'Start with the tune calculator if you know the class and handling problem, or open tune presets if you want a shareable baseline URL first.',
+  },
+  {
+    question: 'Where should I find the best FH6 cars?',
+    answer:
+      'Use the best cars hub for broad routes, then narrow down by road racing, drift, rally, JDM, class, or manufacturer pages.',
+  },
+  {
+    question: 'Does Apex Tune Hub publish FH6 tune codes?',
+    answer:
+      'The tune-code hub is prepared for verified codes, but it does not publish invented share codes. Until a code is verified, it links to transparent preset URLs and car setup notes.',
+  },
+  {
+    question: 'How should I use the Japan map planner?',
+    answer:
+      'Use it as a route-type planner, not an official map reproduction. Pick city, mountain, wet, dirt, drift, or speed routes, then open the matching preset or guide.',
+  },
+  {
+    question: 'How should I follow weekly playlist updates?',
+    answer:
+      'Use the weekly playlist page for restrictions, safe car picks, tune links, and update status. Reward cars should stay labelled until verified.',
+  },
+  {
+    question: 'What should I check on the Car Pass page?',
+    answer:
+      'Check source status, release cadence, future weekly-car fields, and tune routing. Future cars should not be guessed before an official source confirms them.',
   },
 ];
 
@@ -121,12 +157,100 @@ const sourceLinks = [
     title: 'Release date announcement',
     href: 'https://forza.net/news/forza-horizon-6-coming-may-2026',
   },
+  {
+    title: 'Steam Deck Verified announcement',
+    href: 'https://forza.net/news/forza-horizon-6-steam-deck',
+  },
 ];
 
 const maintenanceRules = [
   'Keep release, platform, Game Pass, and PS5 answers tied to official Forza.net sources.',
   'When a weekly event or Car Pass fact changes, update the linked tracker page first.',
   'When a tuning answer becomes detailed, move it into a guide, preset, or calculator page and link back here.',
+];
+
+const answerWorkflow = [
+  {
+    title: 'Answer in one sentence',
+    text: 'Put the direct answer first so the page can satisfy quick search intent.',
+  },
+  {
+    title: 'Route to the right hub',
+    text: 'Send players toward a tool, car page, weekly tracker, Car Pass page, or source-backed guide.',
+  },
+  {
+    title: 'Mark source-sensitive facts',
+    text: 'Release, platform, Game Pass, Steam Deck, car-count, and PS5 answers should stay tied to official source links.',
+  },
+  {
+    title: 'Promote detailed answers',
+    text: 'When a question grows too big, move it to a dedicated page and keep the FAQ as the short answer router.',
+  },
+];
+
+const highIntentRoutes = [
+  {
+    title: 'Release and platform answers',
+    href: '/games/forza-horizon-6/faq',
+    text: 'Use official source links for release date, Game Pass, PS5, Steam Deck, PC, and car-count questions.',
+  },
+  {
+    title: 'Best car answers',
+    href: '/games/forza-horizon-6/best-cars',
+    text: 'Route broad best-car searches into class, role, manufacturer, and car detail pages.',
+  },
+  {
+    title: 'Tune-code answers',
+    href: '/tools/forza-horizon-6-tune-codes',
+    text: 'Explain the difference between verified in-game codes and transparent preset URLs.',
+  },
+  {
+    title: 'Weekly update answers',
+    href: '/games/forza-horizon-6/weekly-playlist',
+    text: 'Send repeat visitors to restrictions, safe car picks, tune paths, and update status.',
+  },
+  {
+    title: 'Car Pass answers',
+    href: '/games/forza-horizon-6/car-pass',
+    text: 'Keep new-car search traffic tied to official source checks and tune routing.',
+  },
+  {
+    title: 'Japan map answers',
+    href: '/games/forza-horizon-6/japan-map',
+    text: 'Use route-type planning instead of claiming to reproduce the official in-game map.',
+  },
+];
+
+const sourceBackedFacts = [
+  {
+    label: 'Launch',
+    value: 'May 19, 2026',
+    source: 'Forza.net FAQ and now-available post',
+  },
+  {
+    label: 'Platforms',
+    value: 'Xbox Series X|S and PC; PS5 later in 2026',
+    source: 'Forza.net launch and availability posts',
+  },
+  {
+    label: 'Cars',
+    value: 'Over 550 cars',
+    source: 'Forza.net now-available post',
+  },
+  {
+    label: 'Handheld',
+    value: 'Steam Deck Verified',
+    source: 'Forza.net Steam Deck post',
+  },
+];
+
+const questionBacklogFields = [
+  'Search query',
+  'Short answer',
+  'Best internal link',
+  'Official source URL',
+  'Needs update?',
+  'Dedicated page candidate',
 ];
 
 export async function generateMetadata({
@@ -155,18 +279,21 @@ export default function ForzaHorizon6FaqPage() {
             { name: 'FAQ', path: pathname },
           ]),
           buildWebPageJsonLd({ title, description, path: pathname }),
-          buildFaqJsonLd(faqs),
-          {
-            '@context': 'https://schema.org',
-            '@type': 'ItemList',
-            name: 'Forza Horizon 6 FAQ topic hubs',
-            itemListElement: faqClusters.map((cluster, index) => ({
-              '@type': 'ListItem',
-              position: index + 1,
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 FAQ topic hubs',
+            items: faqClusters.map((cluster) => ({
               name: cluster.title,
-              url: `https://apextunehub.com${cluster.links[0][1]}`,
+              path: cluster.links[0][1],
             })),
-          },
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 high intent FAQ routes',
+            items: highIntentRoutes.map((route) => ({
+              name: route.title,
+              path: route.href,
+            })),
+          }),
+          buildFaqJsonLd(faqs),
         ]}
       />
       <section className="border-b border-zinc-800">
@@ -210,16 +337,18 @@ export default function ForzaHorizon6FaqPage() {
                 to a deeper tool, car hub, weekly tracker, or source page.
               </p>
               <div className="mt-5 grid gap-2">
-                {['Quick answer', 'Best next page', 'Official source'].map(
-                  (item) => (
-                    <div
-                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
-                      key={item}
-                    >
-                      {item}
-                    </div>
-                  )
-                )}
+                {[
+                  `${faqs.length} FAQ answers`,
+                  `${faqClusters.length} topic clusters`,
+                  `${sourceLinks.length} official source links`,
+                ].map((item) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -227,6 +356,33 @@ export default function ForzaHorizon6FaqPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <GitBranchIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">FAQ answer workflow</h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              This page is the short-answer router for Apex Tune Hub. Keep each
+              answer compact, source-aware, and connected to the next useful
+              page.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {answerWorkflow.map((item) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={item.title}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
             <ListChecksIcon className="size-6 text-cyan-300" />
@@ -269,6 +425,27 @@ export default function ForzaHorizon6FaqPage() {
           </div>
         </div>
 
+        <div className="forza-panel mb-6 p-5">
+          <div className="flex items-center gap-3">
+            <SearchIcon className="size-5 text-cyan-300" />
+            <h2 className="text-xl font-semibold">High-intent FAQ routes</h2>
+          </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {highIntentRoutes.map((route) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40 hover:text-cyan-100"
+                href={route.href}
+                key={route.title}
+              >
+                <strong className="block text-zinc-100">{route.title}</strong>
+                <span className="mt-2 block leading-6 text-zinc-400">
+                  {route.text}
+                </span>
+              </LocaleLink>
+            ))}
+          </div>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2">
           {faqs.map((faq) => (
             <article key={faq.question} className="forza-card p-5">
@@ -281,6 +458,65 @@ export default function ForzaHorizon6FaqPage() {
               </p>
             </article>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <MapIcon className="size-6 text-fuchsia-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Source-backed facts snapshot
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These are the high-risk answers that should be rechecked
+                whenever Forza.net publishes a major update.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-4">
+              {sourceBackedFacts.map((fact) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={fact.label}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    {fact.label}
+                  </p>
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {fact.value}
+                  </h3>
+                  <p className="mt-2 text-xs leading-5 text-zinc-500">
+                    {fact.source}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+            <div>
+              <TimerIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Future FAQ backlog fields
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Use these fields when Search Console reveals new questions. The
+                goal is to decide whether a query needs a short answer or a
+                dedicated page.
+              </p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {questionBacklogFields.map((field) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200"
+                  key={field}
+                >
+                  {field}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
@@ -312,13 +548,14 @@ export default function ForzaHorizon6FaqPage() {
             <div className="mt-4 grid gap-2">
               {sourceLinks.map((source) => (
                 <a
-                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
+                  className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
                   href={source.href}
                   key={source.href}
                   rel="noreferrer"
                   target="_blank"
                 >
-                  {source.title}
+                  <span>{source.title}</span>
+                  <ExternalLinkIcon className="size-4 shrink-0" />
                 </a>
               ))}
             </div>
