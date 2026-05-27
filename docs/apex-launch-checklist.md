@@ -32,7 +32,7 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Confirm `pnpm build` passes locally.
 - [x] Confirm `/sitemap.xml` includes FH6 guides, preset pages, and car pages.
 - [x] Confirm `/sitemap.xml` includes `lastmod`, `changefreq`, and `priority`.
-- [x] Confirm `/robots.txt` blocks dashboard and account pages, but not public FH6 settings pages.
+- [x] Confirm `/robots.txt` blocks dashboard, account, and unused template pages, but not public FH6 settings pages.
 - [x] Publish `/games/forza-horizon-6/official-sources` for official FH6 source tracking.
 - [x] Publish `/llms.txt` and `/feed.xml` for AI/RSS discovery.
 
