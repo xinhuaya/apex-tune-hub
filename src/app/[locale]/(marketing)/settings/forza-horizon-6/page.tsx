@@ -60,6 +60,29 @@ const settingsCards = [
   },
 ];
 
+const settingsGuideShortcuts = [
+  {
+    title: 'Steam Deck setup guide',
+    text: 'Use this evergreen guide when handheld FPS, heat, battery, or readability still need a route-tested checklist.',
+    href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+  },
+  {
+    title: 'Controller drift settings',
+    text: 'Use this when steering, throttle, or braking deadzones make every car feel inconsistent.',
+    href: '/games/forza-horizon-6/guides/controller-drift-settings',
+  },
+  {
+    title: 'Wheel setup guide',
+    text: 'Use this when force feedback, center feel, oscillation, or wheelbase software needs a testing order.',
+    href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+  },
+  {
+    title: 'Input lag settings',
+    text: 'Use this when settings feel correct but steering, braking, or shifting still responds late.',
+    href: '/games/forza-horizon-6/guides/input-lag-settings',
+  },
+];
+
 const workflowRows = [
   ['Every car feels twitchy', 'Input settings first', 'Controller or wheel'],
   ['One car pushes wide', 'Tune first', 'Understeer guide'],
@@ -263,6 +286,13 @@ export default function ForzaHorizon6SettingsHubPage() {
             })),
           }),
           buildItemListJsonLd({
+            title: 'Forza Horizon 6 device troubleshooting guides',
+            items: settingsGuideShortcuts.map((card) => ({
+              name: card.title,
+              path: card.href,
+            })),
+          }),
+          buildItemListJsonLd({
             title: 'Forza Horizon 6 settings decision paths',
             items: settingsDecisionMatrix.map((row) => ({
               name: row.symptom,
@@ -427,6 +457,43 @@ export default function ForzaHorizon6SettingsHubPage() {
               </LocaleLink>
             );
           })}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <ClipboardCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Device troubleshooting guides
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+                Use these after picking the broad settings page. They keep
+                handheld, controller, wheel, and input-lag problems connected
+                to focused FH6 guide pages.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="rounded-md">
+              <LocaleLink href="/games/forza-horizon-6/guides">
+                Open guide library
+              </LocaleLink>
+            </Button>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {settingsGuideShortcuts.map((card) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                href={card.href}
+                key={card.href}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {card.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {card.text}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -187,6 +187,11 @@ const plannerFields = [
 
 const nextPlannerLinks = [
   {
+    title: 'Japan route checklist',
+    href: '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+    text: 'Use the route checklist when a city, mountain, wet, dirt, drift, or speed note needs a repeatable test order.',
+  },
+  {
     title: 'Car database',
     href: '/games/forza-horizon-6/cars',
     text: 'Attach route notes to exact cars, stock class, role, and candidate status.',
@@ -610,11 +615,11 @@ export default function ForzaHorizon6JapanMapPage() {
             </h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
               These links keep the route planner connected to the useful parts
-              of Apex Tune Hub: cars, presets, weekly restrictions, and future
-              verified share-code rows.
+              of Apex Tune Hub: checklists, cars, presets, weekly restrictions,
+              and future verified share-code rows.
             </p>
           </div>
-          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
             {nextPlannerLinks.map((link) => (
               <LocaleLink
                 className="rounded-md border border-white/10 bg-white/[0.03] p-4 text-sm transition hover:border-cyan-300/40 hover:text-cyan-100"
