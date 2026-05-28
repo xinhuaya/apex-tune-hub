@@ -1,4 +1,7 @@
+import { forzaHorizon6BestCarGuides } from '@/lib/guides/forza-horizon-6-best-car-guides';
+import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
 import { forzaHorizon6Guides } from '@/lib/guides/forza-horizon-6-guides';
+import { forzaHorizon6MakeCarGuides } from '@/lib/guides/forza-horizon-6-make-car-guides';
 import { getBaseUrl } from '@/lib/urls';
 
 export const revalidate = 3600;
@@ -351,9 +354,20 @@ const generatedGuideFeedItems: FeedItem[] = forzaHorizon6Guides.map((guide) => (
   category: guide.eyebrow,
 }));
 
+const generatedCarGuideFeedItems: FeedItem[] = [
+  ...Object.values(forzaHorizon6ClassCarGuides),
+  ...Object.values(forzaHorizon6MakeCarGuides),
+  ...Object.values(forzaHorizon6BestCarGuides),
+].map((guide) => ({
+  title: guide.h1,
+  path: guide.pathname,
+  description: guide.description,
+  category: guide.eyebrow,
+}));
+
 const allFeedItems = [
   ...feedItems,
-  ...generatedGuideFeedItems.filter(
+  ...[...generatedGuideFeedItems, ...generatedCarGuideFeedItems].filter(
     (guideItem) =>
       !feedItems.some((feedItem) => feedItem.path === guideItem.path)
   ),

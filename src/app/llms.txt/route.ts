@@ -1,4 +1,7 @@
+import { forzaHorizon6BestCarGuides } from '@/lib/guides/forza-horizon-6-best-car-guides';
+import { forzaHorizon6ClassCarGuides } from '@/lib/guides/forza-horizon-6-class-car-guides';
 import { forzaHorizon6Guides } from '@/lib/guides/forza-horizon-6-guides';
+import { forzaHorizon6MakeCarGuides } from '@/lib/guides/forza-horizon-6-make-car-guides';
 import { getBaseUrl } from '@/lib/urls';
 
 export const revalidate = 3600;
@@ -200,9 +203,15 @@ const generatedGuidePages = forzaHorizon6Guides.map((guide) => [
   `/games/forza-horizon-6/guides/${guide.slug}`,
 ]);
 
+const generatedCarGuidePages = [
+  ...Object.values(forzaHorizon6ClassCarGuides),
+  ...Object.values(forzaHorizon6MakeCarGuides),
+  ...Object.values(forzaHorizon6BestCarGuides),
+].map((guide) => [guide.h1, guide.pathname]);
+
 const allCorePages = [
   ...corePages,
-  ...generatedGuidePages.filter(
+  ...[...generatedGuidePages, ...generatedCarGuidePages].filter(
     ([, href]) => !corePages.some(([, coreHref]) => coreHref === href)
   ),
 ];
