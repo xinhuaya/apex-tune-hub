@@ -87,6 +87,11 @@ const settingsGuideShortcuts = [
     href: '/games/forza-horizon-6/guides/controller-drift-settings',
   },
   {
+    title: 'Controller deadzones',
+    text: 'Use this when stick drift, trigger range, braking input, or countersteer delay needs a clean baseline.',
+    href: '/games/forza-horizon-6/guides/controller-deadzone-settings',
+  },
+  {
     title: 'Wheel setup guide',
     text: 'Use this when force feedback, center feel, oscillation, or wheelbase software needs a testing order.',
     href: '/games/forza-horizon-6/guides/wheel-settings-guide',

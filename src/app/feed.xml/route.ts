@@ -157,6 +157,13 @@ const feedItems: FeedItem[] = [
     category: 'Controller troubleshooting',
   },
   {
+    title: 'Forza Horizon 6 controller deadzone settings guide',
+    path: '/games/forza-horizon-6/guides/controller-deadzone-settings',
+    description:
+      'Controller deadzone guide for FH6 steering drift, trigger range, braking input, vibration feel, drift recovery, and repeatable route testing.',
+    category: 'Controller settings',
+  },
+  {
     title: 'Forza Horizon 6 keyboard settings guide',
     path: '/games/forza-horizon-6/guides/best-keyboard-settings',
     description:

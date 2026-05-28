@@ -879,6 +879,100 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'controller-deadzone-settings',
+    title:
+      'Best Controller Deadzone Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best controller deadzone settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 controller deadzone settings guide for steering drift, throttle triggers, brake input, vibration feel, drift recovery, and repeatable road testing.',
+    eyebrow: 'Controller deadzones',
+    intro:
+      'Deadzones should remove noise without making FH6 feel numb. Start with the smallest inner deadzone that stops drift, protect full trigger range, then test steering, throttle, and braking on the same route before tuning the car.',
+    primaryCta: {
+      label: 'Open Controller Settings',
+      href: '/settings/forza-horizon-6-controller',
+    },
+    relatedLinks: [
+      {
+        label: 'Controller not working',
+        href: '/games/forza-horizon-6/guides/controller-not-working-checklist',
+      },
+      {
+        label: 'Input lag settings',
+        href: '/games/forza-horizon-6/guides/input-lag-settings',
+      },
+      {
+        label: 'Controller drift settings',
+        href: '/games/forza-horizon-6/guides/controller-drift-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Fix stick drift before tuning cars',
+        body: 'If the steering input moves while the stick is centered, every car will feel nervous. Raise the inner deadzone only until the drift stops, then retest a stable road car.',
+        bullets: [
+          'Use the smallest inner deadzone that keeps the steering centered.',
+          'Do not hide a bad controller by making the steering too numb.',
+          'Retest the same car before changing alignment or anti-roll bars.',
+        ],
+      },
+      {
+        title: 'Protect throttle and brake range',
+        body: 'Trigger deadzones can make launches, trail braking, and corner exits feel inconsistent. Check that throttle and brake reach full input without activating too early.',
+        bullets: [
+          'If exits feel abrupt, adjust trigger feel before changing gearing.',
+          'If braking feels late, compare trigger range and frame pacing.',
+          'Keep deadzone and assist changes separate during testing.',
+        ],
+      },
+      {
+        title: 'Use one route for every pass',
+        body: 'Deadzone settings need a repeatable route just like car tuning. Use one road loop, one drift section, and one braking zone to decide whether the controller or the tune is the real issue.',
+        bullets: [
+          'Use a road loop for steering and braking confidence.',
+          'Use a drift section for countersteer recovery and throttle control.',
+          'Move to tuning only when every car no longer feels wrong.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Deadzone symptom paths',
+        description:
+          'Use these checks to separate controller noise from tune problems before changing car setup.',
+        cards: [
+          {
+            title: 'Car wanders on straights',
+            body: 'This usually points to stick drift, steering deadzone, or controller hardware before it points to alignment.',
+            bullets: [
+              'Center the stick and watch for input movement.',
+              'Raise inner deadzone in small steps.',
+              'Retest before changing toe or camber.',
+            ],
+          },
+          {
+            title: 'Launch feels abrupt',
+            body: 'Trigger response can create fake wheelspin problems when throttle input jumps too quickly.',
+            bullets: [
+              'Check throttle range before editing final drive.',
+              'Compare wired and wireless controller feel.',
+              'Use wheelspin tuning only if one car still spins.',
+            ],
+          },
+          {
+            title: 'Drift recovery feels delayed',
+            body: 'Too much steering deadzone can make countersteer late, while too little can create unwanted twitch.',
+            bullets: [
+              'Test a known drift section after each small change.',
+              'Keep camera and assists unchanged while comparing.',
+              'Use controller drift settings after the deadzone is stable.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'cloud-save-not-syncing',
     title: 'Forza Horizon 6 Cloud Save Not Syncing Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 cloud save not syncing guide',

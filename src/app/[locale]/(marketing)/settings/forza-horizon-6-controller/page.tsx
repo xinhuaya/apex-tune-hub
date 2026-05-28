@@ -251,6 +251,11 @@ const controllerIssueGuideLinks = [
     note: 'Use when throttle control, countersteer, vibration, and drift recovery need a focused setup path.',
   },
   {
+    title: 'Controller deadzones',
+    href: '/games/forza-horizon-6/guides/controller-deadzone-settings',
+    note: 'Use when stick drift, trigger range, braking input, or countersteer delay needs a clean baseline.',
+  },
+  {
     title: 'Keyboard settings',
     href: '/games/forza-horizon-6/guides/best-keyboard-settings',
     note: 'Use when the player is on digital inputs and needs keybind, throttle-tap, or manual-shift guidance.',

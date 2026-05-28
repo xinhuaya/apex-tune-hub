@@ -66,6 +66,10 @@ const corePages: string[][] = [
     '/games/forza-horizon-6/guides/controller-not-working-checklist',
   ],
   [
+    'Forza Horizon 6 controller deadzone settings guide',
+    '/games/forza-horizon-6/guides/controller-deadzone-settings',
+  ],
+  [
     'Forza Horizon 6 keyboard settings guide',
     '/games/forza-horizon-6/guides/best-keyboard-settings',
   ],

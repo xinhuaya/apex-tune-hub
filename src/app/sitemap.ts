@@ -70,6 +70,7 @@ const highIntentGuideSlugs = [
   'beginner-tuning-guide',
   'steam-deck-settings-guide',
   'difficulty-settings-guide',
+  'controller-deadzone-settings',
   'logitech-wheel-settings',
   'thrustmaster-wheel-settings',
   'fanatec-moza-wheel-settings',

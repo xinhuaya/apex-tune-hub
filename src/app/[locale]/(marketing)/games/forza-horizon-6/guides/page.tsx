@@ -289,6 +289,7 @@ const guideGroups = [
       'fanatec-moza-wheel-settings',
       'controller-not-working-checklist',
       'controller-drift-settings',
+      'controller-deadzone-settings',
       'best-keyboard-settings',
       'cloud-save-not-syncing',
       'online-not-working-checklist',
