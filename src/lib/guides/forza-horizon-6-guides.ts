@@ -964,6 +964,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'online-not-working-checklist',
+    title: 'Forza Horizon 6 Online Not Working Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 online not working checklist',
+    description:
+      'Forza Horizon 6 online not working checklist for matchmaking, convoys, crossplay, account sign-in, NAT, server status, platform services, and support notes.',
+    eyebrow: 'Online checklist',
+    intro:
+      'Online issues are easiest to solve when you separate the game, account, network, and platform layers. Check each layer once, keep notes, then avoid changing ten settings at the same time.',
+    primaryCta: {
+      label: 'Open Crossplay Guide',
+      href: '/games/forza-horizon-6/crossplay-cross-save',
+    },
+    relatedLinks: [
+      {
+        label: 'Cloud save guide',
+        href: '/games/forza-horizon-6/guides/cloud-save-not-syncing',
+      },
+      {
+        label: 'Steam vs Xbox app',
+        href: '/games/forza-horizon-6/steam-vs-xbox-app',
+      },
+      {
+        label: 'PC crash checklist',
+        href: '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Check account and platform first',
+        body: 'If FH6 cannot reach online features, confirm the account and storefront path before changing router settings or reinstalling the game.',
+        bullets: [
+          'Confirm the same account is signed in on the game, platform app, and console or PC.',
+          'Check whether the issue affects only FH6 or other online games too.',
+          'Record any exact error text before restarting services.',
+        ],
+      },
+      {
+        title: 'Separate matchmaking from convoy problems',
+        body: 'A public matchmaking failure and a convoy invite failure can point to different causes. Keep those symptoms separate when testing.',
+        bullets: [
+          'Test solo online features before testing a convoy invite.',
+          'Ask one friend on a different platform to test crossplay separately.',
+          'Do not mix crossplay testing with save-sync or DLC ownership issues.',
+        ],
+      },
+      {
+        title: 'Make network changes one at a time',
+        body: 'Network troubleshooting becomes messy if NAT, DNS, VPN, firewall, router, and device restarts all change in one pass.',
+        bullets: [
+          'Disable VPN or proxy tools for one clean test.',
+          'Try wired Ethernet or a stable Wi-Fi band before changing advanced router settings.',
+          'Write down the exact step that changes the result.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Online issue decision paths',
+        description:
+          'Use the symptom to decide whether to focus on account access, platform service health, network routing, or crossplay behavior.',
+        cards: [
+          {
+            title: 'Online menu unavailable',
+            body: 'Treat this as account, entitlement, or service availability first. Verify sign-in and platform services before changing car settings or device inputs.',
+            bullets: [
+              'Check account sign-in on the storefront and platform app.',
+              'Compare FH6 with another online game on the same device.',
+              'Save error codes or screenshots for support.',
+            ],
+          },
+          {
+            title: 'Convoy invite fails',
+            body: 'Convoy problems often involve friend list, privacy, crossplay, or session state. Test public online first, then private invites.',
+            bullets: [
+              'Confirm both players can reach online features separately.',
+              'Test same-platform and cross-platform invites separately.',
+              'Restart the game only after recording the first error.',
+            ],
+          },
+          {
+            title: 'Connection drops mid-event',
+            body: 'Mid-event drops are more likely to involve connection stability, VPNs, Wi-Fi, or background network tools.',
+            bullets: [
+              'Use wired Ethernet for one baseline test if available.',
+              'Close download clients and overlays during testing.',
+              'Keep NAT and firewall changes narrow and reversible.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'input-lag-settings',
+    title: 'Forza Horizon 6 Input Lag Settings Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 input lag settings guide',
+    description:
+      'Forza Horizon 6 input lag settings guide for controller, wheel, keyboard, display mode, FPS caps, VSync, wireless latency, overlays, and response testing.',
+    eyebrow: 'Input lag',
+    intro:
+      'Input lag can feel like bad tuning, but the first fix is usually display, frame pacing, controller path, or wheel software. Build one repeatable test route before changing the car.',
+    primaryCta: {
+      label: 'Open PC Settings',
+      href: '/settings/forza-horizon-6-pc',
+    },
+    relatedLinks: [
+      {
+        label: 'Low FPS and stutter',
+        href: '/games/forza-horizon-6/guides/fix-low-fps-stutter',
+      },
+      {
+        label: 'Controller not working',
+        href: '/games/forza-horizon-6/guides/controller-not-working-checklist',
+      },
+      {
+        label: 'Wheel not working',
+        href: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Rule out frame pacing first',
+        body: 'A car that reacts late may be suffering from inconsistent frame delivery rather than a bad setup. Stabilize FPS before changing alignment or differential settings.',
+        bullets: [
+          'Use the low FPS guide if the lag appears with stutter or hitching.',
+          'Test one display mode, FPS cap, and VSync setting at a time.',
+          'Avoid judging input feel during shader compilation or background downloads.',
+        ],
+      },
+      {
+        title: 'Test wired input paths',
+        body: 'Wireless controllers, wheels, Bluetooth keyboards, and dongles can add variables. Run one wired baseline before deciding the tune is wrong.',
+        bullets: [
+          'Compare wired and wireless controller feel on the same route.',
+          'Plug wheel bases directly into the PC instead of a hub for testing.',
+          'Keep keyboard repeat rate and controller deadzones unchanged during the test.',
+        ],
+      },
+      {
+        title: 'Use one short response route',
+        body: 'Pick a short route with braking, steering, and throttle transitions. Repeat it after each change so the result is not just route memory or traffic noise.',
+        bullets: [
+          'Use the same car, camera, assist set, route, and weather.',
+          'Change display/input settings before changing car tuning.',
+          'Move to the tune calculator only after input response feels stable.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Input lag decision paths',
+        description:
+          'Use the feel of the delay to decide whether to tune display settings, controller path, wheel software, or car behavior.',
+        cards: [
+          {
+            title: 'Steering reacts late',
+            body: 'Late steering can come from display latency, FPS instability, controller path, or wheel software. Fix the input chain before changing alignment.',
+            bullets: [
+              'Check display mode and FPS cap first.',
+              'Compare wired controller or wheel input.',
+              'Disable overlays for one clean test.',
+            ],
+          },
+          {
+            title: 'Throttle feels delayed',
+            body: 'Delayed throttle can feel like turbo lag or poor gearing. Test input response on a low-power car before changing the build.',
+            bullets: [
+              'Use a simple road car for one baseline test.',
+              'Check trigger travel, keyboard tapping, or pedal calibration.',
+              'Retest after closing background apps.',
+            ],
+          },
+          {
+            title: 'Lag appears only online',
+            body: 'If single-player response is clean but online sessions feel delayed, separate network symptoms from local input settings.',
+            bullets: [
+              'Run the same route offline and online.',
+              'Check online troubleshooting if convoy or event sessions drop.',
+              'Do not retune the car around temporary network delay.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

@@ -125,6 +125,20 @@ const feedItems = [
     category: 'Cloud save',
   },
   {
+    title: 'Forza Horizon 6 online not working checklist',
+    path: '/games/forza-horizon-6/guides/online-not-working-checklist',
+    description:
+      'Online troubleshooting checklist for FH6 matchmaking, convoys, crossplay, account sign-in, NAT, platform services, and support notes.',
+    category: 'Online troubleshooting',
+  },
+  {
+    title: 'Forza Horizon 6 input lag settings guide',
+    path: '/games/forza-horizon-6/guides/input-lag-settings',
+    description:
+      'Input lag guide for FH6 controller, wheel, keyboard, display mode, FPS caps, VSync, wireless latency, overlays, and response testing.',
+    category: 'Input lag',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

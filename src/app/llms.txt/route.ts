@@ -49,6 +49,14 @@ const corePages = [
     'Forza Horizon 6 cloud save not syncing guide',
     '/games/forza-horizon-6/guides/cloud-save-not-syncing',
   ],
+  [
+    'Forza Horizon 6 online not working checklist',
+    '/games/forza-horizon-6/guides/online-not-working-checklist',
+  ],
+  [
+    'Forza Horizon 6 input lag settings guide',
+    '/games/forza-horizon-6/guides/input-lag-settings',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

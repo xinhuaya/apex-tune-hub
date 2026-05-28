@@ -132,6 +132,8 @@ const guideGroups = [
       'controller-drift-settings',
       'best-keyboard-settings',
       'cloud-save-not-syncing',
+      'online-not-working-checklist',
+      'input-lag-settings',
       'steam-deck-settings-guide',
     ],
   },
