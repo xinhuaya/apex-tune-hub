@@ -3,7 +3,7 @@ import { getBaseUrl } from '@/lib/urls';
 
 export const revalidate = 3600;
 
-const feedUpdatedAt = new Date('2026-05-28T00:00:00.000Z');
+const feedUpdatedAt = new Date('2026-05-29T00:00:00.000Z');
 
 type FeedItem = {
   title: string;

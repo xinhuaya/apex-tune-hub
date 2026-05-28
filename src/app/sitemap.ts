@@ -16,7 +16,7 @@ type Href = Parameters<typeof getLocalePathname>[0]['href'];
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 export const revalidate = 0;
-const sitemapLastModified = new Date('2026-05-28');
+const sitemapLastModified = new Date('2026-05-29');
 
 /**
  * static routes for sitemap, you may change the routes for your own
