@@ -193,6 +193,12 @@ const pcScorecardRows = [
 
 const pcNextLinks = [
   {
+    title: 'PC Requirements',
+    description:
+      'Check minimum, recommended, SSD, storage, and upgrade priority notes before settings work.',
+    href: '/games/forza-horizon-6/pc-requirements',
+  },
+  {
     title: 'Settings Hub',
     description:
       'Return to the main FH6 settings hub when the issue might be input, handheld, or wheel related.',

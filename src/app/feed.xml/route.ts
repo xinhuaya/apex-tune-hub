@@ -27,6 +27,13 @@ const feedItems = [
     category: 'Release status',
   },
   {
+    title: 'Forza Horizon 6 PC requirements',
+    path: '/games/forza-horizon-6/pc-requirements',
+    description:
+      'Steam-listed FH6 minimum and recommended PC requirements with SSD, storage, upgrade priority, and settings handoff notes.',
+    category: 'PC requirements',
+  },
+  {
     title: 'Forza Horizon 6 tune calculator',
     path: '/tools/forza-horizon-6-tune-calculator',
     description:

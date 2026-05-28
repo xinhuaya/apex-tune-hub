@@ -97,6 +97,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'PC Requirements',
+          href: Routes.ForzaHorizon6PcRequirements,
+          external: false,
+        },
+        {
           title: 'Official Sources',
           href: Routes.ForzaHorizon6OfficialSources,
           external: false,

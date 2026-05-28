@@ -113,6 +113,13 @@ const hubLinks = [
     icon: Gamepad2Icon,
   },
   {
+    title: 'PC Requirements',
+    description:
+      'Minimum, recommended, SSD, storage, and upgrade priority notes.',
+    href: '/games/forza-horizon-6/pc-requirements',
+    icon: MonitorIcon,
+  },
+  {
     title: 'Steam Deck Settings',
     description: 'Verified status, FPS targets, and handheld test plan.',
     href: '/settings/forza-horizon-6-steam-deck',

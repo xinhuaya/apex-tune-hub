@@ -117,6 +117,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'PC Requirements',
+          description: 'Minimum, recommended, SSD, storage, and upgrade notes',
+          icon: <MonitorIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6PcRequirements,
+          external: false,
+        },
+        {
           title: 'Official Sources',
           description: 'Release, platform, map, and car-list source tracker',
           icon: <ShieldCheckIcon className="size-4 shrink-0" />,
@@ -164,6 +171,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           description: 'Balanced, low-end, and high-end PC performance notes',
           icon: <MonitorIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6Pc,
+          external: false,
+        },
+        {
+          title: 'PC Requirements',
+          description: 'Hardware requirements and upgrade priority notes',
+          icon: <MonitorIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6PcRequirements,
           external: false,
         },
         {
