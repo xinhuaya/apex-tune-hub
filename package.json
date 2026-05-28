@@ -22,6 +22,7 @@
     "fix-payments-scene": "tsx scripts/fix-payments-scene.ts",
     "distribute-credits": "tsx scripts/distribute-credits.ts",
     "indexnow": "tsx scripts/submit-indexnow.ts",
+    "audit:fh6-links": "tsx scripts/audit-fh6-guide-links.ts",
     "content": "fumadocs-mdx",
     "email": "email dev --dir src/mail/templates --port 3333",
     "knip": "knip"
