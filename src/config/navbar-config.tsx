@@ -15,6 +15,7 @@ import {
   GiftIcon,
   LinkIcon,
   ListChecksIcon,
+  MapIcon,
   MailIcon,
   MailboxIcon,
   MonitorIcon,
@@ -141,6 +142,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Japan Map',
+          description: 'Launch route planning, regions, and tune handoffs',
+          icon: <MapIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6JapanMap,
+          external: false,
+        },
+        {
           title: 'PS5 Release Tracker',
           description: 'PS5 timing, wishlist, crossplay, and safe assumptions',
           icon: <Gamepad2Icon className="size-4 shrink-0" />,
@@ -191,6 +199,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Settings Hub',
+          description: 'PC, Steam Deck, wheel, controller, and input paths',
+          icon: <SlidersHorizontalIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6Settings,
+          external: false,
+        },
+        {
           title: 'Steam Deck Settings',
           description: 'Handheld settings page for FPS and battery testing',
           icon: <MonitorIcon className="size-4 shrink-0" />,
@@ -202,13 +217,6 @@ export function useNavbarLinks(): NestedMenuItem[] {
           description: 'Balanced, low-end, and high-end PC performance notes',
           icon: <MonitorIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6Pc,
-          external: false,
-        },
-        {
-          title: 'PC Requirements',
-          description: 'Hardware requirements and upgrade priority notes',
-          icon: <MonitorIcon className="size-4 shrink-0" />,
-          href: Routes.ForzaHorizon6PcRequirements,
           external: false,
         },
         {

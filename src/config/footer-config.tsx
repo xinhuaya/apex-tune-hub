@@ -62,6 +62,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Weekly Playlist',
+          href: Routes.ForzaHorizon6WeeklyPlaylist,
+          external: false,
+        },
+        {
           title: 'FAQ',
           href: Routes.ForzaHorizon6Faq,
           external: false,
@@ -89,6 +94,16 @@ export function useFooterLinks(): NestedMenuItem[] {
         {
           title: 'Steam Deck Settings',
           href: Routes.ForzaHorizon6SteamDeck,
+          external: false,
+        },
+        {
+          title: 'Settings Hub',
+          href: Routes.ForzaHorizon6Settings,
+          external: false,
+        },
+        {
+          title: 'Japan Map',
+          href: Routes.ForzaHorizon6JapanMap,
           external: false,
         },
         {
