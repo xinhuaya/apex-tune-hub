@@ -163,6 +163,8 @@ const guideGroups = [
       'aero-downforce-settings',
       'manual-with-clutch-shifting',
       'launch-control-tuning',
+      'speed-trap-speed-zone-tuning',
+      'danger-sign-trailblazer-tuning',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',

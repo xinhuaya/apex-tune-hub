@@ -251,6 +251,20 @@ const feedItems = [
     category: 'Launch tuning',
   },
   {
+    title: 'Forza Horizon 6 speed trap and speed zone tuning',
+    path: '/games/forza-horizon-6/guides/speed-trap-speed-zone-tuning',
+    description:
+      'Speed trap and speed zone guide for FH6 top speed, grip, aero, gearing, braking zones, S1 builds, S2 builds, weekly playlist PR stunts, and route testing.',
+    category: 'Speed PR stunts',
+  },
+  {
+    title: 'Forza Horizon 6 danger sign and trailblazer tuning',
+    path: '/games/forza-horizon-6/guides/danger-sign-trailblazer-tuning',
+    description:
+      'Danger sign and trailblazer guide for FH6 jump distance, offroad grip, suspension, ride height, rally tires, AWD builds, landing stability, and weekly playlist PR stunts.',
+    category: 'Jump and offroad PR',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

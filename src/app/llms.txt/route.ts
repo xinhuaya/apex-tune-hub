@@ -121,6 +121,14 @@ const corePages = [
     'Forza Horizon 6 launch control and start tuning',
     '/games/forza-horizon-6/guides/launch-control-tuning',
   ],
+  [
+    'Forza Horizon 6 speed trap and speed zone tuning',
+    '/games/forza-horizon-6/guides/speed-trap-speed-zone-tuning',
+  ],
+  [
+    'Forza Horizon 6 danger sign and trailblazer tuning',
+    '/games/forza-horizon-6/guides/danger-sign-trailblazer-tuning',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

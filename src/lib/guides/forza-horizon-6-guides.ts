@@ -2638,6 +2638,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'speed-trap-speed-zone-tuning',
+    title: 'Forza Horizon 6 Speed Trap and Speed Zone Tuning - Apex Tune Hub',
+    h1: 'Forza Horizon 6 speed trap and speed zone tuning',
+    description:
+      'Forza Horizon 6 speed trap and speed zone tuning guide for top speed, grip, aero, gearing, braking zones, S1 builds, S2 builds, weekly playlist PR stunts, and route testing.',
+    eyebrow: 'Speed PR stunts',
+    intro:
+      'Speed traps and speed zones look similar, but they reward different builds. Traps reward peak speed at one point; zones reward carrying speed through multiple corners without losing control.',
+    primaryCta: {
+      label: 'Open Gear Ratio Tool',
+      href: '/tools/forza-horizon-6-gear-ratio-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix poor top speed',
+        href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+      },
+      {
+        label: 'Aero settings',
+        href: '/games/forza-horizon-6/guides/aero-downforce-settings',
+      },
+      {
+        label: 'Weekly playlist',
+        href: '/games/forza-horizon-6/weekly-playlist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Tune traps for peak speed',
+        body: 'A speed trap checks one point, so route entry, launch distance, final drive, top gear, and aero tradeoffs matter more than lap balance.',
+        bullets: [
+          'Find the longest run-up before changing the tune.',
+          'Use gearing to avoid limiter before the trap point.',
+          'Reduce excess downforce only if the car still stays stable before the camera.',
+        ],
+      },
+      {
+        title: 'Tune zones for carried speed',
+        body: 'Speed zones average performance through a section. A car that is fast on the straight can fail if it cannot brake, rotate, or recover through corners.',
+        bullets: [
+          'Keep enough aero and tire grip for the fastest corner in the zone.',
+          'Test braking and exit traction, not only the start speed.',
+          'Use road tune guidance if understeer or oversteer ruins the middle of the zone.',
+        ],
+      },
+      {
+        title: 'Build for the weekly restriction',
+        body: 'Weekly playlist PR stunts may restrict class, manufacturer, country, car type, or drivetrain. Build around the restriction before optimizing speed.',
+        bullets: [
+          'Check class and car restrictions before choosing upgrades.',
+          'Save separate trap and zone presets for repeat use.',
+          'Use the weekly playlist page to route players toward current-season notes.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Speed PR stunt decision paths',
+        description:
+          'Use the PR stunt type to decide whether top speed, grip, aero, gearing, or route setup should change first.',
+        cards: [
+          {
+            title: 'Speed trap misses by a few mph',
+            body: 'Small trap misses often come from route entry, limiter, or too much downforce rather than raw power.',
+            bullets: [
+              'Try a longer run-up first.',
+              'Check final drive and top gear for limiter hits.',
+              'Remove aero only if stability remains acceptable.',
+            ],
+          },
+          {
+            title: 'Speed zone average is too low',
+            body: 'The car may be losing too much speed in corners. Balance grip and acceleration before chasing top speed.',
+            bullets: [
+              'Identify the corner that costs the most speed.',
+              'Use aero and tire settings for carried speed.',
+              'Retest braking points after every major change.',
+            ],
+          },
+          {
+            title: 'Restriction blocks the usual car',
+            body: 'Weekly restrictions often force a weaker car. Choose the easiest route and build for consistency first.',
+            bullets: [
+              'Check allowed class and car type.',
+              'Use stable AWD if the restriction permits it.',
+              'Save the working build for future playlist repeats.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'danger-sign-trailblazer-tuning',
+    title: 'Forza Horizon 6 Danger Sign and Trailblazer Tuning - Apex Tune Hub',
+    h1: 'Forza Horizon 6 danger sign and trailblazer tuning',
+    description:
+      'Forza Horizon 6 danger sign and trailblazer tuning guide for jump distance, offroad grip, suspension, ride height, rally tires, AWD builds, landing stability, and weekly playlist PR stunts.',
+    eyebrow: 'Jump and offroad PR',
+    intro:
+      'Danger signs and trailblazers reward momentum, stability, and recovery more than perfect road-racing balance. Build a car that survives rough approaches, lands cleanly, and keeps pulling after bumps.',
+    primaryCta: {
+      label: 'Open Rally Guide',
+      href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+    },
+    relatedLinks: [
+      {
+        label: 'Suspension settings',
+        href: '/games/forza-horizon-6/guides/anti-roll-bar-suspension-settings',
+      },
+      {
+        label: 'AWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+      },
+      {
+        label: 'Weekly playlist',
+        href: '/games/forza-horizon-6/weekly-playlist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build for approach speed and recovery',
+        body: 'A danger sign attempt starts before the ramp and ends after landing. The fastest approach means little if the car bounces, scrapes, or lands sideways.',
+        bullets: [
+          'Use a stable approach line before changing the tune.',
+          'Keep enough ride height and suspension travel for rough run-ups.',
+          'Use AWD when traction and recovery matter more than purity.',
+        ],
+      },
+      {
+        title: 'Use rally logic for trailblazers',
+        body: 'Trailblazers often mix dirt, rocks, roads, jumps, and awkward gates. A road tune can feel fast for ten seconds and then lose everything on bumps.',
+        bullets: [
+          'Tune for bump recovery and offroad grip first.',
+          'Use rally tires or offroad-focused upgrades when restrictions allow.',
+          'Keep gearing short enough to recover after missed lines.',
+        ],
+      },
+      {
+        title: 'Respect weekly restrictions',
+        body: 'Playlist PR stunts often force a class or car category. The best general car may not be legal, so the route and setup need to adapt.',
+        bullets: [
+          'Choose the most stable eligible car before tuning.',
+          'Use the weekly playlist page for seasonal routing.',
+          'Save working builds by restriction type for future repeats.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Jump and trailblazer decision paths',
+        description:
+          'Use the failure point to decide whether route, suspension, gearing, traction, or car choice needs work.',
+        cards: [
+          {
+            title: 'Jump distance is short',
+            body: 'Short jumps can be route, approach speed, gearing, aero drag, or poor traction before the ramp.',
+            bullets: [
+              'Try a cleaner approach before retuning.',
+              'Check gearing if the car stops pulling before the ramp.',
+              'Avoid excessive downforce if the approach is stable.',
+            ],
+          },
+          {
+            title: 'Car lands badly',
+            body: 'Landing problems usually point to suspension, ride height, weight transfer, or approach angle.',
+            bullets: [
+              'Raise or soften rough-route behavior gradually.',
+              'Use suspension guidance before changing power.',
+              'Retest the same landing line.',
+            ],
+          },
+          {
+            title: 'Trailblazer loses speed on bumps',
+            body: 'The setup may be too road-focused. Recovery and traction matter more than pure paved response.',
+            bullets: [
+              'Use rally settings for mixed surfaces.',
+              'Keep AWD and gearing recovery in mind.',
+              'Choose stable routes through rough terrain.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',
