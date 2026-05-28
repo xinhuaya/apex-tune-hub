@@ -28,7 +28,7 @@ import type { Locale } from 'next-intl';
 const pathname = '/games/forza-horizon-6/tuning-settings';
 const title = 'Forza Horizon 6 Tuning Settings Guide - Apex Tune Hub';
 const description =
-  'Forza Horizon 6 tuning settings guide explaining tire pressure, gearing, alignment, anti-roll bars, springs, damping, aero, brakes, and differential settings.';
+  'Forza Horizon 6 tuning settings guide explaining upgrade order, tire pressure, gearing, alignment, anti-roll bars, springs, damping, aero, brakes, and differential settings.';
 
 const settingsGroups = [
   {
@@ -100,6 +100,11 @@ const settingsGroups = [
 
 const workflows = [
   {
+    title: 'Upgrade planning',
+    text: 'Start with class target, tire compound, drivetrain swap, and PI budget before fine-tuning sliders.',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+  },
+  {
     title: 'Road racing',
     text: 'Start with tires, alignment, ARBs, and aero. Leave gearing until the car can repeat clean laps.',
     href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
@@ -122,6 +127,12 @@ const workflows = [
 ];
 
 const followupLinks = [
+  {
+    title: 'Upgrade Order Guide',
+    description:
+      'Use this before slider tuning when the car still needs tires, weight, power, or drivetrain decisions.',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+  },
   {
     title: 'Tune Calculator',
     description:
@@ -167,6 +178,7 @@ const sliderPriorityCards = [
 ];
 
 const tuningGuardrails = [
+  'Choose the target class, tire compound, and swap direction before slider tuning.',
   'Write the route, class, drivetrain, and main symptom before tuning.',
   'Change one setting group, then retest the same corner, launch, or straight.',
   'Undo a change if it improves one section but breaks the car everywhere else.',
@@ -176,7 +188,7 @@ const tuningGuardrails = [
 const tuningOrder = [
   {
     title: '1. Define the job',
-    text: 'Write down race type, class, drivetrain, surface, and the main problem before touching settings.',
+    text: 'Write down race type, class, drivetrain, surface, upgrade direction, and the main problem before touching settings.',
   },
   {
     title: '2. Fix grip and balance',
@@ -258,7 +270,7 @@ const faqs: FaqItem[] = [
   {
     question: 'What tuning setting should I change first in Forza Horizon 6?',
     answer:
-      'Change the setting tied to the main symptom. Understeer usually starts with tires, alignment, ARBs, aero, or differential. Wheelspin usually starts with gearing, differential, tire pressure, and throttle-friendly suspension.',
+      'Choose the class target and upgrade path first, then change the setting tied to the main symptom. Understeer usually starts with tires, alignment, ARBs, aero, or differential. Wheelspin usually starts with gearing, differential, tire pressure, and throttle-friendly suspension.',
   },
   {
     question: 'Should I copy every slider from a tune guide?',

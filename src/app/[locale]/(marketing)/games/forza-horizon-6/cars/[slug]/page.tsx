@@ -73,6 +73,12 @@ function getBuildCards(car: ForzaHorizon6Car, title: string) {
       body: `${getClassPlan(car)} Use the first tune to learn braking, corner entry, and throttle exits before adding power.`,
     },
     {
+      title: 'Upgrade order',
+      icon: WrenchIcon,
+      href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      body: `Choose tire compound, weight, power, and swap direction for ${title} before using slider-level tuning.`,
+    },
+    {
       title: 'Road tune',
       icon: GaugeIcon,
       href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
@@ -235,7 +241,7 @@ function getEvidenceWorkflow(car: ForzaHorizon6Car, title: string): FaqItem[] {
     {
       question: '3. Match a preset or calculator state',
       answer:
-        'Use the closest preset link or generate a calculator state so the setup can be repeated and refined later.',
+        'Choose upgrade order, tire compound, and swap direction first, then use the closest preset link or generate a calculator state so the setup can be repeated and refined later.',
     },
     {
       question: '4. Promote only after evidence',
@@ -260,34 +266,40 @@ function getCarTunePath(
       body: primarySetupGuide.body,
       cta: primarySetupGuide.title,
     },
+    {
+      title: '2. Choose upgrade order',
+      href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      body: `Decide tires, weight, power, engine swaps, and drivetrain swaps for ${car.stockClass} ${car.stockPi} before judging small slider changes.`,
+      cta: 'Upgrade order guide',
+    },
     firstPreset
       ? {
-          title: '2. Open the closest preset',
+          title: '3. Open the closest preset',
           href: `/tools/forza-horizon-6-tune-presets/${firstPreset.slug}`,
           body: `Use the ${firstPreset.h1} as the closest current baseline, then adjust after route testing.`,
           cta: 'Open matched preset',
         }
       : {
-          title: '2. Generate a baseline',
+          title: '3. Generate a baseline',
           href: '/tools/forza-horizon-6-tune-calculator',
           body: 'Use the calculator to choose class, drivetrain, surface, and handling issue before saving a preset.',
           cta: 'Open calculator',
         },
     {
-      title: '3. Compare the class',
+      title: '4. Compare the class',
       href: classGuide.pathname,
       body: `Compare ${car.stockClass} and nearby class builds before moving this car into a higher PI range.`,
       cta: classGuide.h1,
     },
     makeGuide
       ? {
-          title: '4. Compare the manufacturer',
+          title: '5. Compare the manufacturer',
           href: makeGuide.pathname,
           body: `Check how this ${car.make} option fits against other launch candidates from the same manufacturer.`,
           cta: makeGuide.h1,
         }
       : {
-          title: '4. Track weekly use',
+          title: '5. Track weekly use',
           href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
           body: 'Save the restriction, route type, and handling problem so the build can be reused later.',
           cta: 'Weekly checklist',
@@ -578,7 +590,7 @@ export default async function ForzaHorizon6CarPage({
             </div>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {buildCards.map((card) => {
               const Icon = card.icon;
 
@@ -712,7 +724,7 @@ export default async function ForzaHorizon6CarPage({
                 {carTunePath.length} steps
               </span>
             </div>
-            <div className="mt-5 grid gap-3 lg:grid-cols-4">
+            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
               {carTunePath.map((step) => (
                 <LocaleLink
                   className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
