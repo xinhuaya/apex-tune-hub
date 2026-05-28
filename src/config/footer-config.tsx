@@ -107,6 +107,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Steam vs Xbox App',
+          href: Routes.ForzaHorizon6SteamVsXboxApp,
+          external: false,
+        },
+        {
           title: 'PC Requirements',
           href: Routes.ForzaHorizon6PcRequirements,
           external: false,

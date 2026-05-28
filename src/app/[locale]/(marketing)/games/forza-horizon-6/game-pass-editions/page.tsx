@@ -181,6 +181,11 @@ const relatedLinks = [
     text: 'Check progress sync and storefront cautions before buying on another platform.',
   },
   {
+    title: 'Steam vs Xbox App',
+    href: '/games/forza-horizon-6/steam-vs-xbox-app',
+    text: 'Decide between Steam, Xbox app, PC Game Pass, and Steam Deck workflows.',
+  },
+  {
     title: 'PC Requirements',
     href: '/games/forza-horizon-6/pc-requirements',
     text: 'Make sure your PC path is stable before spending on add-ons.',

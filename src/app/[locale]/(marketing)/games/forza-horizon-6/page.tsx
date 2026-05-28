@@ -185,6 +185,13 @@ const hubLinks = [
     icon: ShieldCheckIcon,
   },
   {
+    title: 'Steam vs Xbox App',
+    description:
+      'PC storefront choice for Steam, Xbox app, PC Game Pass, and Steam Deck.',
+    href: '/games/forza-horizon-6/steam-vs-xbox-app',
+    icon: MonitorIcon,
+  },
+  {
     title: 'Official Sources',
     description:
       'Source tracker for release, platform, Japan map, and car-list updates.',

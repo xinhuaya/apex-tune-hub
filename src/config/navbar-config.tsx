@@ -133,6 +133,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Steam vs Xbox App',
+          description: 'Steam, Xbox app, PC Game Pass, and Steam Deck choice',
+          icon: <MonitorIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6SteamVsXboxApp,
+          external: false,
+        },
+        {
           title: 'PC Requirements',
           description: 'Minimum, recommended, SSD, storage, and upgrade notes',
           icon: <MonitorIcon className="size-4 shrink-0" />,

@@ -30,6 +30,10 @@ const corePages = [
     'Forza Horizon 6 Game Pass and editions',
     '/games/forza-horizon-6/game-pass-editions',
   ],
+  [
+    'Forza Horizon 6 Steam vs Xbox app',
+    '/games/forza-horizon-6/steam-vs-xbox-app',
+  ],
   ['Forza Horizon 6 PC requirements', '/games/forza-horizon-6/pc-requirements'],
   ['Forza Horizon 6 car list and database', '/games/forza-horizon-6/cars'],
   ['Forza Horizon 6 best cars', '/games/forza-horizon-6/best-cars'],

@@ -41,6 +41,13 @@ const feedItems = [
     category: 'Buying guide',
   },
   {
+    title: 'Forza Horizon 6 Steam vs Xbox app',
+    path: '/games/forza-horizon-6/steam-vs-xbox-app',
+    description:
+      'PC storefront guide comparing Steam, Xbox app, PC Game Pass, Steam Deck, Play Anywhere, cross-save, and add-on ownership.',
+    category: 'PC platform guide',
+  },
+  {
     title: 'Forza Horizon 6 PC requirements',
     path: '/games/forza-horizon-6/pc-requirements',
     description:

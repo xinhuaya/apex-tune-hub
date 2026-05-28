@@ -157,6 +157,11 @@ const relatedLinks = [
     text: 'Check whether the PC you are switching to meets listed minimum and recommended specs.',
   },
   {
+    title: 'Steam vs Xbox App',
+    href: '/games/forza-horizon-6/steam-vs-xbox-app',
+    text: 'Choose the cleaner PC path before buying on Steam, Xbox app, or Game Pass.',
+  },
+  {
     title: 'Steam Deck Settings',
     href: '/settings/forza-horizon-6-steam-deck',
     text: 'Move here when the switch path includes handheld play and portable tuning.',

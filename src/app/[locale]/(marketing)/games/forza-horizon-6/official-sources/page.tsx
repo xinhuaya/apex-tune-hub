@@ -60,6 +60,13 @@ const officialSources = [
     use: 'Use for Steam Deck Verified status and cross-save language for SteamOS and PC handheld play.',
   },
   {
+    title: 'Forza Horizon 6 PC specs support',
+    href: 'https://support.forzamotorsport.net/hc/en-us/articles/50088215399827-Forza-Horizon-6-PC-Specs',
+    label: 'PC storefront and requirements',
+    icon: FileSearchIcon,
+    use: 'Use for PC Game Pass, Xbox app, Steam, handheld, and minimum or recommended PC requirement wording.',
+  },
+  {
     title: 'Forza Horizon 6 release news',
     href: 'https://forza.net/news/forza-horizon-6-coming-may-2026',
     label: 'Launch positioning',
@@ -94,6 +101,12 @@ const sourceStatusRows = [
     status: 'Official source required',
     action:
       'Use the official DLC and editions list before changing Standard, Deluxe, Premium, Premium Upgrade, Car Pass, VIP, Welcome Pack, or expansion copy.',
+  },
+  {
+    area: 'PC storefront choice',
+    status: 'Official source required',
+    action:
+      'Use Forza launch, Steam Deck, Xbox, and PC specs sources before changing Steam, Xbox app, PC Game Pass, or handheld copy.',
   },
   {
     area: 'Map and route language',
