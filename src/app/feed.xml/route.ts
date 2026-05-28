@@ -192,6 +192,13 @@ const feedItems: FeedItem[] = [
     category: 'Assist settings',
   },
   {
+    title: 'Forza Horizon 6 difficulty settings guide',
+    path: '/games/forza-horizon-6/guides/difficulty-settings-guide',
+    description:
+      'Difficulty settings guide for FH6 assists, Drivatar pace, rewind, racing line, manual shifting, weekly consistency, and clean progression.',
+    category: 'Difficulty settings',
+  },
+  {
     title: 'Forza Horizon 6 manual transmission guide',
     path: '/games/forza-horizon-6/guides/manual-transmission-guide',
     description:

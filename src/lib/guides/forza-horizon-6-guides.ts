@@ -5466,6 +5466,99 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       },
     ],
   },
+  {
+    slug: 'difficulty-settings-guide',
+    title: 'Forza Horizon 6 Difficulty Settings Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 difficulty settings guide',
+    description:
+      'Forza Horizon 6 difficulty settings guide for assists, Drivatar difficulty, rewind, racing line, manual shifting, rewards, and weekly event consistency.',
+    eyebrow: 'Difficulty settings',
+    intro:
+      'Difficulty settings should make FH6 easier to learn without hiding the problem you are trying to fix. Tune assists, AI difficulty, rewind, racing line, and shifting one step at a time so the car still teaches you something.',
+    primaryCta: {
+      label: 'Open Assist Settings',
+      href: '/games/forza-horizon-6/guides/best-assist-settings',
+    },
+    relatedLinks: [
+      {
+        label: 'HUD and accessibility',
+        href: '/games/forza-horizon-6/guides/hud-accessibility-settings',
+      },
+      {
+        label: 'Manual transmission',
+        href: '/games/forza-horizon-6/guides/manual-transmission-guide',
+      },
+      {
+        label: 'Weekly playlist checklist',
+        href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Change learning aids before AI pace',
+        body: 'If a route is new, keep racing line, rewind, and stable assists available while learning braking markers. Raise AI difficulty only after the car repeats the route cleanly.',
+        bullets: [
+          'Use braking line while learning blind corners or wet routes.',
+          'Keep rewind on when practicing route knowledge, then reduce reliance later.',
+          'Do not raise AI pace while the car still misses braking zones.',
+        ],
+      },
+      {
+        title: 'Separate assist changes from tune changes',
+        body: 'Traction control, stability control, ABS, shifting mode, and steering help change how the car feels. Test them separately from differential, tire pressure, gearing, and brake balance.',
+        bullets: [
+          'Change one assist group, then drive the same route again.',
+          'If every car improves, keep working in settings.',
+          'If only one car remains bad, move to the tune calculator or handling guides.',
+        ],
+      },
+      {
+        title: 'Use weekly events as the consistency test',
+        body: 'A difficulty setup is good when it helps you finish restricted events without making the car feel numb. Weekly playlists are a useful test because they mix traffic, surfaces, and car limits.',
+        bullets: [
+          'Use a safer difficulty profile for co-op and restricted events.',
+          'Keep manual shifting changes separate from car tune tests.',
+          'Save a note when a setting helps repeated wins, not just one clean run.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Difficulty setting decision paths',
+        description:
+          'Use these paths to decide whether the next change belongs in difficulty, input settings, or the car tune.',
+        cards: [
+          {
+            title: 'New route learning',
+            body: 'Keep visibility and recovery aids active until braking zones and route flow are predictable.',
+            bullets: [
+              'Use racing line for unfamiliar route sections.',
+              'Use rewind while learning corner order.',
+              'Move to HUD settings if the route is hard to read.',
+            ],
+          },
+          {
+            title: 'Car control problem',
+            body: 'If the car spins, pushes wide, or locks brakes after settings are stable, the tune needs the next pass.',
+            bullets: [
+              'Use assist settings before changing multiple sliders.',
+              'Use handling guides for one-car problems.',
+              'Keep the same difficulty profile while retuning.',
+            ],
+          },
+          {
+            title: 'Weekly win problem',
+            body: 'If repeated weekly events fail, favor consistency over maximum reward multipliers until the car and route are stable.',
+            bullets: [
+              'Lower AI pace only when the event is the blocker.',
+              'Keep safe assists for co-op and traffic-heavy races.',
+              'Use weekly playlist notes to save the working profile.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function getForzaHorizon6Guide(slug: string) {

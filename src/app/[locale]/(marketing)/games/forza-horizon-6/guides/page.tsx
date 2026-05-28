@@ -294,6 +294,7 @@ const guideGroups = [
       'online-not-working-checklist',
       'input-lag-settings',
       'best-assist-settings',
+      'difficulty-settings-guide',
       'manual-transmission-guide',
       'best-camera-settings',
       'hud-accessibility-settings',

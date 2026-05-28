@@ -67,6 +67,11 @@ const settingsGuideShortcuts = [
     href: '/games/forza-horizon-6/guides/best-assist-settings',
   },
   {
+    title: 'Difficulty settings',
+    text: 'Use this when Drivatar pace, rewind, racing line, shifting, or reward tradeoffs need a clean progression path.',
+    href: '/games/forza-horizon-6/guides/difficulty-settings-guide',
+  },
+  {
     title: 'Best camera settings',
     text: 'Use this when cockpit, chase, FOV, motion, or route visibility changes how the car feels at speed.',
     href: '/games/forza-horizon-6/guides/best-camera-settings',

@@ -86,6 +86,10 @@ const corePages: string[][] = [
     '/games/forza-horizon-6/guides/best-assist-settings',
   ],
   [
+    'Forza Horizon 6 difficulty settings guide',
+    '/games/forza-horizon-6/guides/difficulty-settings-guide',
+  ],
+  [
     'Forza Horizon 6 manual transmission guide',
     '/games/forza-horizon-6/guides/manual-transmission-guide',
   ],
