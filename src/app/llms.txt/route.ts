@@ -185,6 +185,38 @@ const corePages: string[][] = [
     'Forza Horizon 6 drift zone scoring and tuning guide',
     '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
   ],
+  [
+    'Forza Horizon 6 Japan launch tuning plan',
+    '/games/forza-horizon-6/guides/japan-launch-tuning-plan',
+  ],
+  [
+    'Forza Horizon 6 best starter cars guide',
+    '/games/forza-horizon-6/guides/best-starter-cars',
+  ],
+  [
+    'Forza Horizon 6 Steam Deck settings guide',
+    '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+  ],
+  [
+    'Forza Horizon 6 Logitech wheel settings guide',
+    '/games/forza-horizon-6/guides/logitech-wheel-settings',
+  ],
+  [
+    'Forza Horizon 6 Thrustmaster wheel settings guide',
+    '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
+  ],
+  [
+    'Forza Horizon 6 Fanatec and Moza wheel settings guide',
+    '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
+  ],
+  [
+    'Forza Horizon 6 Japan route tuning checklist',
+    '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+  ],
+  [
+    'Forza Horizon 6 weekly playlist tuning checklist',
+    '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

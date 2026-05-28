@@ -367,6 +367,62 @@ const feedItems: FeedItem[] = [
     category: 'Drift zone scoring',
   },
   {
+    title: 'Forza Horizon 6 Japan launch tuning plan',
+    path: '/games/forza-horizon-6/guides/japan-launch-tuning-plan',
+    description:
+      'Japan launch tuning plan for FH6 route types, starter builds, wet roads, mountain sections, urban corners, and calculator handoffs.',
+    category: 'Japan launch',
+  },
+  {
+    title: 'Forza Horizon 6 best starter cars guide',
+    path: '/games/forza-horizon-6/guides/best-starter-cars',
+    description:
+      'Starter car guide for FH6 launch choices, early upgrades, beginner-friendly drivetrains, route fit, and first tune paths.',
+    category: 'Starter cars',
+  },
+  {
+    title: 'Forza Horizon 6 Steam Deck settings guide',
+    path: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+    description:
+      'Steam Deck settings guide for FH6 install checks, graphics tradeoffs, frame caps, controls, battery targets, and route testing.',
+    category: 'Steam Deck settings',
+  },
+  {
+    title: 'Forza Horizon 6 Logitech wheel settings guide',
+    path: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+    description:
+      'Logitech wheel guide for FH6 rotation, force feedback, deadzones, pedals, camera, assists, and first setup checks.',
+    category: 'Wheel settings',
+  },
+  {
+    title: 'Forza Horizon 6 Thrustmaster wheel settings guide',
+    path: '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
+    description:
+      'Thrustmaster wheel guide for FH6 force feedback, rotation, pedal feel, road racing, drift, and troubleshooting handoffs.',
+    category: 'Wheel settings',
+  },
+  {
+    title: 'Forza Horizon 6 Fanatec and Moza wheel settings guide',
+    path: '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
+    description:
+      'Fanatec and Moza wheel guide for FH6 direct-drive strength, damping, road detail, pedals, drift control, and consistency checks.',
+    category: 'Wheel settings',
+  },
+  {
+    title: 'Forza Horizon 6 Japan route tuning checklist',
+    path: '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+    description:
+      'Japan route checklist for FH6 mountain, city, highway, wet-road, dirt, and mixed-surface tuning decisions.',
+    category: 'Japan routes',
+  },
+  {
+    title: 'Forza Horizon 6 weekly playlist tuning checklist',
+    path: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+    description:
+      'Weekly playlist checklist for FH6 restrictions, event type, car choice, baseline tune, route testing, and tune-code sharing.',
+    category: 'Weekly playlist',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:
@@ -382,12 +438,14 @@ const feedItems: FeedItem[] = [
   },
 ];
 
-const generatedGuideFeedItems: FeedItem[] = forzaHorizon6Guides.map((guide) => ({
-  title: guide.h1,
-  path: `/games/forza-horizon-6/guides/${guide.slug}`,
-  description: guide.description,
-  category: guide.eyebrow,
-}));
+const generatedGuideFeedItems: FeedItem[] = forzaHorizon6Guides.map(
+  (guide) => ({
+    title: guide.h1,
+    path: `/games/forza-horizon-6/guides/${guide.slug}`,
+    description: guide.description,
+    category: guide.eyebrow,
+  })
+);
 
 const generatedCarGuideFeedItems: FeedItem[] = [
   ...Object.values(forzaHorizon6ClassCarGuides),
@@ -417,12 +475,7 @@ function escapeXml(value: string) {
     .replaceAll("'", '&apos;');
 }
 
-function itemXml({
-  title,
-  path,
-  description,
-  category,
-}: FeedItem) {
+function itemXml({ title, path, description, category }: FeedItem) {
   const baseUrl = getBaseUrl();
   const url = `${baseUrl}${path}`;
 
