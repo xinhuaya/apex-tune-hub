@@ -19,6 +19,7 @@ import {
   BadgeCheckIcon,
   CarFrontIcon,
   DatabaseIcon,
+  ExternalLinkIcon,
   GaugeIcon,
   ListChecksIcon,
   RouteIcon,
@@ -29,14 +30,19 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
 const pathname = '/games/forza-horizon-6/cars';
-const title = 'Forza Horizon 6 Car Database - Apex Tune Hub';
+const title = 'Forza Horizon 6 Car List and Database - Apex Tune Hub';
 const description =
-  'A starter Forza Horizon 6 car database with class, PI, acquisition, tune direction, and testing status.';
+  'Forza Horizon 6 car list and starter database with class, PI, acquisition, official source notes, tune direction, and testing status.';
 const carDatabaseFaqs: FaqItem[] = [
   {
     question: 'What is in the Apex Tune Hub FH6 car database?',
     answer:
-      'The first database slice focuses on Japan-related cars with stock class, PI, acquisition, best use, tune direction, and transparent testing status.',
+      'The first database slice focuses on Japan-related cars from the official Forza Horizon 6 car list with stock class, PI, acquisition, best use, tune direction, and transparent testing status.',
+  },
+  {
+    question: 'Is this the full official Forza Horizon 6 car list?',
+    answer:
+      'No. Apex Tune Hub links the official Forza.net list and keeps a smaller working database for cars that have useful tune, class, and route notes.',
   },
   {
     question: 'Are these FH6 car recommendations final?',
@@ -103,6 +109,30 @@ const databaseStats = [
     value: classLinks.length.toString(),
     label: 'class hubs',
     detail: 'B, A, S1, and S2 hubs connect cars back to tuning paths.',
+  },
+];
+
+const officialListCards = [
+  {
+    label: 'Official source',
+    value: 'Forza.net car list',
+    detail:
+      'Use the official table for the complete revealed model list, then use Apex pages for tuning context.',
+    href: 'https://forza.net/fh6cars?pubDate=20260123',
+  },
+  {
+    label: 'Last official update',
+    value: '19 May 2026',
+    detail:
+      'Forza.net marks the FH6 car list as updated on launch day, with future Series additions expected.',
+    href: 'https://forza.net/fh6cars?pubDate=20260123',
+  },
+  {
+    label: 'Expansion watch',
+    value: 'Car Pass and rewards',
+    detail:
+      'The official list notes Car Pass and Reward cars coming in June and July, so this database should update in waves.',
+    href: '/games/forza-horizon-6/car-pass',
   },
 ];
 
@@ -215,7 +245,7 @@ export default function ForzaHorizon6CarsPage() {
           <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_0.72fr]">
             <div>
               <h1 className="forza-neon-title max-w-3xl text-4xl font-semibold tracking-normal sm:text-5xl">
-                Forza Horizon 6 car database
+                Forza Horizon 6 car list and database
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
                 This first database slice starts with 10 Japan-focused cars from
@@ -290,6 +320,64 @@ export default function ForzaHorizon6CarsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <ShieldCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Official list first, tuning database second
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Forza.net is the canonical source for the revealed car list.
+                Apex Tune Hub turns selected cars into tune pages only when they
+                have useful class, route, settings, or weekly-event value.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {officialListCards.map((card) => {
+                const isExternal = card.href.startsWith('http');
+                const content = (
+                  <>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                      {card.label}
+                    </p>
+                    <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                      {card.value}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {card.detail}
+                    </p>
+                    <p className="mt-4 inline-flex items-center text-amber-200 text-xs font-semibold uppercase tracking-[0.16em]">
+                      Open source
+                      <ExternalLinkIcon className="ml-2 size-3" />
+                    </p>
+                  </>
+                );
+
+                return isExternal ? (
+                  <a
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40"
+                    href={card.href}
+                    key={card.label}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <LocaleLink
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40"
+                    href={card.href}
+                    key={card.label}
+                  >
+                    {content}
+                  </LocaleLink>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
         <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
             <RouteIcon className="size-6 text-amber-300" />

@@ -195,8 +195,9 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
-          title: 'Car Database',
-          description: 'Starter FH6 car pages with class, PI, and tune notes',
+          title: 'Car List',
+          description:
+            'Starter FH6 car list with source notes, class, PI, and tune notes',
           icon: <DatabaseIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6Cars,
           external: false,

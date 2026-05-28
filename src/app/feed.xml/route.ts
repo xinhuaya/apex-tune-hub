@@ -48,10 +48,10 @@ const feedItems = [
     category: 'Guides',
   },
   {
-    title: 'Forza Horizon 6 car database',
+    title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:
-      'Starter car pages with class, PI, acquisition, tune direction, testing status, and related setup paths.',
+      'Starter car-list pages with official source notes, class, PI, acquisition, tune direction, testing status, and related setup paths.',
     category: 'Cars',
   },
   {

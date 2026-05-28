@@ -107,8 +107,9 @@ const hubLinks = [
     icon: MonitorIcon,
   },
   {
-    title: 'Car Database',
-    description: '10 starter car pages with class, PI, and tune direction.',
+    title: 'Car List',
+    description:
+      'Official-source notes plus 10 starter car pages with class, PI, and tune direction.',
     href: '/games/forza-horizon-6/cars',
     icon: Gamepad2Icon,
   },

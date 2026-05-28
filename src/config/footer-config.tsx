@@ -57,7 +57,7 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
-          title: 'Car Database',
+          title: 'Car List',
           href: Routes.ForzaHorizon6Cars,
           external: false,
         },
