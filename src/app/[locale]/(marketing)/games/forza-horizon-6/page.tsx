@@ -265,6 +265,45 @@ const playerPaths = [
   },
 ];
 
+const hubProblemRoutes = [
+  {
+    title: 'HUD, accessibility, or camera feels wrong',
+    href: '/games/forza-horizon-6/guides/hud-accessibility-settings',
+    supportHref: '/games/forza-horizon-6/guides/best-camera-settings',
+    note: 'Use when visual readability, racing line, UI scale, camera view, or route learning is the blocker.',
+  },
+  {
+    title: 'Steam Deck needs a stable setup',
+    href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+    supportHref: '/settings/forza-horizon-6-steam-deck',
+    note: 'Use when handheld FPS, battery, heat, and readability matter more than desktop graphics quality.',
+  },
+  {
+    title: 'Japan routes need a test order',
+    href: '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+    supportHref: '/games/forza-horizon-6/japan-map',
+    note: 'Use when city, mountain, wet, drift, dirt, or speed route notes need a repeatable checklist.',
+  },
+  {
+    title: 'Wheel brand setup is the issue',
+    href: '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
+    supportHref: '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
+    note: 'Use when force feedback, center feel, clipping, oscillation, or wheelbase software differs by hardware.',
+  },
+  {
+    title: 'FWD or drivetrain behavior is confusing',
+    href: '/games/forza-horizon-6/guides/best-fwd-tune-settings',
+    supportHref: '/games/forza-horizon-6/guides/differential-settings-guide',
+    note: 'Use when front-drive exits, throttle rotation, differential lock, or inside-wheel spin needs a focused path.',
+  },
+  {
+    title: 'Manual shifting changes the result',
+    href: '/games/forza-horizon-6/guides/manual-with-clutch-shifting',
+    supportHref: '/games/forza-horizon-6/guides/manual-transmission-guide',
+    note: 'Use when launch control, shift timing, missed shifts, or gearing feedback affects the setup.',
+  },
+];
+
 const ecosystemRows = [
   ['Tools', 'Calculator, presets, drift, gear ratio, and tune-code workflow'],
   ['Cars', 'Car database, best cars, class hubs, and manufacturer pages'],
@@ -307,6 +346,17 @@ export default function ForzaHorizon6HubPage() {
               position: index + 1,
               name: link.title,
               url: `https://apextunehub.com${link.href}`,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 problem quick routes',
+            itemListElement: hubProblemRoutes.map((route, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: route.title,
+              url: `https://apextunehub.com${route.href}`,
             })),
           },
         ]}
@@ -504,6 +554,51 @@ export default function ForzaHorizon6HubPage() {
               verified update paths.
             </p>
           </LocaleLink>
+        </div>
+
+        <div className="forza-panel mb-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <GaugeIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Problem quick routes
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Some FH6 visits start with a very specific problem rather than a
+                broad hub choice. These routes send players straight to the
+                focused guide, while still giving them a second related path.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {hubProblemRoutes.map((route) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={route.href}
+                >
+                  <h3 className="text-base font-semibold text-zinc-100">
+                    {route.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {route.note}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <LocaleLink
+                      className="rounded-md border border-cyan-300/25 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/50"
+                      href={route.href}
+                    >
+                      Primary guide
+                    </LocaleLink>
+                    <LocaleLink
+                      className="rounded-md border border-white/10 px-3 py-2 text-xs font-semibold text-zinc-300 transition hover:border-amber-300/40 hover:text-amber-100"
+                      href={route.supportHref}
+                    >
+                      Related path
+                    </LocaleLink>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
