@@ -95,6 +95,101 @@ const guideRouterRows = [
   },
 ];
 
+const guideShortcutBays = [
+  {
+    icon: MapIcon,
+    title: 'Japan launch and route setup',
+    text: 'Route-first pages for mountain roads, city corners, wet surfaces, early car choices, and Japan map planning.',
+    links: [
+      {
+        label: 'Japan launch plan',
+        href: '/games/forza-horizon-6/guides/japan-launch-tuning-plan',
+      },
+      {
+        label: 'Japan route checklist',
+        href: '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+      },
+      {
+        label: 'Best starter cars',
+        href: '/games/forza-horizon-6/guides/best-starter-cars',
+      },
+      {
+        label: 'Japan map planner',
+        href: '/games/forza-horizon-6/japan-map',
+      },
+    ],
+  },
+  {
+    icon: CircleGaugeIcon,
+    title: 'Device feel and input fixes',
+    text: 'Use these before changing a car tune when FH6 feels delayed, cramped, too busy, or inconsistent on one device.',
+    links: [
+      {
+        label: 'Steam Deck guide',
+        href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+      },
+      {
+        label: 'Input lag settings',
+        href: '/games/forza-horizon-6/guides/input-lag-settings',
+      },
+      {
+        label: 'Camera settings',
+        href: '/games/forza-horizon-6/guides/best-camera-settings',
+      },
+      {
+        label: 'HUD accessibility',
+        href: '/games/forza-horizon-6/guides/hud-accessibility-settings',
+      },
+    ],
+  },
+  {
+    icon: WrenchIcon,
+    title: 'Wheel brand settings',
+    text: 'Separate baseline paths for common wheel ecosystems, plus a fallback when FH6 does not detect the device cleanly.',
+    links: [
+      {
+        label: 'Logitech wheels',
+        href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+      },
+      {
+        label: 'Thrustmaster wheels',
+        href: '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
+      },
+      {
+        label: 'Fanatec and Moza',
+        href: '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
+      },
+      {
+        label: 'Wheel not working',
+        href: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
+      },
+    ],
+  },
+  {
+    icon: RadioTowerIcon,
+    title: 'Weekly event preparation',
+    text: 'Repeatable handoffs for playlist restrictions, co-op events, Forzathon tasks, and event-safe tune sharing.',
+    links: [
+      {
+        label: 'Weekly checklist',
+        href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+      },
+      {
+        label: 'Seasonal championship',
+        href: '/games/forza-horizon-6/guides/seasonal-championship-tuning',
+      },
+      {
+        label: 'The Trial co-op',
+        href: '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
+      },
+      {
+        label: 'Tune code sharing',
+        href: '/games/forza-horizon-6/guides/auction-house-tune-code-sharing',
+      },
+    ],
+  },
+];
+
 const upgradeDecisionPath = [
   {
     step: '1',
@@ -405,6 +500,15 @@ export default function ForzaHorizon6GuidesPage() {
             })),
           }),
           buildItemListJsonLd({
+            title: 'Forza Horizon 6 high-intent guide shortcuts',
+            items: guideShortcutBays.flatMap((bay) =>
+              bay.links.map((link) => ({
+                name: `${bay.title}: ${link.label}`,
+                path: link.href,
+              }))
+            ),
+          }),
+          buildItemListJsonLd({
             title: 'Forza Horizon 6 upgrade planning path',
             items: upgradeDecisionPath.map((item) => ({
               name: item.title,
@@ -485,7 +589,7 @@ export default function ForzaHorizon6GuidesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {guideClusters.map((cluster) => {
             const Icon = cluster.icon;
 
@@ -505,6 +609,36 @@ export default function ForzaHorizon6GuidesPage() {
                   <ArrowRightIcon className="ml-2 size-4 transition group-hover:translate-x-1" />
                 </span>
               </LocaleLink>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+          {guideShortcutBays.map((bay) => {
+            const Icon = bay.icon;
+
+            return (
+              <article className="forza-card p-5" key={bay.title}>
+                <Icon className="size-6 text-amber-300" />
+                <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                  {bay.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  {bay.text}
+                </p>
+                <div className="mt-5 grid gap-2">
+                  {bay.links.map((link) => (
+                    <LocaleLink
+                      className="inline-flex items-center justify-between rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                      href={link.href}
+                      key={link.href}
+                    >
+                      {link.label}
+                      <ArrowRightIcon className="size-4" />
+                    </LocaleLink>
+                  ))}
+                </div>
+              </article>
             );
           })}
         </div>
@@ -542,7 +676,9 @@ export default function ForzaHorizon6GuidesPage() {
               </p>
             </div>
             <Button asChild variant="outline" className="rounded-md">
-              <LocaleLink href="#upgrade-guides">Open upgrade cluster</LocaleLink>
+              <LocaleLink href="#upgrade-guides">
+                Open upgrade cluster
+              </LocaleLink>
             </Button>
           </div>
           <div className="mt-5 grid gap-3 md:grid-cols-5">
