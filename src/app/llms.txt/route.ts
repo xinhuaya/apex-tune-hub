@@ -113,6 +113,14 @@ const corePages = [
     'Forza Horizon 6 aero and downforce settings',
     '/games/forza-horizon-6/guides/aero-downforce-settings',
   ],
+  [
+    'Forza Horizon 6 manual with clutch shifting guide',
+    '/games/forza-horizon-6/guides/manual-with-clutch-shifting',
+  ],
+  [
+    'Forza Horizon 6 launch control and start tuning',
+    '/games/forza-horizon-6/guides/launch-control-tuning',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

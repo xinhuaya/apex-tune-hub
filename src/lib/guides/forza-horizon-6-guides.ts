@@ -2452,6 +2452,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'manual-with-clutch-shifting',
+    title: 'Forza Horizon 6 Manual With Clutch Shifting Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 manual with clutch shifting guide',
+    description:
+      'Forza Horizon 6 manual with clutch shifting guide for controller binds, wheel clutch pedals, keyboard shifting, missed shifts, launch control, downshifts, and race consistency.',
+    eyebrow: 'Manual with clutch',
+    intro:
+      'Manual with clutch can make shifting feel sharper, but it also adds workload. Use it only when normal manual shifting is already clean, then build binds and timing around repeatable corner exits.',
+    primaryCta: {
+      label: 'Open Manual Guide',
+      href: '/games/forza-horizon-6/guides/manual-transmission-guide',
+    },
+    relatedLinks: [
+      {
+        label: 'Advanced gearing',
+        href: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+      },
+      {
+        label: 'Controller settings',
+        href: '/settings/forza-horizon-6-controller',
+      },
+      {
+        label: 'Wheel settings',
+        href: '/settings/forza-horizon-6-wheel',
+      },
+    ],
+    sections: [
+      {
+        title: 'Earn clutch after normal manual',
+        body: 'Clutch input should add control, not panic. Start with normal manual and only move to clutch when missed shifts are rare.',
+        bullets: [
+          'Practice manual upshifts and downshifts on one short route first.',
+          'Use a stable A or S1 car before trying high-power builds.',
+          'Return to normal manual if clutch timing distracts from braking points.',
+        ],
+      },
+      {
+        title: 'Choose binds that survive corners',
+        body: 'A clutch bind that is comfortable in a straight line may fail under braking or steering. Test it in corners, not only on the highway.',
+        bullets: [
+          'Controller users should avoid binds that fight steering, camera, or rewind.',
+          'Wheel users should compare paddle shifting with clutch pedal timing.',
+          'Keyboard users should keep clutch and shift keys reachable while steering.',
+        ],
+      },
+      {
+        title: 'Use clutch to support launch and exits',
+        body: 'Clutch timing can help launch and shifting, but gearing and throttle still matter. Do not use clutch to hide a car with chaotic low gears.',
+        bullets: [
+          'Use launch tuning if the car spins before the first shift.',
+          'Use advanced gearing if shifts land outside the power band.',
+          'Retest with the same route, assists, and camera.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Manual with clutch decision paths',
+        description:
+          'Use the shifting problem to decide whether the issue is bind layout, clutch timing, gearing, or launch setup.',
+        cards: [
+          {
+            title: 'Missed shifts under braking',
+            body: 'If shifts fail when braking and turning, the bind or timing is too busy for that route.',
+            bullets: [
+              'Practice standard manual on the same route.',
+              'Move clutch to a more natural bind if needed.',
+              'Keep brake tuning unchanged while testing shifts.',
+            ],
+          },
+          {
+            title: 'Launch feels inconsistent',
+            body: 'Launch problems can involve clutch timing, gearing, traction, and differential behavior.',
+            bullets: [
+              'Use one launch test section.',
+              'Check launch tuning before changing every gear.',
+              'Compare clutch and non-clutch launches separately.',
+            ],
+          },
+          {
+            title: 'Wheel clutch pedal feels awkward',
+            body: 'Wheel users may need calibration or simpler binds before clutch becomes useful.',
+            bullets: [
+              'Check pedal calibration and wheel software.',
+              'Use paddle shifting first if clutch timing is unstable.',
+              'Keep wheel rotation and force feedback unchanged during tests.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'launch-control-tuning',
+    title: 'Forza Horizon 6 Launch Control and Start Tuning - Apex Tune Hub',
+    h1: 'Forza Horizon 6 launch control and start tuning',
+    description:
+      'Forza Horizon 6 launch control and start tuning guide for AWD, RWD, FWD, drag starts, road racing starts, wheelspin, gearing, differential, throttle control, and manual shifting.',
+    eyebrow: 'Launch tuning',
+    intro:
+      'A good launch is not just maximum power. It is gearing, differential, tire grip, throttle control, drive layout, and shift timing working together for the first few seconds of an event.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=drag&drive=AWD&class=S1&issue=slow-launch&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix slow launch',
+        href: '/games/forza-horizon-6/guides/fix-slow-launch',
+      },
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+      {
+        label: 'Advanced gearing',
+        href: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+      },
+    ],
+    sections: [
+      {
+        title: 'Separate launch type from race type',
+        body: 'Drag launches and road-racing starts are not the same. Drag can favor aggressive first-gear behavior, while road events need clean exits after the first corner too.',
+        bullets: [
+          'Use drag testing only for drag-focused builds.',
+          'Use road starts plus first-corner exit for road racing builds.',
+          'Do not ruin mid-race gearing for one perfect launch.',
+        ],
+      },
+      {
+        title: 'Fix wheelspin before adding power',
+        body: 'Launch spin is often gearing, differential, tire pressure, or throttle behavior. Adding power usually makes the first seconds worse.',
+        bullets: [
+          'Lengthen first gear if the tires light up instantly.',
+          'Use AWD, RWD, or FWD guidance depending on the car layout.',
+          'Compare assist-on and assist-off launches if traction behavior is unclear.',
+        ],
+      },
+      {
+        title: 'Shift timing matters early',
+        body: 'The first shift can decide whether the car keeps pulling or falls out of its power band. Manual and clutch users should test shift points carefully.',
+        bullets: [
+          'Use the same launch strip for every comparison.',
+          'Record whether the car bogs after first or second shift.',
+          'Use gear ratio tuning when early shift points feel wrong.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Launch tuning decision paths',
+        description:
+          'Use the launch symptom to decide whether to adjust gearing, differential, throttle control, tire pressure, or shift timing first.',
+        cards: [
+          {
+            title: 'Instant wheelspin',
+            body: 'The car has more torque than the tires can use at launch. Start with low gears and traction behavior.',
+            bullets: [
+              'Lengthen first gear in small steps.',
+              'Check tire pressure and differential behavior.',
+              'Use wheelspin fixes before adding power.',
+            ],
+          },
+          {
+            title: 'Car bogs after launch',
+            body: 'The gearing may be too long or the shift drops the car out of its useful power band.',
+            bullets: [
+              'Check the first and second shift separately.',
+              'Use advanced gearing for early ratios.',
+              'Compare automatic and manual shifting if needed.',
+            ],
+          },
+          {
+            title: 'Launch is good but first corner is bad',
+            body: 'A launch-only setup may hurt braking, corner entry, or exit traction. Road racing needs the first corner too.',
+            bullets: [
+              'Test the first braking zone after the launch.',
+              'Use brake and suspension guides if the car becomes unstable.',
+              'Save a separate drag preset if launch is the only goal.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

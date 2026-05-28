@@ -237,6 +237,20 @@ const feedItems = [
     category: 'Aero tuning',
   },
   {
+    title: 'Forza Horizon 6 manual with clutch shifting guide',
+    path: '/games/forza-horizon-6/guides/manual-with-clutch-shifting',
+    description:
+      'Manual with clutch guide for FH6 controller binds, wheel clutch pedals, keyboard shifting, missed shifts, launch control, downshifts, and race consistency.',
+    category: 'Manual with clutch',
+  },
+  {
+    title: 'Forza Horizon 6 launch control and start tuning',
+    path: '/games/forza-horizon-6/guides/launch-control-tuning',
+    description:
+      'Launch control and start tuning guide for FH6 AWD, RWD, FWD, drag starts, road racing starts, wheelspin, gearing, differential, and throttle control.',
+    category: 'Launch tuning',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

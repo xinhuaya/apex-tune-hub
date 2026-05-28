@@ -161,6 +161,8 @@ const guideGroups = [
       'alignment-camber-toe-settings',
       'advanced-gear-ratio-tuning',
       'aero-downforce-settings',
+      'manual-with-clutch-shifting',
+      'launch-control-tuning',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',
