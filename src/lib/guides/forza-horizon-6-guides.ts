@@ -3289,6 +3289,285 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'rivals-time-attack-tuning',
+    title: 'Forza Horizon 6 Rivals Time Attack Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 Rivals time attack tuning guide',
+    description:
+      'Forza Horizon 6 Rivals time attack tuning guide for clean laps, route testing, ghost comparison, tire temperature, gearing, braking markers, and repeatable setup notes.',
+    eyebrow: 'Rivals time attack',
+    intro:
+      'Rivals tuning is about repeatable comparison. Lock the route, class, assists, weather, and car, then change one setup group at a time so the ghost actually tells you what improved.',
+    primaryCta: {
+      label: 'Open Tune Presets',
+      href: '/tools/forza-horizon-6-tune-presets',
+    },
+    relatedLinks: [
+      {
+        label: 'A class road tune',
+        href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+      {
+        label: 'Advanced gearing',
+        href: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+      },
+      {
+        label: 'Brake settings',
+        href: '/games/forza-horizon-6/guides/brake-balance-pressure-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Lock the test conditions',
+        body: 'A Rivals setup test only works when the comparison is clean. If the car, assist profile, route, or class changes, the result becomes noise.',
+        bullets: [
+          'Use one car, one route, one class, and one assist profile per test.',
+          'Run at least three clean laps before judging a setup.',
+          'Keep notes on sector gains, not only final lap time.',
+        ],
+      },
+      {
+        title: 'Tune the biggest loss first',
+        body: 'Do not chase every slider at once. Identify whether the ghost gains under braking, mid-corner, exit traction, or top speed, then tune that symptom.',
+        bullets: [
+          'Use brake balance if the ghost closes during braking zones.',
+          'Use alignment and tire pressure if mid-corner speed is weak.',
+          'Use gearing and differential if exits or straights lose time.',
+        ],
+      },
+      {
+        title: 'Save leaderboard and safe variants',
+        body: 'The fastest solo lap can be too nervous for weekly events. Keep a pure Rivals variant and a safer playlist variant so one success does not ruin the garage.',
+        bullets: [
+          'Label the pure time-attack tune with route and class.',
+          'Save a safer version with better traffic and contact recovery.',
+          'Use tune-code notes when a setup works across multiple tracks.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Rivals test loops',
+        description:
+          'Use ghost behavior to decide which setup family deserves the next test.',
+        cards: [
+          {
+            title: 'Ghost gains in braking zones',
+            body: 'The car may need more braking confidence, less instability, or a better entry marker.',
+            bullets: [
+              'Retest brake pressure and balance.',
+              'Check unstable braking guidance.',
+              'Do not mask entry problems with extra aero too early.',
+            ],
+          },
+          {
+            title: 'Ghost gains on corner exit',
+            body: 'Exit losses often come from wheelspin, poor gear spacing, or differential behavior.',
+            bullets: [
+              'Compare second and third gear exits.',
+              'Check wheelspin and differential pages.',
+              'Use AWD only if the class and route justify it.',
+            ],
+          },
+          {
+            title: 'Ghost gains on straights',
+            body: 'Top-speed loss can be gearing, aero drag, or a car that reaches redline too soon.',
+            bullets: [
+              'Check final drive first.',
+              'Reduce unnecessary downforce carefully.',
+              'Use speed trap testing before race testing.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cross-country-offroad-tuning',
+    title: 'Forza Horizon 6 Cross-Country and Offroad Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 cross-country and offroad tuning guide',
+    description:
+      'Forza Horizon 6 cross-country and offroad tuning guide for jumps, bumps, water, dirt, rally tires, ride height, suspension travel, AWD grip, and weekly event consistency.',
+    eyebrow: 'Cross-country offroad',
+    intro:
+      'Cross-country tuning is not just rally tuning with more power. The car has to land, absorb bumps, recover through grass or dirt, and keep enough speed after imperfect lines.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=AWD&class=A&issue=unstable-braking&style=safe',
+    },
+    relatedLinks: [
+      {
+        label: 'Rally tune settings',
+        href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      },
+      {
+        label: 'Danger sign tuning',
+        href: '/games/forza-horizon-6/guides/danger-sign-trailblazer-tuning',
+      },
+      {
+        label: 'AWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with landing behavior',
+        body: 'A cross-country car that lands badly loses more time than it gains from extra power. Suspension travel, ride height, and weight control come first.',
+        bullets: [
+          'Raise ride height enough to survive rough landings.',
+          'Soften the car before chasing sharper turn-in.',
+          'Retest the same jump and landing zone after each change.',
+        ],
+      },
+      {
+        title: 'Choose grip for mixed surfaces',
+        body: 'Routes can move from road to dirt to grass quickly. The best setup keeps traction when the racing line disappears.',
+        bullets: [
+          'Use offroad or rally-focused tires when restrictions allow.',
+          'Keep AWD stable and predictable.',
+          'Avoid gearing that bogs after bumps or water crossings.',
+        ],
+      },
+      {
+        title: 'Tune for recovery, not perfection',
+        body: 'Offroad routes punish tiny mistakes with lost momentum. A weekly-safe tune should recover after missed checkpoints, bumps, or bad landings.',
+        bullets: [
+          'Use shorter recovery gearing for slow sections.',
+          'Keep enough front grip to correct alternate lines.',
+          'Save a safer event tune separate from PR stunt builds.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Offroad failure checks',
+        description:
+          'Separate landing, traction, and recovery problems before changing the whole build.',
+        cards: [
+          {
+            title: 'Car bounces after landing',
+            body: 'The suspension is probably too stiff or too low for the jump profile.',
+            bullets: [
+              'Raise ride height gradually.',
+              'Soften damping before changing power.',
+              'Retest with the same approach speed.',
+            ],
+          },
+          {
+            title: 'Car spins on dirt exits',
+            body: 'Traction and differential behavior may be too aggressive for mixed surfaces.',
+            bullets: [
+              'Use AWD stability guidance.',
+              'Reduce sudden throttle response.',
+              'Check tire choice before adding more aero.',
+            ],
+          },
+          {
+            title: 'Car loses speed through grass',
+            body: 'The build may lack recovery gearing or suspension control for rough sections.',
+            bullets: [
+              'Shorten lower gears slightly.',
+              'Avoid bottoming out.',
+              'Choose lines that keep wheels settled.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'drift-zone-scoring-tuning',
+    title: 'Forza Horizon 6 Drift Zone Scoring and Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 drift zone scoring and tuning guide',
+    description:
+      'Forza Horizon 6 drift zone scoring and tuning guide for angle, speed, transitions, gearing, tire pressure, controller settings, wheel settings, and weekly playlist drift tasks.',
+    eyebrow: 'Drift zone scoring',
+    intro:
+      'A good drift zone tune is not only about maximum angle. It needs controllable initiation, steady speed, clean transitions, and recovery before the next scoring section.',
+    primaryCta: {
+      label: 'Open Drift Calculator',
+      href: '/tools/forza-horizon-6-drift-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Japan drift setup',
+        href: '/games/forza-horizon-6/guides/japan-drift-setup',
+      },
+      {
+        label: 'Controller drift settings',
+        href: '/games/forza-horizon-6/guides/controller-drift-settings',
+      },
+      {
+        label: 'Best drift cars',
+        href: '/games/forza-horizon-6/best-drift-cars',
+      },
+    ],
+    sections: [
+      {
+        title: 'Balance angle and speed',
+        body: 'Too much angle can slow the car and break the chain. Too little angle can leave points on the table. Tune for the zone rhythm.',
+        bullets: [
+          'Use a gear that holds the main drift section without constant shifting.',
+          'Keep enough speed for transitions.',
+          'Avoid power levels that require panic corrections.',
+        ],
+      },
+      {
+        title: 'Make transitions predictable',
+        body: 'Linked corners decide many drift zones. The car should change direction without snapping or bogging.',
+        bullets: [
+          'Use steering and tire-pressure changes gradually.',
+          'Check controller or wheel settings before blaming the car.',
+          'Retest the same transition after each change.',
+        ],
+      },
+      {
+        title: 'Prepare weekly drift tasks',
+        body: 'Weekly drift zones reward a tune that scores quickly without needing perfect retries. Keep one safe score build and one sharper practice build.',
+        bullets: [
+          'Use a familiar drift car for seasonal requirements when allowed.',
+          'Save a legal tune code for repeat tasks.',
+          'Use the drift calculator when the zone needs a different gear or power level.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Drift zone setup checks',
+        description:
+          'Use the scoring failure to decide whether gear, power, angle, or input setup needs adjustment.',
+        cards: [
+          {
+            title: 'Car cannot hold the zone',
+            body: 'The gear may be wrong or power delivery may be too weak for the scoring section.',
+            bullets: [
+              'Use one main gear for the longest drift section.',
+              'Check final drive and power level.',
+              'Avoid shifting mid-transition unless needed.',
+            ],
+          },
+          {
+            title: 'Car spins during transitions',
+            body: 'The setup may have too much rear snap or the input settings may be too sensitive.',
+            bullets: [
+              'Soften aggressive rear behavior.',
+              'Check controller drift settings.',
+              'Use a smoother initiation point.',
+            ],
+          },
+          {
+            title: 'Score is inconsistent',
+            body: 'Inconsistency often comes from route approach, speed, or overcorrecting.',
+            bullets: [
+              'Start from the same marker each attempt.',
+              'Keep throttle rhythm consistent.',
+              'Use a safer tune before chasing maximum angle.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

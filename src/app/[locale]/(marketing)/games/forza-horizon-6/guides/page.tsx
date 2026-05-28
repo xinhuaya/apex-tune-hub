@@ -33,7 +33,7 @@ const pathname = '/games/forza-horizon-6/guides';
 const title =
   'Forza Horizon 6 Guides - Tuning, Settings, PR Stunts, and Setup Help';
 const description =
-  'Forza Horizon 6 tuning guides for starter cars, Japan routes, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, PR stunts, Forzathon, tune codes, street races, seasonal championships, and weekly playlist setup help.';
+  'Forza Horizon 6 tuning guides for starter cars, Japan routes, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, Rivals, offroad, drift zones, PR stunts, Forzathon, tune codes, street races, seasonal championships, and weekly playlist setup help.';
 
 const guideClusters = [
   {
@@ -78,7 +78,7 @@ const guideRouterRows = [
   {
     problem: 'I need a build for an event type',
     start: 'Event build guides',
-    next: 'Use road, drift, rally, drag, PR stunt, Forzathon, street race, seasonal championship, Trial, or weekly playlist tuning checklists.',
+    next: 'Use road, drift, rally, drag, Rivals, offroad, PR stunt, Forzathon, street race, seasonal championship, Trial, or weekly playlist tuning checklists.',
     href: '#event-guides',
   },
 ];
@@ -171,6 +171,9 @@ const guideGroups = [
       'forzathon-weekly-challenge-tuning',
       'auction-house-tune-code-sharing',
       'street-race-night-tuning',
+      'rivals-time-attack-tuning',
+      'cross-country-offroad-tuning',
+      'drift-zone-scoring-tuning',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',

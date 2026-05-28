@@ -300,6 +300,27 @@ const feedItems = [
     category: 'Street racing',
   },
   {
+    title: 'Forza Horizon 6 Rivals time attack tuning guide',
+    path: '/games/forza-horizon-6/guides/rivals-time-attack-tuning',
+    description:
+      'Rivals time attack guide for FH6 clean laps, route testing, ghost comparison, tire temperature, gearing, braking markers, and repeatable setup notes.',
+    category: 'Rivals time attack',
+  },
+  {
+    title: 'Forza Horizon 6 cross-country and offroad tuning guide',
+    path: '/games/forza-horizon-6/guides/cross-country-offroad-tuning',
+    description:
+      'Cross-country and offroad tuning guide for FH6 jumps, bumps, water, dirt, rally tires, ride height, suspension travel, AWD grip, and weekly consistency.',
+    category: 'Cross-country offroad',
+  },
+  {
+    title: 'Forza Horizon 6 drift zone scoring and tuning guide',
+    path: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
+    description:
+      'Drift zone scoring guide for FH6 angle, speed, transitions, gearing, tire pressure, controller settings, wheel settings, and weekly playlist drift tasks.',
+    category: 'Drift zone scoring',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

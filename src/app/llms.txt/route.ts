@@ -149,6 +149,18 @@ const corePages = [
     'Forza Horizon 6 street race and night race tuning guide',
     '/games/forza-horizon-6/guides/street-race-night-tuning',
   ],
+  [
+    'Forza Horizon 6 Rivals time attack tuning guide',
+    '/games/forza-horizon-6/guides/rivals-time-attack-tuning',
+  ],
+  [
+    'Forza Horizon 6 cross-country and offroad tuning guide',
+    '/games/forza-horizon-6/guides/cross-country-offroad-tuning',
+  ],
+  [
+    'Forza Horizon 6 drift zone scoring and tuning guide',
+    '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

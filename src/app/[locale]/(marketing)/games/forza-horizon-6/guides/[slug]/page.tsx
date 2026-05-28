@@ -75,6 +75,12 @@ function getGuideCluster(guide: { slug: string; eyebrow: string }) {
     key.includes('forzathon') ||
     key.includes('auction') ||
     key.includes('tune code') ||
+    key.includes('rivals') ||
+    key.includes('time attack') ||
+    key.includes('cross-country') ||
+    key.includes('cross country') ||
+    key.includes('offroad') ||
+    key.includes('drift zone') ||
     key.includes('speed trap') ||
     key.includes('danger sign') ||
     key.includes('trailblazer')
