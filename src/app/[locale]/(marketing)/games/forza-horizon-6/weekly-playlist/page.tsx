@@ -52,7 +52,7 @@ const weeklyResetBoard = [
   {
     label: 'Championship restrictions',
     status: 'Class and drivetrain first',
-    action: 'Pick a safe A or S1 baseline before chasing extreme builds.',
+    action: 'Pick upgrade order and a safe A or S1 baseline before chasing extreme builds.',
   },
   {
     label: 'PR stunts',
@@ -68,6 +68,7 @@ const weeklyResetBoard = [
 
 const weeklyActionQueue = [
   'Confirm reward cars, event restrictions, and source status.',
+  'Set upgrade order, tire compound, and swap limits before spending PI on a weekly car.',
   'Choose one safe car pick for each race type before adding alternatives.',
   'Attach each event to a tune preset, calculator, or best-car hub.',
   'Flag any unverified reward or community rumor instead of presenting it as fact.',
@@ -188,6 +189,11 @@ const baselineLinks = [
     note: 'Use when the playlist needs quick coverage across several event types.',
   },
   {
+    title: 'Upgrade order',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+    note: 'Use before spending PI on a restricted weekly build.',
+  },
+  {
     title: 'Forzathon workflow',
     href: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
     note: 'Use for required-car chapters, skill chains, PR stunts, and quick tune swaps.',
@@ -237,7 +243,7 @@ const weeklyPrepLinks = [
     eventType: 'Required-car challenge',
     carLink: '/games/forza-horizon-6/cars',
     tuneLink: '/tools/forza-horizon-6-tune-codes',
-    guideLink: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
+    guideLink: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
   },
 ];
 
@@ -245,9 +251,9 @@ const weeklyEventTemplates = [
   {
     title: 'Championship race',
     restriction: 'Class, drivetrain, surface, and weather',
-    safePick: 'Start with stable A/S1 road or rally candidates.',
+    safePick: 'Start with upgrade order, then stable A/S1 road or rally candidates.',
     tunePath: '/tools/forza-horizon-6-tune-calculator',
-    guidePath: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+    guidePath: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
   },
   {
     title: 'Drift zone',

@@ -28,7 +28,7 @@ import type { Locale } from 'next-intl';
 const pathname = '/tools/forza-horizon-6-tune-calculator';
 const title = 'Forza Horizon 6 Tune Calculator - Apex Tune Hub';
 const description =
-  'Generate baseline Forza Horizon 6 tuning directions for road, street, dirt, rally, drift, and drag builds.';
+  'Generate baseline Forza Horizon 6 tuning directions for road, street, dirt, rally, drift, drag, upgrade order, tire compound, and drivetrain swap decisions.';
 
 const workflowSteps = [
   {
@@ -77,6 +77,12 @@ const relatedLinks = [
     href: '/tools/forza-horizon-6-tune-codes',
   },
   {
+    title: 'Upgrade Planning Guide',
+    description:
+      'Choose upgrade order, tire compound, and swap direction before spending PI.',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+  },
+  {
     title: 'Weekly Playlist Guide',
     description:
       'Use this when the build is for a weekly restriction, Forzathon chapter, Trial, or seasonal championship.',
@@ -116,6 +122,13 @@ const calculatorDecisionRows = [
     nextCheck:
       'Gearing, rear tire pressure, differential, and throttle-friendly suspension.',
     href: '/games/forza-horizon-6/guides/fix-wheelspin',
+  },
+  {
+    situation: 'Upgrade path feels risky',
+    firstInput: 'Class and drivetrain target',
+    nextCheck:
+      'Pick upgrade order, tire compound, and swap direction before chasing slider changes.',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
   },
   {
     situation: 'Fast sections feel capped',
@@ -160,6 +173,7 @@ const calculatorUseCases = [
 
 const calculatorTrustRules = [
   'Treat calculator output as a first pass, not a final universal tune.',
+  'Set the upgrade order, tire compound, and swap direction before judging small slider changes.',
   'Change one setting group at a time after the baseline feels testable.',
   'Move gearing-only problems to the gear ratio calculator after handling is stable.',
   'Move drift-only problems to the drift calculator when angle and recovery matter more than lap time.',

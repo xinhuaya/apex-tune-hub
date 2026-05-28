@@ -32,7 +32,7 @@ import type { Locale } from 'next-intl';
 const pathname = '/games/forza-horizon-6/cars';
 const title = 'Forza Horizon 6 Car List and Database - Apex Tune Hub';
 const description =
-  'Forza Horizon 6 car list and starter database with class, PI, acquisition, official source notes, tune direction, and testing status.';
+  'Forza Horizon 6 car list and starter database with class, PI, acquisition, official source notes, upgrade direction, tune direction, and testing status.';
 const carDatabaseFaqs: FaqItem[] = [
   {
     question: 'What is in the Apex Tune Hub FH6 car database?',
@@ -52,7 +52,7 @@ const carDatabaseFaqs: FaqItem[] = [
   {
     question: 'How should I use a car page?',
     answer:
-      'Pick the car role first: starter build, road tune, drift setup, alternate preset, or weekly event use. Then open the matching calculator or guide.',
+      'Pick the car role first: starter build, road tune, drift setup, alternate preset, or weekly event use. Then choose the upgrade order before opening the matching calculator or guide.',
   },
 ];
 const classLinks = [
@@ -138,6 +138,7 @@ const officialListCards = [
 
 const updateQueue = [
   'Add verified source changes before changing car names, PI, or acquisition notes.',
+  'Choose upgrade order, tire compound, and swap direction before turning a candidate into a recommended build.',
   'Attach one best-car hub, one setup guide, and one preset or calculator path to each useful role.',
   'Move a car from candidate to tested only after repeatable route notes are available.',
   'When a car appears in Car Pass or Weekly Playlist content, link both pages back to the car detail page.',
@@ -256,6 +257,16 @@ export default function ForzaHorizon6CarsPage() {
                 <Button asChild size="lg" className="forza-primary-button">
                   <LocaleLink href="/tools/forza-horizon-6-tune-calculator">
                     Open Tune Calculator
+                  </LocaleLink>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="secondary"
+                  className="rounded-md"
+                >
+                  <LocaleLink href="/games/forza-horizon-6/guides/upgrade-order-tuning-guide">
+                    Upgrade Order
                   </LocaleLink>
                 </Button>
                 <Button
