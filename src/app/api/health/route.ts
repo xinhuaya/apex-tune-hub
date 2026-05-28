@@ -10,13 +10,21 @@ function envStatus(name: string): HealthCheck {
   return process.env[name] ? 'ok' : 'missing';
 }
 
+function paymentProviderStatus(): HealthCheck {
+  return process.env.NEXT_PUBLIC_PAYMENT_PROVIDER ||
+    process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_MONTHLY ||
+    process.env.NEXT_PUBLIC_CREEM_PRODUCT_PRO_MONTHLY
+    ? 'ok'
+    : 'missing';
+}
+
 export async function GET() {
   const checks: Record<string, HealthCheck> = {
     baseUrl: envStatus('NEXT_PUBLIC_BASE_URL'),
     authSecret: envStatus('BETTER_AUTH_SECRET'),
     database: 'missing',
     newsletter: envStatus('RESEND_API_KEY'),
-    paymentProvider: envStatus('NEXT_PUBLIC_PAYMENT_PROVIDER'),
+    paymentProvider: paymentProviderStatus(),
   };
 
   if (process.env.DATABASE_URL) {
