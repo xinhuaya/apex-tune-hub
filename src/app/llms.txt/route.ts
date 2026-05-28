@@ -65,6 +65,14 @@ const corePages = [
     'Forza Horizon 6 manual transmission guide',
     '/games/forza-horizon-6/guides/manual-transmission-guide',
   ],
+  [
+    'Forza Horizon 6 camera settings guide',
+    '/games/forza-horizon-6/guides/best-camera-settings',
+  ],
+  [
+    'Forza Horizon 6 HUD and accessibility settings guide',
+    '/games/forza-horizon-6/guides/hud-accessibility-settings',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

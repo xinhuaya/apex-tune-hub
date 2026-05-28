@@ -1336,6 +1336,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-camera-settings',
+    title: 'Best Camera Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best camera settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 camera settings guide for cockpit, hood, chase, drift, wheel, controller, input lag checks, visibility, racing line, and route learning.',
+    eyebrow: 'Camera settings',
+    intro:
+      'Camera choice changes how early you see corners, traffic, apexes, braking zones, and slide angle. Pick one view for learning routes, one view for precision, and avoid changing camera while tuning the car.',
+    primaryCta: {
+      label: 'Open Assist Settings',
+      href: '/games/forza-horizon-6/guides/best-assist-settings',
+    },
+    relatedLinks: [
+      {
+        label: 'Input lag settings',
+        href: '/games/forza-horizon-6/guides/input-lag-settings',
+      },
+      {
+        label: 'Controller settings',
+        href: '/settings/forza-horizon-6-controller',
+      },
+      {
+        label: 'Wheel settings',
+        href: '/settings/forza-horizon-6-wheel',
+      },
+    ],
+    sections: [
+      {
+        title: 'Choose a learning camera',
+        body: 'New routes are easier when the camera shows braking zones, traffic, and corner exits clearly. Keep one learning view until the route feels familiar.',
+        bullets: [
+          'Use a wider chase-style view when learning unfamiliar roads.',
+          'Avoid switching camera every run while comparing car changes.',
+          'Keep racing line and camera tests separate so feedback stays clear.',
+        ],
+      },
+      {
+        title: 'Use precision views for serious testing',
+        body: 'Hood, bumper, cockpit, and close chase views can make speed and angle easier to read, but they also change how the car feels.',
+        bullets: [
+          'Use the same camera when judging understeer, oversteer, or braking stability.',
+          'Wheel users should test cockpit and hood views before tuning steering feel.',
+          'Drift players should choose a view that makes slide angle repeatable.',
+        ],
+      },
+      {
+        title: 'Do not tune around camera confusion',
+        body: 'A camera that hides apexes or makes speed feel strange can lead to bad tune changes. Fix visibility and comfort first.',
+        bullets: [
+          'If corners feel late, test camera and field of view before changing alignment.',
+          'If speed feels delayed, check input lag and PC settings separately.',
+          'Use one short route to compare camera changes.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Camera choice decision paths',
+        description:
+          'Use the driving task to decide whether to prioritize visibility, precision, immersion, or drift angle.',
+        cards: [
+          {
+            title: 'Learning a new route',
+            body: 'Visibility matters more than immersion while learning braking zones and traffic patterns.',
+            bullets: [
+              'Use a wider view until the route is memorized.',
+              'Keep assists steady while learning.',
+              'Move to precision views after route mistakes drop.',
+            ],
+          },
+          {
+            title: 'Testing a tune change',
+            body: 'Changing camera while testing suspension, differential, or gearing makes feedback unreliable.',
+            bullets: [
+              'Use the same view for every comparison run.',
+              'Keep camera fixed when comparing presets.',
+              'Retest after camera changes before editing the car.',
+            ],
+          },
+          {
+            title: 'Wheel or cockpit driving',
+            body: 'Cockpit views can feel natural on a wheel, but they may reduce visibility on tight roads.',
+            bullets: [
+              'Compare cockpit and hood views on the same route.',
+              'Check wheel rotation and input lag before blaming the camera.',
+              'Use a view that keeps apexes visible.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'hud-accessibility-settings',
+    title: 'Forza Horizon 6 HUD and Accessibility Settings Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 HUD and accessibility settings guide',
+    description:
+      'Forza Horizon 6 HUD and accessibility settings guide for racing line, subtitles, UI scale, colorblind options, vibration, difficulty, route learning, and distraction reduction.',
+    eyebrow: 'HUD and accessibility',
+    intro:
+      'HUD and accessibility settings are not just comfort options. They decide how quickly you read braking zones, navigation, events, subtitles, warnings, and car feedback while learning FH6 routes.',
+    primaryCta: {
+      label: 'Open Assist Settings',
+      href: '/games/forza-horizon-6/guides/best-assist-settings',
+    },
+    relatedLinks: [
+      {
+        label: 'Camera settings',
+        href: '/games/forza-horizon-6/guides/best-camera-settings',
+      },
+      {
+        label: 'PC graphics settings',
+        href: '/games/forza-horizon-6/guides/best-pc-graphics-settings',
+      },
+      {
+        label: 'Beginner tuning',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Keep learning signals visible',
+        body: 'The best HUD setup for a new player keeps braking, navigation, event prompts, and route information visible until the roads feel familiar.',
+        bullets: [
+          'Keep racing line or braking line on while learning new routes.',
+          'Use subtitles and readable UI scale if event instructions are easy to miss.',
+          'Do not hide key information before memorizing the route.',
+        ],
+      },
+      {
+        title: 'Reduce clutter after the route is familiar',
+        body: 'Once you know the route, extra prompts can become distraction. Remove one HUD element at a time and retest focus.',
+        bullets: [
+          'Turn off nonessential prompts only after the route feels repeatable.',
+          'Keep mini-map or navigation visible if traffic and junctions still cause mistakes.',
+          'Avoid changing HUD, camera, assists, and tune in one run.',
+        ],
+      },
+      {
+        title: 'Tune comfort before performance',
+        body: 'Readable UI, color options, vibration, brightness, and camera comfort can affect consistency as much as suspension changes.',
+        bullets: [
+          'Adjust colorblind or contrast options before serious testing.',
+          'Compare vibration on and off if feedback feels distracting.',
+          'Use PC graphics settings if readability changes with performance.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'HUD and accessibility decision paths',
+        description:
+          'Use the problem you notice to decide whether to show more information, reduce clutter, or adjust comfort settings.',
+        cards: [
+          {
+            title: 'Missing braking zones',
+            body: 'Keep braking line or route guidance visible until you can repeat the corner without surprise.',
+            bullets: [
+              'Use braking line during route learning.',
+              'Compare mistakes with and without the line later.',
+              'Avoid retuning brakes around route unfamiliarity.',
+            ],
+          },
+          {
+            title: 'Screen feels too busy',
+            body: 'Clutter can pull attention away from traffic, apexes, and rivals. Remove one HUD element per test.',
+            bullets: [
+              'Keep navigation until route memory is strong.',
+              'Remove social or event prompts before core driving information.',
+              'Retest focus on the same route.',
+            ],
+          },
+          {
+            title: 'UI or road details are hard to read',
+            body: 'Readability problems can look like poor reaction time. Fix display, UI scale, contrast, and graphics clarity first.',
+            bullets: [
+              'Adjust UI scale or subtitles if text is missed.',
+              'Use color and contrast options for clearer prompts.',
+              'Check PC graphics settings if road detail feels unstable.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

@@ -136,6 +136,8 @@ const guideGroups = [
       'input-lag-settings',
       'best-assist-settings',
       'manual-transmission-guide',
+      'best-camera-settings',
+      'hud-accessibility-settings',
       'steam-deck-settings-guide',
     ],
   },

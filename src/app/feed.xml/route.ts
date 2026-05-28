@@ -153,6 +153,20 @@ const feedItems = [
     category: 'Manual transmission',
   },
   {
+    title: 'Forza Horizon 6 camera settings guide',
+    path: '/games/forza-horizon-6/guides/best-camera-settings',
+    description:
+      'Camera settings guide for FH6 cockpit, hood, chase, drift, wheel, controller, input lag checks, visibility, racing line, and route learning.',
+    category: 'Camera settings',
+  },
+  {
+    title: 'Forza Horizon 6 HUD and accessibility settings guide',
+    path: '/games/forza-horizon-6/guides/hud-accessibility-settings',
+    description:
+      'HUD and accessibility guide for FH6 racing line, subtitles, UI scale, colorblind options, vibration, difficulty, route learning, and distraction reduction.',
+    category: 'HUD and accessibility',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:
