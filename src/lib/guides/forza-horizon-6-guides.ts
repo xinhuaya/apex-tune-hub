@@ -1894,6 +1894,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'brake-balance-pressure-settings',
+    title: 'Forza Horizon 6 Brake Balance and Pressure Settings - Apex Tune Hub',
+    h1: 'Forza Horizon 6 brake balance and pressure settings',
+    description:
+      'Forza Horizon 6 brake balance and pressure settings guide for unstable braking, lockups, trail braking, ABS, controller triggers, wheel pedals, road racing, and rally builds.',
+    eyebrow: 'Brake tuning',
+    intro:
+      'Brake settings decide whether the car slows cleanly, rotates into corners, or snaps sideways before the apex. Tune brake pressure and balance with one braking zone before changing suspension or differential settings.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=braking&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix unstable braking',
+        href: '/games/forza-horizon-6/guides/fix-unstable-braking',
+      },
+      {
+        label: 'Input lag settings',
+        href: '/games/forza-horizon-6/guides/input-lag-settings',
+      },
+      {
+        label: 'Differential settings',
+        href: '/games/forza-horizon-6/guides/differential-settings-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Use one braking zone',
+        body: 'Brake tuning only makes sense when the test is repeatable. Pick one straight braking zone and one trail-braking corner, then compare changes there.',
+        bullets: [
+          'Use the same car, route, assists, camera, and weather.',
+          'Test full braking separately from light trail braking.',
+          'Do not adjust suspension and brake balance in the same run.',
+        ],
+      },
+      {
+        title: 'Tune pressure for input control',
+        body: 'Brake pressure affects how quickly the car reaches maximum braking force. Too much pressure can make triggers, pedals, or keyboard inputs feel jumpy.',
+        bullets: [
+          'Lower pressure if small inputs cause sudden lockups or instability.',
+          'Check input lag and controller settings if braking feels delayed.',
+          'Compare ABS on and off before assuming the tune is wrong.',
+        ],
+      },
+      {
+        title: 'Tune balance for rotation',
+        body: 'Brake balance changes how much work the front or rear tires do while slowing down. It can help entry rotation, but too much rear bias can make the car nervous.',
+        bullets: [
+          'If the car refuses to turn under braking, test small balance changes.',
+          'If the rear steps out, use the unstable braking guide before going further.',
+          'Retest downshift timing if manual shifting changes entry behavior.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Brake tuning decision paths',
+        description:
+          'Use the exact braking symptom to decide whether to change pressure, balance, inputs, or a related setup area.',
+        cards: [
+          {
+            title: 'Car locks or darts under braking',
+            body: 'This usually points to pressure, ABS behavior, input control, or too much rear contribution.',
+            bullets: [
+              'Test lower pressure before changing suspension.',
+              'Compare ABS and non-ABS behavior on the same braking zone.',
+              'Record whether lockup happens immediately or near turn-in.',
+            ],
+          },
+          {
+            title: 'Car will not rotate on entry',
+            body: 'Entry push can involve brake balance, front grip, differential deceleration, or simply braking too late.',
+            bullets: [
+              'Move balance in small steps only.',
+              'Check deceleration differential if lift-off behavior feels wrong.',
+              'Use understeer fixes if the push continues off the brakes.',
+            ],
+          },
+          {
+            title: 'Pedal or trigger feels inconsistent',
+            body: 'Input hardware can make brake tuning feel worse than it is. Check device setup before chasing extreme values.',
+            bullets: [
+              'Compare controller, wheel pedal, or keyboard behavior separately.',
+              'Use input lag settings if response feels delayed.',
+              'Keep one brake zone for all comparisons.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'anti-roll-bar-suspension-settings',
+    title: 'Forza Horizon 6 Anti-Roll Bar and Suspension Settings - Apex Tune Hub',
+    h1: 'Forza Horizon 6 anti-roll bar and suspension settings',
+    description:
+      'Forza Horizon 6 anti-roll bar and suspension settings guide for understeer, oversteer, body roll, bumps, road racing, rally routes, ride height, springs, damping, and testing workflow.',
+    eyebrow: 'Suspension tuning',
+    intro:
+      'Anti-roll bars, springs, ride height, and damping decide how quickly the car takes a set, handles bumps, and rotates through corners. Tune them slowly, because big suspension changes can hide the real problem.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+      {
+        label: 'Rally tune settings',
+        href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with the corner phase',
+        body: 'Suspension feedback changes across turn-in, mid-corner, exit, and bumps. Identify the phase before moving sliders.',
+        bullets: [
+          'Use understeer or oversteer guides if the symptom is clear.',
+          'Test one smooth road corner and one bumpy corner separately.',
+          'Keep tire pressure and differential unchanged during suspension tests.',
+        ],
+      },
+      {
+        title: 'Use anti-roll bars for balance',
+        body: 'Anti-roll bars are a fast way to change front-to-rear balance. They can help rotation, but extreme values can make the car harsh or nervous.',
+        bullets: [
+          'Make small front or rear ARB changes and rerun the same corner.',
+          'If the car pushes wide, test rotation changes before adding power.',
+          'If the rear snaps, reduce aggression before changing everything else.',
+        ],
+      },
+      {
+        title: 'Separate road and rally suspension',
+        body: 'Road racing rewards sharper response. Rally and mixed-surface routes need recovery over bumps, softer behavior, and stable landings.',
+        bullets: [
+          'Use road settings for smooth pavement and clear braking zones.',
+          'Use rally guidance for bumps, jumps, dirt, and mixed surfaces.',
+          'Save separate presets instead of forcing one suspension everywhere.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Suspension decision paths',
+        description:
+          'Use the handling phase to decide whether anti-roll bars, springs, damping, ride height, or event-specific setup should be tested first.',
+        cards: [
+          {
+            title: 'Mid-corner understeer',
+            body: 'If the car pushes wide after turn-in, balance and front grip need attention before power changes.',
+            bullets: [
+              'Test small ARB balance changes.',
+              'Use the same mid-speed corner for comparison.',
+              'Check tire pressure if front grip still feels weak.',
+            ],
+          },
+          {
+            title: 'Snap oversteer on turn-in',
+            body: 'Entry snap can come from rear suspension aggression, brake behavior, downshifts, or deceleration differential.',
+            bullets: [
+              'Compare turn-in on and off the brakes.',
+              'Use oversteer and braking guides together.',
+              'Avoid large rear stiffness changes in one step.',
+            ],
+          },
+          {
+            title: 'Car skips over bumps',
+            body: 'Bumpy routes need compliance. A sharp road tune can lose grip when the surface gets rough.',
+            bullets: [
+              'Test a bumpy section separately from smooth road.',
+              'Use rally settings if the route mixes dirt and pavement.',
+              'Keep ride height and damping changes gradual.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

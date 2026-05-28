@@ -195,6 +195,20 @@ const feedItems = [
     category: 'Differential tuning',
   },
   {
+    title: 'Forza Horizon 6 brake balance and pressure settings',
+    path: '/games/forza-horizon-6/guides/brake-balance-pressure-settings',
+    description:
+      'Brake balance and pressure guide for FH6 unstable braking, lockups, trail braking, ABS, controller triggers, wheel pedals, road racing, and rally builds.',
+    category: 'Brake tuning',
+  },
+  {
+    title: 'Forza Horizon 6 anti-roll bar and suspension settings',
+    path: '/games/forza-horizon-6/guides/anti-roll-bar-suspension-settings',
+    description:
+      'Anti-roll bar and suspension guide for FH6 understeer, oversteer, body roll, bumps, ride height, springs, damping, road racing, and rally routes.',
+    category: 'Suspension tuning',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

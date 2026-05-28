@@ -89,6 +89,14 @@ const corePages = [
     'Forza Horizon 6 differential settings guide',
     '/games/forza-horizon-6/guides/differential-settings-guide',
   ],
+  [
+    'Forza Horizon 6 brake balance and pressure settings',
+    '/games/forza-horizon-6/guides/brake-balance-pressure-settings',
+  ],
+  [
+    'Forza Horizon 6 anti-roll bar and suspension settings',
+    '/games/forza-horizon-6/guides/anti-roll-bar-suspension-settings',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

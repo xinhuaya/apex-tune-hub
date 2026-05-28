@@ -155,6 +155,8 @@ const guideGroups = [
       'best-rwd-tune-settings',
       'best-fwd-tune-settings',
       'differential-settings-guide',
+      'brake-balance-pressure-settings',
+      'anti-roll-bar-suspension-settings',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',
