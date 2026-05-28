@@ -51,6 +51,21 @@ const wheelTestLinks = [
     note: 'Use this for the full testing order and when to stop changing settings.',
   },
   {
+    title: 'Logitech wheel settings',
+    href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+    note: 'Use this when a G923, G29, or similar entry wheel feels noisy, light, or vague.',
+  },
+  {
+    title: 'Thrustmaster wheel settings',
+    href: '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
+    note: 'Use this when belt or hybrid bases feel heavy in the center or unclear on corner entry.',
+  },
+  {
+    title: 'Fanatec and Moza settings',
+    href: '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
+    note: 'Use this when direct drive profiles clip, oscillate, or feel too aggressive.',
+  },
+  {
     title: 'Road tune baseline',
     href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
     note: 'Use a stable road tune before judging force feedback feel.',
