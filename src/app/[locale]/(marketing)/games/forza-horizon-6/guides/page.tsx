@@ -73,7 +73,7 @@ const guideRouterRows = [
     problem: 'I need to upgrade a car without ruining it',
     start: 'Upgrade planning guides',
     next: 'Use upgrade order, tire compound, engine swap, and drivetrain swap guides before spending credits.',
-    href: '#upgrade-guides',
+    href: '#upgrade-planning-path',
   },
   {
     problem: 'The car pushes wide or spins out',
@@ -528,7 +528,7 @@ export default function ForzaHorizon6GuidesPage() {
           ))}
         </div>
 
-        <div className="forza-panel mt-6 p-5">
+        <div className="forza-panel mt-6 p-5" id="upgrade-planning-path">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <WrenchIcon className="size-6 text-amber-300" />
