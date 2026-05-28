@@ -57,7 +57,7 @@ const codeWorkflow = [
   {
     title: 'Keep fake codes out',
     text: 'Do not publish invented share codes. Use transparent placeholders until a real in-game code is verified.',
-    href: '/games/forza-horizon-6/guides',
+    href: '/games/forza-horizon-6/guides/auction-house-tune-code-sharing',
     icon: ShieldCheckIcon,
   },
 ];
@@ -86,6 +86,12 @@ const tuneCodeRows = [
     preset: 'Add after in-game verification',
     status: 'Do not fake',
     href: '/games/forza-horizon-6/cars',
+  },
+  {
+    label: 'Weekly Forzathon setup swaps',
+    preset: 'Required-car chapter workflow',
+    status: 'Guide ready',
+    href: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
   },
 ];
 
@@ -194,6 +200,11 @@ const internalReviewLinks = [
     text: 'Use preset rows as the safe public replacement for unverified share codes.',
   },
   {
+    title: 'Auction house and code workflow',
+    href: '/games/forza-horizon-6/guides/auction-house-tune-code-sharing',
+    text: 'Use this guide when a code row needs car-buying context, labels, rollback notes, or quality checks.',
+  },
+  {
     title: 'Car database',
     href: '/games/forza-horizon-6/cars',
     text: 'Attach future codes to exact cars so players can compare stock class, role, and tune direction.',
@@ -207,6 +218,11 @@ const internalReviewLinks = [
     title: 'Tuning settings',
     href: '/games/forza-horizon-6/tuning-settings',
     text: 'Explain how a player should adjust the code when the car misses apexes, spins, or feels slow.',
+  },
+  {
+    title: 'Forzathon weekly challenge',
+    href: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
+    text: 'Route required-car chapter traffic into tune swaps, safe presets, and weekly task notes.',
   },
 ];
 
