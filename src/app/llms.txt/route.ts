@@ -21,6 +21,10 @@ const corePages = [
   ['Forza Horizon 6 tune presets', '/tools/forza-horizon-6-tune-presets'],
   ['Forza Horizon 6 tune codes', '/tools/forza-horizon-6-tune-codes'],
   ['Forza Horizon 6 guides', '/games/forza-horizon-6/guides'],
+  [
+    'Forza Horizon 6 PC crash and known issues checklist',
+    '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

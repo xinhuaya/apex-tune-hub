@@ -312,6 +312,100 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'pc-crash-known-issues-checklist',
+    title:
+      'Forza Horizon 6 PC Crash and Known Issues Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 PC crash and known issues checklist',
+    description:
+      'A practical FH6 PC crash and known issues checklist for stutter, launch failures, Steam or Xbox app installs, drivers, SSD space, settings, and support-ready notes.',
+    eyebrow: 'PC troubleshooting',
+    intro:
+      'When Forza Horizon 6 crashes, stutters, or fails to launch, do not change ten things at once. Confirm requirements, storefront, storage, drivers, overlays, settings, and support notes in a repeatable order.',
+    primaryCta: {
+      label: 'Open PC Requirements',
+      href: '/games/forza-horizon-6/pc-requirements',
+    },
+    relatedLinks: [
+      {
+        label: 'PC settings',
+        href: '/settings/forza-horizon-6-pc',
+      },
+      {
+        label: 'Steam vs Xbox app',
+        href: '/games/forza-horizon-6/steam-vs-xbox-app',
+      },
+      {
+        label: 'Official sources',
+        href: '/games/forza-horizon-6/official-sources',
+      },
+    ],
+    sections: [
+      {
+        title: 'Verify the basics first',
+        body: 'Most bad fixes start with guessing. Record your platform, storefront, PC specs, install drive, graphics preset, driver version, and whether the issue happens before menu, during loading, or in a route.',
+        bullets: [
+          'Check minimum and recommended specs before changing game files.',
+          'Confirm FH6 is installed on an SSD with enough free space.',
+          'Write down Steam or Xbox app, Windows version, GPU, CPU, RAM, and driver version.',
+        ],
+      },
+      {
+        title: 'Separate crash, stutter, and network symptoms',
+        body: 'A crash to desktop, shader stutter, low FPS, disconnect, and controller issue need different fixes. Name the symptom before changing settings.',
+        bullets: [
+          'Crash before menu: focus on driver, install, overlay, and storefront checks.',
+          'Stutter in routes: focus on storage, shaders, VRAM pressure, and settings.',
+          'Online or sync issue: record platform, account path, and cross-save behavior.',
+        ],
+      },
+      {
+        title: 'Create a support-ready note',
+        body: 'If the issue survives basic checks, make the next report useful. A short note with exact hardware, storefront, error timing, and steps tried is better than a vague complaint.',
+        bullets: [
+          'Keep one screenshot or short clip if the problem is visible.',
+          'List the last two changes you made, then stop changing settings.',
+          'Use official Forza Support or feedback channels for persistent crash issues.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'PC troubleshooting order',
+        description:
+          'Use this order so fixes stay reversible and each test has one clear result.',
+        cards: [
+          {
+            title: 'Storefront and install',
+            body: 'Confirm whether the game is installed through Steam, Xbox app, or PC Game Pass, then verify install location and available SSD space.',
+            bullets: [
+              'Use the same account and storefront every time you test.',
+              'Avoid moving the install and changing settings in the same test.',
+              'Check whether the issue appears before or after the title screen.',
+            ],
+          },
+          {
+            title: 'Driver and overlay pass',
+            body: 'Driver updates, recording overlays, performance overlays, and controller software can all change stability. Test them one at a time.',
+            bullets: [
+              'Record GPU driver version before updating.',
+              'Disable one overlay, test, then write the result.',
+              'Do not keep a fix if it does not change the symptom.',
+            ],
+          },
+          {
+            title: 'Settings and preset pass',
+            body: 'If the game launches but feels unstable, use a lower preset and stable frame target before tuning individual graphics settings.',
+            bullets: [
+              'Start with the PC settings page instead of random toggles.',
+              'Reduce VRAM pressure before changing car or controller settings.',
+              'Keep a baseline screenshot of settings that did not crash.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

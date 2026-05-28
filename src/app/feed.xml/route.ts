@@ -76,6 +76,13 @@ const feedItems = [
     category: 'Guides',
   },
   {
+    title: 'Forza Horizon 6 PC crash and known issues checklist',
+    path: '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
+    description:
+      'Troubleshooting checklist for FH6 crashes, stutter, launch failures, Steam or Xbox app installs, drivers, SSD space, overlays, and support-ready notes.',
+    category: 'Troubleshooting',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:
