@@ -97,6 +97,11 @@ const settingsGuideShortcuts = [
     href: '/games/forza-horizon-6/guides/wheel-settings-guide',
   },
   {
+    title: 'Wheel rotation and deadzones',
+    text: 'Use this when steering lock, center slack, pedal range, or drift recovery needs a stable wheel profile.',
+    href: '/games/forza-horizon-6/guides/wheel-rotation-deadzone-settings',
+  },
+  {
     title: 'Input lag settings',
     text: 'Use this when settings feel correct but steering, braking, or shifting still responds late.',
     href: '/games/forza-horizon-6/guides/input-lag-settings',

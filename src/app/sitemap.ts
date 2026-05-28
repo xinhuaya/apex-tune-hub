@@ -71,6 +71,7 @@ const highIntentGuideSlugs = [
   'steam-deck-settings-guide',
   'difficulty-settings-guide',
   'controller-deadzone-settings',
+  'wheel-rotation-deadzone-settings',
   'logitech-wheel-settings',
   'thrustmaster-wheel-settings',
   'fanatec-moza-wheel-settings',

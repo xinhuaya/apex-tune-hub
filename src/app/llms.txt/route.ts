@@ -62,6 +62,10 @@ const corePages: string[][] = [
     '/games/forza-horizon-6/guides/wheel-not-working-checklist',
   ],
   [
+    'Forza Horizon 6 wheel rotation and deadzone settings',
+    '/games/forza-horizon-6/guides/wheel-rotation-deadzone-settings',
+  ],
+  [
     'Forza Horizon 6 controller not working checklist',
     '/games/forza-horizon-6/guides/controller-not-working-checklist',
   ],

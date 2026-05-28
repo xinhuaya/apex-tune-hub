@@ -283,6 +283,7 @@ const guideGroups = [
       'fix-low-fps-stutter',
       'best-pc-graphics-settings',
       'wheel-settings-guide',
+      'wheel-rotation-deadzone-settings',
       'wheel-not-working-checklist',
       'logitech-wheel-settings',
       'thrustmaster-wheel-settings',

@@ -150,6 +150,13 @@ const feedItems: FeedItem[] = [
     category: 'Wheel troubleshooting',
   },
   {
+    title: 'Forza Horizon 6 wheel rotation and deadzone settings',
+    path: '/games/forza-horizon-6/guides/wheel-rotation-deadzone-settings',
+    description:
+      'Wheel rotation and deadzone guide for FH6 steering lock, center feel, pedal range, force feedback testing, drift recovery, and road precision.',
+    category: 'Wheel settings',
+  },
+  {
     title: 'Forza Horizon 6 controller not working checklist',
     path: '/games/forza-horizon-6/guides/controller-not-working-checklist',
     description:

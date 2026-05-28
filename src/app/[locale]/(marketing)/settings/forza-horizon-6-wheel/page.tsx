@@ -54,6 +54,11 @@ const wheelTestLinks = [
     note: 'Use this for the full testing order and when to stop changing settings.',
   },
   {
+    title: 'Wheel rotation and deadzones',
+    href: '/games/forza-horizon-6/guides/wheel-rotation-deadzone-settings',
+    note: 'Use this when steering lock, center slack, pedal range, or drift recovery needs a stable wheel profile.',
+  },
+  {
     title: 'Wheel not working checklist',
     href: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
     note: 'Use this when the wheel is not detected, force feedback disappears, or bindings reset.',

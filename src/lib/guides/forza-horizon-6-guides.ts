@@ -4526,6 +4526,100 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'wheel-rotation-deadzone-settings',
+    title:
+      'Forza Horizon 6 Wheel Rotation and Deadzone Settings - Apex Tune Hub',
+    h1: 'Forza Horizon 6 wheel rotation and deadzone settings',
+    description:
+      'Forza Horizon 6 wheel rotation and deadzone settings guide for steering lock, center feel, pedal deadzones, force feedback testing, drift recovery, and road racing precision.',
+    eyebrow: 'Wheel rotation',
+    intro:
+      'Wheel rotation and deadzones decide whether FH6 feels precise or vague before the car tune even matters. Set a readable steering lock, remove center slack, protect pedal range, then test one road route and one drift section before changing alignment.',
+    primaryCta: {
+      label: 'Open Wheel Settings',
+      href: '/settings/forza-horizon-6-wheel',
+    },
+    relatedLinks: [
+      {
+        label: 'Wheel setup guide',
+        href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+      },
+      {
+        label: 'Wheel not working checklist',
+        href: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
+      },
+      {
+        label: 'Logitech wheel settings',
+        href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Set steering lock before force strength',
+        body: 'If steering lock is too wide, tight corners and drift recovery feel slow. If it is too narrow, road cars feel twitchy. Lock rotation before judging force feedback or car setup.',
+        bullets: [
+          'Use one road loop with slow corners and medium-speed sweepers.',
+          'Do not change rotation and alignment in the same test.',
+          'Keep a separate drift note if countersteer speed needs a different feel.',
+        ],
+      },
+      {
+        title: 'Remove center slack carefully',
+        body: 'A small wheel deadzone can hide noisy input, but too much makes the front tires feel disconnected. Use the least deadzone that keeps the wheel stable around center.',
+        bullets: [
+          'Check whether the wheel reports input while held still.',
+          'Raise inner deadzone only enough to remove unwanted movement.',
+          'Retest understeer before changing toe or anti-roll bars.',
+        ],
+      },
+      {
+        title: 'Check pedals before tuning brakes',
+        body: 'Throttle and brake deadzones change launches, trail braking, and exits. Confirm the pedals reach full range and return cleanly before tuning brake balance or gearing.',
+        bullets: [
+          'Check brake input before changing brake pressure.',
+          'Check throttle range before blaming launch wheelspin.',
+          'Record pedal hardware and profile notes with the tune.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Wheel rotation decision paths',
+        description:
+          'Use these checks to decide whether the next change belongs in the wheel profile, pedals, or car tune.',
+        cards: [
+          {
+            title: 'Road car turns too slowly',
+            body: 'Rotation may be too wide or center feel may be too soft. Fix steering profile before adding aggressive alignment.',
+            bullets: [
+              'Test the same corner with one rotation change.',
+              'Keep force strength unchanged during this pass.',
+              'Move to understeer tuning only if one car remains wide.',
+            ],
+          },
+          {
+            title: 'Drift recovery is late',
+            body: 'Drift recovery needs readable countersteer. Too much rotation or deadzone can delay the catch.',
+            bullets: [
+              'Use one drift section for every steering-lock test.',
+              'Keep camera and assists fixed while comparing.',
+              'Use drift tuning only after wheel response is stable.',
+            ],
+          },
+          {
+            title: 'Pedals feel inconsistent',
+            body: 'If braking or throttle changes by hardware position, tune the pedal range before the car.',
+            bullets: [
+              'Confirm pedals return to zero input.',
+              'Confirm full brake and throttle range.',
+              'Change brake balance only after input range is repeatable.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-wheelspin',
     title: 'How to Fix Wheelspin in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix wheelspin in Forza Horizon 6',
