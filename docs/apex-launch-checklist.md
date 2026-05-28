@@ -61,6 +61,19 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Re-submitted the live FH6 hub, guide library, sitemap, feed, llms, manifest, and OpenSearch URLs through IndexNow; accepted `200`.
 - [x] Saved production screenshot evidence at `previews/apex-production-fh6-guides-shortcut-bays.png`.
 
+## 2026-05-29 Pending Production Batch
+
+- [x] Added `difficulty-settings-guide` and linked it from the guide library, settings hub, `/feed.xml`, `/llms.txt`, and high-intent sitemap list.
+- [x] Added `controller-deadzone-settings` and linked it from controller/settings hubs, `/feed.xml`, `/llms.txt`, and high-intent sitemap list.
+- [x] Added `wheel-rotation-deadzone-settings` and linked it from wheel/settings hubs, `/feed.xml`, `/llms.txt`, and high-intent sitemap list.
+- [x] Added `tuning-glossary-setup-terms` and linked it from the launch guide cluster, `/feed.xml`, `/llms.txt`, and high-intent sitemap list.
+- [x] Added `pnpm audit:fh6-links` to check FH6 guide duplicate slugs and generated-page links.
+- [x] Verified `pnpm build` after each guide batch; only local `BETTER_AUTH_SECRET` warnings appeared.
+- [x] Verified `pnpm audit:fh6-links`: `69` guide pages, `129` known paths, no duplicate slugs, no broken guide links.
+- [ ] Deploy this batch to production after Vercel free deployment quota resets. Last CLI attempt returned `api-deployments-free-per-day`.
+- [ ] After deploy, verify the 4 new guide URLs, updated `/games/forza-horizon-6/guides`, `/feed.xml`, `/llms.txt`, and `/sitemap.xml`.
+- [ ] Submit IndexNow for the 4 new guide URLs plus the updated guide index, settings hubs, feed, llms, and sitemap.
+
 ## First 14 Days
 
 - Publish or expand 5-10 more guide pages only after Search Console starts showing impressions.
