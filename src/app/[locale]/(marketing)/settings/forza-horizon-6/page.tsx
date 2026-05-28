@@ -81,6 +81,16 @@ const settingsGuideShortcuts = [
     text: 'Use this when settings feel correct but steering, braking, or shifting still responds late.',
     href: '/games/forza-horizon-6/guides/input-lag-settings',
   },
+  {
+    title: 'HUD and accessibility',
+    text: 'Use this when racing line, UI scale, color, vibration, or distraction settings affect route learning.',
+    href: '/games/forza-horizon-6/guides/hud-accessibility-settings',
+  },
+  {
+    title: 'Online not working',
+    text: 'Use this when convoys, matchmaking, crossplay, NAT, or account services block weekly events.',
+    href: '/games/forza-horizon-6/guides/online-not-working-checklist',
+  },
 ];
 
 const workflowRows = [
@@ -478,7 +488,7 @@ export default function ForzaHorizon6SettingsHubPage() {
               </LocaleLink>
             </Button>
           </div>
-          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {settingsGuideShortcuts.map((card) => (
               <LocaleLink
                 className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
