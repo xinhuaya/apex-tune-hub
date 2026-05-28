@@ -135,7 +135,7 @@ function getRelatedGuides(guide: (typeof forzaHorizon6Guides)[number]) {
       getGuideCluster(item) === getGuideCluster(guide)
   );
 
-  return uniqueGuides([...explicitGuides, ...sameClusterGuides]).slice(0, 3);
+  return uniqueGuides([...explicitGuides, ...sameClusterGuides]).slice(0, 4);
 }
 
 export async function generateMetadata({

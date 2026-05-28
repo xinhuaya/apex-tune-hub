@@ -3614,6 +3614,22 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     },
     relatedLinks: [
       {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
+      {
+        label: 'Engine and drivetrain swaps',
+        href: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+      },
+      {
+        label: 'PI class planning',
+        href: '/games/forza-horizon-6/guides/pi-class-upgrade-planning-guide',
+      },
+      {
+        label: 'Power vs grip upgrades',
+        href: '/games/forza-horizon-6/guides/power-vs-grip-upgrade-guide',
+      },
+      {
         label: 'Car database',
         href: '/games/forza-horizon-6/cars',
       },
