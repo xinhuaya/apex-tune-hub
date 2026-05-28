@@ -97,6 +97,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Crossplay & Cross-Save',
+          href: Routes.ForzaHorizon6CrossplayCrossSave,
+          external: false,
+        },
+        {
           title: 'PC Requirements',
           href: Routes.ForzaHorizon6PcRequirements,
           external: false,

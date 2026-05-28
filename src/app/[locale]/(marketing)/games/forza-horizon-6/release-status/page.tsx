@@ -114,6 +114,11 @@ const accessPaths = [
     href: '/settings/forza-horizon-6-pc',
   },
   {
+    title: 'Cross-save player',
+    body: 'Check crossplay, save sync, storefront, and DLC ownership details before switching between Xbox, Steam, handheld, or PS5.',
+    href: '/games/forza-horizon-6/crossplay-cross-save',
+  },
+  {
     title: 'PS5 watcher',
     body: 'Keep release claims source-backed and avoid publishing settings, FPS, or input advice before official availability.',
     href: '/games/forza-horizon-6/official-sources',

@@ -6,6 +6,7 @@ import {
   BadgeCheckIcon,
   BookOpenIcon,
   BuildingIcon,
+  CloudIcon,
   CookieIcon,
   DatabaseIcon,
   FileTextIcon,
@@ -114,6 +115,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           description: 'Xbox, PC, Game Pass, Steam Deck, and PS5 timing',
           icon: <ShieldCheckIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6ReleaseStatus,
+          external: false,
+        },
+        {
+          title: 'Crossplay & Cross-Save',
+          description: 'Steam, Xbox app, Steam Deck, PS5, and save sync',
+          icon: <CloudIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6CrossplayCrossSave,
           external: false,
         },
         {

@@ -171,6 +171,13 @@ const hubLinks = [
     icon: ShieldCheckIcon,
   },
   {
+    title: 'Crossplay & Cross-Save',
+    description:
+      'Steam, Xbox app, Steam Deck, PS5, save sync, and ownership checks.',
+    href: '/games/forza-horizon-6/crossplay-cross-save',
+    icon: ShieldCheckIcon,
+  },
+  {
     title: 'Official Sources',
     description:
       'Source tracker for release, platform, Japan map, and car-list updates.',

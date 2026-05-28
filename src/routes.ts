@@ -21,6 +21,7 @@ export enum Routes {
   ForzaHorizon6CarPass = '/games/forza-horizon-6/car-pass',
   ForzaHorizon6Faq = '/games/forza-horizon-6/faq',
   ForzaHorizon6ReleaseStatus = '/games/forza-horizon-6/release-status',
+  ForzaHorizon6CrossplayCrossSave = '/games/forza-horizon-6/crossplay-cross-save',
   ForzaHorizon6PcRequirements = '/games/forza-horizon-6/pc-requirements',
   ForzaHorizon6OfficialSources = '/games/forza-horizon-6/official-sources',
   ForzaHorizon6WeeklyPlaylist = '/games/forza-horizon-6/weekly-playlist',

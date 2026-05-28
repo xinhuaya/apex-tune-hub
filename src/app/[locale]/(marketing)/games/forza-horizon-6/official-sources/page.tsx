@@ -36,7 +36,21 @@ const officialSources = [
     href: 'https://forza.net/news/forza-horizon-6-faq',
     label: 'Release and platform facts',
     icon: BookOpenCheckIcon,
-    use: 'Use for release date, platform wording, Game Pass availability, Premium Upgrade timing, and PlayStation 5 status.',
+    use: 'Use for release date, platform wording, Game Pass availability, Premium Upgrade timing, PlayStation 5 status, crossplay, and cross-save.',
+  },
+  {
+    title: 'Forza Horizon 6 features',
+    href: 'https://forza.net/news/forza-horizon-6-features',
+    label: 'Play Anywhere and crossplay',
+    icon: RadioTowerIcon,
+    use: 'Use for Xbox Play Anywhere, cross-platform play, and feature-level platform language.',
+  },
+  {
+    title: 'Forza Horizon 6 Steam Deck',
+    href: 'https://forza.net/news/forza-horizon-6-steam-deck',
+    label: 'Handheld status',
+    icon: RadioTowerIcon,
+    use: 'Use for Steam Deck Verified status and cross-save language for SteamOS and PC handheld play.',
   },
   {
     title: 'Forza Horizon 6 release news',
@@ -66,7 +80,7 @@ const sourceStatusRows = [
     area: 'Release date and platforms',
     status: 'Official source required',
     action:
-      'Use the official FAQ before changing Xbox, PC, Game Pass, Premium Upgrade, or PS5 copy.',
+      'Use the official FAQ before changing Xbox, PC, Game Pass, Premium Upgrade, PS5, crossplay, or cross-save copy.',
   },
   {
     area: 'Map and route language',
@@ -221,16 +235,19 @@ export default function ForzaHorizon6OfficialSourcesPage() {
                 FH6 page.
               </p>
               <div className="mt-5 grid gap-2">
-                {['Release facts', 'Map facts', 'Vehicle facts', 'Tune tests'].map(
-                  (item) => (
-                    <div
-                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
-                      key={item}
-                    >
-                      {item}
-                    </div>
-                  )
-                )}
+                {[
+                  'Release facts',
+                  'Map facts',
+                  'Vehicle facts',
+                  'Tune tests',
+                ].map((item) => (
+                  <div
+                    className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm font-semibold text-zinc-200"
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -289,9 +306,7 @@ export default function ForzaHorizon6OfficialSourcesPage() {
         <div className="mt-6 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="forza-panel p-5">
             <FileSearchIcon className="size-6 text-amber-300" />
-            <h2 className="mt-4 text-xl font-semibold">
-              Source update rules
-            </h2>
+            <h2 className="mt-4 text-xl font-semibold">Source update rules</h2>
             <p className="mt-3 text-sm leading-6 text-zinc-400">
               These rules prevent unsupported FH6 claims as the site grows into
               weekly updates, car guides, and member tools.

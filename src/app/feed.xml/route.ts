@@ -27,6 +27,13 @@ const feedItems = [
     category: 'Release status',
   },
   {
+    title: 'Forza Horizon 6 crossplay and cross-save',
+    path: '/games/forza-horizon-6/crossplay-cross-save',
+    description:
+      'Source-backed FH6 platform switching guide for crossplay, cross-save, Steam, Xbox app, Steam Deck, PS5, and ownership checks.',
+    category: 'Platform guide',
+  },
+  {
     title: 'Forza Horizon 6 PC requirements',
     path: '/games/forza-horizon-6/pc-requirements',
     description:
