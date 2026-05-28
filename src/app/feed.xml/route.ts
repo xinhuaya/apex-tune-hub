@@ -90,11 +90,25 @@ const feedItems = [
     category: 'Performance',
   },
   {
+    title: 'Forza Horizon 6 PC graphics settings guide',
+    path: '/games/forza-horizon-6/guides/best-pc-graphics-settings',
+    description:
+      'PC graphics guide for FH6 balanced FPS, VRAM pressure, textures, shadows, reflections, frame caps, upscaling, and route testing.',
+    category: 'PC graphics',
+  },
+  {
     title: 'Forza Horizon 6 wheel not working checklist',
     path: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
     description:
       'Troubleshooting checklist for FH6 wheel detection, force feedback, rotation, deadzones, Logitech, Thrustmaster, Fanatec, and Moza setup paths.',
     category: 'Wheel troubleshooting',
+  },
+  {
+    title: 'Forza Horizon 6 controller not working checklist',
+    path: '/games/forza-horizon-6/guides/controller-not-working-checklist',
+    description:
+      'Troubleshooting checklist for FH6 controller detection, Steam Input, Bluetooth, USB, double input, deadzones, vibration, and steering feel.',
+    category: 'Controller troubleshooting',
   },
   {
     title: 'Forza Horizon 6 car list and database',

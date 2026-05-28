@@ -122,11 +122,13 @@ const guideGroups = [
     slugs: [
       'pc-crash-known-issues-checklist',
       'fix-low-fps-stutter',
+      'best-pc-graphics-settings',
       'wheel-settings-guide',
       'wheel-not-working-checklist',
       'logitech-wheel-settings',
       'thrustmaster-wheel-settings',
       'fanatec-moza-wheel-settings',
+      'controller-not-working-checklist',
       'controller-drift-settings',
       'steam-deck-settings-guide',
     ],

@@ -592,6 +592,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-pc-graphics-settings',
+    title: 'Best PC Graphics Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best PC graphics settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 PC graphics settings guide for balanced FPS, VRAM pressure, texture quality, shadows, reflections, frame caps, upscaling, and route testing.',
+    eyebrow: 'PC graphics',
+    intro:
+      'The best FH6 PC graphics settings are the ones that keep frame time stable on the route you actually drive. Start with a balanced preset, protect VRAM, cap FPS sensibly, then raise visual settings one group at a time.',
+    primaryCta: {
+      label: 'Open PC Settings',
+      href: '/settings/forza-horizon-6-pc',
+    },
+    relatedLinks: [
+      {
+        label: 'PC requirements',
+        href: '/games/forza-horizon-6/pc-requirements',
+      },
+      {
+        label: 'Low FPS and stutter',
+        href: '/games/forza-horizon-6/guides/fix-low-fps-stutter',
+      },
+      {
+        label: 'Steam vs Xbox app',
+        href: '/games/forza-horizon-6/steam-vs-xbox-app',
+      },
+    ],
+    sections: [
+      {
+        title: 'Choose stability before ultra',
+        body: 'A pretty preset is not useful if the car stutters through traffic, city corners, or fast route transitions. Use stable frame time as the first win condition.',
+        bullets: [
+          'Pick a target FPS your PC can hold on a busy route, not only in a quiet menu.',
+          'Use a lower preset first, then raise one visual group after each clean test.',
+          'Avoid mixing resolution, upscaling, texture, and frame-cap changes in one pass.',
+        ],
+      },
+      {
+        title: 'Protect VRAM and streaming',
+        body: 'Textures, reflections, shadows, and environment detail are usually the first graphics groups to check when stutter appears during fast driving.',
+        bullets: [
+          'Lower texture quality if stutter appears after long driving or map transitions.',
+          'Reduce reflections and shadows before blaming the car or controller.',
+          'Keep the install on SSD and leave free space for updates and shader work.',
+        ],
+      },
+      {
+        title: 'Test graphics like a tune',
+        body: 'Graphics settings need repeatable testing just like car settings. Use one route, one weather condition, and one camera view before deciding a setting is safe.',
+        bullets: [
+          'Use a dense city loop for CPU, shadow, and reflection checks.',
+          'Use a fast road route for streaming and texture checks.',
+          'Use the same frame cap while comparing visual settings.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Graphics setting priority order',
+        description:
+          'Use this order when a PC can run FH6 but does not feel smooth enough for clean driving.',
+        cards: [
+          {
+            title: 'First pass: frame target',
+            body: 'Set a frame target that feels stable before chasing a higher number. A locked lower target can feel better than an unstable high target.',
+            bullets: [
+              'Test in the same car and route every time.',
+              'Do not judge settings from the menu or photo mode.',
+              'Record whether the issue is low FPS, stutter, or input delay.',
+            ],
+          },
+          {
+            title: 'Second pass: heavy visuals',
+            body: 'Adjust textures, shadows, reflections, and environment detail before changing every advanced setting.',
+            bullets: [
+              'Lower one visual group, drive the same route, then decide.',
+              'Watch for improvements in frame pacing, not just average FPS.',
+              'Keep a screenshot of the stable baseline.',
+            ],
+          },
+          {
+            title: 'Third pass: platform checks',
+            body: 'Steam, Xbox app, Game Pass, overlays, and handheld mode can change the troubleshooting path.',
+            bullets: [
+              'Record storefront before comparing advice.',
+              'Disable one overlay at a time.',
+              'Use Steam Deck settings for handheld targets instead of desktop presets.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'controller-not-working-checklist',
+    title: 'Forza Horizon 6 Controller Not Working Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 controller not working checklist',
+    description:
+      'Forza Horizon 6 controller not working checklist for Xbox, PlayStation, Steam Input, Bluetooth, USB, deadzones, double input, vibration, and steering feel.',
+    eyebrow: 'Controller troubleshooting',
+    intro:
+      'When a controller does not work in FH6, first decide whether the issue is detection, double input, wireless latency, deadzone drift, or steering feel. Fix the input path before changing car tunes.',
+    primaryCta: {
+      label: 'Open Controller Settings',
+      href: '/settings/forza-horizon-6-controller',
+    },
+    relatedLinks: [
+      {
+        label: 'Controller drift settings',
+        href: '/games/forza-horizon-6/guides/controller-drift-settings',
+      },
+      {
+        label: 'Steam vs Xbox app',
+        href: '/games/forza-horizon-6/steam-vs-xbox-app',
+      },
+      {
+        label: 'Crossplay and cross-save',
+        href: '/games/forza-horizon-6/crossplay-cross-save',
+      },
+    ],
+    sections: [
+      {
+        title: 'Confirm the controller path',
+        body: 'A controller can be routed through USB, Bluetooth, Xbox app, Steam Input, or platform software. Write down the path before changing bindings.',
+        bullets: [
+          'Test wired USB first if Bluetooth feels delayed or drops input.',
+          'Check whether Steam Input is creating a second layer of mappings.',
+          'Use one controller at a time while debugging detection.',
+        ],
+      },
+      {
+        title: 'Fix double input and deadzones',
+        body: 'Double input, menu jumping, or steering drift usually points to mapping layers or deadzone settings rather than a bad car setup.',
+        bullets: [
+          'Disable duplicate input layers before changing FH6 bindings.',
+          'Increase inner deadzone only enough to stop drift.',
+          'Retest steering and throttle on the same road section.',
+        ],
+      },
+      {
+        title: 'Tune feel after detection works',
+        body: 'Once the controller is detected cleanly, tune steering response, vibration, and trigger feel before blaming every car for understeer or wheelspin.',
+        bullets: [
+          'Use a stable road car to judge steering feel.',
+          'Use a low-power drift car to judge throttle control.',
+          'Save a baseline controller profile before experimenting.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Controller issue decision paths',
+        description:
+          'Use the symptom to decide whether to fix the platform path, controller settings, or the car tune.',
+        cards: [
+          {
+            title: 'Controller not detected',
+            body: 'Treat this as a platform or connection issue first. Verify USB, Bluetooth, Steam Input, Xbox app, and controller firmware before changing FH6 settings.',
+            bullets: [
+              'Try wired USB before testing wireless again.',
+              'Close duplicate controller software if inputs conflict.',
+              'Record controller model and storefront for support notes.',
+            ],
+          },
+          {
+            title: 'Menu jumps or double input',
+            body: 'Double input usually means two mapping layers are active. Simplify the input path before rebinding controls.',
+            bullets: [
+              'Check Steam Input and platform overlay settings.',
+              'Use one controller only during testing.',
+              'Retest the menu before driving a route.',
+            ],
+          },
+          {
+            title: 'Car feels twitchy or delayed',
+            body: 'If detection works but driving feels wrong, tune controller response separately from the car tune.',
+            bullets: [
+              'Check steering deadzone and linearity first.',
+              'Compare wired and wireless latency feel.',
+              'Use controller drift settings only after basic control is stable.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',
