@@ -1544,6 +1544,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     },
     relatedLinks: [
       {
+        label: 'Drivetrain swap guide',
+        href: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+      },
+      {
         label: 'Fix understeer',
         href: '/games/forza-horizon-6/guides/fix-understeer',
       },
@@ -1637,6 +1641,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     },
     relatedLinks: [
       {
+        label: 'Drivetrain swap guide',
+        href: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+      },
+      {
         label: 'Fix wheelspin',
         href: '/games/forza-horizon-6/guides/fix-wheelspin',
       },
@@ -1729,6 +1737,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=FWD&class=A&issue=understeer&style=balanced',
     },
     relatedLinks: [
+      {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
       {
         label: 'Fix understeer',
         href: '/games/forza-horizon-6/guides/fix-understeer',
@@ -2009,6 +2021,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     },
     relatedLinks: [
       {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
+      {
         label: 'Fix understeer',
         href: '/games/forza-horizon-6/guides/fix-understeer',
       },
@@ -2101,6 +2117,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
     },
     relatedLinks: [
+      {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
       {
         label: 'Fix understeer',
         href: '/games/forza-horizon-6/guides/fix-understeer',
@@ -2287,6 +2307,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       href: '/tools/forza-horizon-6-gear-ratio-calculator',
     },
     relatedLinks: [
+      {
+        label: 'Upgrade order guide',
+        href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      },
       {
         label: 'Gear ratio basics',
         href: '/games/forza-horizon-6/guides/gear-ratio-guide',
