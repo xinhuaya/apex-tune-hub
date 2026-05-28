@@ -49,6 +49,15 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [ ] Check that confirmation email subject says `You are on the Apex Tune Hub update list`.
 - [ ] Search `site:apextunehub.com forza horizon 6` after Google starts indexing.
 
+## 2026-05-29 Overnight Build Notes
+
+- [x] Promoted high-intent FH6 guide URLs in `/llms.txt` and `/feed.xml`.
+- [x] Added guide-library shortcut bays for Japan routes, device feel, wheel brands, and weekly event preparation.
+- [x] Refined sitemap priority tiers so the FH6 hub, calculator, guide index, high-intent guides, and long-tail pages are not all treated the same.
+- [x] Added Web App Manifest shortcuts for the FH6 hub, tune calculator, guide library, and weekly playlist.
+- [x] Saved local screenshot evidence at `previews/apex-local-fh6-guides-shortcut-bays.png`.
+- [ ] Production deploy is waiting on Vercel free daily deployment quota to recover.
+
 ## First 14 Days
 
 - Publish or expand 5-10 more guide pages only after Search Console starts showing impressions.
