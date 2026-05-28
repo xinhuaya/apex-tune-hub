@@ -62,6 +62,16 @@ const settingsCards = [
 
 const settingsGuideShortcuts = [
   {
+    title: 'Best assist settings',
+    text: 'Use this when braking line, traction control, stability control, ABS, or shifting assists change driving feel.',
+    href: '/games/forza-horizon-6/guides/best-assist-settings',
+  },
+  {
+    title: 'Best camera settings',
+    text: 'Use this when cockpit, chase, FOV, motion, or route visibility changes how the car feels at speed.',
+    href: '/games/forza-horizon-6/guides/best-camera-settings',
+  },
+  {
     title: 'Steam Deck setup guide',
     text: 'Use this evergreen guide when handheld FPS, heat, battery, or readability still need a route-tested checklist.',
     href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
@@ -478,8 +488,8 @@ export default function ForzaHorizon6SettingsHubPage() {
               </h2>
               <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
                 Use these after picking the broad settings page. They keep
-                handheld, controller, wheel, and input-lag problems connected
-                to focused FH6 guide pages.
+                handheld, controller, wheel, and input-lag problems connected to
+                focused FH6 guide pages.
               </p>
             </div>
             <Button asChild variant="outline" className="rounded-md">
