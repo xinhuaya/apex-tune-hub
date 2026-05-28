@@ -73,6 +73,14 @@ const corePages = [
     'Forza Horizon 6 HUD and accessibility settings guide',
     '/games/forza-horizon-6/guides/hud-accessibility-settings',
   ],
+  [
+    'Forza Horizon 6 AWD tune settings guide',
+    '/games/forza-horizon-6/guides/best-awd-tune-settings',
+  ],
+  [
+    'Forza Horizon 6 RWD tune settings guide',
+    '/games/forza-horizon-6/guides/best-rwd-tune-settings',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

@@ -151,6 +151,8 @@ const guideGroups = [
       'best-a-class-road-tune-settings',
       'best-s1-rally-tune-settings',
       'weekly-playlist-tuning-checklist',
+      'best-awd-tune-settings',
+      'best-rwd-tune-settings',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',

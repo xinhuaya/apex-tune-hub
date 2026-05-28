@@ -167,6 +167,20 @@ const feedItems = [
     category: 'HUD and accessibility',
   },
   {
+    title: 'Forza Horizon 6 AWD tune settings guide',
+    path: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+    description:
+      'AWD tune settings guide for FH6 launch grip, corner exit traction, differential balance, gearing, tire pressure, rally routes, and road racing.',
+    category: 'AWD tuning',
+  },
+  {
+    title: 'Forza Horizon 6 RWD tune settings guide',
+    path: '/games/forza-horizon-6/guides/best-rwd-tune-settings',
+    description:
+      'RWD tune settings guide for FH6 throttle control, wheelspin, drift, road racing, differential setup, gearing, and beginner-friendly builds.',
+    category: 'RWD tuning',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

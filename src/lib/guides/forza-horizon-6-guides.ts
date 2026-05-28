@@ -1522,6 +1522,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-awd-tune-settings',
+    title: 'Best AWD Tune Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best AWD tune settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 AWD tune settings guide for launch grip, corner exit traction, differential balance, gearing, tire pressure, rally routes, road racing, and beginner builds.',
+    eyebrow: 'AWD tuning',
+    intro:
+      'AWD is the safest first tuning path for many FH6 players because it gives strong launches and forgiving corner exits. The trick is making it rotate without turning every build into numb understeer.',
+    primaryCta: {
+      label: 'Open AWD Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'A and S1 road tune',
+        href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+      },
+      {
+        label: 'Rally tune settings',
+        href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with launch and exit grip',
+        body: 'AWD builds are most useful when they put power down cleanly. Test launch, second-gear pull, and corner exit before chasing top speed.',
+        bullets: [
+          'Use A or S1 class when learning AWD balance.',
+          'Test the same launch and exit corner after each differential change.',
+          'Avoid adding more power until exits are repeatable.',
+        ],
+      },
+      {
+        title: 'Tune rotation before adding power',
+        body: 'The common AWD mistake is making a fast car that refuses to turn. Fix front-end bite and differential balance before adding horsepower.',
+        bullets: [
+          'If the car pushes wide, use the understeer guide before changing every slider.',
+          'Keep tire pressure and alignment changes small during comparisons.',
+          'Use shorter gearing only if the car still exits cleanly.',
+        ],
+      },
+      {
+        title: 'Separate road and rally AWD',
+        body: 'Road AWD and rally AWD need different suspension and gearing behavior. A paved route setup can feel harsh and nervous on dirt or mixed-surface events.',
+        bullets: [
+          'Use calmer suspension and more recovery-friendly gearing for rally routes.',
+          'Keep road builds sharper only when surface grip is predictable.',
+          'Save separate presets instead of forcing one AWD tune everywhere.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'AWD tuning decision paths',
+        description:
+          'Use the first problem you feel to decide whether to adjust differential, gearing, tire behavior, or event-specific setup.',
+        cards: [
+          {
+            title: 'Car launches hard but pushes wide',
+            body: 'The build has grip but not enough rotation. Fix corner behavior before adding power.',
+            bullets: [
+              'Test front-end response on one medium-speed corner.',
+              'Use understeer fixes before power upgrades.',
+              'Keep launch settings unchanged while testing rotation.',
+            ],
+          },
+          {
+            title: 'Car spins despite AWD',
+            body: 'AWD can still spin if gearing, torque, or differential behavior is too aggressive.',
+            bullets: [
+              'Lengthen lower gears if launch spin is constant.',
+              'Reduce aggressive power delivery before changing tires.',
+              'Compare launch and exit separately.',
+            ],
+          },
+          {
+            title: 'Rally route feels nervous',
+            body: 'A road-focused AWD tune can be too stiff for bumps and mixed surfaces.',
+            bullets: [
+              'Use the rally tune guide for softer recovery behavior.',
+              'Test dirt and road sections separately.',
+              'Keep a dedicated rally preset.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-rwd-tune-settings',
+    title: 'Best RWD Tune Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best RWD tune settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 RWD tune settings guide for throttle control, wheelspin, drift, road racing, differential setup, gearing, tire pressure, and beginner-friendly builds.',
+    eyebrow: 'RWD tuning',
+    intro:
+      'RWD can feel faster, sharper, and more expressive than AWD, but it punishes sloppy throttle and gearing. Build control first, then add power only when exits stay clean.',
+    primaryCta: {
+      label: 'Open RWD Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=RWD&class=S1&issue=wheelspin&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+      {
+        label: 'Drift tune settings',
+        href: '/games/forza-horizon-6/guides/best-drift-tune-settings',
+      },
+      {
+        label: 'Manual transmission',
+        href: '/games/forza-horizon-6/guides/manual-transmission-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Control throttle before chasing power',
+        body: 'RWD tuning starts with repeatable exits. If the car spins every time you apply throttle, power upgrades are hiding the real problem.',
+        bullets: [
+          'Use lower-power road cars when learning RWD behavior.',
+          'Lengthen first and second gear if exits are chaotic.',
+          'Test throttle pickup on the same corner exit every run.',
+        ],
+      },
+      {
+        title: 'Tune differential for the event',
+        body: 'Road racing, drifting, and drag launches need different rear differential behavior. One RWD setup should not be forced across every event type.',
+        bullets: [
+          'Use calmer road settings when exit grip matters most.',
+          'Use drift-specific guidance when rotation and angle are the goal.',
+          'Keep drag launch tests separate from corner exit tests.',
+        ],
+      },
+      {
+        title: 'Use manual shifting as a control tool',
+        body: 'RWD cars often benefit from holding a higher gear through exits. Manual shifting can calm wheelspin if the driver workload stays manageable.',
+        bullets: [
+          'Hold a higher gear if the car lights up the tires on exit.',
+          'Use the manual transmission guide before moving to clutch.',
+          'Retest gearing after throttle control feels consistent.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'RWD tuning decision paths',
+        description:
+          'Use the symptom to decide whether to adjust gearing, differential, throttle technique, or event-specific setup.',
+        cards: [
+          {
+            title: 'Exit wheelspin',
+            body: 'Exit spin usually means gearing, differential, or throttle pickup is too aggressive for the available grip.',
+            bullets: [
+              'Lengthen lower gears before adding tire upgrades.',
+              'Use safer differential behavior for road racing.',
+              'Compare assist-on and assist-off runs if needed.',
+            ],
+          },
+          {
+            title: 'Car over-rotates on entry',
+            body: 'RWD can rotate too eagerly if braking, downshifts, or differential settings unsettle the rear.',
+            bullets: [
+              'Use the oversteer guide if entry rotation is the problem.',
+              'Check downshift timing before changing brake balance.',
+              'Keep alignment changes small during tests.',
+            ],
+          },
+          {
+            title: 'Drift build lacks angle',
+            body: 'A road RWD tune may not give enough rotation or steering response for drifting.',
+            bullets: [
+              'Use drift tune settings instead of road settings.',
+              'Test one drift zone repeatedly.',
+              'Change angle and throttle response separately.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',
