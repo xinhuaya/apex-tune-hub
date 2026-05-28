@@ -101,7 +101,7 @@ const accessPaths = [
   {
     title: 'Game Pass player',
     body: 'Start with Standard Edition access, then use the tune calculator and weekly tracker for the fastest useful path.',
-    href: '/tools/forza-horizon-6-tune-calculator',
+    href: '/games/forza-horizon-6/game-pass-editions',
   },
   {
     title: 'Premium Upgrade player',

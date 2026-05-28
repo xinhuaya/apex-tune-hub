@@ -26,6 +26,10 @@ const corePages = [
     'Forza Horizon 6 crossplay and cross-save',
     '/games/forza-horizon-6/crossplay-cross-save',
   ],
+  [
+    'Forza Horizon 6 Game Pass and editions',
+    '/games/forza-horizon-6/game-pass-editions',
+  ],
   ['Forza Horizon 6 PC requirements', '/games/forza-horizon-6/pc-requirements'],
   ['Forza Horizon 6 car list and database', '/games/forza-horizon-6/cars'],
   ['Forza Horizon 6 best cars', '/games/forza-horizon-6/best-cars'],

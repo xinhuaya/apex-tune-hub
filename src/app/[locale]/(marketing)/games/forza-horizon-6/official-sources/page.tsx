@@ -39,6 +39,13 @@ const officialSources = [
     use: 'Use for release date, platform wording, Game Pass availability, Premium Upgrade timing, PlayStation 5 status, crossplay, and cross-save.',
   },
   {
+    title: 'Forza Horizon 6 DLC and editions list',
+    href: 'https://forza.net/fh6dlclist',
+    label: 'Editions and add-ons',
+    icon: BookOpenCheckIcon,
+    use: 'Use before changing Standard, Deluxe, Premium, Premium Upgrade, Car Pass, VIP, Welcome Pack, expansion, or Game Pass wording.',
+  },
+  {
     title: 'Forza Horizon 6 features',
     href: 'https://forza.net/news/forza-horizon-6-features',
     label: 'Play Anywhere and crossplay',
@@ -81,6 +88,12 @@ const sourceStatusRows = [
     status: 'Official source required',
     action:
       'Use the official FAQ before changing Xbox, PC, Game Pass, Premium Upgrade, PS5, crossplay, or cross-save copy.',
+  },
+  {
+    area: 'Editions and add-ons',
+    status: 'Official source required',
+    action:
+      'Use the official DLC and editions list before changing Standard, Deluxe, Premium, Premium Upgrade, Car Pass, VIP, Welcome Pack, or expansion copy.',
   },
   {
     area: 'Map and route language',

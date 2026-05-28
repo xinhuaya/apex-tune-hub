@@ -178,6 +178,13 @@ const hubLinks = [
     icon: ShieldCheckIcon,
   },
   {
+    title: 'Game Pass & Editions',
+    description:
+      'Standard, Deluxe, Premium, Premium Upgrade, Car Pass, VIP, and expansions.',
+    href: '/games/forza-horizon-6/game-pass-editions',
+    icon: ShieldCheckIcon,
+  },
+  {
     title: 'Official Sources',
     description:
       'Source tracker for release, platform, Japan map, and car-list updates.',

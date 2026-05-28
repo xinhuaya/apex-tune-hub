@@ -11,6 +11,7 @@ import {
   DatabaseIcon,
   FileTextIcon,
   GaugeIcon,
+  GiftIcon,
   LinkIcon,
   ListChecksIcon,
   MailIcon,
@@ -122,6 +123,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           description: 'Steam, Xbox app, Steam Deck, PS5, and save sync',
           icon: <CloudIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6CrossplayCrossSave,
+          external: false,
+        },
+        {
+          title: 'Game Pass & Editions',
+          description: 'Standard, Deluxe, Premium, Premium Upgrade, and DLC',
+          icon: <GiftIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6GamePassEditions,
           external: false,
         },
         {

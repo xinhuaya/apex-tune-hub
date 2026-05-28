@@ -102,6 +102,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Game Pass & Editions',
+          href: Routes.ForzaHorizon6GamePassEditions,
+          external: false,
+        },
+        {
           title: 'PC Requirements',
           href: Routes.ForzaHorizon6PcRequirements,
           external: false,

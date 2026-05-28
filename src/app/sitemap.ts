@@ -46,6 +46,7 @@ const staticRoutes = [
   '/games/forza-horizon-6/faq',
   '/games/forza-horizon-6/release-status',
   '/games/forza-horizon-6/crossplay-cross-save',
+  '/games/forza-horizon-6/game-pass-editions',
   '/games/forza-horizon-6/pc-requirements',
   '/games/forza-horizon-6/weekly-playlist',
   '/settings/forza-horizon-6',

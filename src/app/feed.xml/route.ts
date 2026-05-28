@@ -34,6 +34,13 @@ const feedItems = [
     category: 'Platform guide',
   },
   {
+    title: 'Forza Horizon 6 Game Pass and editions',
+    path: '/games/forza-horizon-6/game-pass-editions',
+    description:
+      'Source-backed FH6 buying guide for Game Pass, Standard, Deluxe, Premium, Premium Upgrade, Car Pass, VIP, and expansions.',
+    category: 'Buying guide',
+  },
+  {
     title: 'Forza Horizon 6 PC requirements',
     path: '/games/forza-horizon-6/pc-requirements',
     description:
