@@ -161,10 +161,22 @@ const followupLinks = [
 
 const specializedSettingGuides = [
   {
+    title: 'Tire pressure settings',
+    description:
+      'Use this when grip, temperature balance, response, or stability changes after tire compound choices.',
+    href: '/games/forza-horizon-6/guides/tire-pressure-settings-guide',
+  },
+  {
     title: 'Alignment, camber, and toe',
     description:
       'Use this when turn-in, mid-corner hold, or straight-line stability needs smaller geometry changes.',
     href: '/games/forza-horizon-6/guides/alignment-camber-toe-settings',
+  },
+  {
+    title: 'Anti-roll bar and suspension',
+    description:
+      'Use this when mid-corner balance, bumps, weight transfer, or ride height needs a focused checklist.',
+    href: '/games/forza-horizon-6/guides/anti-roll-bar-suspension-settings',
   },
   {
     title: 'Aero and downforce',
@@ -173,10 +185,28 @@ const specializedSettingGuides = [
     href: '/games/forza-horizon-6/guides/aero-downforce-settings',
   },
   {
+    title: 'Differential settings',
+    description:
+      'Use this when throttle rotation, exit grip, lift-off behavior, or AWD balance is the real problem.',
+    href: '/games/forza-horizon-6/guides/differential-settings-guide',
+  },
+  {
     title: 'FWD tune settings',
     description:
       'Use this when front-drive cars need cleaner exits, less push, and better lift-off rotation.',
     href: '/games/forza-horizon-6/guides/best-fwd-tune-settings',
+  },
+  {
+    title: 'RWD tune settings',
+    description:
+      'Use this when rear-drive cars need cleaner launches, smoother exits, and safer rotation under power.',
+    href: '/games/forza-horizon-6/guides/best-rwd-tune-settings',
+  },
+  {
+    title: 'Drift tune settings',
+    description:
+      'Use this when angle, snapback, throttle control, and transition rhythm matter more than lap time.',
+    href: '/games/forza-horizon-6/guides/best-drift-tune-settings',
   },
   {
     title: 'S1 rally tune settings',
