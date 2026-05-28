@@ -95,6 +95,39 @@ const guideRouterRows = [
   },
 ];
 
+const upgradeDecisionPath = [
+  {
+    step: '1',
+    title: 'Lock the PI class',
+    text: 'Decide the class ceiling before buying parts so the build does not drift into the wrong event bracket.',
+    href: '/games/forza-horizon-6/guides/pi-class-upgrade-planning-guide',
+  },
+  {
+    step: '2',
+    title: 'Choose the tire spend',
+    text: 'Pick tire compound early when the car needs braking grip, exit traction, or stable wet-route handling.',
+    href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+  },
+  {
+    step: '3',
+    title: 'Spend on control first',
+    text: 'Use the upgrade order guide to balance tires, weight, brakes, suspension, aero, and power.',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+  },
+  {
+    step: '4',
+    title: 'Split grip from power',
+    text: 'Use the power-vs-grip guide when the car gains speed but starts missing braking zones or exits.',
+    href: '/games/forza-horizon-6/guides/power-vs-grip-upgrade-guide',
+  },
+  {
+    step: '5',
+    title: 'Gate swaps last',
+    text: 'Use engine and drivetrain swap checks only after the class, grip budget, and event restriction are clear.',
+    href: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+  },
+];
+
 const guideGroups = [
   {
     id: 'launch-guides',
@@ -217,6 +250,11 @@ const guideFaqs = [
     question: 'Which Forza Horizon 6 guide should I read first?',
     answer:
       'Start with the beginner tuning guide if you are new to setups, then move to the upgrade path, specific handling problem, tuning slider, device setup, event restriction, or tune-code workflow you are trying to fix.',
+  },
+  {
+    question: 'What FH6 upgrade guide should I use first?',
+    answer:
+      'Start with PI class planning if the event has a class limit, then choose tire compound, upgrade order, power-vs-grip balance, and swap decisions in that order.',
   },
   {
     question: 'Are these guides based on fake leaderboard certainty?',
@@ -366,6 +404,13 @@ export default function ForzaHorizon6GuidesPage() {
               path: row.href.startsWith('#') ? pathname : row.href,
             })),
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 upgrade planning path',
+            items: upgradeDecisionPath.map((item) => ({
+              name: item.title,
+              path: item.href,
+            })),
+          }),
           buildHowToJsonLd({
             title: 'How to choose a Forza Horizon 6 guide',
             description:
@@ -481,6 +526,44 @@ export default function ForzaHorizon6GuidesPage() {
               <span className="leading-6 text-zinc-400">{row.next}</span>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <WrenchIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-xl font-semibold">
+                Upgrade planning path
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+                Use this path before changing sliders. It keeps class limits,
+                tire grip, power gains, and swap choices in a practical order
+                for road, rally, drift, and weekly event builds.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="rounded-md">
+              <LocaleLink href="#upgrade-guides">Open upgrade cluster</LocaleLink>
+            </Button>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-5">
+            {upgradeDecisionPath.map((item) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-amber-300/40 hover:bg-amber-300/10"
+                href={item.href}
+                key={item.href}
+              >
+                <span className="inline-flex size-8 items-center justify-center rounded-md border border-amber-300/30 bg-amber-300/10 text-sm font-semibold text-amber-100">
+                  {item.step}
+                </span>
+                <h3 className="mt-3 text-sm font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.text}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
