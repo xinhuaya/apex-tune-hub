@@ -57,6 +57,14 @@ const corePages = [
     'Forza Horizon 6 input lag settings guide',
     '/games/forza-horizon-6/guides/input-lag-settings',
   ],
+  [
+    'Forza Horizon 6 assist settings guide',
+    '/games/forza-horizon-6/guides/best-assist-settings',
+  ],
+  [
+    'Forza Horizon 6 manual transmission guide',
+    '/games/forza-horizon-6/guides/manual-transmission-guide',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

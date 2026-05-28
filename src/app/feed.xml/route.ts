@@ -139,6 +139,20 @@ const feedItems = [
     category: 'Input lag',
   },
   {
+    title: 'Forza Horizon 6 assist settings guide',
+    path: '/games/forza-horizon-6/guides/best-assist-settings',
+    description:
+      'Assist settings guide for FH6 braking, steering, traction control, stability control, shifting, ABS, rewind, and racing line progression.',
+    category: 'Assist settings',
+  },
+  {
+    title: 'Forza Horizon 6 manual transmission guide',
+    path: '/games/forza-horizon-6/guides/manual-transmission-guide',
+    description:
+      'Manual shifting guide for FH6 manual transmission, manual with clutch, controller binds, wheel paddles, keyboard shifting, and gear timing.',
+    category: 'Manual transmission',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

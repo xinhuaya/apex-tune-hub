@@ -134,6 +134,8 @@ const guideGroups = [
       'cloud-save-not-syncing',
       'online-not-working-checklist',
       'input-lag-settings',
+      'best-assist-settings',
+      'manual-transmission-guide',
       'steam-deck-settings-guide',
     ],
   },

@@ -1150,6 +1150,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-assist-settings',
+    title: 'Best Assist Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best assist settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 assist settings guide for braking, steering, traction control, stability control, shifting, ABS, rewind, racing line, and beginner-to-advanced progression.',
+    eyebrow: 'Assist settings',
+    intro:
+      'Assist settings should make the car easier to learn without hiding every handling problem. Start with consistency, then remove one assist at a time when your route, braking points, and throttle inputs feel repeatable.',
+    primaryCta: {
+      label: 'Open Controller Settings',
+      href: '/settings/forza-horizon-6-controller',
+    },
+    relatedLinks: [
+      {
+        label: 'Beginner tuning',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+      {
+        label: 'Input lag settings',
+        href: '/games/forza-horizon-6/guides/input-lag-settings',
+      },
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with learning assists',
+        body: 'New players should use assists to learn routes and braking points first. Removing every assist early can make tuning feedback harder to read.',
+        bullets: [
+          'Keep rewind on while learning new routes or event restrictions.',
+          'Use a racing line until braking points become predictable.',
+          'Do not remove multiple assists and change the tune in the same run.',
+        ],
+      },
+      {
+        title: 'Remove traction aids carefully',
+        body: 'Traction and stability assists can hide wheelspin, oversteer, and throttle mistakes. Remove them only when the car and route are familiar.',
+        bullets: [
+          'If the car instantly spins, fix gearing and differential before blaming assists.',
+          'Use lower-power cars when learning throttle control without traction aids.',
+          'Keep ABS decisions separate from traction and stability decisions.',
+        ],
+      },
+      {
+        title: 'Treat shifting as a separate skill',
+        body: 'Manual shifting can help control power delivery, but it adds workload. Learn it after braking, steering, and throttle are stable.',
+        bullets: [
+          'Use automatic while learning a new car or route.',
+          'Move to manual when you can repeat clean exits.',
+          'Use the gear ratio guide after manual inputs feel natural.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Assist progression paths',
+        description:
+          'Use your current driving problem to decide which assist to keep, remove, or test later.',
+        cards: [
+          {
+            title: 'Beginner route learning',
+            body: 'Keep comfort assists while learning roads. The goal is clean repetition, not proving skill on the first run.',
+            bullets: [
+              'Use rewind to identify the mistake, then rerun the corner.',
+              'Keep racing line until braking zones feel memorized.',
+              'Use stable cars before chasing leaderboard assists.',
+            ],
+          },
+          {
+            title: 'Wheelspin on exits',
+            body: 'If removing traction control makes exits chaotic, improve power delivery and throttle rhythm before pushing more performance.',
+            bullets: [
+              'Lengthen lower gears if launch spin is constant.',
+              'Use safer differential settings first.',
+              'Compare assist-on and assist-off runs on the same corner.',
+            ],
+          },
+          {
+            title: 'Manual shifting workload',
+            body: 'Manual gears should make the car more controllable, not distract from every braking point.',
+            bullets: [
+              'Use automatic for new routes.',
+              'Practice manual on a forgiving road car.',
+              'Tune gear spacing after shift timing feels consistent.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'manual-transmission-guide',
+    title: 'Forza Horizon 6 Manual Transmission Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 manual transmission guide',
+    description:
+      'Forza Horizon 6 manual transmission guide for manual shifting, manual with clutch, controller binds, wheel paddles, keyboard shifting, gear timing, and race consistency.',
+    eyebrow: 'Manual shifting',
+    intro:
+      'Manual shifting is useful when it helps you control power, braking, and corner exits. Learn shift timing on a repeatable route before changing gear ratios or moving to manual with clutch.',
+    primaryCta: {
+      label: 'Open Gear Ratio Tool',
+      href: '/tools/forza-horizon-6-gear-ratio-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+      {
+        label: 'Keyboard settings',
+        href: '/games/forza-horizon-6/guides/best-keyboard-settings',
+      },
+      {
+        label: 'Wheel settings',
+        href: '/games/forza-horizon-6/guides/wheel-settings-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Learn manual before manual with clutch',
+        body: 'Manual with clutch adds timing pressure. Start with normal manual shifting so you can hear and feel power bands without also managing clutch input.',
+        bullets: [
+          'Practice upshifts and downshifts on one short route.',
+          'Use a stable A or S1 road car while learning.',
+          'Move to clutch only after missed shifts are rare.',
+        ],
+      },
+      {
+        title: 'Choose binds that do not break steering',
+        body: 'Bad shift binds make manual feel harder than it is. Keep upshift, downshift, clutch, and handbrake reachable without ruining steering or throttle control.',
+        bullets: [
+          'Controller users should avoid binds that fight camera or rewind controls.',
+          'Wheel users should test paddles before adding clutch workload.',
+          'Keyboard users should keep shift keys reachable while steering.',
+        ],
+      },
+      {
+        title: 'Use shifting to solve specific problems',
+        body: 'Manual is not only about speed. It can calm wheelspin, hold a gear through a corner, avoid awkward automatic shifts, and improve exit consistency.',
+        bullets: [
+          'Hold a higher gear if exits spin too easily.',
+          'Downshift earlier only if the car remains stable under braking.',
+          'Use the gear ratio tool when shifts happen in awkward parts of the route.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Manual shifting decision paths',
+        description:
+          'Use the shifting problem to decide whether to change binds, driver timing, or the gear ratio setup.',
+        cards: [
+          {
+            title: 'Automatic shifts mid-corner',
+            body: 'Manual can help hold the gear through the corner, but gear spacing may also need adjustment.',
+            bullets: [
+              'Test manual on the same corner before changing the tune.',
+              'Use the gear ratio tool if shifts happen at the wrong speed.',
+              'Avoid power upgrades until shift points are predictable.',
+            ],
+          },
+          {
+            title: 'Downshifts unsettle the car',
+            body: 'Late or aggressive downshifts can make braking feel unstable. Fix timing before changing brake balance.',
+            bullets: [
+              'Downshift one step earlier on a straight section.',
+              'Compare braking stability with automatic mode.',
+              'Keep differential and brake settings unchanged during the test.',
+            ],
+          },
+          {
+            title: 'Clutch feels too busy',
+            body: 'Manual with clutch should be a later step. If it distracts from the route, return to standard manual and build consistency.',
+            bullets: [
+              'Practice standard manual until mistakes are rare.',
+              'Use a forgiving car class first.',
+              'Move clutch input only after binds feel natural.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',
