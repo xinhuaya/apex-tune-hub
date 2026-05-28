@@ -32,7 +32,7 @@ import type { Locale } from 'next-intl';
 const pathname = '/games/forza-horizon-6/faq';
 const title = 'Forza Horizon 6 FAQ - Apex Tune Hub';
 const description =
-  'Quick Forza Horizon 6 FAQ covering release status, Game Pass, Steam Deck, car count, PS5 timing, and Apex Tune Hub tuning tools.';
+  'Quick Forza Horizon 6 FAQ covering release status, Game Pass, Steam Deck, car count, PS5 timing, upgrade order, and Apex Tune Hub tuning tools.';
 
 const faqs: FaqItem[] = [
   {
@@ -68,7 +68,12 @@ const faqs: FaqItem[] = [
   {
     question: 'Where should I start if I only want a quick tune?',
     answer:
-      'Start with the tune calculator if you know the class and handling problem, or open tune presets if you want a shareable baseline URL first.',
+      'Start with the upgrade order guide if the car is not built yet. If you already know the class and handling problem, use the tune calculator or open tune presets for a shareable baseline URL.',
+  },
+  {
+    question: 'Should I upgrade the car before using a tune calculator?',
+    answer:
+      'Yes, decide the target class, tire compound, engine swap, drivetrain swap, and PI budget first. Then use the calculator for slider direction once the build direction is clear.',
   },
   {
     question: 'Where should I find the best FH6 cars?',
@@ -104,6 +109,7 @@ const faqClusters = [
       'Calculator, preset, drift, gear-ratio, and tune-code answers for players building setups.',
     icon: GaugeIcon,
     links: [
+      ['Upgrade Order', '/games/forza-horizon-6/guides/upgrade-order-tuning-guide'],
       ['Tune Calculator', '/tools/forza-horizon-6-tune-calculator'],
       ['Tune Presets', '/tools/forza-horizon-6-tune-presets'],
       ['Tune Codes', '/tools/forza-horizon-6-tune-codes'],
@@ -198,6 +204,11 @@ const highIntentRoutes = [
     title: 'Best car answers',
     href: '/games/forza-horizon-6/best-cars',
     text: 'Route broad best-car searches into class, role, manufacturer, and car detail pages.',
+  },
+  {
+    title: 'Upgrade planning answers',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+    text: 'Route upgrade-before-tuning questions into tire, PI, power, engine swap, and drivetrain swap guidance.',
   },
   {
     title: 'Tune-code answers',

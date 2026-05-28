@@ -27,13 +27,13 @@ const pathname = '/games/forza-horizon-6';
 const title =
   'Forza Horizon 6 Tuning Hub - Calculators, Best Cars, and Settings';
 const description =
-  'Forza Horizon 6 tuning hub with calculators, best car planning, Steam Deck settings, wheel settings, Car Pass tracking, and weekly setup notes.';
+  'Forza Horizon 6 tuning hub with calculators, upgrade planning, best car planning, Steam Deck settings, wheel settings, Car Pass tracking, and weekly setup notes.';
 
 const hubFaqs = [
   {
     question: 'What should I use first on Apex Tune Hub?',
     answer:
-      'Start with the tune calculator for a baseline, then move into tune presets, car pages, or guide pages based on the problem you are trying to solve.',
+      'Start with upgrade order if the car is not built yet. If the build already exists, use the tune calculator for a baseline, then move into tune presets, car pages, or guide pages based on the problem you are trying to solve.',
   },
   {
     question: 'Does the FH6 hub cover more than tuning sliders?',
@@ -64,9 +64,17 @@ const hubLinks = [
   },
   {
     title: 'Guides',
-    description: 'Beginner tuning, handling fixes, gearing, and settings help.',
+    description:
+      'Beginner tuning, upgrade order, handling fixes, gearing, and settings help.',
     href: '/games/forza-horizon-6/guides',
     icon: BookOpenIcon,
+  },
+  {
+    title: 'Upgrade Order Guide',
+    description:
+      'Plan tires, weight, power, engine swaps, and drivetrain swaps before spending PI.',
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+    icon: ListChecksIcon,
   },
   {
     title: 'Tuning Settings',
@@ -209,7 +217,7 @@ const hubLinks = [
 
 const hubStats = [
   {
-    value: '18',
+    value: hubLinks.length.toString(),
     label: 'FH6 hubs',
     detail:
       'Tools, guide clusters, car pages, settings pages, and weekly trackers.',
@@ -233,6 +241,13 @@ const playerPaths = [
     icon: GaugeIcon,
     href: '/tools/forza-horizon-6-tune-calculator',
     cta: 'Open calculator',
+  },
+  {
+    title: 'I need upgrade order',
+    body: 'Pick class target, tire compound, power, weight, and swap direction before tuning sliders.',
+    icon: ListChecksIcon,
+    href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+    cta: 'Plan upgrades',
   },
   {
     title: 'I need the best car',
@@ -411,7 +426,7 @@ export default function ForzaHorizon6HubPage() {
               guide stack.
             </p>
           </div>
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             {playerPaths.map((path) => {
               const Icon = path.icon;
 
@@ -452,6 +467,7 @@ export default function ForzaHorizon6HubPage() {
             <div className="grid gap-2">
               {[
                 'Route every new high-value page back to this FH6 hub.',
+                'Send unbuilt cars to upgrade order before calculator or preset pages.',
                 'Keep official release/platform facts separated from tuning guidance.',
                 'Send repeat visitors to weekly playlist, Car Pass, and FH6 tune drops.',
                 'Use guide, car, and tool hubs as the main internal-link clusters.',
