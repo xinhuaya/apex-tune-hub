@@ -111,6 +111,20 @@ const feedItems = [
     category: 'Controller troubleshooting',
   },
   {
+    title: 'Forza Horizon 6 keyboard settings guide',
+    path: '/games/forza-horizon-6/guides/best-keyboard-settings',
+    description:
+      'Keyboard guide for FH6 steering control, throttle tapping, braking, manual shifting, keybinds, input delay, and safer tune choices.',
+    category: 'Keyboard settings',
+  },
+  {
+    title: 'Forza Horizon 6 cloud save not syncing guide',
+    path: '/games/forza-horizon-6/guides/cloud-save-not-syncing',
+    description:
+      'Cloud-save guide for FH6 Xbox, Xbox app, Steam, Steam Deck, Game Pass, platform switching, DLC ownership, and support-ready notes.',
+    category: 'Cloud save',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

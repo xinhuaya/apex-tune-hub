@@ -778,6 +778,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-keyboard-settings',
+    title: 'Best Keyboard Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best keyboard settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 keyboard settings guide for steering control, throttle tapping, braking, manual shifting, keybinds, input delay, and when to switch to controller or wheel.',
+    eyebrow: 'Keyboard settings',
+    intro:
+      'Keyboard can work in FH6, but it needs a different mindset from controller or wheel. Treat steering, throttle, and braking as timed inputs, then build safer tunes that do not punish every tap.',
+    primaryCta: {
+      label: 'Open Controller Settings',
+      href: '/settings/forza-horizon-6-controller',
+    },
+    relatedLinks: [
+      {
+        label: 'Controller not working',
+        href: '/games/forza-horizon-6/guides/controller-not-working-checklist',
+      },
+      {
+        label: 'Beginner tuning',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+    ],
+    sections: [
+      {
+        title: 'Use smoother cars first',
+        body: 'Keyboard turns digital inputs into abrupt steering and throttle changes. Start with stable A or S1 road cars before trying nervous high-power builds.',
+        bullets: [
+          'Avoid max-power RWD builds until throttle tapping feels controlled.',
+          'Use AWD or balanced road tunes when learning a new route.',
+          'Keep steering and braking tests on the same technical road section.',
+        ],
+      },
+      {
+        title: 'Build keybinds around repeatability',
+        body: 'A good keyboard layout puts shifting, look-back, handbrake, rewind, and camera controls where they do not interrupt steering or throttle rhythm.',
+        bullets: [
+          'Keep handbrake and shifting reachable without leaving steering keys.',
+          'Use manual shifting only after braking and throttle inputs feel repeatable.',
+          'Do not change keybinds and car tune in the same test run.',
+        ],
+      },
+      {
+        title: 'Tune around digital throttle',
+        body: 'Keyboard wheelspin and understeer often come from on/off inputs. Use differential, gearing, and tire choices to make throttle taps less dramatic.',
+        bullets: [
+          'Lengthen first gear if launch spin is hard to control.',
+          'Use safer differential settings before adding more horsepower.',
+          'Prefer consistent exits over one aggressive top-speed build.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Keyboard driving decision paths',
+        description:
+          'Use the problem you feel to decide whether to change keybinds, input rhythm, or the car tune.',
+        cards: [
+          {
+            title: 'Car snaps on corner exit',
+            body: 'The tune is not forgiving enough for digital throttle. Fix gearing, differential, and power delivery before blaming the keyboard.',
+            bullets: [
+              'Test half-second throttle taps on the same exit.',
+              'Lengthen lower gears if the car instantly spins.',
+              'Use a lower class until exits become repeatable.',
+            ],
+          },
+          {
+            title: 'Steering feels too sharp',
+            body: 'Keyboard steering is binary, so the car needs stable front response and predictable rotation.',
+            bullets: [
+              'Use a calmer road tune before chasing leaderboard response.',
+              'Avoid extreme alignment changes on keyboard starter builds.',
+              'Practice short taps instead of holding full steering lock.',
+            ],
+          },
+          {
+            title: 'Manual shifting feels crowded',
+            body: 'If shifting steals attention from braking and steering, simplify until core driving is clean.',
+            bullets: [
+              'Use automatic while learning a route.',
+              'Move shift keys only after steering keys feel natural.',
+              'Use gear ratio pages after manual input feels stable.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cloud-save-not-syncing',
+    title: 'Forza Horizon 6 Cloud Save Not Syncing Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 cloud save not syncing guide',
+    description:
+      'Forza Horizon 6 cloud save not syncing guide for Xbox, Xbox app on PC, Steam, Steam Deck, Game Pass, platform switching, DLC ownership, and support-ready notes.',
+    eyebrow: 'Cloud save',
+    intro:
+      'Cloud-save problems are platform problems before they are tuning problems. Slow down, identify the storefront, wait for sync prompts, avoid overwriting progress, and record what changed before opening the game on another device.',
+    primaryCta: {
+      label: 'Open Cross-Save Guide',
+      href: '/games/forza-horizon-6/crossplay-cross-save',
+    },
+    relatedLinks: [
+      {
+        label: 'Steam vs Xbox app',
+        href: '/games/forza-horizon-6/steam-vs-xbox-app',
+      },
+      {
+        label: 'Game Pass and editions',
+        href: '/games/forza-horizon-6/game-pass-editions',
+      },
+      {
+        label: 'PC crash checklist',
+        href: '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Do not rush past sync prompts',
+        body: 'The riskiest moment is opening FH6 on a second device and clicking through a cloud-save prompt without reading it. Stop and confirm which save is newer.',
+        bullets: [
+          'Check the last played device and platform before launching somewhere else.',
+          'Do not overwrite cloud data if the prompt does not match your expected progress.',
+          'Avoid switching devices immediately after a crash or forced shutdown.',
+        ],
+      },
+      {
+        title: 'Separate save sync from ownership',
+        body: 'Progress syncing does not automatically mean every DLC, add-on, subscription, or storefront purchase follows the same path.',
+        bullets: [
+          'Record whether you are using Steam, Xbox app, PC Game Pass, or console.',
+          'Check edition and DLC ownership before assuming missing content is a save bug.',
+          'Use the Game Pass and editions page if add-ons are the confusing part.',
+        ],
+      },
+      {
+        title: 'Create a clean support note',
+        body: 'If progress does not appear, write down the devices, storefronts, account, last known progress, sync prompt wording, and what changed before the issue.',
+        bullets: [
+          'Include whether the issue followed a crash, reinstall, offline session, or platform switch.',
+          'Record if the problem is missing progress, missing DLC, or missing settings.',
+          'Keep testing narrow until official support or platform sync resolves it.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Cloud save decision paths',
+        description:
+          'Use the symptom to decide whether this is a sync delay, platform mismatch, ownership issue, or support case.',
+        cards: [
+          {
+            title: 'Progress missing on a second device',
+            body: 'Treat this as a sync-timing issue first. Check the last device, cloud prompt, and account before launching repeatedly.',
+            bullets: [
+              'Confirm the same account is signed in.',
+              'Wait before forcing another launch on the second device.',
+              'Avoid overwriting if the cloud prompt looks wrong.',
+            ],
+          },
+          {
+            title: 'DLC or cars missing',
+            body: 'This may be ownership or edition access, not save loss. Compare storefront and add-on ownership before assuming the save failed.',
+            bullets: [
+              'Check whether the missing item is tied to an edition or add-on.',
+              'Compare Steam and Xbox app purchase paths carefully.',
+              'Use Game Pass wording separately from permanent ownership.',
+            ],
+          },
+          {
+            title: 'Settings changed but progress is intact',
+            body: 'Settings sync and save progress can feel like the same problem but need different notes.',
+            bullets: [
+              'Record graphics, controller, wheel, and accessibility changes separately.',
+              'Save screenshots of important settings before switching devices.',
+              'Use device settings pages if only input or graphics changed.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

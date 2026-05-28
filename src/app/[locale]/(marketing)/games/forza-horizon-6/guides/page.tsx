@@ -130,6 +130,8 @@ const guideGroups = [
       'fanatec-moza-wheel-settings',
       'controller-not-working-checklist',
       'controller-drift-settings',
+      'best-keyboard-settings',
+      'cloud-save-not-syncing',
       'steam-deck-settings-guide',
     ],
   },
