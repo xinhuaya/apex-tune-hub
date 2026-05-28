@@ -224,6 +224,29 @@ const pcNextLinks = [
   },
 ];
 
+const pcIssueGuideLinks = [
+  {
+    title: 'Best PC graphics settings',
+    href: '/games/forza-horizon-6/guides/best-pc-graphics-settings',
+    note: 'Use when the player needs a visual-quality order instead of a general performance framework.',
+  },
+  {
+    title: 'Cloud save not syncing',
+    href: '/games/forza-horizon-6/guides/cloud-save-not-syncing',
+    note: 'Use when the issue appears after moving between Steam, Xbox app, Game Pass, or another device.',
+  },
+  {
+    title: 'Online not working',
+    href: '/games/forza-horizon-6/guides/online-not-working-checklist',
+    note: 'Use when matchmaking, convoy, account, NAT, or platform service checks matter more than FPS.',
+  },
+  {
+    title: 'Input lag settings',
+    href: '/games/forza-horizon-6/guides/input-lag-settings',
+    note: 'Use when the car reacts late even after frame pacing, display mode, and controller path are checked.',
+  },
+];
+
 const pcFaqs = [
   {
     question: 'What is the best first PC settings preset for FH6?',
@@ -281,6 +304,13 @@ export default function ForzaHorizon6PcSettingsPage() {
           buildItemListJsonLd({
             title: 'Forza Horizon 6 PC settings next steps',
             items: pcNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 PC issue guides',
+            items: pcIssueGuideLinks.map((link) => ({
               name: link.title,
               path: link.href,
             })),
@@ -482,6 +512,39 @@ export default function ForzaHorizon6PcSettingsPage() {
               <span className="leading-6 text-zinc-400">{row.firstMove}</span>
             </div>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
+              Issue-specific guides
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Split PC problems before changing the car
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Some PC searches are not really graphics questions. Send players
+              into the exact guide for visuals, save sync, online access, or
+              input delay so this page stays useful without becoming bloated.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {pcIssueGuideLinks.map((link) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={link.href}
+                key={link.href}
+              >
+                <RouteIcon className="size-5 text-amber-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.note}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">

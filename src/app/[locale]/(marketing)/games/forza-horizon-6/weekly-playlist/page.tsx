@@ -52,7 +52,8 @@ const weeklyResetBoard = [
   {
     label: 'Championship restrictions',
     status: 'Class and drivetrain first',
-    action: 'Pick upgrade order and a safe A or S1 baseline before chasing extreme builds.',
+    action:
+      'Pick upgrade order and a safe A or S1 baseline before chasing extreme builds.',
   },
   {
     label: 'PR stunts',
@@ -199,6 +200,30 @@ const baselineLinks = [
     note: 'Use for required-car chapters, skill chains, PR stunts, and quick tune swaps.',
   },
 ];
+
+const weeklySpecialistGuides = [
+  {
+    title: 'Weekly checklist',
+    href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+    note: 'Use this when a new reset needs legal picks, event restrictions, and retest notes before publishing.',
+  },
+  {
+    title: 'Danger sign and trailblazer',
+    href: '/games/forza-horizon-6/guides/danger-sign-trailblazer-tuning',
+    note: 'Use for PR stunt weeks where launch, gearing, run-up, and landing stability decide the reward.',
+  },
+  {
+    title: 'Rivals and time attack',
+    href: '/games/forza-horizon-6/guides/rivals-time-attack-tuning',
+    note: 'Use when the playlist has clean-lap, leaderboard, or retry-heavy routes that need repeatable pace.',
+  },
+  {
+    title: 'Tune presets library',
+    href: '/tools/forza-horizon-6-tune-presets',
+    note: 'Promote verified weekly setups here after car, class, surface, and tune direction are clear.',
+  },
+];
+
 const weeklyPrepLinks = [
   {
     title: 'Road championship prep',
@@ -251,7 +276,8 @@ const weeklyEventTemplates = [
   {
     title: 'Championship race',
     restriction: 'Class, drivetrain, surface, and weather',
-    safePick: 'Start with upgrade order, then stable A/S1 road or rally candidates.',
+    safePick:
+      'Start with upgrade order, then stable A/S1 road or rally candidates.',
     tunePath: '/tools/forza-horizon-6-tune-calculator',
     guidePath: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
   },
@@ -272,16 +298,19 @@ const weeklyEventTemplates = [
   {
     title: 'The Trial co-op',
     restriction: 'Class, team traffic, AI contact, and clean starts',
-    safePick: 'Use a stable tune that launches cleanly and recovers after contact.',
+    safePick:
+      'Use a stable tune that launches cleanly and recovers after contact.',
     tunePath: '/tools/forza-horizon-6-tune-calculator',
     guidePath: '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
   },
   {
     title: 'Forzathon weekly challenge',
     restriction: 'Required car, chapter task, skill chain, or PR stunt target',
-    safePick: 'Keep a legal baseline and swap to task-specific tunes only when needed.',
+    safePick:
+      'Keep a legal baseline and swap to task-specific tunes only when needed.',
     tunePath: '/tools/forza-horizon-6-tune-codes',
-    guidePath: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
+    guidePath:
+      '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
   },
   {
     title: 'Reward-car spotlight',
@@ -401,6 +430,13 @@ export default function WeeklyPlaylistPage() {
           buildItemListJsonLd({
             title: 'Forza Horizon 6 weekly playlist retention links',
             items: retentionLoops.map((item) => ({
+              name: item.title,
+              path: item.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 weekly specialist guides',
+            items: weeklySpecialistGuides.map((item) => ({
               name: item.title,
               path: item.href,
             })),
@@ -665,6 +701,39 @@ export default function WeeklyPlaylistPage() {
               </p>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
+              Specialist routes
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Send each weekly problem to the right guide
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Weekly playlist traffic should not stop on this tracker. Route
+              players into the exact checklist, stunt, time-attack, or preset
+              workflow that matches the event they are trying to clear.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {weeklySpecialistGuides.map((item) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-amber-300/40 hover:bg-amber-300/[0.04]"
+                href={item.href}
+                key={item.href}
+              >
+                <ListChecksIcon className="size-5 text-amber-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.note}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">

@@ -239,6 +239,29 @@ const controllerNextLinks = [
   },
 ];
 
+const controllerIssueGuideLinks = [
+  {
+    title: 'Controller not working',
+    href: '/games/forza-horizon-6/guides/controller-not-working-checklist',
+    note: 'Use when detection, double input, wireless delay, Steam Input, or bindings are the real blocker.',
+  },
+  {
+    title: 'Controller drift settings',
+    href: '/games/forza-horizon-6/guides/controller-drift-settings',
+    note: 'Use when throttle control, countersteer, vibration, and drift recovery need a focused setup path.',
+  },
+  {
+    title: 'Keyboard settings',
+    href: '/games/forza-horizon-6/guides/best-keyboard-settings',
+    note: 'Use when the player is on digital inputs and needs keybind, throttle-tap, or manual-shift guidance.',
+  },
+  {
+    title: 'Input lag settings',
+    href: '/games/forza-horizon-6/guides/input-lag-settings',
+    note: 'Use when the controller works but response feels late because of display, FPS, wireless, or overlays.',
+  },
+];
+
 const pathname = '/settings/forza-horizon-6-controller';
 const title = 'Best Forza Horizon 6 Controller Settings - Apex Tune Hub';
 const description =
@@ -301,6 +324,13 @@ export default function ForzaHorizon6ControllerSettingsPage() {
           buildItemListJsonLd({
             title: 'Forza Horizon 6 controller settings next steps',
             items: controllerNextLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 controller issue guides',
+            items: controllerIssueGuideLinks.map((link) => ({
               name: link.title,
               path: link.href,
             })),
@@ -586,6 +616,39 @@ export default function ForzaHorizon6ControllerSettingsPage() {
               </p>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Input troubleshooting
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Route input problems before blaming the tune
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Controller pages pull in broad traffic, so this block separates
+              detection, drift feel, keyboard control, and input lag into
+              focused guides with clearer next steps.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {controllerIssueGuideLinks.map((item) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={item.href}
+                key={item.href}
+              >
+                <WrenchIcon className="size-5 text-cyan-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.note}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
 
         <div className="forza-panel mt-6 p-5">
