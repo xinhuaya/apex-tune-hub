@@ -171,6 +171,39 @@ const calculatorUseCases = [
   },
 ];
 
+const sliderDrilldownLinks = [
+  {
+    title: 'Alignment and camber',
+    href: '/games/forza-horizon-6/guides/alignment-camber-toe-settings',
+    note: 'Use after the calculator points to turn-in, apex hold, or straight-line stability issues.',
+  },
+  {
+    title: 'Differential settings',
+    href: '/games/forza-horizon-6/guides/differential-settings-guide',
+    note: 'Use when throttle rotation, exit grip, AWD pull, or lift-off behavior is the next test.',
+  },
+  {
+    title: 'FWD tune settings',
+    href: '/games/forza-horizon-6/guides/best-fwd-tune-settings',
+    note: 'Use when front-drive cars still push wide or spin the inside tire after a baseline pass.',
+  },
+  {
+    title: 'Manual with clutch',
+    href: '/games/forza-horizon-6/guides/manual-with-clutch-shifting',
+    note: 'Use when launch, shift timing, missed shifts, or clutch rhythm changes the setup result.',
+  },
+  {
+    title: 'Drag tune settings',
+    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    note: 'Use when the calculator result is launch-limited and gearing becomes the whole event.',
+  },
+  {
+    title: 'Launch control tuning',
+    href: '/games/forza-horizon-6/guides/launch-control-tuning',
+    note: 'Use when the first 60 feet decide whether the car reaches its intended speed window.',
+  },
+];
+
 const calculatorTrustRules = [
   'Treat calculator output as a first pass, not a final universal tune.',
   'Set the upgrade order, tire compound, and swap direction before judging small slider changes.',
@@ -258,6 +291,13 @@ export default function ForzaHorizon6TuneCalculatorPage() {
               path: link.href,
             })),
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tune calculator slider drilldowns',
+            items: sliderDrilldownLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildFaqJsonLd(tuneCalculatorFaqs),
         ]}
       />
@@ -332,6 +372,40 @@ export default function ForzaHorizon6TuneCalculatorPage() {
                 </article>
               );
             })}
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
+              Slider drilldowns
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-zinc-50">
+              Move from calculator output to one focused setting family
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              When the baseline has a direction, use these guides to keep the
+              next change narrow: one drivetrain issue, one slider family, one
+              repeatable route.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {sliderDrilldownLinks.map((link) => (
+              <LocaleLink
+                className="forza-card p-4"
+                href={link.href}
+                key={link.href}
+              >
+                <GaugeIcon className="size-5 text-amber-300" />
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.note}
+                </p>
+              </LocaleLink>
+            ))}
           </div>
         </div>
       </section>
