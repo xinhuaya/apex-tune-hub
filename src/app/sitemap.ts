@@ -63,6 +63,23 @@ const staticRoutes = [
   ...(websiteConfig.docs.enable ? ['/docs'] : []),
 ];
 
+const highIntentGuideSlugs = [
+  'japan-launch-tuning-plan',
+  'japan-route-tuning-checklist',
+  'best-starter-cars',
+  'beginner-tuning-guide',
+  'steam-deck-settings-guide',
+  'logitech-wheel-settings',
+  'thrustmaster-wheel-settings',
+  'fanatec-moza-wheel-settings',
+  'weekly-playlist-tuning-checklist',
+  'upgrade-order-tuning-guide',
+  'tire-compound-upgrade-guide',
+  'fix-understeer',
+  'fix-oversteer',
+  'fix-wheelspin',
+];
+
 /**
  * Generate a sitemap for the website with hreflang support
  *
@@ -241,7 +258,8 @@ function getChangeFrequency(url: string): SitemapEntry['changeFrequency'] {
   if (
     url.includes('/weekly-playlist') ||
     url.includes('/car-pass') ||
-    url.includes('/tune-codes')
+    url.includes('/tune-codes') ||
+    url.includes('/weekly-playlist-tuning-checklist')
   ) {
     return 'weekly';
   }
@@ -257,20 +275,47 @@ function getChangeFrequency(url: string): SitemapEntry['changeFrequency'] {
   return 'yearly';
 }
 
+function isHighIntentGuideUrl(url: string) {
+  return highIntentGuideSlugs.some((slug) =>
+    url.includes(`/games/forza-horizon-6/guides/${slug}`)
+  );
+}
+
 function getPriority(url: string) {
   if (url.endsWith('/')) {
     return 1;
   }
 
+  if (url.endsWith('/games/forza-horizon-6')) {
+    return 0.95;
+  }
+
+  if (url.includes('/tools/forza-horizon-6-tune-calculator')) {
+    return 0.93;
+  }
+
   if (
-    url.includes('/tools/forza-horizon-6-tune-calculator') ||
-    url.includes('/games/forza-horizon-6') ||
+    url.endsWith('/games/forza-horizon-6/guides') ||
+    url.endsWith('/games/forza-horizon-6/best-cars') ||
+    url.endsWith('/games/forza-horizon-6/cars') ||
     url.includes('/waitlist')
   ) {
     return 0.9;
   }
 
+  if (isHighIntentGuideUrl(url)) {
+    return 0.86;
+  }
+
   if (
+    url.includes('/games/forza-horizon-6/guides/') ||
+    url.includes('/tools/forza-horizon-6-tune-presets/')
+  ) {
+    return 0.78;
+  }
+
+  if (
+    url.includes('/games/forza-horizon-6') ||
     url.includes('/tools/forza-horizon-6') ||
     url.includes('/settings/forza-horizon-6')
   ) {
