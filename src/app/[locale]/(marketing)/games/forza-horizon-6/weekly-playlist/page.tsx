@@ -187,6 +187,11 @@ const baselineLinks = [
     href: '/games/forza-horizon-6/guides/best-starter-cars',
     note: 'Use when the playlist needs quick coverage across several event types.',
   },
+  {
+    title: 'Forzathon workflow',
+    href: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
+    note: 'Use for required-car chapters, skill chains, PR stunts, and quick tune swaps.',
+  },
 ];
 const weeklyPrepLinks = [
   {
@@ -195,14 +200,14 @@ const weeklyPrepLinks = [
     carLink: '/games/forza-horizon-6/best-road-racing-cars',
     tuneLink:
       '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
-    guideLink: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+    guideLink: '/games/forza-horizon-6/guides/seasonal-championship-tuning',
   },
   {
     title: 'Drift zone prep',
     eventType: 'Drift zone',
     carLink: '/games/forza-horizon-6/best-drift-cars',
     tuneLink: '/tools/forza-horizon-6-drift-tune-calculator',
-    guideLink: '/games/forza-horizon-6/guides/japan-drift-setup',
+    guideLink: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
   },
   {
     title: 'Dirt and rally prep',
@@ -210,7 +215,7 @@ const weeklyPrepLinks = [
     carLink: '/games/forza-horizon-6/best-rally-cars',
     tuneLink:
       '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
-    guideLink: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+    guideLink: '/games/forza-horizon-6/guides/cross-country-offroad-tuning',
   },
   {
     title: 'Speed and drag prep',
@@ -218,7 +223,21 @@ const weeklyPrepLinks = [
     carLink: '/games/forza-horizon-6/best-cars',
     tuneLink:
       '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
-    guideLink: '/tools/forza-horizon-6-gear-ratio-calculator',
+    guideLink: '/games/forza-horizon-6/guides/speed-trap-speed-zone-tuning',
+  },
+  {
+    title: 'Trial co-op prep',
+    eventType: 'Team championship',
+    carLink: '/games/forza-horizon-6/best-cars',
+    tuneLink: '/tools/forza-horizon-6-tune-calculator',
+    guideLink: '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
+  },
+  {
+    title: 'Forzathon chapter prep',
+    eventType: 'Required-car challenge',
+    carLink: '/games/forza-horizon-6/cars',
+    tuneLink: '/tools/forza-horizon-6-tune-codes',
+    guideLink: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
   },
 ];
 
@@ -242,7 +261,21 @@ const weeklyEventTemplates = [
     restriction: 'Run-up length, surface, traffic, and top-speed demand',
     safePick: 'Pick a car that reaches useful speed without unstable exits.',
     tunePath: '/tools/forza-horizon-6-gear-ratio-calculator',
-    guidePath: '/games/forza-horizon-6/japan-map',
+    guidePath: '/games/forza-horizon-6/guides/speed-trap-speed-zone-tuning',
+  },
+  {
+    title: 'The Trial co-op',
+    restriction: 'Class, team traffic, AI contact, and clean starts',
+    safePick: 'Use a stable tune that launches cleanly and recovers after contact.',
+    tunePath: '/tools/forza-horizon-6-tune-calculator',
+    guidePath: '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
+  },
+  {
+    title: 'Forzathon weekly challenge',
+    restriction: 'Required car, chapter task, skill chain, or PR stunt target',
+    safePick: 'Keep a legal baseline and swap to task-specific tunes only when needed.',
+    tunePath: '/tools/forza-horizon-6-tune-codes',
+    guidePath: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
   },
   {
     title: 'Reward-car spotlight',
