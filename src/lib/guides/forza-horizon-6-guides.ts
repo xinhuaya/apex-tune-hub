@@ -102,6 +102,14 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     },
     relatedLinks: [
       {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
+      {
+        label: 'Engine and drivetrain swaps',
+        href: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+      },
+      {
         label: 'Car database',
         href: '/games/forza-horizon-6/cars',
       },
@@ -3675,6 +3683,14 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     },
     relatedLinks: [
       {
+        label: 'Upgrade order guide',
+        href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      },
+      {
+        label: 'Engine and drivetrain swaps',
+        href: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+      },
+      {
         label: 'Tire pressure settings',
         href: '/games/forza-horizon-6/guides/tire-pressure-settings-guide',
       },
@@ -3767,6 +3783,14 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       href: '/tools/forza-horizon-6-tune-calculator',
     },
     relatedLinks: [
+      {
+        label: 'Upgrade order guide',
+        href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      },
+      {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
       {
         label: 'AWD tune settings',
         href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
