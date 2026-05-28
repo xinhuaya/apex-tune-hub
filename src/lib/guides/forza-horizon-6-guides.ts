@@ -2266,6 +2266,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'advanced-gear-ratio-tuning',
+    title: 'Forza Horizon 6 Advanced Gear Ratio Tuning - Apex Tune Hub',
+    h1: 'Forza Horizon 6 advanced gear ratio tuning',
+    description:
+      'Forza Horizon 6 advanced gear ratio tuning guide for final drive, launch, acceleration, top speed, manual shifting, RWD, AWD, drag, road racing, and route-specific gearing.',
+    eyebrow: 'Advanced gearing',
+    intro:
+      'Gear ratios decide whether a car launches cleanly, pulls through corners, or runs out of speed on long straights. Good gearing is route-specific, so tune final drive and individual gears around the speed range you actually use.',
+    primaryCta: {
+      label: 'Open Gear Ratio Tool',
+      href: '/tools/forza-horizon-6-gear-ratio-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Gear ratio basics',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+      {
+        label: 'Fix slow launch',
+        href: '/games/forza-horizon-6/guides/fix-slow-launch',
+      },
+      {
+        label: 'Fix poor top speed',
+        href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with the route speed range',
+        body: 'A short technical route and a long highway route need different gearing. Tune for the speeds you actually see instead of chasing one perfect graph.',
+        bullets: [
+          'Record the lowest exit speed and highest straight speed on the route.',
+          'Use final drive to move the whole gear set before fine-tuning individual gears.',
+          'Do not judge gearing from launch alone unless the event is drag-focused.',
+        ],
+      },
+      {
+        title: 'Fix launch and exit separately',
+        body: 'Launch spin, corner-exit bogging, and top-speed limiter problems can all look like gearing issues, but they need different tests.',
+        bullets: [
+          'Lengthen low gears if launch or exit wheelspin is the main issue.',
+          'Shorten mid gears if the car bogs after slow corners.',
+          'Use the top-speed guide if the car hits limiter too early on long straights.',
+        ],
+      },
+      {
+        title: 'Use manual shifting for cleaner tests',
+        body: 'Automatic shifting can hide whether the ratio is wrong or the shift timing is wrong. Manual testing makes repeatable gearing work much easier.',
+        bullets: [
+          'Hold one gear through a problem corner to test exit behavior.',
+          'Use manual transmission guidance before moving to clutch.',
+          'Keep assists and camera unchanged while comparing ratios.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Advanced gearing decision paths',
+        description:
+          'Use the exact speed problem to decide whether final drive, low gears, mid gears, top gears, or driver shifting should change first.',
+        cards: [
+          {
+            title: 'Car spins in first and second',
+            body: 'Low gears are too aggressive for the available grip or torque delivery. Fix launch and exit traction before adding power.',
+            bullets: [
+              'Lengthen low gears in small steps.',
+              'Compare launch and corner exit separately.',
+              'Use wheelspin guidance if the car still lights up instantly.',
+            ],
+          },
+          {
+            title: 'Car bogs after tight corners',
+            body: 'The car may be falling below its useful power range. Mid-gear spacing is often more important than top speed here.',
+            bullets: [
+              'Record exit speed from the problem corner.',
+              'Shorten the gear used after that corner.',
+              'Retest before changing final drive again.',
+            ],
+          },
+          {
+            title: 'Car hits limiter too early',
+            body: 'Top gear or final drive may be too short for the route. Fix this only if the event actually rewards more top speed.',
+            bullets: [
+              'Check whether the route has enough straight-line payoff.',
+              'Lengthen top gear before ruining low-speed acceleration.',
+              'Use poor top speed guidance for aero and power tradeoffs.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'aero-downforce-settings',
+    title: 'Forza Horizon 6 Aero and Downforce Settings - Apex Tune Hub',
+    h1: 'Forza Horizon 6 aero and downforce settings',
+    description:
+      'Forza Horizon 6 aero and downforce settings guide for front aero, rear aero, grip, top speed, understeer, oversteer, road racing, S1 builds, S2 builds, and route testing.',
+    eyebrow: 'Aero tuning',
+    intro:
+      'Aero can make a fast car stable and precise, but it can also cost speed on routes that do not need it. Tune downforce around corner speed and straight length, not around a single maximum-speed number.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'Fix poor top speed',
+        href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+      },
+      {
+        label: 'S1 road tune settings',
+        href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
+      },
+    ],
+    sections: [
+      {
+        title: 'Tune aero around route shape',
+        body: 'A tight technical route can reward downforce. A fast route with long straights may punish it. Always test aero on the route type you are building for.',
+        bullets: [
+          'Use technical road routes for corner-grip aero testing.',
+          'Use long straights to check speed loss from added downforce.',
+          'Save separate presets when route shapes demand different tradeoffs.',
+        ],
+      },
+      {
+        title: 'Balance front and rear grip',
+        body: 'Front aero can help turn-in and mid-corner grip. Rear aero can calm instability. The right balance depends on whether the car pushes or rotates too much.',
+        bullets: [
+          'Use front aero changes when understeer appears at speed.',
+          'Use rear aero changes when high-speed rotation feels nervous.',
+          'Avoid using aero to hide bad tire pressure or alignment.',
+        ],
+      },
+      {
+        title: 'Protect top speed only when it matters',
+        body: 'Lower downforce can raise top speed, but it may make the car slower overall if corners become messy. Judge lap or route consistency, not just speed trap numbers.',
+        bullets: [
+          'Use poor top speed guidance if the car loses too much straight-line pace.',
+          'Retest braking points after changing aero.',
+          'Keep gearing unchanged during the first aero comparison.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Aero decision paths',
+        description:
+          'Use the route and speed problem to decide whether downforce, gearing, tire settings, or suspension should change first.',
+        cards: [
+          {
+            title: 'High-speed understeer',
+            body: 'If the car pushes wide only at speed, front aero may help more than low-speed suspension changes.',
+            bullets: [
+              'Test one fast corner repeatedly.',
+              'Add front grip in small steps.',
+              'Retest top speed after the corner improves.',
+            ],
+          },
+          {
+            title: 'Car feels nervous at speed',
+            body: 'High-speed instability can involve rear aero, ride height, suspension, or abrupt steering inputs.',
+            bullets: [
+              'Add rear stability in small steps.',
+              'Check alignment and suspension if nervousness remains.',
+              'Keep input device settings unchanged during aero tests.',
+            ],
+          },
+          {
+            title: 'Straight-line speed is too low',
+            body: 'Too much downforce can cost speed, but gearing and power also matter. Confirm the route actually needs more speed.',
+            bullets: [
+              'Compare speed loss on the longest straight.',
+              'Use gearing guidance before removing all aero.',
+              'Keep enough stability for the braking zone after the straight.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

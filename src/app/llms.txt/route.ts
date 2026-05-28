@@ -105,6 +105,14 @@ const corePages = [
     'Forza Horizon 6 alignment, camber, and toe settings',
     '/games/forza-horizon-6/guides/alignment-camber-toe-settings',
   ],
+  [
+    'Forza Horizon 6 advanced gear ratio tuning',
+    '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+  ],
+  [
+    'Forza Horizon 6 aero and downforce settings',
+    '/games/forza-horizon-6/guides/aero-downforce-settings',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

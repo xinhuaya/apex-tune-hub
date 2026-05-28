@@ -223,6 +223,20 @@ const feedItems = [
     category: 'Alignment tuning',
   },
   {
+    title: 'Forza Horizon 6 advanced gear ratio tuning',
+    path: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+    description:
+      'Advanced gear ratio guide for FH6 final drive, launch, acceleration, top speed, manual shifting, RWD, AWD, drag, road racing, and route-specific gearing.',
+    category: 'Advanced gearing',
+  },
+  {
+    title: 'Forza Horizon 6 aero and downforce settings',
+    path: '/games/forza-horizon-6/guides/aero-downforce-settings',
+    description:
+      'Aero and downforce guide for FH6 front aero, rear aero, grip, top speed, understeer, oversteer, road racing, S1 builds, S2 builds, and route testing.',
+    category: 'Aero tuning',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

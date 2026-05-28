@@ -159,6 +159,8 @@ const guideGroups = [
       'anti-roll-bar-suspension-settings',
       'tire-pressure-settings-guide',
       'alignment-camber-toe-settings',
+      'advanced-gear-ratio-tuning',
+      'aero-downforce-settings',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',
