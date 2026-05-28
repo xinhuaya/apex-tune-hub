@@ -134,6 +134,8 @@ const guideGroups = [
       'Guides for spending PI in the right order before a tune turns into a traction, class-limit, or weekly restriction problem.',
     slugs: [
       'upgrade-order-tuning-guide',
+      'pi-class-upgrade-planning-guide',
+      'power-vs-grip-upgrade-guide',
       'tire-compound-upgrade-guide',
       'engine-swap-drivetrain-swap-guide',
       'tire-pressure-settings-guide',

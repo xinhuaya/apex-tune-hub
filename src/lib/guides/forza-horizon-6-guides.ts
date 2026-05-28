@@ -3895,6 +3895,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'pi-class-upgrade-planning-guide',
+    title: 'Forza Horizon 6 PI Class Upgrade Planning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 PI class upgrade planning guide',
+    description:
+      'Forza Horizon 6 PI class upgrade planning guide for B, A, S1, S2 builds, class limits, tire cost, power budget, drivetrain choices, and weekly restrictions.',
+    eyebrow: 'PI class planning',
+    intro:
+      'PI class planning keeps a build legal, useful, and testable. Pick the class target before buying parts, because every tire, weight, power, aero, and swap decision competes for the same PI budget.',
+    primaryCta: {
+      label: 'Open Car Database',
+      href: '/games/forza-horizon-6/cars',
+    },
+    relatedLinks: [
+      {
+        label: 'Upgrade order guide',
+        href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      },
+      {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
+      {
+        label: 'A class road tune',
+        href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Choose the final class before parts',
+        body: 'A build that accidentally crosses into the next class can become useless for a weekly event or comparison route. Start from the final class, not from the biggest upgrade list.',
+        bullets: [
+          'Use B and A for learning routes and low-risk weekly cars.',
+          'Use S1 when the chassis can handle more speed.',
+          'Use S2 only when the route rewards power and aero enough to justify it.',
+        ],
+      },
+      {
+        title: 'Reserve PI for the part that solves the route',
+        body: 'PI should go where the route is failing. Tight road routes often need grip and braking. Long speed routes may justify power and aero. Dirt routes need recovery and surface control.',
+        bullets: [
+          'Reserve tire PI when exits or braking are unreliable.',
+          'Reserve power PI when the car is already stable but slow.',
+          'Reserve suspension or drivetrain PI when surface and launch matter.',
+        ],
+      },
+      {
+        title: 'Keep one legal weekly variant',
+        body: 'Weekly restrictions can punish a build that only works at the edge of a class. Keep one conservative legal version so the car can be reused without a rebuild.',
+        bullets: [
+          'Name presets by class, drivetrain, and event type.',
+          'Do not overwrite the last legal baseline.',
+          'Use tune-code notes only after the class and restriction are confirmed.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'PI planning decision paths',
+        description:
+          'Use the route and restriction to decide where the PI budget should go first.',
+        cards: [
+          {
+            title: 'Car is legal but slow',
+            body: 'If the car is stable and still loses on every straight, the next PI spend can move toward power or gearing support.',
+            bullets: [
+              'Check whether the route has enough straight-line payoff.',
+              'Avoid power that breaks exits.',
+              'Retest the same straight after each upgrade group.',
+            ],
+          },
+          {
+            title: 'Car is fast but not repeatable',
+            body: 'The build may be spending too much PI on power and too little on control.',
+            bullets: [
+              'Move budget back toward tires, weight, or brakes.',
+              'Use a lower class target for weekly events.',
+              'Compare lap consistency, not just best split.',
+            ],
+          },
+          {
+            title: 'Restriction leaves no room',
+            body: 'Some cars simply do not fit a clean build inside a restriction. Switching cars can be smarter than forcing bad parts.',
+            bullets: [
+              'Compare class hubs and car pages.',
+              'Keep the legal baseline for later.',
+              'Use a different car if the compromise ruins the route.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'power-vs-grip-upgrade-guide',
+    title: 'Forza Horizon 6 Power vs Grip Upgrade Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 power vs grip upgrade guide',
+    description:
+      'Forza Horizon 6 power vs grip upgrade guide for horsepower, tires, weight reduction, aero, launch traction, corner exits, class limits, and route testing.',
+    eyebrow: 'Power vs grip',
+    intro:
+      'The fastest upgrade is not always more horsepower. Power only helps when the car can brake, rotate, launch, and exit cleanly on the route you are building for.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'PI class planning',
+        href: '/games/forza-horizon-6/guides/pi-class-upgrade-planning-guide',
+      },
+      {
+        label: 'Tire compound upgrades',
+        href: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+      },
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+    ],
+    sections: [
+      {
+        title: 'Add power only after exits are clean',
+        body: 'Extra power is wasted if the car spins, pushes wide, or needs early throttle lifts on every exit. Make the exit repeatable first.',
+        bullets: [
+          'Test one slow exit and one fast exit before buying power.',
+          'Use gearing and tire choices if power cannot reach the road.',
+          'Keep a lower-power version when weekly consistency matters.',
+        ],
+      },
+      {
+        title: 'Use grip when the route is technical',
+        body: 'Technical city, mountain, wet, and mixed-surface routes can reward tire, weight, brake, suspension, and aero upgrades more than horsepower.',
+        bullets: [
+          'Spend on grip when braking zones and apexes decide the race.',
+          'Spend on weight when the car feels heavy everywhere.',
+          'Spend on aero only when corner speed pays back the drag cost.',
+        ],
+      },
+      {
+        title: 'Judge the full route, not one number',
+        body: 'A higher speed trap number can still lose time if the car becomes slower through every braking zone and corner exit.',
+        bullets: [
+          'Compare full route time or repeated splits.',
+          'Record whether mistakes increased after the upgrade.',
+          'Use route-specific presets when one compromise cannot cover everything.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Power versus grip decision paths',
+        description:
+          'Use the current failure point to decide whether horsepower or control upgrades should come first.',
+        cards: [
+          {
+            title: 'Loses on straights only',
+            body: 'If the car is stable and exits cleanly, power or gearing may be the next useful spend.',
+            bullets: [
+              'Check top speed and shift recovery.',
+              'Add power in a small group.',
+              'Retest braking after the speed increase.',
+            ],
+          },
+          {
+            title: 'Loses in corners',
+            body: 'Corner loss usually needs grip, weight, suspension, aero, or driver consistency before horsepower.',
+            bullets: [
+              'Use tire and alignment guidance first.',
+              'Compare entry, mid-corner, and exit separately.',
+              'Avoid hiding understeer with more power.',
+            ],
+          },
+          {
+            title: 'Launch is the whole problem',
+            body: 'Launch problems can look like a power problem, but traction, gearing, differential, and drivetrain choice often matter more.',
+            bullets: [
+              'Use launch and wheelspin guides.',
+              'Check tire compound and gearing.',
+              'Consider AWD only if the event needs repeatable starts.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',
