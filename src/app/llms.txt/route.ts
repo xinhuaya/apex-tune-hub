@@ -25,6 +25,14 @@ const corePages = [
     'Forza Horizon 6 PC crash and known issues checklist',
     '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
   ],
+  [
+    'Forza Horizon 6 low FPS and stutter guide',
+    '/games/forza-horizon-6/guides/fix-low-fps-stutter',
+  ],
+  [
+    'Forza Horizon 6 wheel not working checklist',
+    '/games/forza-horizon-6/guides/wheel-not-working-checklist',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

@@ -83,6 +83,20 @@ const feedItems = [
     category: 'Troubleshooting',
   },
   {
+    title: 'Forza Horizon 6 low FPS and stutter guide',
+    path: '/games/forza-horizon-6/guides/fix-low-fps-stutter',
+    description:
+      'Performance guide for FH6 low FPS, stutter, SSD install checks, VRAM pressure, frame targets, overlays, drivers, and Steam Deck tradeoffs.',
+    category: 'Performance',
+  },
+  {
+    title: 'Forza Horizon 6 wheel not working checklist',
+    path: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
+    description:
+      'Troubleshooting checklist for FH6 wheel detection, force feedback, rotation, deadzones, Logitech, Thrustmaster, Fanatec, and Moza setup paths.',
+    category: 'Wheel troubleshooting',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

@@ -406,6 +406,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'fix-low-fps-stutter',
+    title: 'How to Fix Low FPS and Stutter in Forza Horizon 6 - Apex Tune Hub',
+    h1: 'How to fix low FPS and stutter in Forza Horizon 6',
+    description:
+      'Forza Horizon 6 low FPS and stutter checklist for PC players covering SSD install, VRAM pressure, graphics presets, frame pacing, drivers, overlays, and Steam Deck tradeoffs.',
+    eyebrow: 'Performance fix',
+    intro:
+      'Low FPS and stutter need a different process than car tuning. Stabilize the game first: confirm SSD install, lower VRAM pressure, set a repeatable frame target, and test one graphics change at a time.',
+    primaryCta: {
+      label: 'Open PC Settings',
+      href: '/settings/forza-horizon-6-pc',
+    },
+    relatedLinks: [
+      {
+        label: 'PC requirements',
+        href: '/games/forza-horizon-6/pc-requirements',
+      },
+      {
+        label: 'Steam Deck settings',
+        href: '/settings/forza-horizon-6-steam-deck',
+      },
+      {
+        label: 'PC crash checklist',
+        href: '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with storage and frame target',
+        body: 'FH6 needs a stable storage path and repeatable FPS target before fine tuning. If the game is fighting the drive or chasing an unstable cap, every car feels worse.',
+        bullets: [
+          'Confirm the game is installed on an SSD, not a slow external drive.',
+          'Pick one FPS target and test the same route with the same weather.',
+          'Avoid changing resolution, preset, and frame cap in the same pass.',
+        ],
+      },
+      {
+        title: 'Reduce VRAM and shader pressure',
+        body: 'Stutter often appears when the graphics preset asks more from the GPU or memory than the system can deliver consistently.',
+        bullets: [
+          'Lower texture, shadow, reflection, and environment-heavy settings first.',
+          'Watch whether stutter appears during fast driving, map transitions, or dense city scenes.',
+          'Use the PC settings page as the baseline before editing advanced toggles.',
+        ],
+      },
+      {
+        title: 'Check overlays and drivers last',
+        body: 'Recording overlays, performance counters, GPU software, and driver changes can affect frame pacing. Test these only after the base settings are stable.',
+        bullets: [
+          'Disable one overlay at a time and record the result.',
+          'Write down GPU driver version before updating.',
+          'Keep the change only if the same route feels smoother twice.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Stutter diagnosis paths',
+        description:
+          'Use the symptom timing to decide what to test next instead of changing random settings.',
+        cards: [
+          {
+            title: 'Stutter during fast driving',
+            body: 'Fast traversal can expose streaming, texture, and storage pressure. Start with SSD, texture, and environment settings.',
+            bullets: [
+              'Use one long fast route as the repeatable test.',
+              'Lower texture and environment detail before changing car settings.',
+              'Retest after a full restart if the first run was shader-heavy.',
+            ],
+          },
+          {
+            title: 'Stutter in dense areas',
+            body: 'City and traffic-heavy scenes can expose CPU, crowd, shadow, reflection, and frame pacing limits.',
+            bullets: [
+              'Test the same city loop with a capped frame rate.',
+              'Reduce reflections and shadows before changing resolution.',
+              'Compare average FPS with frame-time feel.',
+            ],
+          },
+          {
+            title: 'Steam Deck or handheld dips',
+            body: 'Handheld performance is a power and heat tradeoff. A stable lower FPS target usually feels better than an unstable high target.',
+            bullets: [
+              'Use handheld settings instead of desktop presets.',
+              'Treat battery life, heat, and readability as part of the tune.',
+              'Use one route to compare performance and input feel.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'wheel-not-working-checklist',
+    title: 'Forza Horizon 6 Wheel Not Working Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 wheel not working checklist',
+    description:
+      'A Forza Horizon 6 wheel not working checklist for Logitech, Thrustmaster, Fanatec, Moza, direct drive wheels, force feedback, rotation, deadzones, profiles, and storefront testing.',
+    eyebrow: 'Wheel troubleshooting',
+    intro:
+      'When a wheel feels dead, reversed, too light, or unrecognized in FH6, separate hardware detection from force feedback feel. Confirm the wheel works outside the game before changing every in-game slider.',
+    primaryCta: {
+      label: 'Open Wheel Settings',
+      href: '/settings/forza-horizon-6-wheel',
+    },
+    relatedLinks: [
+      {
+        label: 'Logitech wheel settings',
+        href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+      },
+      {
+        label: 'Thrustmaster wheel settings',
+        href: '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
+      },
+      {
+        label: 'Fanatec and Moza settings',
+        href: '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Confirm hardware detection',
+        body: 'The first question is whether Windows and the wheel software see the device correctly. If the wheel is not detected outside FH6, game settings will not fix it.',
+        bullets: [
+          'Check wheel base, pedals, shifter, power, USB port, and firmware utility.',
+          'Avoid hubs or extension cables during the first test.',
+          'Confirm the wheel responds in its own control panel before launching FH6.',
+        ],
+      },
+      {
+        title: 'Reset the in-game profile calmly',
+        body: 'If FH6 sees the wheel but inputs feel wrong, rebuild the profile in small steps: steering, pedals, buttons, force feedback, then advanced feel.',
+        bullets: [
+          'Map steering and pedals before tuning force feedback.',
+          'Set rotation and deadzones before judging car handling.',
+          'Save one baseline profile before changing brand-specific settings.',
+        ],
+      },
+      {
+        title: 'Separate FFB feel from car tune',
+        body: 'Weak force feedback, oscillation, clipping, and steering delay are device setup problems first. Do not retune cars until the same baseline car feels consistent.',
+        bullets: [
+          'Use one car and one road loop for every wheel test.',
+          'Reduce force feedback strength if clipping or oscillation dominates.',
+          'Use brand-specific wheel guides after the generic wheel profile works.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Wheel issue decision paths',
+        description:
+          'Different wheel symptoms point to different fixes. Keep them separate so a setup problem does not become a fake car-tune problem.',
+        cards: [
+          {
+            title: 'Wheel not detected',
+            body: 'Treat this as hardware or driver detection first. FH6 settings matter only after Windows and the wheel utility see the device.',
+            bullets: [
+              'Try a direct USB port and restart the wheel base.',
+              'Open the wheel utility before launching the game.',
+              'Record wheel model and firmware if support is needed.',
+            ],
+          },
+          {
+            title: 'Pedals or steering reversed',
+            body: 'This is usually a mapping or profile issue. Rebind inputs and test the raw axis before judging force feedback.',
+            bullets: [
+              'Check pedal axis direction in the wheel utility.',
+              'Map one input at a time in FH6.',
+              'Save the profile before changing advanced settings.',
+            ],
+          },
+          {
+            title: 'Force feedback feels wrong',
+            body: 'FFB issues need a baseline car and loop. Tune strength, damping, rotation, and deadzones before adjusting the car.',
+            bullets: [
+              'Use the same road loop for every FFB change.',
+              'Lower strength if the wheel clips or oscillates.',
+              'Move to brand-specific guides after basic control is stable.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

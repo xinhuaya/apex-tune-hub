@@ -71,7 +71,7 @@ const guideRouterRows = [
   {
     problem: 'My device makes every car feel wrong',
     start: 'Settings and devices',
-    next: 'Use wheel, controller, PC, or Steam Deck settings before changing the car.',
+    next: 'Use PC, Steam Deck, wheel, controller, FPS, or device troubleshooting before changing the car.',
     href: '#settings-guides',
   },
   {
@@ -120,7 +120,10 @@ const guideGroups = [
     description:
       'Hardware-specific pages for players trying to make FH6 feel consistent before changing the car tune.',
     slugs: [
+      'pc-crash-known-issues-checklist',
+      'fix-low-fps-stutter',
       'wheel-settings-guide',
+      'wheel-not-working-checklist',
       'logitech-wheel-settings',
       'thrustmaster-wheel-settings',
       'fanatec-moza-wheel-settings',
