@@ -26,6 +26,26 @@ const corePages: string[][] = [
   ['Forza Horizon 6 tune codes', '/tools/forza-horizon-6-tune-codes'],
   ['Forza Horizon 6 guides', '/games/forza-horizon-6/guides'],
   [
+    'Forza Horizon 6 upgrade order tuning guide',
+    '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+  ],
+  [
+    'Forza Horizon 6 PI class upgrade planning guide',
+    '/games/forza-horizon-6/guides/pi-class-upgrade-planning-guide',
+  ],
+  [
+    'Forza Horizon 6 tire compound upgrade guide',
+    '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+  ],
+  [
+    'Forza Horizon 6 power vs grip upgrade guide',
+    '/games/forza-horizon-6/guides/power-vs-grip-upgrade-guide',
+  ],
+  [
+    'Forza Horizon 6 engine and drivetrain swap guide',
+    '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+  ],
+  [
     'Forza Horizon 6 PC crash and known issues checklist',
     '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
   ],

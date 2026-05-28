@@ -83,8 +83,43 @@ const feedItems: FeedItem[] = [
     title: 'Forza Horizon 6 guide library',
     path: '/games/forza-horizon-6/guides',
     description:
-      'Beginner tuning, handling fixes, device settings, event builds, and long-tail FH6 setup guides.',
+      'Beginner tuning, upgrade planning, handling fixes, device settings, event builds, and long-tail FH6 setup guides.',
     category: 'Guides',
+  },
+  {
+    title: 'Forza Horizon 6 upgrade order tuning guide',
+    path: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+    description:
+      'Upgrade order guide for class limits, tire spend, weight reduction, brakes, suspension, aero, power, and weekly event builds.',
+    category: 'Upgrade planning',
+  },
+  {
+    title: 'Forza Horizon 6 PI class upgrade planning guide',
+    path: '/games/forza-horizon-6/guides/pi-class-upgrade-planning-guide',
+    description:
+      'PI class planning guide for keeping FH6 upgrades inside B, A, S1, S2, road, rally, drift, and weekly event limits.',
+    category: 'Upgrade planning',
+  },
+  {
+    title: 'Forza Horizon 6 tire compound upgrade guide',
+    path: '/games/forza-horizon-6/guides/tire-compound-upgrade-guide',
+    description:
+      'Tire compound guide for spending PI on grip, braking, launch traction, wet-route stability, rally tires, and drift tire choices.',
+    category: 'Upgrade planning',
+  },
+  {
+    title: 'Forza Horizon 6 power vs grip upgrade guide',
+    path: '/games/forza-horizon-6/guides/power-vs-grip-upgrade-guide',
+    description:
+      'Power-vs-grip guide for deciding when an FH6 build needs horsepower, tires, aero, weight reduction, or safer exits.',
+    category: 'Upgrade planning',
+  },
+  {
+    title: 'Forza Horizon 6 engine and drivetrain swap guide',
+    path: '/games/forza-horizon-6/guides/engine-swap-drivetrain-swap-guide',
+    description:
+      'Engine and drivetrain swap guide for route fit, class limits, AWD conversions, RWD builds, weekly restrictions, and tune validation.',
+    category: 'Upgrade planning',
   },
   {
     title: 'Forza Horizon 6 PC crash and known issues checklist',
