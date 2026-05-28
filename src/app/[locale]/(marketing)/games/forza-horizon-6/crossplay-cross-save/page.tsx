@@ -95,7 +95,7 @@ const platformRows = [
     crossplay: 'Planned with launch',
     save: 'Official FAQ says supported',
     note: 'Keep PS5 performance and settings claims on hold until the PS5 version is actually available.',
-    href: '/games/forza-horizon-6/official-sources',
+    href: '/games/forza-horizon-6/ps5-release',
   },
 ];
 
@@ -165,6 +165,11 @@ const relatedLinks = [
     title: 'Steam Deck Settings',
     href: '/settings/forza-horizon-6-steam-deck',
     text: 'Move here when the switch path includes handheld play and portable tuning.',
+  },
+  {
+    title: 'PS5 Release Tracker',
+    href: '/games/forza-horizon-6/ps5-release',
+    text: 'Track PS5 timing, wishlist, crossplay, cross-save, and what is not confirmed yet.',
   },
   {
     title: 'Official Sources',

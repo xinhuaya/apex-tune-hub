@@ -192,6 +192,13 @@ const hubLinks = [
     icon: MonitorIcon,
   },
   {
+    title: 'PS5 Release Tracker',
+    description:
+      'PlayStation 5 timing, wishlist status, crossplay, cross-save, and safe assumptions.',
+    href: '/games/forza-horizon-6/ps5-release',
+    icon: Gamepad2Icon,
+  },
+  {
     title: 'Official Sources',
     description:
       'Source tracker for release, platform, Japan map, and car-list updates.',

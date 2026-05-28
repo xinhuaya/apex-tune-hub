@@ -34,6 +34,7 @@ const corePages = [
     'Forza Horizon 6 Steam vs Xbox app',
     '/games/forza-horizon-6/steam-vs-xbox-app',
   ],
+  ['Forza Horizon 6 PS5 release tracker', '/games/forza-horizon-6/ps5-release'],
   ['Forza Horizon 6 PC requirements', '/games/forza-horizon-6/pc-requirements'],
   ['Forza Horizon 6 car list and database', '/games/forza-horizon-6/cars'],
   ['Forza Horizon 6 best cars', '/games/forza-horizon-6/best-cars'],
@@ -55,6 +56,14 @@ const corePages = [
 
 const officialSources = [
   ['Forza Horizon 6 FAQ', 'https://forza.net/news/forza-horizon-6-faq'],
+  [
+    'Forza Horizon 6 now available',
+    'https://forza.net/news/forza-horizon-6-now-available',
+  ],
+  [
+    'Forza Horizon 6 PlayStation Store page',
+    'https://www.playstation.com/en-us/games/forza-horizon-6/',
+  ],
   [
     'Forza Horizon 6 release news',
     'https://forza.net/news/forza-horizon-6-coming-may-2026',

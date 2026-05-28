@@ -11,6 +11,7 @@ import {
   DatabaseIcon,
   FileTextIcon,
   GaugeIcon,
+  Gamepad2Icon,
   GiftIcon,
   LinkIcon,
   ListChecksIcon,
@@ -137,6 +138,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           description: 'Steam, Xbox app, PC Game Pass, and Steam Deck choice',
           icon: <MonitorIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6SteamVsXboxApp,
+          external: false,
+        },
+        {
+          title: 'PS5 Release Tracker',
+          description: 'PS5 timing, wishlist, crossplay, and safe assumptions',
+          icon: <Gamepad2Icon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6Ps5Release,
           external: false,
         },
         {

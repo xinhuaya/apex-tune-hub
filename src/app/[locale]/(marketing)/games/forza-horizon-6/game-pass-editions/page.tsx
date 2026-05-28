@@ -98,7 +98,7 @@ const gamePassRows = [
     access: 'Forza.net says PS5 availability is later in 2026.',
     bestNext:
       'Do not buy around PS5 assumptions until official availability and edition details are live.',
-    href: '/games/forza-horizon-6/official-sources',
+    href: '/games/forza-horizon-6/ps5-release',
   },
 ];
 
@@ -189,6 +189,11 @@ const relatedLinks = [
     title: 'PC Requirements',
     href: '/games/forza-horizon-6/pc-requirements',
     text: 'Make sure your PC path is stable before spending on add-ons.',
+  },
+  {
+    title: 'PS5 Release Tracker',
+    href: '/games/forza-horizon-6/ps5-release',
+    text: 'Track PlayStation 5 availability, wishlist status, and PS5-specific edition cautions.',
   },
   {
     title: 'Release Status',

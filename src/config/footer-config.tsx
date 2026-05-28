@@ -112,6 +112,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'PS5 Release Tracker',
+          href: Routes.ForzaHorizon6Ps5Release,
+          external: false,
+        },
+        {
           title: 'PC Requirements',
           href: Routes.ForzaHorizon6PcRequirements,
           external: false,

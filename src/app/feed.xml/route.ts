@@ -48,6 +48,13 @@ const feedItems = [
     category: 'PC platform guide',
   },
   {
+    title: 'Forza Horizon 6 PS5 release tracker',
+    path: '/games/forza-horizon-6/ps5-release',
+    description:
+      'Source-backed PS5 tracker covering PlayStation 5 timing, wishlist status, crossplay, cross-save, editions, and what is not confirmed yet.',
+    category: 'PS5 tracker',
+  },
+  {
     title: 'Forza Horizon 6 PC requirements',
     path: '/games/forza-horizon-6/pc-requirements',
     description:

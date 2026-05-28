@@ -92,8 +92,8 @@ const platformRows = [
     status: 'Planned later in 2026',
     source: 'Forza.net FAQ and launch posts',
     nextStep:
-      'Do not publish PS5 performance claims until official details arrive.',
-    href: '/games/forza-horizon-6/official-sources',
+      'Open the PS5 tracker before changing date, wishlist, or edition wording.',
+    href: '/games/forza-horizon-6/ps5-release',
   },
 ];
 
@@ -121,7 +121,7 @@ const accessPaths = [
   {
     title: 'PS5 watcher',
     body: 'Keep release claims source-backed and avoid publishing settings, FPS, or input advice before official availability.',
-    href: '/games/forza-horizon-6/official-sources',
+    href: '/games/forza-horizon-6/ps5-release',
   },
 ];
 

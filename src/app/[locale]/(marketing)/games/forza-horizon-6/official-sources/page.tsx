@@ -17,6 +17,7 @@ import {
   ExternalLinkIcon,
   FileSearchIcon,
   FlagIcon,
+  Gamepad2Icon,
   MapIcon,
   RadioTowerIcon,
   ShieldCheckIcon,
@@ -37,6 +38,13 @@ const officialSources = [
     label: 'Release and platform facts',
     icon: BookOpenCheckIcon,
     use: 'Use for release date, platform wording, Game Pass availability, Premium Upgrade timing, PlayStation 5 status, crossplay, and cross-save.',
+  },
+  {
+    title: 'Forza Horizon 6 PlayStation Store',
+    href: 'https://www.playstation.com/en-us/games/forza-horizon-6/',
+    label: 'PS5 wishlist page',
+    icon: Gamepad2Icon,
+    use: 'Use for PS5 product-page availability and wishlist checks before changing PlayStation-specific calls to action.',
   },
   {
     title: 'Forza Horizon 6 DLC and editions list',
@@ -168,6 +176,11 @@ const linkedWorkflows = [
     title: 'Weekly tracker',
     href: '/games/forza-horizon-6/weekly-playlist',
     body: 'Use this tracker when official playlist or reward details need a visible update trail.',
+  },
+  {
+    title: 'PS5 tracker',
+    href: '/games/forza-horizon-6/ps5-release',
+    body: 'Use this when PS5 date, wishlist, edition, cross-save, or PlayStation availability language changes.',
   },
 ];
 
@@ -351,7 +364,7 @@ export default function ForzaHorizon6OfficialSourcesPage() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {linkedWorkflows.map((workflow) => (
             <LocaleLink
               className="forza-card p-5"
