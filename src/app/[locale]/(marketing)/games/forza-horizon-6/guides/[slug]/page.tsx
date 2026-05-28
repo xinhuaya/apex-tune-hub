@@ -170,6 +170,9 @@ export default async function ForzaHorizon6GuidePage({
   const pathname = `/games/forza-horizon-6/guides/${guide.slug}`;
   const guideCluster = getGuideCluster(guide);
   const primaryActionLabel = guide.primaryCta.label.replace(/^Open\s+/i, '');
+  const relatedGuideSummary = relatedGuides
+    .map((item) => item.h1.replace(/^Forza Horizon 6\s+/i, ''))
+    .join(', ');
   const guideActionCards = [
     {
       title: 'Problem',
@@ -188,9 +191,7 @@ export default async function ForzaHorizon6GuidePage({
     },
     {
       title: 'Next handoff',
-      text: `Route unresolved questions into ${relatedGuides
-        .map((item) => item.h1)
-        .join(', ')}.`,
+      text: `Route unresolved questions into the next-read set below: ${relatedGuideSummary}.`,
       icon: RadioTowerIcon,
     },
   ];
@@ -551,7 +552,7 @@ export default async function ForzaHorizon6GuidePage({
 
           <div className="forza-panel mt-6 p-5">
             <h2 className="text-xl font-semibold">Next reads</h2>
-            <div className="mt-4 grid gap-3 md:grid-cols-3">
+            <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {relatedGuides.map((item) => (
                 <LocaleLink
                   className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:text-cyan-100"
