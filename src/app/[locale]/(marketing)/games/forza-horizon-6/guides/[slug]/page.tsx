@@ -65,6 +65,16 @@ function getGuideCluster(guide: { slug: string; eyebrow: string }) {
   }
 
   if (
+    key.includes('upgrade') ||
+    key.includes('compound') ||
+    key.includes('engine swap') ||
+    key.includes('drivetrain') ||
+    key.includes('swap')
+  ) {
+    return 'Upgrade planning';
+  }
+
+  if (
     key.includes('drift') ||
     key.includes('rally') ||
     key.includes('drag') ||

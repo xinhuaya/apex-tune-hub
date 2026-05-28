@@ -3568,6 +3568,285 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'upgrade-order-tuning-guide',
+    title: 'Forza Horizon 6 Upgrade Order Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 upgrade order tuning guide',
+    description:
+      'Forza Horizon 6 upgrade order guide for tires, weight reduction, brakes, suspension, aero, power, drivetrain swaps, class limits, and weekly event builds.',
+    eyebrow: 'Upgrade order',
+    intro:
+      'A fast car can become worse when upgrades arrive in the wrong order. Pick the event, class, and handling problem first, then spend PI on the parts that make the car easier to test.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Car database',
+        href: '/games/forza-horizon-6/cars',
+      },
+      {
+        label: 'A class road tune',
+        href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+      {
+        label: 'Seasonal championship tuning',
+        href: '/games/forza-horizon-6/guides/seasonal-championship-tuning',
+      },
+    ],
+    sections: [
+      {
+        title: 'Set the class target first',
+        body: 'Upgrade order only makes sense after the class target is clear. A B class learner, A class road car, S1 rally build, and S2 speed build spend PI differently.',
+        bullets: [
+          'Choose the event type before buying parts.',
+          'Keep enough PI room for tires or handling if the route needs grip.',
+          'Avoid adding power that pushes the car into the wrong class.',
+        ],
+      },
+      {
+        title: 'Spend PI on control before speed',
+        body: 'Most player problems come from braking, rotation, or exit traction. Tires, weight, suspension, and brakes can make later power upgrades more useful.',
+        bullets: [
+          'Use tires when the car cannot hold line or launch cleanly.',
+          'Use weight reduction when braking and direction changes feel heavy.',
+          'Use power after the car repeats clean exits.',
+        ],
+      },
+      {
+        title: 'Keep a rollback version',
+        body: 'A rollback save makes it easier to compare whether an upgrade actually improved the car. This matters for weekly restrictions and tune-code sharing.',
+        bullets: [
+          'Save a legal baseline before expensive swaps.',
+          'Name builds by class, event, and main weakness.',
+          'Retest the same route after each major upgrade group.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Upgrade order decision paths',
+        description:
+          'Use the current failure point to decide whether PI should go into grip, weight, braking, aero, power, or a swap.',
+        cards: [
+          {
+            title: 'Car is fast but messy',
+            body: 'The power upgrade may have arrived before the chassis was ready.',
+            bullets: [
+              'Back off power or shorten the test route.',
+              'Add tire, suspension, or differential control.',
+              'Use a safer class target for weekly events.',
+            ],
+          },
+          {
+            title: 'Car feels slow everywhere',
+            body: 'If the car is stable but loses on every straight, power or gearing may finally be the right next spend.',
+            bullets: [
+              'Check top-speed and gearing guidance.',
+              'Keep enough grip for exits.',
+              'Compare lap time before judging horsepower alone.',
+            ],
+          },
+          {
+            title: 'Class limit is too tight',
+            body: 'Some cars cannot fit every desired part inside a class. Pick the route requirement that matters most.',
+            bullets: [
+              'Prioritize tires for corner-heavy routes.',
+              'Prioritize power for long speed sections.',
+              'Use a different car if the compromise is too severe.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'tire-compound-upgrade-guide',
+    title: 'Forza Horizon 6 Tire Compound Upgrade Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 tire compound upgrade guide',
+    description:
+      'Forza Horizon 6 tire compound upgrade guide for street, sport, semi-slick, slick, rally, offroad, drift, drag, PI cost, wet routes, and seasonal restrictions.',
+    eyebrow: 'Tire upgrades',
+    intro:
+      'Tires can fix a car, waste PI, or push a build into the wrong class. Choose compound by surface, class target, and the mistake the car keeps making.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Tire pressure settings',
+        href: '/games/forza-horizon-6/guides/tire-pressure-settings-guide',
+      },
+      {
+        label: 'Cross-country tuning',
+        href: '/games/forza-horizon-6/guides/cross-country-offroad-tuning',
+      },
+      {
+        label: 'Drift zone scoring',
+        href: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
+      },
+    ],
+    sections: [
+      {
+        title: 'Match compound to the surface',
+        body: 'A road tire can be wrong for dirt, and an offroad tire can waste grip on clean asphalt. Surface matters before horsepower.',
+        bullets: [
+          'Use road-focused tires for predictable braking and cornering.',
+          'Use rally or offroad choices when bumps and dirt decide the route.',
+          'Use drift or drag-focused choices only when the event demands it.',
+        ],
+      },
+      {
+        title: 'Watch the PI tradeoff',
+        body: 'Better tires can consume enough PI to block power, aero, or weight reduction. The best compound is the one that solves the route without ruining the class target.',
+        bullets: [
+          'Avoid over-tiring low-power cars if they start to bog.',
+          'Spend tire PI early when the car cannot put power down.',
+          'Save a lower-grip version for class-restricted events.',
+        ],
+      },
+      {
+        title: 'Tune pressure after choosing compound',
+        body: 'Tire pressure is the fine adjustment. Compound is the larger decision. Do not try to fix a wrong compound with tiny pressure changes.',
+        bullets: [
+          'Pick compound first, then pressure.',
+          'Retest heat, grip, and exit behavior on the same route.',
+          'Use pressure guidance when the tire choice is already close.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Tire compound decision paths',
+        description:
+          'Use surface, class, and handling symptoms to decide whether the tire choice needs to change.',
+        cards: [
+          {
+            title: 'Road car slides everywhere',
+            body: 'The compound may be too weak for the power, route, or weather.',
+            bullets: [
+              'Try a higher-grip road compound.',
+              'Check tire pressure after the swap.',
+              'Avoid adding power until exits are stable.',
+            ],
+          },
+          {
+            title: 'Car bogs after tire upgrade',
+            body: 'The tire may have added more grip and PI cost than the engine can use.',
+            bullets: [
+              'Retest with a lower compound.',
+              'Use gearing if the car falls out of power.',
+              'Compare lap time rather than grip feel alone.',
+            ],
+          },
+          {
+            title: 'Mixed-surface event feels random',
+            body: 'The wrong compound can make dirt, grass, or wet sections unpredictable.',
+            bullets: [
+              'Use rally or offroad guidance.',
+              'Tune suspension for bumps.',
+              'Keep a dedicated mixed-surface preset.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'engine-swap-drivetrain-swap-guide',
+    title: 'Forza Horizon 6 Engine Swap and Drivetrain Swap Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 engine swap and drivetrain swap guide',
+    description:
+      'Forza Horizon 6 engine swap and drivetrain swap guide for AWD conversions, RWD builds, power swaps, PI cost, class limits, traction, launch, and weekly tune planning.',
+    eyebrow: 'Swap planning',
+    intro:
+      'Swaps can save a build or erase the reason a car was fun. Use engine and drivetrain swaps only when they solve a clear route, traction, class, or weekly restriction problem.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'AWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+      },
+      {
+        label: 'RWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-rwd-tune-settings',
+      },
+      {
+        label: 'Launch control tuning',
+        href: '/games/forza-horizon-6/guides/launch-control-tuning',
+      },
+    ],
+    sections: [
+      {
+        title: 'Swap for a reason',
+        body: 'A drivetrain or engine swap should solve a real problem: launch grip, class fit, top speed, route recovery, or event restriction. Swapping because it is available often makes testing harder.',
+        bullets: [
+          'Use AWD when launch and exit traction matter more than purity.',
+          'Keep RWD when rotation, drift control, or lighter feel matters.',
+          'Avoid engine swaps that consume PI but create traction problems.',
+        ],
+      },
+      {
+        title: 'Check PI cost and class fit',
+        body: 'A swap can push the car into a class where it no longer has enough PI room for tires, brakes, or weight. Test the full build, not just the swap screen.',
+        bullets: [
+          'Confirm the final class before tuning.',
+          'Leave room for tire and handling upgrades.',
+          'Use a different car if the swap creates a bad compromise.',
+        ],
+      },
+      {
+        title: 'Retune after every swap',
+        body: 'Swaps change weight, powerband, traction, gearing, and differential behavior. A setup that worked before the swap may no longer make sense.',
+        bullets: [
+          'Retest launch and low-speed exits first.',
+          'Check gearing after engine swaps.',
+          'Use differential guidance after drivetrain conversions.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Swap decision paths',
+        description:
+          'Use the build failure to decide whether a swap helps or just hides another setup problem.',
+        cards: [
+          {
+            title: 'RWD car will not launch',
+            body: 'AWD may help, but gearing, tires, and throttle control should be checked first.',
+            bullets: [
+              'Use launch tuning before swapping.',
+              'Try tire and gearing changes.',
+              'Use AWD if weekly consistency matters more than RWD feel.',
+            ],
+          },
+          {
+            title: 'AWD car refuses to rotate',
+            body: 'The conversion may be pulling the car straight or adding too much stability.',
+            bullets: [
+              'Check center differential balance.',
+              'Use alignment and ARB guidance.',
+              'Consider a lighter RWD build for technical routes.',
+            ],
+          },
+          {
+            title: 'Engine swap makes the car worse',
+            body: 'More power can expose weak tires, gearing, suspension, and braking.',
+            bullets: [
+              'Compare with the pre-swap baseline.',
+              'Retune gearing and differential.',
+              'Remove the swap if it ruins the class target.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

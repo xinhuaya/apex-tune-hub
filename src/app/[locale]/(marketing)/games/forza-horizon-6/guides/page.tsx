@@ -33,7 +33,7 @@ const pathname = '/games/forza-horizon-6/guides';
 const title =
   'Forza Horizon 6 Guides - Tuning, Settings, PR Stunts, and Setup Help';
 const description =
-  'Forza Horizon 6 tuning guides for starter cars, Japan routes, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, Rivals, offroad, drift zones, PR stunts, Forzathon, tune codes, street races, seasonal championships, and weekly playlist setup help.';
+  'Forza Horizon 6 tuning guides for starter cars, Japan routes, upgrade order, tire compounds, engine swaps, drivetrain swaps, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, Rivals, offroad, drift zones, PR stunts, Forzathon, tune codes, street races, seasonal championships, and weekly playlist setup help.';
 
 const guideClusters = [
   {
@@ -44,8 +44,14 @@ const guideClusters = [
   },
   {
     icon: WrenchIcon,
-    title: 'Tuning parameters',
-    text: 'Work through differential, brakes, suspension, tire pressure, alignment, gearing, aero, launch, and drivetrain setup notes.',
+    title: 'Upgrade planning',
+    text: 'Pick upgrade order, tire compound, engine swaps, and drivetrain conversions before spending PI.',
+    href: '#upgrade-guides',
+  },
+  {
+    icon: GitBranchIcon,
+    title: 'Handling parameters',
+    text: 'Work through differential, brakes, suspension, tire pressure, alignment, gearing, aero, and launch notes.',
     href: '#handling-fixes',
   },
   {
@@ -60,8 +66,14 @@ const guideRouterRows = [
   {
     problem: 'I do not know what to tune first',
     start: 'Beginner tuning guide',
-    next: 'Then open the tune calculator with one handling issue selected.',
+    next: 'Then choose an upgrade path before changing unrelated sliders.',
     href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+  },
+  {
+    problem: 'I need to upgrade a car without ruining it',
+    start: 'Upgrade planning guides',
+    next: 'Use upgrade order, tire compound, engine swap, and drivetrain swap guides before spending credits.',
+    href: '#upgrade-guides',
   },
   {
     problem: 'The car pushes wide or spins out',
@@ -112,6 +124,22 @@ const guideGroups = [
       'fix-slow-launch',
       'fix-unstable-braking',
       'fix-poor-top-speed',
+    ],
+  },
+  {
+    id: 'upgrade-guides',
+    eyebrow: 'Upgrade planning',
+    title: 'Upgrade order, tire compounds, and swap decisions',
+    description:
+      'Guides for spending PI in the right order before a tune turns into a traction, class-limit, or weekly restriction problem.',
+    slugs: [
+      'upgrade-order-tuning-guide',
+      'tire-compound-upgrade-guide',
+      'engine-swap-drivetrain-swap-guide',
+      'tire-pressure-settings-guide',
+      'advanced-gear-ratio-tuning',
+      'best-awd-tune-settings',
+      'best-rwd-tune-settings',
     ],
   },
   {
@@ -186,7 +214,7 @@ const guideFaqs = [
   {
     question: 'Which Forza Horizon 6 guide should I read first?',
     answer:
-      'Start with the beginner tuning guide if you are new to setups, then move to the specific handling problem, tuning slider, device setup, event restriction, or tune-code workflow you are trying to fix.',
+      'Start with the beginner tuning guide if you are new to setups, then move to the upgrade path, specific handling problem, tuning slider, device setup, event restriction, or tune-code workflow you are trying to fix.',
   },
   {
     question: 'Are these guides based on fake leaderboard certainty?',
@@ -209,7 +237,7 @@ const guideHowToSteps = [
   {
     question: '2. Open the matching guide cluster',
     answer:
-      'Use launch guides for early routing, handling fixes for car symptoms, tuning parameter pages for slider decisions, settings guides for every-car issues, and event guides for build targets.',
+      'Use launch guides for early routing, upgrade planning for PI spend decisions, handling fixes for car symptoms, tuning parameter pages for slider decisions, settings guides for every-car issues, and event guides for build targets.',
   },
   {
     question: '3. Follow one tool handoff',
@@ -225,6 +253,7 @@ const guideHowToSteps = [
 
 const guideWorkflow = [
   'Start every new guide with the player problem: event type, handling symptom, device setup, or weekly restriction.',
+  'For upgrade pages, make the PI spend decision clear before sending the reader into slider-level tuning.',
   'Link each guide to one calculator, one preset or car hub, and one broader FH6 topic page.',
   'Keep launch assumptions labelled until car testing, route notes, or official source checks confirm them.',
   'Move repeated questions into the FAQ hub and link the FAQ back to the detailed guide.',
