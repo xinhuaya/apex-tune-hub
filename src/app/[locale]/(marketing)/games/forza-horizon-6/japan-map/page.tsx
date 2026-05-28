@@ -64,7 +64,7 @@ const routeTypes = [
     intent:
       'Prioritize bump control, launch response, and enough suspension travel to survive rough exits.',
     tune: '/tools/forza-horizon-6-tune-presets/s1-awd-rally-wheelspin-balanced',
-    guide: '/games/forza-horizon-6/guides/beginner-tuning',
+    guide: '/games/forza-horizon-6/guides/beginner-tuning-guide',
     icon: GaugeIcon,
   },
   {
