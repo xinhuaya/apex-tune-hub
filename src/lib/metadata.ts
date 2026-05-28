@@ -40,10 +40,22 @@ export function constructMetadata({
       ? {
           canonical: canonicalUrl,
           ...generateAlternates(pathname),
+          types: {
+            'application/opensearchdescription+xml': `${getBaseUrl()}/opensearch.xml`,
+          },
         }
       : canonicalUrl
-        ? { canonical: canonicalUrl }
-        : undefined;
+        ? {
+            canonical: canonicalUrl,
+            types: {
+              'application/opensearchdescription+xml': `${getBaseUrl()}/opensearch.xml`,
+            },
+          }
+        : {
+            types: {
+              'application/opensearchdescription+xml': `${getBaseUrl()}/opensearch.xml`,
+            },
+          };
 
   return {
     title,
