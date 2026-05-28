@@ -51,6 +51,11 @@ const wheelTestLinks = [
     note: 'Use this for the full testing order and when to stop changing settings.',
   },
   {
+    title: 'Wheel not working checklist',
+    href: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
+    note: 'Use this when the wheel is not detected, force feedback disappears, or bindings reset.',
+  },
+  {
     title: 'Logitech wheel settings',
     href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
     note: 'Use this when a G923, G29, or similar entry wheel feels noisy, light, or vague.',

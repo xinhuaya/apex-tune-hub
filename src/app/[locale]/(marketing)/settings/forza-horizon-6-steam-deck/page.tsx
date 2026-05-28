@@ -223,6 +223,11 @@ const steamDeckNextLinks = [
     note: 'Return here when the problem might be PC, wheel, controller, or car-specific tuning instead.',
   },
   {
+    title: 'Steam Deck guide',
+    href: '/games/forza-horizon-6/guides/steam-deck-settings-guide',
+    note: 'Use this evergreen guide for route-tested handheld notes, update checks, and weekly stability.',
+  },
+  {
     title: 'Controller settings',
     href: '/settings/forza-horizon-6-controller',
     note: 'Use this when frame pacing is stable but steering, braking, or throttle still feels inconsistent.',
