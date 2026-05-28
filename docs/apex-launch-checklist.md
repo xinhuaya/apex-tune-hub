@@ -56,7 +56,10 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Refined sitemap priority tiers so the FH6 hub, calculator, guide index, high-intent guides, and long-tail pages are not all treated the same.
 - [x] Added Web App Manifest shortcuts for the FH6 hub, tune calculator, guide library, and weekly playlist.
 - [x] Saved local screenshot evidence at `previews/apex-local-fh6-guides-shortcut-bays.png`.
-- [ ] Production deploy is waiting on Vercel free daily deployment quota to recover.
+- [x] Deployed the latest batch to production after Vercel quota recovered.
+- [x] Verified production `200` responses for FH6 hub, guide library, `/feed.xml`, `/llms.txt`, `/opensearch.xml`, `/manifest.webmanifest`, and `/sitemap.xml`.
+- [x] Re-submitted the live FH6 hub, guide library, sitemap, feed, llms, manifest, and OpenSearch URLs through IndexNow; accepted `200`.
+- [x] Saved production screenshot evidence at `previews/apex-production-fh6-guides-shortcut-bays.png`.
 
 ## First 14 Days
 
