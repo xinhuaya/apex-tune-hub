@@ -129,6 +129,14 @@ const corePages = [
     'Forza Horizon 6 danger sign and trailblazer tuning',
     '/games/forza-horizon-6/guides/danger-sign-trailblazer-tuning',
   ],
+  [
+    'Forza Horizon 6 seasonal championship tuning guide',
+    '/games/forza-horizon-6/guides/seasonal-championship-tuning',
+  ],
+  [
+    'Forza Horizon 6 The Trial co-op race tuning guide',
+    '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

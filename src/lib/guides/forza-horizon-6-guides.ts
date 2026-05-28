@@ -2824,6 +2824,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'seasonal-championship-tuning',
+    title: 'Forza Horizon 6 Seasonal Championship Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 seasonal championship tuning guide',
+    description:
+      'Forza Horizon 6 seasonal championship tuning guide for weekly playlist restrictions, car class limits, AI difficulty, road, dirt, cross-country, street races, and reliable three-race setups.',
+    eyebrow: 'Seasonal championships',
+    intro:
+      'Seasonal championships reward consistency more than one heroic lap. Build for the restriction, survive all three races, and choose a tune that stays predictable across traffic, weather, and surface changes.',
+    primaryCta: {
+      label: 'Open Weekly Playlist',
+      href: '/games/forza-horizon-6/weekly-playlist',
+    },
+    relatedLinks: [
+      {
+        label: 'Best starter cars',
+        href: '/games/forza-horizon-6/guides/best-starter-cars',
+      },
+      {
+        label: 'A class road tune',
+        href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+      {
+        label: 'Rally tune settings',
+        href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Start with the restriction',
+        body: 'Seasonal championships usually restrict class, car type, country, manufacturer, decade, or drivetrain. The best tune is useless if the car is not eligible.',
+        bullets: [
+          'Check class and car restrictions before opening the garage.',
+          'Pick the most stable eligible car before chasing power.',
+          'Save a legal baseline tune for repeat seasonal use.',
+        ],
+      },
+      {
+        title: 'Tune for three races, not one corner',
+        body: 'A championship can mix routes and conditions. A slightly safer tune often beats an extreme build that only works on the first race.',
+        bullets: [
+          'Prioritize braking, traffic recovery, and clean exits.',
+          'Avoid fragile top-speed builds unless every route rewards them.',
+          'Use AWD or balanced road/rally presets when restrictions allow.',
+        ],
+      },
+      {
+        title: 'Handle AI traffic and weather',
+        body: 'Seasonal AI races punish cars that only feel good in clean air. Build for passing, bumps, rain, and recovery after contact.',
+        bullets: [
+          'Use stable gearing so the car recovers after traffic slowdowns.',
+          'Keep enough front grip for alternate lines.',
+          'Use safer tire and suspension choices on mixed-surface events.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Seasonal championship decision paths',
+        description:
+          'Use the championship restriction and event type to decide whether car choice, drivetrain, tire choice, or safety tuning matters most.',
+        cards: [
+          {
+            title: 'Legal cars feel slow',
+            body: 'When restrictions force weaker cars, clean exits and traffic recovery matter more than raw speed.',
+            bullets: [
+              'Choose the most stable eligible car first.',
+              'Use gearing for recovery after slow corners.',
+              'Prioritize consistent podium pace over one fastest split.',
+            ],
+          },
+          {
+            title: 'AI passes on corner exit',
+            body: 'Exit acceleration, drivetrain, and gearing may be too weak for traffic-heavy racing.',
+            bullets: [
+              'Check lower gear spacing.',
+              'Use AWD if legal and traction is the issue.',
+              'Avoid spinning tires while trying to pass.',
+            ],
+          },
+          {
+            title: 'Mixed routes punish the tune',
+            body: 'If a championship mixes road, dirt, and weather, a dedicated extreme setup can be too narrow.',
+            bullets: [
+              'Use rally or balanced settings for mixed surfaces.',
+              'Keep suspension recovery in mind.',
+              'Save separate presets for route families.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'the-trial-coop-race-tuning',
+    title: 'Forza Horizon 6 The Trial Co-op Race Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 The Trial co-op race tuning guide',
+    description:
+      'Forza Horizon 6 The Trial co-op race tuning guide for team racing, AI traffic, clean starts, AWD grip, class restrictions, safe passing, recovery gearing, and weekly playlist wins.',
+    eyebrow: 'The Trial co-op',
+    intro:
+      'The Trial is not a solo time attack. A good co-op tune starts cleanly, passes safely, avoids wiping out teammates, and recovers quickly after AI contact or missed braking zones.',
+    primaryCta: {
+      label: 'Open Weekly Playlist',
+      href: '/games/forza-horizon-6/weekly-playlist',
+    },
+    relatedLinks: [
+      {
+        label: 'Launch tuning',
+        href: '/games/forza-horizon-6/guides/launch-control-tuning',
+      },
+      {
+        label: 'Brake settings',
+        href: '/games/forza-horizon-6/guides/brake-balance-pressure-settings',
+      },
+      {
+        label: 'AWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build for clean starts',
+        body: 'The first thirty seconds of The Trial can decide the whole race. A tune that launches cleanly and avoids wheelspin is easier to place in traffic.',
+        bullets: [
+          'Use launch tuning to prevent first-gear chaos.',
+          'Prefer stable AWD when restrictions allow it.',
+          'Avoid builds that need perfect throttle control in traffic.',
+        ],
+      },
+      {
+        title: 'Tune for safe passing',
+        body: 'Co-op racing rewards predictable braking and corner exits. A teammate-friendly tune should not snap sideways when you take alternate lines.',
+        bullets: [
+          'Keep braking stable enough for crowded corners.',
+          'Use enough front grip to pass without dive-bombing.',
+          'Avoid extreme oversteer setups unless the route clearly rewards them.',
+        ],
+      },
+      {
+        title: 'Recover after contact',
+        body: 'AI bumps and teammate mistakes happen. Recovery gearing, traction, and suspension matter more than a perfect clean-lap tune.',
+        bullets: [
+          'Use gearing that pulls after slowdowns and wall taps.',
+          'Keep suspension stable over curbs and bumps.',
+          'Save aggressive leaderboard builds for solo events.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'The Trial decision paths',
+        description:
+          'Use the co-op failure point to decide whether launch, braking, passing stability, or recovery setup needs work.',
+        cards: [
+          {
+            title: 'Losing positions at the start',
+            body: 'The car may be spinning, bogging, or shifting poorly in traffic. Start with launch and low-gear behavior.',
+            bullets: [
+              'Retest launch on a crowded-style start.',
+              'Use AWD if legal and traction is weak.',
+              'Check first and second gear spacing.',
+            ],
+          },
+          {
+            title: 'Crashing while passing AI',
+            body: 'The tune may be too nervous for alternate lines, late braking, or dirty air.',
+            bullets: [
+              'Use brake stability guidance.',
+              'Keep front grip and recovery in balance.',
+              'Avoid setups that only work on the racing line.',
+            ],
+          },
+          {
+            title: 'Cannot recover after contact',
+            body: 'The car may need better low-speed gearing, traction, or suspension recovery.',
+            bullets: [
+              'Tune for slow-corner exit after wall taps.',
+              'Use suspension settings for curbs and bumps.',
+              'Prioritize team points over risky solo pace.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

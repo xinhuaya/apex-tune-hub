@@ -265,6 +265,20 @@ const feedItems = [
     category: 'Jump and offroad PR',
   },
   {
+    title: 'Forza Horizon 6 seasonal championship tuning guide',
+    path: '/games/forza-horizon-6/guides/seasonal-championship-tuning',
+    description:
+      'Seasonal championship guide for FH6 weekly playlist restrictions, class limits, AI difficulty, road, dirt, cross-country, street races, and reliable three-race setups.',
+    category: 'Seasonal championships',
+  },
+  {
+    title: 'Forza Horizon 6 The Trial co-op race tuning guide',
+    path: '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
+    description:
+      'The Trial co-op guide for FH6 team racing, AI traffic, clean starts, AWD grip, class restrictions, safe passing, recovery gearing, and weekly wins.',
+    category: 'The Trial co-op',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

@@ -30,9 +30,10 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
 const pathname = '/games/forza-horizon-6/guides';
-const title = 'Forza Horizon 6 Guides - Tuning, Settings, and Setup Help';
+const title =
+  'Forza Horizon 6 Guides - Tuning, Settings, PR Stunts, and Setup Help';
 const description =
-  'Forza Horizon 6 tuning guides for starter cars, Japan drift setups, A and S1 road racing, handling fixes, gearing, wheel settings, and Steam Deck settings.';
+  'Forza Horizon 6 tuning guides for starter cars, Japan routes, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, PR stunts, seasonal championships, and weekly playlist setup help.';
 
 const guideClusters = [
   {
@@ -43,8 +44,8 @@ const guideClusters = [
   },
   {
     icon: WrenchIcon,
-    title: 'Handling fixes',
-    text: 'Use problem guides for understeer, oversteer, wheelspin, braking instability, slow launch, and top-speed issues.',
+    title: 'Tuning parameters',
+    text: 'Work through differential, brakes, suspension, tire pressure, alignment, gearing, aero, launch, and drivetrain setup notes.',
     href: '#handling-fixes',
   },
   {
@@ -64,8 +65,8 @@ const guideRouterRows = [
   },
   {
     problem: 'The car pushes wide or spins out',
-    start: 'Handling symptom fixes',
-    next: 'Use understeer, oversteer, wheelspin, braking, launch, or top-speed guides.',
+    start: 'Handling and parameter fixes',
+    next: 'Use understeer, oversteer, tire pressure, alignment, differential, braking, launch, or top-speed guides.',
     href: '#handling-fixes',
   },
   {
@@ -77,7 +78,7 @@ const guideRouterRows = [
   {
     problem: 'I need a build for an event type',
     start: 'Event build guides',
-    next: 'Use road, drift, rally, drag, or weekly playlist tuning checklists.',
+    next: 'Use road, drift, rally, drag, PR stunt, seasonal championship, Trial, or weekly playlist tuning checklists.',
     href: '#event-guides',
   },
 ];
@@ -101,9 +102,9 @@ const guideGroups = [
   {
     id: 'handling-fixes',
     eyebrow: 'Problem solver',
-    title: 'Handling symptom fixes',
+    title: 'Handling symptom and tuning parameter fixes',
     description:
-      'Direct answers for the words players search when a build feels wrong.',
+      'Direct answers for the words players search when a build feels wrong, plus the core sliders they change next.',
     slugs: [
       'fix-understeer',
       'fix-oversteer',
@@ -144,9 +145,9 @@ const guideGroups = [
   {
     id: 'event-guides',
     eyebrow: 'Event builds',
-    title: 'Road, drift, rally, and drag setup guides',
+    title: 'Road, drift, rally, drag, PR stunt, and weekly setup guides',
     description:
-      'Event-specific tuning pages that connect guide readers to calculator presets and car lists.',
+      'Event-specific tuning pages that connect guide readers to calculator presets, car lists, weekly playlist notes, and repeatable seasonal builds.',
     slugs: [
       'best-a-class-road-tune-settings',
       'best-s1-rally-tune-settings',
@@ -165,6 +166,8 @@ const guideGroups = [
       'launch-control-tuning',
       'speed-trap-speed-zone-tuning',
       'danger-sign-trailblazer-tuning',
+      'seasonal-championship-tuning',
+      'the-trial-coop-race-tuning',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',
@@ -177,7 +180,7 @@ const guideFaqs = [
   {
     question: 'Which Forza Horizon 6 guide should I read first?',
     answer:
-      'Start with the beginner tuning guide if you are new to setups, then move to the specific handling problem or event type you are trying to fix.',
+      'Start with the beginner tuning guide if you are new to setups, then move to the specific handling problem, tuning slider, device setup, or event type you are trying to fix.',
   },
   {
     question: 'Are these guides based on fake leaderboard certainty?',
@@ -187,7 +190,7 @@ const guideFaqs = [
   {
     question: 'Why are handling problem guides useful for SEO?',
     answer:
-      'Players usually search the symptom they feel, such as understeer, oversteer, wheelspin, slow launch, unstable braking, or poor top speed. Each guide can answer that intent directly.',
+      'Players usually search the symptom or setting they feel, such as understeer, oversteer, wheelspin, brake balance, tire pressure, alignment, slow launch, unstable braking, or poor top speed. Each guide can answer that intent directly.',
   },
 ];
 
@@ -195,12 +198,12 @@ const guideHowToSteps = [
   {
     question: '1. Choose the player problem',
     answer:
-      'Start from the search intent: beginner help, handling symptom, device setup, or event build.',
+      'Start from the search intent: beginner help, handling symptom, tuning parameter, device setup, PR stunt, seasonal event, or event build.',
   },
   {
     question: '2. Open the matching guide cluster',
     answer:
-      'Use launch guides for early routing, handling fixes for car symptoms, settings guides for every-car issues, and event guides for build targets.',
+      'Use launch guides for early routing, handling fixes for car symptoms, tuning parameter pages for slider decisions, settings guides for every-car issues, and event guides for build targets.',
   },
   {
     question: '3. Follow one tool handoff',
