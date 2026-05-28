@@ -77,6 +77,12 @@ const relatedLinks = [
     href: '/tools/forza-horizon-6-tune-codes',
   },
   {
+    title: 'Weekly Playlist Guide',
+    description:
+      'Use this when the build is for a weekly restriction, Forzathon chapter, Trial, or seasonal championship.',
+    href: '/games/forza-horizon-6/weekly-playlist',
+  },
+  {
     title: 'FH6 Car Database',
     description:
       'Pair calculator output with car pages, strengths, and launch notes.',
@@ -116,7 +122,21 @@ const calculatorDecisionRows = [
     firstInput: 'Poor top speed',
     nextCheck:
       'Final drive, aero drag, gear spacing, and longest useful straight.',
-    href: '/tools/forza-horizon-6-gear-ratio-calculator',
+    href: '/games/forza-horizon-6/guides/speed-trap-speed-zone-tuning',
+  },
+  {
+    situation: 'Street races feel unsafe',
+    firstInput: 'Unstable braking',
+    nextCheck:
+      'Traffic recovery, blind braking zones, wet exits, and a weekly-safe variant.',
+    href: '/games/forza-horizon-6/guides/street-race-night-tuning',
+  },
+  {
+    situation: 'Rivals ghost gains everywhere',
+    firstInput: 'Route-specific test',
+    nextCheck:
+      'Lock route, assists, car, weather, and one setup family before comparing laps.',
+    href: '/games/forza-horizon-6/guides/rivals-time-attack-tuning',
   },
 ];
 

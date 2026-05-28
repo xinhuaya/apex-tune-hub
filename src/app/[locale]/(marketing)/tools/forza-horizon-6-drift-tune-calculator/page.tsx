@@ -63,6 +63,12 @@ const driftRelatedLinks = [
     href: '/games/forza-horizon-6/guides/japan-drift-setup',
   },
   {
+    title: 'Drift Zone Scoring Guide',
+    description:
+      'Use this when the problem is score consistency, transitions, or a weekly drift-zone target.',
+    href: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
+  },
+  {
     title: 'Best Drift Cars',
     description:
       'Pair the calculator with candidate cars for angle, recovery, and speed zones.',
@@ -112,7 +118,7 @@ const driftSymptomRows = [
   {
     symptom: 'Cannot hold angle',
     firstMove: 'Increase rotation gradually',
-    nextLink: '/games/forza-horizon-6/best-drift-cars',
+    nextLink: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
   },
   {
     symptom: 'Bogs mid-drift',
