@@ -31,6 +31,60 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: '#020617',
     theme_color: '#22d3ee',
     categories: ['games', 'utilities', 'productivity'],
+    shortcuts: [
+      {
+        name: 'Forza Horizon 6 Hub',
+        short_name: 'FH6 Hub',
+        description: 'Open the main Forza Horizon 6 tuning hub.',
+        url: '/games/forza-horizon-6',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        ],
+      },
+      {
+        name: 'FH6 Tune Calculator',
+        short_name: 'Calculator',
+        description: 'Generate a baseline Forza Horizon 6 tune setup.',
+        url: '/tools/forza-horizon-6-tune-calculator',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        ],
+      },
+      {
+        name: 'FH6 Guides',
+        short_name: 'Guides',
+        description: 'Browse Forza Horizon 6 tuning and settings guides.',
+        url: '/games/forza-horizon-6/guides',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        ],
+      },
+      {
+        name: 'FH6 Weekly Playlist',
+        short_name: 'Weekly',
+        description: 'Open weekly event setup and restriction notes.',
+        url: '/games/forza-horizon-6/weekly-playlist',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+        ],
+      },
+    ],
     icons: [
       {
         src: '/android-chrome-192x192.png',
