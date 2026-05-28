@@ -3010,6 +3010,285 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'forzathon-weekly-challenge-tuning',
+    title: 'Forza Horizon 6 Forzathon Weekly Challenge Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 Forzathon weekly challenge tuning guide',
+    description:
+      'Forza Horizon 6 Forzathon weekly challenge tuning guide for required cars, chapter tasks, road races, speed zones, skill chains, drift zones, and quick weekly setup swaps.',
+    eyebrow: 'Forzathon weekly',
+    intro:
+      'Forzathon weekly challenges are small, but they can waste time when the required car is overbuilt for the wrong chapter. Keep one legal baseline, one skill-friendly setup, and one PR stunt variant before spending credits.',
+    primaryCta: {
+      label: 'Open Weekly Playlist',
+      href: '/games/forza-horizon-6/weekly-playlist',
+    },
+    relatedLinks: [
+      {
+        label: 'Tune code sharing',
+        href: '/games/forza-horizon-6/guides/auction-house-tune-code-sharing',
+      },
+      {
+        label: 'Speed trap tuning',
+        href: '/games/forza-horizon-6/guides/speed-trap-speed-zone-tuning',
+      },
+      {
+        label: 'Best starter cars',
+        href: '/games/forza-horizon-6/guides/best-starter-cars',
+      },
+    ],
+    sections: [
+      {
+        title: 'Build around the required car',
+        body: 'The weekly challenge usually starts with a specific car, type, country, brand, or era. Confirm eligibility before adding expensive upgrades.',
+        bullets: [
+          'Keep a stock or low-class save if the chapter requires simple driving.',
+          'Upgrade only after the first chapter confirms the car counts.',
+          'Use a flexible A or S1 baseline when the later chapters are unknown.',
+        ],
+      },
+      {
+        title: 'Match setup to chapter tasks',
+        body: 'Road wins, skill chains, drift zones, danger signs, and speed zones need different setups. Swap tunes by task instead of forcing one build through every chapter.',
+        bullets: [
+          'Use short gearing and grip for race wins.',
+          'Use predictable slide control for drift or skill-chain tasks.',
+          'Use top speed, launch, and route practice for speed trap tasks.',
+        ],
+      },
+      {
+        title: 'Save weekly repeat presets',
+        body: 'The best Forzathon workflow is a small preset library. You should be able to move from chapter to chapter without rebuilding the car from scratch.',
+        bullets: [
+          'Name presets by task: race, skill, drift, speed, or offroad.',
+          'Keep one legal tune code ready for friends or club members.',
+          'Use the weekly playlist page to record what worked.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Forzathon troubleshooting paths',
+        description:
+          'Use the failed chapter type to decide whether the car, tune, route, or saved preset needs work.',
+        cards: [
+          {
+            title: 'Chapter does not count',
+            body: 'The car may not match the exact restriction, or the game may need a fresh drive cycle after swapping cars.',
+            bullets: [
+              'Recheck car family, model, class, and ownership requirement.',
+              'Drive the car in freeroam before starting the task again.',
+              'Avoid changing tune mid-chapter unless the task needs it.',
+            ],
+          },
+          {
+            title: 'Skill chain keeps breaking',
+            body: 'The setup may be too nervous for repeatable near-misses, drifts, or wreckage chains.',
+            bullets: [
+              'Use a controllable power level.',
+              'Pick an open route with fewer hard stops.',
+              'Keep suspension stable over curbs and grass.',
+            ],
+          },
+          {
+            title: 'PR stunt target feels high',
+            body: 'A chapter may need a dedicated speed, jump, or zone tune rather than the race baseline.',
+            bullets: [
+              'Use the speed trap or danger sign guide.',
+              'Retest with a longer approach.',
+              'Use gearing and aero changes before adding random power.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'auction-house-tune-code-sharing',
+    title: 'Forza Horizon 6 Auction House and Tune Code Sharing Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 auction house and tune code sharing guide',
+    description:
+      'Forza Horizon 6 auction house and tune code sharing guide for buying event cars, saving legal builds, naming presets, avoiding bad tune codes, and preparing weekly playlist setups.',
+    eyebrow: 'Tune code workflow',
+    intro:
+      'A fast weekly setup workflow depends on clean tune-code habits. Buy the right car, save a legal version, label the event purpose, and keep a rollback preset before copying a tune from someone else.',
+    primaryCta: {
+      label: 'Open Tune Codes',
+      href: '/tools/forza-horizon-6-tune-codes',
+    },
+    relatedLinks: [
+      {
+        label: 'Car database',
+        href: '/games/forza-horizon-6/cars',
+      },
+      {
+        label: 'Weekly playlist',
+        href: '/games/forza-horizon-6/weekly-playlist',
+      },
+      {
+        label: 'Seasonal championship tuning',
+        href: '/games/forza-horizon-6/guides/seasonal-championship-tuning',
+      },
+    ],
+    sections: [
+      {
+        title: 'Buy with the event in mind',
+        body: 'Auction house value changes quickly around weekly restrictions. A cheap car is not useful if it cannot hit the class, tire, or drivetrain target cleanly.',
+        bullets: [
+          'Check event restrictions before buying duplicates.',
+          'Avoid cars that need expensive swaps just to become legal.',
+          'Keep a notes field for class, event type, and restriction.',
+        ],
+      },
+      {
+        title: 'Label tunes for search and rollback',
+        body: 'Good tune names help future you and other players. Include event type, class, drivetrain, and issue solved instead of vague names.',
+        bullets: [
+          'Use labels like A800 Road AWD Safe or S1 Speed Zone Aero.',
+          'Save a rollback tune before testing a shared code.',
+          'Separate leaderboard, weekly, and beginner-friendly setups.',
+        ],
+      },
+      {
+        title: 'Test shared codes before trusting them',
+        body: 'A popular tune code can still be wrong for your device, assists, route, or skill level. Validate it with one repeatable route before using it in a championship.',
+        bullets: [
+          'Run the same route three times with the same assists.',
+          'Check braking and launch before judging lap pace.',
+          'Keep tune notes so bad codes do not get reused.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Tune code quality checks',
+        description:
+          'Use these checks before sharing or saving a build as a weekly recommendation.',
+        cards: [
+          {
+            title: 'Legal but unpleasant',
+            body: 'The car may meet class restrictions but still be too unstable for the event.',
+            bullets: [
+              'Check tire compound and drivetrain choice.',
+              'Reduce power if it ruins corner exits.',
+              'Save a safer variant for co-op events.',
+            ],
+          },
+          {
+            title: 'Great in solo, bad in traffic',
+            body: 'Some builds need perfect racing lines and cannot handle AI traffic or teammate contact.',
+            bullets: [
+              'Use brake stability and launch guides.',
+              'Prioritize recovery over perfect clean-lap pace.',
+              'Avoid sharing risky codes as beginner tunes.',
+            ],
+          },
+          {
+            title: 'Cannot remember why it exists',
+            body: 'Poor labels turn a useful tune into garage clutter.',
+            bullets: [
+              'Add class, drivetrain, and event type to the name.',
+              'Record the source or weekly event.',
+              'Delete duplicate tests after the event ends.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'street-race-night-tuning',
+    title: 'Forza Horizon 6 Street Race and Night Race Tuning Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 street race and night race tuning guide',
+    description:
+      'Forza Horizon 6 street race and night race tuning guide for traffic, blind corners, rain, braking confidence, launch grip, AWD choices, and safe weekly event setups.',
+    eyebrow: 'Street racing',
+    intro:
+      'Street races punish fragile builds. Traffic, low visibility, wet roads, and surprise braking zones make stability, recovery, and clean exits more valuable than a perfect dry road tune.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=A&issue=unstable-braking&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Brake balance guide',
+        href: '/games/forza-horizon-6/guides/brake-balance-pressure-settings',
+      },
+      {
+        label: 'Input lag settings',
+        href: '/games/forza-horizon-6/guides/input-lag-settings',
+      },
+      {
+        label: 'A class road tune',
+        href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Tune for visibility and traffic',
+        body: 'Street races often give less time to react. A car that is too nervous under braking or throttle becomes harder to place around traffic.',
+        bullets: [
+          'Use stable brake pressure and predictable front grip.',
+          'Keep gearing flexible for sudden slowdowns.',
+          'Avoid extreme aero or differential settings that need perfect lines.',
+        ],
+      },
+      {
+        title: 'Handle wet or dirty exits',
+        body: 'Night routes can mix rain, shadows, rough shoulders, and traffic avoidance. Exit grip matters because you cannot always take the clean racing line.',
+        bullets: [
+          'Use AWD if legal and traction is the main problem.',
+          'Soften aggressive rear behavior before adding more power.',
+          'Use tire and suspension guides for rougher city sections.',
+        ],
+      },
+      {
+        title: 'Build a weekly-safe variant',
+        body: 'A weekly street race tune should be easier to drive than a solo leaderboard build. It needs to pass AI, survive contact, and recover from missed braking zones.',
+        bullets: [
+          'Prioritize clean starts and stable passing.',
+          'Use a slightly shorter final drive if traffic slows the route.',
+          'Save a safer tune code for Trial or co-op street events.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Street race decision paths',
+        description:
+          'Identify whether the failure is braking, visibility, traffic recovery, or wet-road exit grip.',
+        cards: [
+          {
+            title: 'Missing blind braking zones',
+            body: 'The tune may be too fast on entry or too unstable when braking late.',
+            bullets: [
+              'Use braking stability before changing power.',
+              'Practice one marker at a time.',
+              'Check camera and HUD settings if visibility is the issue.',
+            ],
+          },
+          {
+            title: 'Traffic ruins corner exits',
+            body: 'A fragile tune may not recover when the ideal racing line disappears.',
+            bullets: [
+              'Use recovery gearing.',
+              'Keep enough front grip for alternate lines.',
+              'Choose safer passing points.',
+            ],
+          },
+          {
+            title: 'Rain makes the car nervous',
+            body: 'Wet street routes can expose oversteer, wheelspin, and stiff suspension.',
+            bullets: [
+              'Reduce aggressive differential behavior.',
+              'Use tire pressure and alignment checks.',
+              'Retest on the same wet section.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

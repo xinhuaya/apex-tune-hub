@@ -137,6 +137,18 @@ const corePages = [
     'Forza Horizon 6 The Trial co-op race tuning guide',
     '/games/forza-horizon-6/guides/the-trial-coop-race-tuning',
   ],
+  [
+    'Forza Horizon 6 Forzathon weekly challenge tuning guide',
+    '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
+  ],
+  [
+    'Forza Horizon 6 auction house and tune code sharing guide',
+    '/games/forza-horizon-6/guides/auction-house-tune-code-sharing',
+  ],
+  [
+    'Forza Horizon 6 street race and night race tuning guide',
+    '/games/forza-horizon-6/guides/street-race-night-tuning',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',

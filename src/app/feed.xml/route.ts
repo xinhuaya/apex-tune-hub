@@ -279,6 +279,27 @@ const feedItems = [
     category: 'The Trial co-op',
   },
   {
+    title: 'Forza Horizon 6 Forzathon weekly challenge tuning guide',
+    path: '/games/forza-horizon-6/guides/forzathon-weekly-challenge-tuning',
+    description:
+      'Forzathon weekly challenge guide for FH6 required cars, chapter tasks, road races, skill chains, speed zones, drift zones, and quick weekly setup swaps.',
+    category: 'Forzathon weekly',
+  },
+  {
+    title: 'Forza Horizon 6 auction house and tune code sharing guide',
+    path: '/games/forza-horizon-6/guides/auction-house-tune-code-sharing',
+    description:
+      'Auction house and tune code sharing guide for FH6 event cars, legal builds, preset labels, bad tune-code checks, and weekly playlist setup prep.',
+    category: 'Tune codes',
+  },
+  {
+    title: 'Forza Horizon 6 street race and night race tuning guide',
+    path: '/games/forza-horizon-6/guides/street-race-night-tuning',
+    description:
+      'Street race and night race guide for FH6 traffic, blind corners, rain, braking confidence, launch grip, AWD choices, and weekly-safe setups.',
+    category: 'Street racing',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

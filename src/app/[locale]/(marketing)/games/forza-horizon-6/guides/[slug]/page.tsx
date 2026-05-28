@@ -68,7 +68,16 @@ function getGuideCluster(guide: { slug: string; eyebrow: string }) {
     key.includes('drift') ||
     key.includes('rally') ||
     key.includes('drag') ||
-    key.includes('road')
+    key.includes('road') ||
+    key.includes('street') ||
+    key.includes('trial') ||
+    key.includes('seasonal') ||
+    key.includes('forzathon') ||
+    key.includes('auction') ||
+    key.includes('tune code') ||
+    key.includes('speed trap') ||
+    key.includes('danger sign') ||
+    key.includes('trailblazer')
   ) {
     return 'Event builds';
   }

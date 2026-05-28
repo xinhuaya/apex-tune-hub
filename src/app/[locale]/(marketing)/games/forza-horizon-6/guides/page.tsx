@@ -33,7 +33,7 @@ const pathname = '/games/forza-horizon-6/guides';
 const title =
   'Forza Horizon 6 Guides - Tuning, Settings, PR Stunts, and Setup Help';
 const description =
-  'Forza Horizon 6 tuning guides for starter cars, Japan routes, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, PR stunts, seasonal championships, and weekly playlist setup help.';
+  'Forza Horizon 6 tuning guides for starter cars, Japan routes, handling fixes, gearing, aero, tire pressure, alignment, wheel settings, PR stunts, Forzathon, tune codes, street races, seasonal championships, and weekly playlist setup help.';
 
 const guideClusters = [
   {
@@ -78,7 +78,7 @@ const guideRouterRows = [
   {
     problem: 'I need a build for an event type',
     start: 'Event build guides',
-    next: 'Use road, drift, rally, drag, PR stunt, seasonal championship, Trial, or weekly playlist tuning checklists.',
+    next: 'Use road, drift, rally, drag, PR stunt, Forzathon, street race, seasonal championship, Trial, or weekly playlist tuning checklists.',
     href: '#event-guides',
   },
 ];
@@ -147,7 +147,7 @@ const guideGroups = [
     eyebrow: 'Event builds',
     title: 'Road, drift, rally, drag, PR stunt, and weekly setup guides',
     description:
-      'Event-specific tuning pages that connect guide readers to calculator presets, car lists, weekly playlist notes, and repeatable seasonal builds.',
+      'Event-specific tuning pages that connect guide readers to calculator presets, car lists, tune-code workflows, weekly playlist notes, and repeatable seasonal builds.',
     slugs: [
       'best-a-class-road-tune-settings',
       'best-s1-rally-tune-settings',
@@ -168,6 +168,9 @@ const guideGroups = [
       'danger-sign-trailblazer-tuning',
       'seasonal-championship-tuning',
       'the-trial-coop-race-tuning',
+      'forzathon-weekly-challenge-tuning',
+      'auction-house-tune-code-sharing',
+      'street-race-night-tuning',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',
@@ -180,7 +183,7 @@ const guideFaqs = [
   {
     question: 'Which Forza Horizon 6 guide should I read first?',
     answer:
-      'Start with the beginner tuning guide if you are new to setups, then move to the specific handling problem, tuning slider, device setup, or event type you are trying to fix.',
+      'Start with the beginner tuning guide if you are new to setups, then move to the specific handling problem, tuning slider, device setup, event restriction, or tune-code workflow you are trying to fix.',
   },
   {
     question: 'Are these guides based on fake leaderboard certainty?',
