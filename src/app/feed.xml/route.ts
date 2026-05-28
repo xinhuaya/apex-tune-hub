@@ -209,6 +209,20 @@ const feedItems = [
     category: 'Suspension tuning',
   },
   {
+    title: 'Forza Horizon 6 tire pressure settings guide',
+    path: '/games/forza-horizon-6/guides/tire-pressure-settings-guide',
+    description:
+      'Tire pressure guide for FH6 grip, heat, understeer, oversteer, road racing, drift, rally, wet routes, keyboard, controller, and wheel testing.',
+    category: 'Tire pressure',
+  },
+  {
+    title: 'Forza Horizon 6 alignment, camber, and toe settings',
+    path: '/games/forza-horizon-6/guides/alignment-camber-toe-settings',
+    description:
+      'Alignment guide for FH6 camber, toe, caster, turn-in, understeer, oversteer, tire wear, road racing, drift, wheel users, and controller users.',
+    category: 'Alignment tuning',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:

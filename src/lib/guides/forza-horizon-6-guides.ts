@@ -2080,6 +2080,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'tire-pressure-settings-guide',
+    title: 'Forza Horizon 6 Tire Pressure Settings Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 tire pressure settings guide',
+    description:
+      'Forza Horizon 6 tire pressure settings guide for grip, heat, understeer, oversteer, road racing, drift, rally, wet routes, keyboard, controller, wheel, and repeatable testing.',
+    eyebrow: 'Tire pressure tuning',
+    intro:
+      'Tire pressure is a small slider with a big effect. It changes grip, heat behavior, steering response, and how quickly a car becomes nervous over a longer route.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+      {
+        label: 'Suspension settings',
+        href: '/games/forza-horizon-6/guides/anti-roll-bar-suspension-settings',
+      },
+    ],
+    sections: [
+      {
+        title: 'Test pressure after the tires are working',
+        body: 'Cold tire feel can be misleading. Run the same route long enough to feel whether grip improves, fades, or becomes nervous.',
+        bullets: [
+          'Use the same car, route, assists, camera, and weather for comparisons.',
+          'Judge pressure after multiple corners, not one launch.',
+          'Keep alignment and suspension unchanged during the first tire pressure test.',
+        ],
+      },
+      {
+        title: 'Use pressure to shape response',
+        body: 'Pressure can make a car sharper or calmer, but it should not be used to hide a broken alignment, differential, or suspension setup.',
+        bullets: [
+          'If the front pushes wide, compare small front pressure changes.',
+          'If the rear feels nervous, compare small rear pressure changes.',
+          'Use understeer or oversteer guides if pressure alone cannot fix the car.',
+        ],
+      },
+      {
+        title: 'Separate road, drift, and rally needs',
+        body: 'Road builds want repeatable grip. Drift builds need controlled slip. Rally routes need compliance and recovery across changing surfaces.',
+        bullets: [
+          'Keep road pressure tests on a paved technical route.',
+          'Use drift guidance when tire slip and angle are the goal.',
+          'Use rally guidance when bumps and mixed surfaces change grip.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Tire pressure decision paths',
+        description:
+          'Use the grip problem to decide whether pressure is the first test or a supporting change after alignment and suspension.',
+        cards: [
+          {
+            title: 'Front grip fades mid-run',
+            body: 'If the car starts fine but pushes wide later, pressure and heat behavior may be part of the problem.',
+            bullets: [
+              'Repeat the same longer route.',
+              'Compare front pressure changes in small steps.',
+              'Check alignment if the front still fades quickly.',
+            ],
+          },
+          {
+            title: 'Rear becomes nervous',
+            body: 'Rear tire pressure can change how confidently the car rotates and recovers.',
+            bullets: [
+              'Compare rear pressure on the same corner exit.',
+              'Use oversteer guidance if the car snaps before throttle.',
+              'Avoid changing differential in the same test.',
+            ],
+          },
+          {
+            title: 'Mixed-surface grip changes',
+            body: 'Pressure choices that feel sharp on pavement can feel harsh or inconsistent on rally routes.',
+            bullets: [
+              'Test dirt and pavement sections separately.',
+              'Use rally setup guidance for bumpy routes.',
+              'Save a dedicated mixed-surface preset.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'alignment-camber-toe-settings',
+    title: 'Forza Horizon 6 Alignment Camber and Toe Settings - Apex Tune Hub',
+    h1: 'Forza Horizon 6 alignment, camber, and toe settings',
+    description:
+      'Forza Horizon 6 alignment guide for camber, toe, caster, turn-in, understeer, oversteer, tire wear, road racing, drift, wheel users, controller users, and tuning tests.',
+    eyebrow: 'Alignment tuning',
+    intro:
+      'Alignment changes how the car turns in, holds mid-corner grip, and recovers on exit. It is powerful, but it needs small changes and repeatable tests because extreme camber or toe can make every other setting harder to read.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Tire pressure guide',
+        href: '/games/forza-horizon-6/guides/tire-pressure-settings-guide',
+      },
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+    ],
+    sections: [
+      {
+        title: 'Use alignment for corner shape',
+        body: 'Alignment should help the car enter, hold, and exit a corner cleanly. Identify which phase is wrong before touching camber, toe, or caster.',
+        bullets: [
+          'Use one turn-in corner and one mid-corner section for tests.',
+          'Avoid changing tire pressure and alignment together at first.',
+          'Retest after each small change instead of chasing perfect numbers.',
+        ],
+      },
+      {
+        title: 'Keep toe changes conservative',
+        body: 'Toe can make the car feel eager, but too much can create instability, drag, and noisy feedback on controller or wheel.',
+        bullets: [
+          'Use small toe changes only when turn-in or stability needs them.',
+          'If the car wanders on straights, undo aggressive toe before changing suspension.',
+          'Wheel users should check input feel after every toe change.',
+        ],
+      },
+      {
+        title: 'Tune caster after basic balance',
+        body: 'Caster affects steering feel and camber behavior while turning. It should support the build, not rescue a car with bad tire pressure or suspension balance.',
+        bullets: [
+          'Fix obvious understeer or oversteer first.',
+          'Use caster changes after camber and toe feel reasonable.',
+          'Keep device settings unchanged while testing steering feel.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Alignment decision paths',
+        description:
+          'Use the corner phase to decide whether camber, toe, caster, tire pressure, or suspension should be tested first.',
+        cards: [
+          {
+            title: 'Lazy turn-in',
+            body: 'Lazy turn-in can involve toe, front grip, controller response, or simply too much entry speed.',
+            bullets: [
+              'Test small front alignment changes first.',
+              'Compare the same corner at the same braking point.',
+              'Check input lag if steering feels late everywhere.',
+            ],
+          },
+          {
+            title: 'Mid-corner push',
+            body: 'Mid-corner understeer can be alignment, tire pressure, suspension balance, or differential behavior.',
+            bullets: [
+              'Use one steady corner for comparison.',
+              'Check tire pressure before large camber changes.',
+              'Use understeer guidance if the push continues.',
+            ],
+          },
+          {
+            title: 'Straight-line nervousness',
+            body: 'If the car wanders or feels twitchy, aggressive toe or steering settings may be making the build harder to drive.',
+            bullets: [
+              'Undo recent toe changes first.',
+              'Compare controller or wheel settings if input feels unstable.',
+              'Avoid adding suspension stiffness to mask wandering.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

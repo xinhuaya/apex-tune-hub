@@ -97,6 +97,14 @@ const corePages = [
     'Forza Horizon 6 anti-roll bar and suspension settings',
     '/games/forza-horizon-6/guides/anti-roll-bar-suspension-settings',
   ],
+  [
+    'Forza Horizon 6 tire pressure settings guide',
+    '/games/forza-horizon-6/guides/tire-pressure-settings-guide',
+  ],
+  [
+    'Forza Horizon 6 alignment, camber, and toe settings',
+    '/games/forza-horizon-6/guides/alignment-camber-toe-settings',
+  ],
   ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   [
     'Forza Horizon 6 crossplay and cross-save',
