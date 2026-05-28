@@ -414,6 +414,99 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'tuning-glossary-setup-terms',
+    title: 'Forza Horizon 6 Tuning Glossary and Setup Terms - Apex Tune Hub',
+    h1: 'Forza Horizon 6 tuning glossary and setup terms',
+    description:
+      'Forza Horizon 6 tuning glossary for PI class, tire pressure, camber, toe, anti-roll bars, damping, differential, aero, gearing, brake balance, and setup testing terms.',
+    eyebrow: 'Tuning glossary',
+    intro:
+      'A tuning glossary helps you stop guessing what each FH6 setup word means. Use it as a translation layer between player symptoms, calculator recommendations, and the specific slider guide you should open next.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Beginner tuning guide',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+      {
+        label: 'Tuning settings hub',
+        href: '/games/forza-horizon-6/tuning-settings',
+      },
+      {
+        label: 'Upgrade order guide',
+        href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
+      },
+    ],
+    sections: [
+      {
+        title: 'Translate symptoms before sliders',
+        body: 'Most useful tuning starts with a plain-language symptom. Understeer, oversteer, wheelspin, unstable braking, slow launch, and poor top speed all point to different setup terms.',
+        bullets: [
+          'Understeer usually means front grip or rotation is missing.',
+          'Oversteer usually means the rear is rotating faster than you can catch.',
+          'Wheelspin usually means throttle, gearing, tire, or differential work is needed.',
+        ],
+      },
+      {
+        title: 'Learn the main setup families',
+        body: 'Tire pressure, alignment, anti-roll bars, springs, damping, differential, aero, gearing, and brakes each solve a different kind of problem. Do not tune them all at once.',
+        bullets: [
+          'Use tires and alignment for grip shape and contact patch feel.',
+          'Use ARBs, springs, and damping for weight transfer and body behavior.',
+          'Use differential, gearing, and brakes for exit, launch, speed, and stopping balance.',
+        ],
+      },
+      {
+        title: 'Tie every term to a test route',
+        body: 'A setup term is useful only when you can feel the change on a route. Match each glossary term to one repeatable test section before saving a preset.',
+        bullets: [
+          'Use hairpins for braking, rotation, and first-gear exits.',
+          'Use sweepers for aero, stability, and mid-corner balance.',
+          'Use rough or mixed routes for damping, springs, and rally behavior.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Common tuning terms by problem',
+        description:
+          'Use this map to decide which guide or calculator path should come next.',
+        cards: [
+          {
+            title: 'Grip and rotation terms',
+            body: 'Camber, toe, caster, tire pressure, ARBs, springs, and aero affect how the car points and holds grip.',
+            bullets: [
+              'Use alignment terms when corner entry or mid-corner grip feels wrong.',
+              'Use ARB and spring terms when body roll or balance changes too much.',
+              'Use aero terms when speed changes the car behavior.',
+            ],
+          },
+          {
+            title: 'Power delivery terms',
+            body: 'Differential, final drive, gear spacing, tire compound, and drivetrain decide how power reaches the road.',
+            bullets: [
+              'Use differential terms for corner exit and throttle rotation.',
+              'Use gearing terms for launch, acceleration, and top speed.',
+              'Use drivetrain terms when AWD, RWD, or FWD changes the build identity.',
+            ],
+          },
+          {
+            title: 'Testing and class terms',
+            body: 'PI class, restrictions, event type, surface, route, and preset naming keep setup decisions organized.',
+            bullets: [
+              'Use PI class before buying upgrades.',
+              'Use event type before choosing tire and drivetrain spend.',
+              'Use preset notes so one good fix can be reused later.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-low-fps-stutter',
     title: 'How to Fix Low FPS and Stutter in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix low FPS and stutter in Forza Horizon 6',

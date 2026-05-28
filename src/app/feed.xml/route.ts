@@ -87,6 +87,13 @@ const feedItems: FeedItem[] = [
     category: 'Guides',
   },
   {
+    title: 'Forza Horizon 6 tuning glossary and setup terms',
+    path: '/games/forza-horizon-6/guides/tuning-glossary-setup-terms',
+    description:
+      'Tuning glossary for FH6 PI class, tire pressure, camber, toe, anti-roll bars, damping, differential, aero, gearing, and brake balance.',
+    category: 'Beginner tuning',
+  },
+  {
     title: 'Forza Horizon 6 upgrade order tuning guide',
     path: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
     description:

@@ -234,6 +234,7 @@ const guideGroups = [
       'japan-launch-tuning-plan',
       'japan-route-tuning-checklist',
       'beginner-tuning-guide',
+      'tuning-glossary-setup-terms',
       'best-starter-cars',
       'a-s1-road-racing-tune',
       'gear-ratio-guide',
