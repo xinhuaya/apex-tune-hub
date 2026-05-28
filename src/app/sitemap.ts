@@ -44,6 +44,7 @@ const staticRoutes = [
   '/games/forza-horizon-6/car-pass',
   '/games/forza-horizon-6/cars',
   '/games/forza-horizon-6/faq',
+  '/games/forza-horizon-6/release-status',
   '/games/forza-horizon-6/weekly-playlist',
   '/settings/forza-horizon-6',
   '/settings/forza-horizon-6-controller',

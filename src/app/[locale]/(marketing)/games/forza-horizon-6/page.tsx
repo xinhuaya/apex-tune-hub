@@ -156,6 +156,13 @@ const hubLinks = [
     icon: Gamepad2Icon,
   },
   {
+    title: 'Release Status',
+    description:
+      'Xbox, PC, Game Pass, Steam Deck, PS5 timing, and source-backed access paths.',
+    href: '/games/forza-horizon-6/release-status',
+    icon: ShieldCheckIcon,
+  },
+  {
     title: 'Official Sources',
     description:
       'Source tracker for release, platform, Japan map, and car-list updates.',
@@ -168,7 +175,8 @@ const hubStats = [
   {
     value: '18',
     label: 'FH6 hubs',
-    detail: 'Tools, guide clusters, car pages, settings pages, and weekly trackers.',
+    detail:
+      'Tools, guide clusters, car pages, settings pages, and weekly trackers.',
   },
   {
     value: '10',
@@ -440,8 +448,8 @@ export default function ForzaHorizon6HubPage() {
             <RadioTowerIcon className="size-5 text-fuchsia-300" />
             <h2 className="mt-4 text-lg font-semibold">FH6 tune drops</h2>
             <p className="mt-2 text-sm leading-6 text-zinc-400">
-              Email capture for new presets, weekly notes, car page changes,
-              and verified update paths.
+              Email capture for new presets, weekly notes, car page changes, and
+              verified update paths.
             </p>
           </LocaleLink>
         </div>

@@ -110,6 +110,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Release Status',
+          description: 'Xbox, PC, Game Pass, Steam Deck, and PS5 timing',
+          icon: <ShieldCheckIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaHorizon6ReleaseStatus,
+          external: false,
+        },
+        {
           title: 'Official Sources',
           description: 'Release, platform, map, and car-list source tracker',
           icon: <ShieldCheckIcon className="size-4 shrink-0" />,

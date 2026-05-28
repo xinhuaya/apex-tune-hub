@@ -191,7 +191,7 @@ const answerWorkflow = [
 const highIntentRoutes = [
   {
     title: 'Release and platform answers',
-    href: '/games/forza-horizon-6/faq',
+    href: '/games/forza-horizon-6/release-status',
     text: 'Use official source links for release date, Game Pass, PS5, Steam Deck, PC, and car-count questions.',
   },
   {

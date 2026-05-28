@@ -92,6 +92,11 @@ export function useFooterLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Release Status',
+          href: Routes.ForzaHorizon6ReleaseStatus,
+          external: false,
+        },
+        {
           title: 'Official Sources',
           href: Routes.ForzaHorizon6OfficialSources,
           external: false,

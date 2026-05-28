@@ -10,11 +10,18 @@ const corePages = [
     '/games/forza-horizon-6/official-sources',
   ],
   ['Forza Horizon 6 tune calculator', '/tools/forza-horizon-6-tune-calculator'],
-  ['Forza Horizon 6 drift tune calculator', '/tools/forza-horizon-6-drift-tune-calculator'],
-  ['Forza Horizon 6 gear ratio calculator', '/tools/forza-horizon-6-gear-ratio-calculator'],
+  [
+    'Forza Horizon 6 drift tune calculator',
+    '/tools/forza-horizon-6-drift-tune-calculator',
+  ],
+  [
+    'Forza Horizon 6 gear ratio calculator',
+    '/tools/forza-horizon-6-gear-ratio-calculator',
+  ],
   ['Forza Horizon 6 tune presets', '/tools/forza-horizon-6-tune-presets'],
   ['Forza Horizon 6 tune codes', '/tools/forza-horizon-6-tune-codes'],
   ['Forza Horizon 6 guides', '/games/forza-horizon-6/guides'],
+  ['Forza Horizon 6 release status', '/games/forza-horizon-6/release-status'],
   ['Forza Horizon 6 car database', '/games/forza-horizon-6/cars'],
   ['Forza Horizon 6 best cars', '/games/forza-horizon-6/best-cars'],
   ['Forza Horizon 6 Japan map planner', '/games/forza-horizon-6/japan-map'],
@@ -22,9 +29,15 @@ const corePages = [
   ['Forza Horizon 6 Car Pass tracker', '/games/forza-horizon-6/car-pass'],
   ['Forza Horizon 6 settings hub', '/settings/forza-horizon-6'],
   ['Forza Horizon 6 wheel settings', '/settings/forza-horizon-6-wheel'],
-  ['Forza Horizon 6 controller settings', '/settings/forza-horizon-6-controller'],
+  [
+    'Forza Horizon 6 controller settings',
+    '/settings/forza-horizon-6-controller',
+  ],
   ['Forza Horizon 6 PC settings', '/settings/forza-horizon-6-pc'],
-  ['Forza Horizon 6 Steam Deck settings', '/settings/forza-horizon-6-steam-deck'],
+  [
+    'Forza Horizon 6 Steam Deck settings',
+    '/settings/forza-horizon-6-steam-deck',
+  ],
 ];
 
 const officialSources = [
