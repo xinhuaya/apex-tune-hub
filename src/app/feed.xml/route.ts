@@ -1,10 +1,18 @@
+import { forzaHorizon6Guides } from '@/lib/guides/forza-horizon-6-guides';
 import { getBaseUrl } from '@/lib/urls';
 
 export const revalidate = 3600;
 
 const feedUpdatedAt = new Date('2026-05-28T00:00:00.000Z');
 
-const feedItems = [
+type FeedItem = {
+  title: string;
+  path: string;
+  description: string;
+  category: string;
+};
+
+const feedItems: FeedItem[] = [
   {
     title: 'Forza Horizon 6 official source tracker added',
     path: '/games/forza-horizon-6/official-sources',
@@ -336,6 +344,21 @@ const feedItems = [
   },
 ];
 
+const generatedGuideFeedItems: FeedItem[] = forzaHorizon6Guides.map((guide) => ({
+  title: guide.h1,
+  path: `/games/forza-horizon-6/guides/${guide.slug}`,
+  description: guide.description,
+  category: guide.eyebrow,
+}));
+
+const allFeedItems = [
+  ...feedItems,
+  ...generatedGuideFeedItems.filter(
+    (guideItem) =>
+      !feedItems.some((feedItem) => feedItem.path === guideItem.path)
+  ),
+];
+
 function escapeXml(value: string) {
   return value
     .replaceAll('&', '&amp;')
@@ -350,7 +373,7 @@ function itemXml({
   path,
   description,
   category,
-}: (typeof feedItems)[number]) {
+}: FeedItem) {
   const baseUrl = getBaseUrl();
   const url = `${baseUrl}${path}`;
 
@@ -375,7 +398,7 @@ export function GET() {
     <description>Forza Horizon 6 tuning tools, guide updates, source tracking, car pages, and weekly setup notes from Apex Tune Hub.</description>
     <language>en</language>
     <lastBuildDate>${feedUpdatedAt.toUTCString()}</lastBuildDate>
-${feedItems.map(itemXml).join('\n')}
+${allFeedItems.map(itemXml).join('\n')}
   </channel>
 </rss>`;
 

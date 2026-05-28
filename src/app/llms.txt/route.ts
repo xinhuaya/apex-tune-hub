@@ -1,8 +1,9 @@
+import { forzaHorizon6Guides } from '@/lib/guides/forza-horizon-6-guides';
 import { getBaseUrl } from '@/lib/urls';
 
 export const revalidate = 3600;
 
-const corePages = [
+const corePages: string[][] = [
   ['Home', '/'],
   ['Forza Horizon 6 hub', '/games/forza-horizon-6'],
   [
@@ -194,6 +195,18 @@ const corePages = [
   ],
 ];
 
+const generatedGuidePages = forzaHorizon6Guides.map((guide) => [
+  guide.h1,
+  `/games/forza-horizon-6/guides/${guide.slug}`,
+]);
+
+const allCorePages = [
+  ...corePages,
+  ...generatedGuidePages.filter(
+    ([, href]) => !corePages.some(([, coreHref]) => coreHref === href)
+  ),
+];
+
 const officialSources = [
   ['Forza Horizon 6 FAQ', 'https://forza.net/news/forza-horizon-6-faq'],
   [
@@ -239,7 +252,7 @@ Important behavior:
 
 ## Core Pages
 
-${formatLinks(corePages, baseUrl)}
+${formatLinks(allCorePages, baseUrl)}
 
 ## Official Sources
 
