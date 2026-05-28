@@ -159,6 +159,39 @@ const followupLinks = [
   },
 ];
 
+const specializedSettingGuides = [
+  {
+    title: 'Alignment, camber, and toe',
+    description:
+      'Use this when turn-in, mid-corner hold, or straight-line stability needs smaller geometry changes.',
+    href: '/games/forza-horizon-6/guides/alignment-camber-toe-settings',
+  },
+  {
+    title: 'Aero and downforce',
+    description:
+      'Use this when S1 or S2 builds trade too much top speed for corner confidence, or vice versa.',
+    href: '/games/forza-horizon-6/guides/aero-downforce-settings',
+  },
+  {
+    title: 'FWD tune settings',
+    description:
+      'Use this when front-drive cars need cleaner exits, less push, and better lift-off rotation.',
+    href: '/games/forza-horizon-6/guides/best-fwd-tune-settings',
+  },
+  {
+    title: 'S1 rally tune settings',
+    description:
+      'Use this when dirt and mixed-surface routes need bump control before more power.',
+    href: '/games/forza-horizon-6/guides/best-s1-rally-tune-settings',
+  },
+  {
+    title: 'Manual with clutch',
+    description:
+      'Use this when shift timing, missed shifts, or launch control matter more than slider changes.',
+    href: '/games/forza-horizon-6/guides/manual-with-clutch-shifting',
+  },
+];
+
 const sliderPriorityCards = [
   {
     title: 'Fast diagnosis sliders',
@@ -330,6 +363,13 @@ export default function ForzaHorizon6TuningSettingsPage() {
             })),
           }),
           buildItemListJsonLd({
+            title: 'Forza Horizon 6 specialized tuning setting guides',
+            items: specializedSettingGuides.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
             title: 'Forza Horizon 6 tuning slider risk matrix',
             items: sliderRiskMatrix.map((row) => ({
               name: row.level,
@@ -459,6 +499,40 @@ export default function ForzaHorizon6TuningSettingsPage() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
+              Specialized guides
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">
+              Use a focused guide when one setting group is the real problem
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              These pages keep the tuning glossary from becoming a dead end.
+              Move here when the broad setting group is known and the player
+              needs a narrower checklist.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+            {specializedSettingGuides.map((link) => (
+              <LocaleLink
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-amber-300/40 hover:bg-amber-300/10"
+                href={link.href}
+                key={link.href}
+              >
+                <h3 className="text-sm font-semibold text-zinc-100">
+                  {link.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {link.description}
+                </p>
+              </LocaleLink>
+            ))}
+          </div>
         </div>
       </section>
 
