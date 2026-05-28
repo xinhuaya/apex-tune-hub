@@ -1708,6 +1708,192 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'best-fwd-tune-settings',
+    title: 'Best FWD Tune Settings for Forza Horizon 6 - Apex Tune Hub',
+    h1: 'Best FWD tune settings for Forza Horizon 6',
+    description:
+      'Forza Horizon 6 FWD tune settings guide for front tire grip, understeer, lift-off rotation, differential setup, gearing, braking stability, and beginner-friendly road builds.',
+    eyebrow: 'FWD tuning',
+    intro:
+      'FWD cars can be clean, efficient, and beginner-friendly in FH6, but they need help rotating without burning the front tires. Tune for front grip, controlled lift-off rotation, and stable corner exits.',
+    primaryCta: {
+      label: 'Open FWD Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=FWD&class=A&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Fix understeer',
+        href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+      {
+        label: 'A class road tune',
+        href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+      {
+        label: 'Best Honda cars',
+        href: '/games/forza-horizon-6/best-honda-cars',
+      },
+    ],
+    sections: [
+      {
+        title: 'Protect the front tires',
+        body: 'FWD asks the front tires to steer, brake, and pull the car forward. If they overheat or overload, the car pushes wide and loses exit speed.',
+        bullets: [
+          'Use smoother throttle pickup before adding power.',
+          'Test front tire pressure and alignment on the same medium-speed corner.',
+          'Avoid masking front-tire overload with very early braking.',
+        ],
+      },
+      {
+        title: 'Use lift-off rotation carefully',
+        body: 'FWD rotation often comes from easing off throttle or braking at the right time. Too much rotation turns a safe build into entry instability.',
+        bullets: [
+          'Compare turn-in while coasting and under light throttle.',
+          'Use the unstable braking guide if the rear steps out too suddenly.',
+          'Keep suspension changes small while learning the car.',
+        ],
+      },
+      {
+        title: 'Keep gearing realistic',
+        body: 'Short gearing can make FWD cars lively, but it can also overload the front tires. Tune gearing for clean exits, not just launch snap.',
+        bullets: [
+          'Lengthen lower gears if the front tires spin on exit.',
+          'Use manual shifting only after the car feels stable.',
+          'Keep power upgrades modest until corner exit is repeatable.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'FWD tuning decision paths',
+        description:
+          'Use the symptom to decide whether to adjust front grip, gearing, braking, or rotation behavior.',
+        cards: [
+          {
+            title: 'Car pushes wide under throttle',
+            body: 'Throttle-on understeer is the classic FWD problem. Reduce front tire overload before adding more steering response.',
+            bullets: [
+              'Test a smoother throttle pickup.',
+              'Use understeer fixes before adding power.',
+              'Compare exits in a higher gear.',
+            ],
+          },
+          {
+            title: 'Rear rotates too quickly',
+            body: 'Some FWD builds rotate well but become nervous on entry. Separate braking instability from useful lift-off rotation.',
+            bullets: [
+              'Retest with gentler trail braking.',
+              'Use the unstable braking guide if the rear snaps.',
+              'Avoid large suspension changes all at once.',
+            ],
+          },
+          {
+            title: 'Launch feels weak',
+            body: 'FWD launch is grip-limited. More power can make the car slower if the front tires spin.',
+            bullets: [
+              'Tune gearing before adding horsepower.',
+              'Compare launch and corner exit separately.',
+              'Use A class before chasing high-power builds.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'differential-settings-guide',
+    title: 'Forza Horizon 6 Differential Settings Guide - Apex Tune Hub',
+    h1: 'Forza Horizon 6 differential settings guide',
+    description:
+      'Forza Horizon 6 differential settings guide for AWD, RWD, FWD, acceleration, deceleration, center balance, understeer, oversteer, wheelspin, launch, and corner exit tuning.',
+    eyebrow: 'Differential tuning',
+    intro:
+      'Differential settings decide how power and rotation behave when you brake, coast, and accelerate. They are one of the quickest ways to fix corner exit, wheelspin, understeer, and rotation without rebuilding the whole car.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=wheelspin&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'AWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+      },
+      {
+        label: 'RWD tune settings',
+        href: '/games/forza-horizon-6/guides/best-rwd-tune-settings',
+      },
+      {
+        label: 'Fix wheelspin',
+        href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+    ],
+    sections: [
+      {
+        title: 'Separate acceleration and deceleration',
+        body: 'Acceleration diff affects power-on exits. Deceleration diff affects braking, lift-off, and entry rotation. Test those moments separately.',
+        bullets: [
+          'Use one corner exit to judge acceleration behavior.',
+          'Use one braking zone to judge deceleration behavior.',
+          'Do not change both sides unless the symptom clearly needs it.',
+        ],
+      },
+      {
+        title: 'Use drive layout as the starting point',
+        body: 'AWD, RWD, and FWD respond differently to differential changes. Start with the drive layout guide, then tune the exact symptom.',
+        bullets: [
+          'AWD needs center balance and axle behavior tested separately.',
+          'RWD differential changes strongly affect exit wheelspin and rotation.',
+          'FWD differential changes can overload or calm the front tires.',
+        ],
+      },
+      {
+        title: 'Keep differential tests narrow',
+        body: 'Differential tuning can feel powerful, but it becomes confusing if alignment, gearing, tire pressure, and assists change at the same time.',
+        bullets: [
+          'Use the same route, camera, assists, and weather.',
+          'Make one differential change and rerun the same corner.',
+          'Move to gearing only after exit behavior is consistent.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Differential decision paths',
+        description:
+          'Use the exact moment where the car misbehaves to decide which differential setting to test first.',
+        cards: [
+          {
+            title: 'Wheelspin on corner exit',
+            body: 'Exit wheelspin is usually an acceleration-side problem combined with gearing and tire grip.',
+            bullets: [
+              'Test acceleration diff before changing deceleration behavior.',
+              'Compare lower-gear exits on the same corner.',
+              'Use wheelspin guidance if the car lights up immediately.',
+            ],
+          },
+          {
+            title: 'Car will not rotate on power',
+            body: 'Power-on understeer can come from diff behavior, especially on AWD and FWD builds.',
+            bullets: [
+              'Use the AWD or FWD guide first.',
+              'Retest with one center or front/rear balance change.',
+              'Avoid adding steering angle to hide differential push.',
+            ],
+          },
+          {
+            title: 'Rear feels unstable on entry',
+            body: 'Entry instability can involve deceleration diff, braking, downshifts, or rear suspension behavior.',
+            bullets: [
+              'Check deceleration behavior on one braking zone.',
+              'Compare automatic and manual downshifts.',
+              'Use unstable braking fixes if the rear snaps before throttle.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-understeer',
     title: 'How to Fix Understeer in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix understeer in Forza Horizon 6',

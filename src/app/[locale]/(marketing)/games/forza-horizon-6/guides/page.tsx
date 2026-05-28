@@ -153,6 +153,8 @@ const guideGroups = [
       'weekly-playlist-tuning-checklist',
       'best-awd-tune-settings',
       'best-rwd-tune-settings',
+      'best-fwd-tune-settings',
+      'differential-settings-guide',
       'japan-drift-setup',
       'best-drift-tune-settings',
       'best-rally-tune-settings',

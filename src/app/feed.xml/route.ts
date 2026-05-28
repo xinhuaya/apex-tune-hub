@@ -181,6 +181,20 @@ const feedItems = [
     category: 'RWD tuning',
   },
   {
+    title: 'Forza Horizon 6 FWD tune settings guide',
+    path: '/games/forza-horizon-6/guides/best-fwd-tune-settings',
+    description:
+      'FWD tune settings guide for FH6 front tire grip, understeer, lift-off rotation, differential setup, gearing, braking stability, and road builds.',
+    category: 'FWD tuning',
+  },
+  {
+    title: 'Forza Horizon 6 differential settings guide',
+    path: '/games/forza-horizon-6/guides/differential-settings-guide',
+    description:
+      'Differential settings guide for FH6 AWD, RWD, FWD, acceleration, deceleration, center balance, understeer, oversteer, wheelspin, and launch tuning.',
+    category: 'Differential tuning',
+  },
+  {
     title: 'Forza Horizon 6 car list and database',
     path: '/games/forza-horizon-6/cars',
     description:
