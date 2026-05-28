@@ -213,6 +213,29 @@ const nextPlannerLinks = [
   },
 ];
 
+const japanSpecialistGuides = [
+  {
+    title: 'Japan route checklist',
+    href: '/games/forza-horizon-6/guides/japan-route-tuning-checklist',
+    text: 'Use when a city, mountain, wet, dirt, drift, or speed route needs a repeatable testing order.',
+  },
+  {
+    title: 'Japan launch tuning plan',
+    href: '/games/forza-horizon-6/guides/japan-launch-tuning-plan',
+    text: 'Use when the route note is part of a broader launch-week content plan.',
+  },
+  {
+    title: 'Street and night tuning',
+    href: '/games/forza-horizon-6/guides/street-race-night-tuning',
+    text: 'Use when traffic, low visibility, wet roads, and short braking zones shape the setup.',
+  },
+  {
+    title: 'S1 rally tune settings',
+    href: '/games/forza-horizon-6/guides/best-s1-rally-tune-settings',
+    text: 'Use when the route moves from paved sections into rough exits, crests, or mixed-surface rally work.',
+  },
+];
+
 const routeStatusCards = [
   {
     title: 'Scouting',
@@ -320,6 +343,13 @@ export default function ForzaHorizon6JapanMapPage() {
             items: nextPlannerLinks.map((link) => ({
               name: link.title,
               path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 Japan route specialist guides',
+            items: japanSpecialistGuides.map((guide) => ({
+              name: guide.title,
+              path: guide.href,
             })),
           }),
           buildItemListJsonLd({
@@ -463,6 +493,39 @@ export default function ForzaHorizon6JapanMapPage() {
               </article>
             );
           })}
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <ListChecksIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Specialist route guides
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                After the route type is clear, send the reader into a narrower
+                setup path: route checklist, launch plan, street/night tuning,
+                or S1 rally setup.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {japanSpecialistGuides.map((guide) => (
+                <LocaleLink
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-amber-300/40 hover:bg-amber-300/[0.04]"
+                  href={guide.href}
+                  key={guide.href}
+                >
+                  <RouteIcon className="size-5 text-amber-300" />
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {guide.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">
+                    {guide.text}
+                  </p>
+                </LocaleLink>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

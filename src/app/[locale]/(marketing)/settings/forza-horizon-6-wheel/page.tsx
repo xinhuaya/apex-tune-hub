@@ -30,17 +30,20 @@ const wheelProfiles = [
     brand: 'Logitech',
     issue: 'Noisy, light, or not enough road texture',
     action: 'Start conservative, then tune force feedback and damper together.',
+    href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
   },
   {
     brand: 'Thrustmaster',
     issue: 'Heavy center or vague corner entry',
     action: 'Balance steering feel before increasing force strength.',
+    href: '/games/forza-horizon-6/guides/thrustmaster-wheel-settings',
   },
   {
     brand: 'Fanatec / Moza',
     issue: 'Oscillation, clipping, or too much self-aligning force',
     action:
       'Use device software plus in-game settings as one combined profile.',
+    href: '/games/forza-horizon-6/guides/fanatec-moza-wheel-settings',
   },
 ];
 
@@ -316,6 +319,20 @@ export default function ForzaHorizon6WheelSettingsPage() {
               path: link.href,
             })),
           }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 wheel brand guides',
+            items: wheelProfiles.map((profile) => ({
+              name: profile.brand,
+              path: profile.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 wheel test links',
+            items: wheelTestLinks.map((link) => ({
+              name: link.title,
+              path: link.href,
+            })),
+          }),
           buildHowToJsonLd({
             title: 'How to test Forza Horizon 6 wheel settings',
             description:
@@ -452,7 +469,11 @@ export default function ForzaHorizon6WheelSettingsPage() {
 
         <div className="grid gap-4 md:grid-cols-3">
           {wheelProfiles.map((profile) => (
-            <article key={profile.brand} className="forza-card p-5">
+            <LocaleLink
+              className="forza-card p-5"
+              href={profile.href}
+              key={profile.brand}
+            >
               <GaugeIcon className="size-5 text-fuchsia-300" />
               <h2 className="mt-4 text-xl font-semibold">{profile.brand}</h2>
               <p className="mt-2 text-sm font-semibold text-amber-200">
@@ -461,7 +482,7 @@ export default function ForzaHorizon6WheelSettingsPage() {
               <p className="mt-3 text-sm leading-6 text-zinc-400">
                 {profile.action}
               </p>
-            </article>
+            </LocaleLink>
           ))}
         </div>
 
