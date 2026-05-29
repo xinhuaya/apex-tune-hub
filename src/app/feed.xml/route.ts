@@ -94,6 +94,13 @@ const feedItems: FeedItem[] = [
     category: 'Beginner tuning',
   },
   {
+    title: 'Forza Horizon 6 tune testing checklist',
+    path: '/games/forza-horizon-6/guides/tune-testing-checklist',
+    description:
+      'Tune testing checklist for FH6 repeatable routes, one-change setup tests, baseline notes, handling symptoms, device settings, and preset validation.',
+    category: 'Beginner tuning',
+  },
+  {
     title: 'Forza Horizon 6 upgrade order tuning guide',
     path: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
     description:

@@ -69,6 +69,7 @@ const highIntentGuideSlugs = [
   'best-starter-cars',
   'beginner-tuning-guide',
   'tuning-glossary-setup-terms',
+  'tune-testing-checklist',
   'steam-deck-settings-guide',
   'difficulty-settings-guide',
   'controller-deadzone-settings',

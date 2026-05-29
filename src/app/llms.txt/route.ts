@@ -30,6 +30,10 @@ const corePages: string[][] = [
     '/games/forza-horizon-6/guides/tuning-glossary-setup-terms',
   ],
   [
+    'Forza Horizon 6 tune testing checklist',
+    '/games/forza-horizon-6/guides/tune-testing-checklist',
+  ],
+  [
     'Forza Horizon 6 upgrade order tuning guide',
     '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
   ],

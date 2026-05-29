@@ -135,6 +135,10 @@ const guideShortcutBays = [
         href: '/games/forza-horizon-6/guides/tuning-glossary-setup-terms',
       },
       {
+        label: 'Tune testing',
+        href: '/games/forza-horizon-6/guides/tune-testing-checklist',
+      },
+      {
         label: 'Difficulty settings',
         href: '/games/forza-horizon-6/guides/difficulty-settings-guide',
       },
@@ -264,6 +268,7 @@ const guideGroups = [
       'japan-route-tuning-checklist',
       'beginner-tuning-guide',
       'tuning-glossary-setup-terms',
+      'tune-testing-checklist',
       'best-starter-cars',
       'a-s1-road-racing-tune',
       'gear-ratio-guide',

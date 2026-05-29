@@ -507,6 +507,99 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     ],
   },
   {
+    slug: 'tune-testing-checklist',
+    title: 'Forza Horizon 6 Tune Testing Checklist - Apex Tune Hub',
+    h1: 'Forza Horizon 6 tune testing checklist',
+    description:
+      'Forza Horizon 6 tune testing checklist for repeatable routes, one-change testing, baseline notes, handling symptoms, controller settings, wheel settings, and preset validation.',
+    eyebrow: 'Tune testing',
+    intro:
+      'A tune is only useful if you can repeat the result. Use this FH6 tune testing checklist to lock the car, route, assists, input device, and weather before deciding whether a setup change actually helped.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator',
+    },
+    relatedLinks: [
+      {
+        label: 'Beginner tuning guide',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+      {
+        label: 'Tuning glossary',
+        href: '/games/forza-horizon-6/guides/tuning-glossary-setup-terms',
+      },
+      {
+        label: 'Weekly playlist checklist',
+        href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+      },
+    ],
+    sections: [
+      {
+        title: 'Lock the baseline before changing sliders',
+        body: 'Choose one car, class, route, camera, assist profile, input device, and weather condition before touching setup values. If the baseline moves, the test result becomes noise.',
+        bullets: [
+          'Save the original preset before the first change.',
+          'Write down class, drivetrain, tire compound, and event type.',
+          'Use the same route section for every comparison.',
+        ],
+      },
+      {
+        title: 'Change one setup family at a time',
+        body: 'Good tune testing separates tires, alignment, ARBs, damping, differential, gearing, aero, and brakes. A car can feel better for the wrong reason if three groups change together.',
+        bullets: [
+          'Use one handling symptom as the target for each pass.',
+          'Retest after one setup family, then write the result.',
+          'Undo the change if it creates a bigger problem somewhere else.',
+        ],
+      },
+      {
+        title: 'Validate with a second job',
+        body: 'A setup that feels good on one corner can fail in traffic, rough surfaces, or weekly restrictions. Keep one second test job before calling the tune reusable.',
+        bullets: [
+          'Use a braking zone, a corner exit, and one fast section.',
+          'Use a rough or wet route if the car will run weekly events.',
+          'Save safe and aggressive versions when both have a purpose.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Tune testing decision paths',
+        description:
+          'Use these paths to decide whether the next test belongs to the car tune, player settings, or event plan.',
+        cards: [
+          {
+            title: 'Every car feels worse',
+            body: 'If every car feels delayed, twitchy, or hard to read, test settings before car setup.',
+            bullets: [
+              'Check controller, wheel, camera, assists, and FPS first.',
+              'Use one stable car to retest global feel.',
+              'Return to the tune only after input feel is stable.',
+            ],
+          },
+          {
+            title: 'One car has one symptom',
+            body: 'If one car understeers, oversteers, spins, brakes badly, or runs out of gear, tune the specific symptom.',
+            bullets: [
+              'Pick the matching handling guide or calculator issue.',
+              'Change one setup family and repeat the same section.',
+              'Keep the result only if it helps twice.',
+            ],
+          },
+          {
+            title: 'The event changes the answer',
+            body: 'A tune can pass free-roam testing but fail a restricted event. Add event constraints before saving the final note.',
+            bullets: [
+              'Record class, car type, surface, route, and objective.',
+              'Retest with traffic or co-op risk if needed.',
+              'Save a weekly-safe preset when consistency beats pace.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'fix-low-fps-stutter',
     title: 'How to Fix Low FPS and Stutter in Forza Horizon 6 - Apex Tune Hub',
     h1: 'How to fix low FPS and stutter in Forza Horizon 6',
