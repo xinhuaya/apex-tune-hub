@@ -71,9 +71,10 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - [x] Verified `pnpm build` after each guide batch; only local `BETTER_AUTH_SECRET` warnings appeared.
 - [x] Verified `pnpm audit:fh6-links`: `69` guide pages, `129` known paths, no duplicate slugs, no broken guide links.
 - [x] Verified locally on port `3037`: the 4 new guide URLs, guide index, `/feed.xml`, `/llms.txt`, and `/sitemap.xml` returned `200` and contained the new paths.
-- [ ] Deploy this batch to production after Vercel free deployment quota resets. Last CLI attempt returned `api-deployments-free-per-day`.
-- [ ] After deploy, verify the 4 new guide URLs, updated `/games/forza-horizon-6/guides`, `/feed.xml`, `/llms.txt`, and `/sitemap.xml`.
-- [ ] Submit IndexNow for the 4 new guide URLs plus the updated guide index, settings hubs, feed, llms, and sitemap.
+- [x] Deployed this batch to production after Vercel quota recovered: deployment `dpl_5PgE287mQSDzvUjSWbsfqEgwBDXN`, aliased to `https://apextunehub.com`.
+- [x] Verified production `200` responses for the 4 new guide URLs, updated `/games/forza-horizon-6/guides`, settings hubs, `/feed.xml`, `/llms.txt`, and `/sitemap.xml`.
+- [x] Submitted IndexNow for the 4 new guide URLs plus the updated guide index, settings hubs, feed, llms, and sitemap; accepted `200`.
+- [x] Saved production screenshot evidence at `previews/apex-production-fh6-new-guides-2026-05-29.png`.
 
 ## First 14 Days
 
