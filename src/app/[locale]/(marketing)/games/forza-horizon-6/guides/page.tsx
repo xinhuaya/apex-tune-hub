@@ -70,6 +70,12 @@ const guideRouterRows = [
     href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
   },
   {
+    problem: 'I do not understand tuning terms yet',
+    start: 'Tuning glossary',
+    next: 'Translate setup words like PI, camber, toe, ARBs, diff, aero, gearing, and brake balance before choosing a slider.',
+    href: '/games/forza-horizon-6/guides/tuning-glossary-setup-terms',
+  },
+  {
     problem: 'I need to upgrade a car without ruining it',
     start: 'Upgrade planning guides',
     next: 'Use upgrade order, tire compound, engine swap, and drivetrain swap guides before spending credits.',
@@ -116,6 +122,29 @@ const guideShortcutBays = [
       {
         label: 'Japan map planner',
         href: '/games/forza-horizon-6/japan-map',
+      },
+    ],
+  },
+  {
+    icon: BookOpenIcon,
+    title: 'Evergreen setup fundamentals',
+    text: 'Stable reference pages for players who need terms, difficulty, controller deadzones, and wheel rotation before tuning one car.',
+    links: [
+      {
+        label: 'Tuning glossary',
+        href: '/games/forza-horizon-6/guides/tuning-glossary-setup-terms',
+      },
+      {
+        label: 'Difficulty settings',
+        href: '/games/forza-horizon-6/guides/difficulty-settings-guide',
+      },
+      {
+        label: 'Controller deadzones',
+        href: '/games/forza-horizon-6/guides/controller-deadzone-settings',
+      },
+      {
+        label: 'Wheel rotation',
+        href: '/games/forza-horizon-6/guides/wheel-rotation-deadzone-settings',
       },
     ],
   },
