@@ -309,6 +309,71 @@ const tuneIssueGuideLinks: Record<
   },
 };
 
+const tuneActionPlans: Record<
+  HandlingIssue,
+  {
+    focus: string;
+    firstChange: string;
+    routeTest: string;
+    stopWhen: string;
+  }
+> = {
+  understeer: {
+    focus: 'Front bite before power',
+    firstChange:
+      'Start with front tire pressure, front anti-roll bar, and front differential changes before touching power upgrades.',
+    routeTest:
+      'Use one medium-speed corner and watch whether the car can hold the apex without extra steering lock.',
+    stopWhen:
+      'Stop when the car rotates with one clean steering input and does not snap on corner exit.',
+  },
+  oversteer: {
+    focus: 'Rear stability before rotation',
+    firstChange:
+      'Calm rear alignment, rear anti-roll bar, and differential lock before reducing all rotation.',
+    routeTest:
+      'Use a corner exit where you normally apply throttle early and check whether the rear steps out.',
+    stopWhen:
+      'Stop when you can repeat three exits without lifting more than once.',
+  },
+  wheelspin: {
+    focus: 'Traction before final drive',
+    firstChange:
+      'Stabilize rear tire pressure and differential behavior before changing every gear ratio.',
+    routeTest:
+      'Launch and exit a second-gear corner three times, then compare how quickly the car hooks up.',
+    stopWhen:
+      'Stop when throttle can be added progressively without the car wasting the first two seconds.',
+  },
+  'slow-launch': {
+    focus: 'First gear and launch grip',
+    firstChange:
+      'Tune first gear, final drive, and launch traction as a group. Do not chase top speed first.',
+    routeTest:
+      'Run the same standing launch three times and watch first-to-second shift behavior.',
+    stopWhen:
+      'Stop when the car leaves cleanly without bogging or hitting the limiter before second gear.',
+  },
+  'unstable-braking': {
+    focus: 'Brake phase control',
+    firstChange:
+      'Adjust brake balance, rear stability, and suspension compression before adding more front bite.',
+    routeTest:
+      'Use the same braking marker and check whether the car darts, locks, or rotates before turn-in.',
+    stopWhen:
+      'Stop when braking inputs are repeatable and the car enters the corner on the intended line.',
+  },
+  'poor-top-speed': {
+    focus: 'Reachable top gear',
+    firstChange:
+      'Lengthen final drive or upper gears only after the car can still pull through the previous gear.',
+    routeTest:
+      'Use the longest straight in the target event, not a highway-only test that the race never uses.',
+    stopWhen:
+      'Stop when top gear is reachable near the end of the straight without killing acceleration.',
+  },
+};
+
 const driftDefaults: DriftInput = {
   drivetrain: 'RWD',
   powerLevel: 'medium',
@@ -420,6 +485,7 @@ function ToolShell({
   description,
   children,
   nextStep,
+  resultAside,
   result,
   shareUrl,
 }: {
@@ -429,6 +495,7 @@ function ToolShell({
   description: string;
   children: ReactNode;
   nextStep?: ReactNode;
+  resultAside?: ReactNode;
   result: CalculationResult;
   shareUrl: string;
 }) {
@@ -567,7 +634,7 @@ function ToolShell({
             </div>
           ) : null}
         </div>
-        <ResultPanel result={result} />
+        <ResultPanel result={result}>{resultAside}</ResultPanel>
       </div>
     </section>
   );
@@ -659,7 +726,64 @@ function TuneNextStepCard({
   );
 }
 
-function ResultPanel({ result }: { result: CalculationResult }) {
+function TuneResultActionPlan({
+  input,
+  guide,
+}: {
+  input: TuneInput;
+  guide: { label: string; href: string; hint: string };
+}) {
+  const plan = tuneActionPlans[input.handlingIssue];
+
+  return (
+    <div className="mt-5 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            First test loop
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+            {plan.focus}
+          </h3>
+        </div>
+        <span className="rounded-md border border-white/10 bg-black/25 px-3 py-1 text-xs font-semibold text-zinc-400">
+          {input.classBand} {input.drivetrain}
+        </span>
+      </div>
+      <div className="mt-4 grid gap-3">
+        {[
+          ['Change first', plan.firstChange],
+          ['Test route', plan.routeTest],
+          ['Stop when', plan.stopWhen],
+        ].map(([label, text]) => (
+          <div
+            className="rounded-md border border-white/10 bg-black/25 p-3"
+            key={label}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+              {label}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-zinc-200">{text}</p>
+          </div>
+        ))}
+      </div>
+      <LocaleLink
+        className="mt-4 inline-flex min-h-10 items-center justify-center rounded-md border border-cyan-300/30 bg-black/25 px-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-300/[0.08]"
+        href={guide.href}
+      >
+        Read the matching guide
+      </LocaleLink>
+    </div>
+  );
+}
+
+function ResultPanel({
+  result,
+  children,
+}: {
+  result: CalculationResult;
+  children?: ReactNode;
+}) {
   return (
     <div className="forza-panel relative p-5">
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-zinc-800 pb-4">
@@ -678,6 +802,7 @@ function ResultPanel({ result }: { result: CalculationResult }) {
           {result.confidence}
         </span>
       </div>
+      {children}
       <div className="mt-5 grid gap-3">
         {result.recommendations.map((item) => (
           <RecommendationCard item={item} key={item.setting} />
@@ -732,6 +857,7 @@ export function ForzaTuneCalculator() {
       result={result}
       shareUrl={shareUrl}
       nextStep={<TuneNextStepCard guide={activeGuide} />}
+      resultAside={<TuneResultActionPlan guide={activeGuide} input={input} />}
     >
       <TuneSymptomPresetGrid input={input} onSelect={setInput} />
       <SelectField
