@@ -4527,6 +4527,29 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         label: 'Tune calculator',
         href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
       },
+      {
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general FH6 build-and-tune reference. For understeer, the useful workflow is to diagnose entry, mid-corner, and exit behavior before changing unrelated sliders.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a community reference for road and rally balance checks, including why route and drivetrain context matter before adding more front-end changes.',
+      },
     ],
     sections: [
       {
@@ -5043,6 +5066,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/tools/forza-horizon-6-gear-ratio-calculator',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a build-first tuning reference. For wheelspin, the important takeaway is to separate build choice, gearing, and differential behavior before reducing power.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a community reference for surface-specific tuning order and why traction fixes should stay tied to route and drivetrain.',
+      },
+    ],
     sections: [
       {
         title: 'Find when the tires break loose',
@@ -5069,6 +5111,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Use half throttle and full throttle tests on the same exit.',
           'Reduce aggressive differential choices in small steps.',
           'Save separate street, rally, and drag versions if the car has multiple roles.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Wheelspin trigger map',
+        description:
+          'Use the moment the tires spin to decide whether the first change belongs in gearing, differential, suspension, or driving style.',
+        cards: [
+          {
+            title: 'Launch wheelspin',
+            body: 'The tires break loose before the car is pointed anywhere. First gear, launch grip, drivetrain, and throttle application matter more than corner balance.',
+            bullets: [
+              'Lengthen first gear only in small steps.',
+              'Retest launch and first-to-second shift together.',
+              'Use drag or street presets only when the surface matches.',
+            ],
+          },
+          {
+            title: 'Exit wheelspin',
+            body: 'The car turns in, then wastes drive when throttle arrives. Start with power delivery, differential behavior, and rear tire load.',
+            bullets: [
+              'Repeat the same slow exit at half and full throttle.',
+              'Avoid removing so much rotation that the car pushes wide.',
+              'Use the main tune calculator if the problem includes understeer.',
+            ],
+          },
+          {
+            title: 'Bump wheelspin',
+            body: 'The car loses traction after crests, rough surfaces, or rally transitions. Suspension compliance may be more important than horsepower.',
+            bullets: [
+              'Retest on the same rough section every time.',
+              'Separate rally and road versions if the car has both roles.',
+              'Do not chase one smooth-road setup for every surface.',
+            ],
+          },
         ],
       },
     ],
@@ -5100,6 +5178,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=B&issue=slow-launch&style=balanced',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general build-and-tune workflow source. For slow launch, the page applies that workflow to first gear, traction, and shift recovery tests.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a community reference for road and rally setup order, especially why launch fixes should be tested on the target surface.',
+      },
+    ],
     sections: [
       {
         title: 'Test launch and corner exit separately',
@@ -5126,6 +5223,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Use softer delivery for dirt and rally surfaces.',
           'Use cleaner gear spacing for street routes with traffic.',
           'Use drag-specific testing for high-power straight-line builds.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Slow launch decision path',
+        description:
+          'A slow launch is not one problem. Separate bogging, wheelspin, first-shift loss, and surface mismatch before saving a setup.',
+        cards: [
+          {
+            title: 'Bogging off the line',
+            body: 'The car hooks but feels asleep. Shorter lower gearing or a different build direction may help before adding power.',
+            bullets: [
+              'Shorten final drive only if every gear feels lazy.',
+              'Shorten first and second if only exits feel weak.',
+              'Stop if the fix creates repeat wheelspin.',
+            ],
+          },
+          {
+            title: 'First shift loses the run',
+            body: 'The launch is acceptable, but the car falls out of the power band after the first shift. Focus on the first-to-second gap.',
+            bullets: [
+              'Retest the same launch point three times.',
+              'Close the affected gap instead of rewriting every gear.',
+              'Use the gear ratio calculator when the symptom is repeatable.',
+            ],
+          },
+          {
+            title: 'Surface mismatch',
+            body: 'A launch setup that works on asphalt may spin or bog on dirt. Surface and tire choice should be labelled before the preset is shared.',
+            bullets: [
+              'Keep dirt, rally, street, and drag launch notes separate.',
+              'Test with the same assists and route start.',
+              'Promote the setup only after the surface is clear.',
+            ],
+          },
         ],
       },
     ],
