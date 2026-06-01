@@ -296,6 +296,10 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         label: 'Car database',
         href: '/games/forza-horizon-6/cars',
       },
+      {
+        label: 'Video build and tune refresher',
+        href: '/games/forza-horizon-6/guides/video-build-tune-refresher',
+      },
     ],
     sections: [
       {
@@ -323,6 +327,114 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Compare lap feel and lap time together.',
           'Keep stable tunes for weekly events.',
           'Use aggressive tunes only when the route rewards them.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'video-build-tune-refresher',
+    title: 'Forza Horizon 6 Video Build and Tune Refresher - Apex Tune Hub',
+    h1: 'Forza Horizon 6 video build and tune refresher',
+    description:
+      'A video-backed Forza Horizon 6 tuning workflow that turns a build-and-tune refresher into practical FH6 calculator steps, testing checks, and setup decisions.',
+    eyebrow: 'Video guide',
+    intro:
+      'Use the video as a visual refresher, then make the decisions inside a repeatable workflow: choose the event, build for the route, fix one symptom, and test the same section before saving the tune.',
+    primaryCta: {
+      label: 'Open Tune Calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=A&issue=understeer&style=balanced',
+    },
+    relatedLinks: [
+      {
+        label: 'Beginner tuning guide',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+      {
+        label: 'Tune testing checklist',
+        href: '/games/forza-horizon-6/guides/tune-testing-checklist',
+      },
+      {
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+      {
+        label: 'Fix oversteer',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as the credited video reference for the build-first, tune-second workflow. The written steps below convert the video topic into Apex Tune Hub calculator actions and original testing notes.',
+      },
+    ],
+    sections: [
+      {
+        title: 'Watch for the build decision first',
+        body: 'A tune cannot rescue the wrong build. Before moving sliders, decide whether the car needs tires, weight, brakes, drivetrain, or power for the event you are actually running.',
+        bullets: [
+          'Road and street builds should start with braking, rotation, and exit traction.',
+          'Rally and mixed routes need suspension compliance before peak horsepower.',
+          'Drift builds need a controllable power band before extreme angle settings.',
+        ],
+      },
+      {
+        title: 'Turn the video into calculator inputs',
+        body: 'After the video gives you the setup idea, enter the concrete problem into the calculator: race type, drivetrain, class, handling issue, and driving style.',
+        bullets: [
+          'If the car pushes wide, start with understeer and a balanced road preset.',
+          'If the rear steps out, use oversteer and compare safe versus aggressive notes.',
+          'If the car bogs or hits limiter, switch to the gear ratio calculator before changing suspension.',
+        ],
+      },
+      {
+        title: 'Retest one route before saving',
+        body: 'The fastest way to avoid placebo tuning is to repeat the same section. Make one change, run the same corners, and save only when the car becomes easier to repeat.',
+        bullets: [
+          'Use one braking zone, one mid-speed corner, and one slow exit as the test loop.',
+          'Keep a stock or first-baseline copy so you can compare honestly.',
+          'Write down the symptom that improved before chasing the next setting.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Video-backed tuning checklist',
+        description:
+          'Use this checklist after watching the source video so the page becomes an action plan, not just a watch note.',
+        cards: [
+          {
+            title: 'Build pass',
+            body: 'Confirm the car has the right upgrade direction for the route before touching fine tuning.',
+            bullets: [
+              'Pick event type and class first.',
+              'Choose grip, weight, brakes, or power based on the failure point.',
+              'Avoid max-power upgrades until exits are repeatable.',
+            ],
+          },
+          {
+            title: 'Tune pass',
+            body: 'Move from broad balance to specific settings so every change has a job.',
+            bullets: [
+              'Fix tires and alignment before aero or gearing.',
+              'Use differential after the car already turns and brakes cleanly.',
+              'Separate road, rally, and drift presets.',
+            ],
+          },
+          {
+            title: 'Proof pass',
+            body: 'Treat a tune as finished only when it repeats under pressure.',
+            bullets: [
+              'Run three clean attempts on the same route.',
+              'Compare feel, mistakes, and time together.',
+              'Save a safer weekly-event version beside the fast version.',
+            ],
+          },
         ],
       },
     ],

@@ -68,6 +68,7 @@ const highIntentGuideSlugs = [
   'japan-route-tuning-checklist',
   'best-starter-cars',
   'beginner-tuning-guide',
+  'video-build-tune-refresher',
   'tuning-glossary-setup-terms',
   'tune-testing-checklist',
   'steam-deck-settings-guide',
