@@ -4577,8 +4577,35 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/best-rally-cars',
       },
       {
+        label: 'Oversteer tune calculator',
+        href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=A&issue=oversteer&style=balanced',
+      },
+      {
         label: 'Drift tune calculator',
         href: '/tools/forza-horizon-6-drift-tune-calculator',
+      },
+      {
+        label: 'Gear ratio guide',
+        href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general FH6 build-and-tune reference. For this oversteer guide, the useful takeaway is to diagnose the build and route before making slider changes.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a current community reference for road and rally tuning discussion, including drivetrain balance and setup order.',
       },
     ],
     sections: [
@@ -4607,6 +4634,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Test lower class first on technical routes.',
           'Add power only after exits are repeatable.',
           'Save separate drift, rally, and road versions.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Oversteer trigger diagnosis',
+        description:
+          'Use the moment the rear steps out to decide which setup group to touch first. The same slide can come from braking, throttle, bumps, or gearing.',
+        cards: [
+          {
+            title: 'Entry oversteer',
+            body: 'The rear rotates before throttle is applied. This usually points to braking balance, lift-off behavior, or front-to-rear grip balance.',
+            bullets: [
+              'Test a straight-brake entry before trail braking.',
+              'Calm the setup only enough to keep rotation catchable.',
+              'Avoid killing turn-in if the car only snaps on one corner type.',
+            ],
+          },
+          {
+            title: 'Exit oversteer',
+            body: 'The car is stable until throttle arrives. Start with power delivery, differential, lower gears, and rear tire load before changing everything.',
+            bullets: [
+              'Repeat one slow exit at half throttle and full throttle.',
+              'If first or second gear spikes the rear tires, check gearing.',
+              'Use a safer tune calculator preset before adding more power.',
+            ],
+          },
+          {
+            title: 'Bump or rally oversteer',
+            body: 'The rear steps out on rough surfaces, crests, or transitions. Suspension compliance and route-specific testing matter more than peak grip.',
+            bullets: [
+              'Retest on the same rough section after each change.',
+              'Soften the nervous behavior without making the car float.',
+              'Keep a separate rally version from the road build.',
+            ],
+          },
         ],
       },
     ],
