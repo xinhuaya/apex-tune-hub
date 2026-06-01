@@ -14,7 +14,7 @@ export type ForzaHorizon6Guide = {
     href: string;
   }[];
   mediaSources?: {
-    type: 'video';
+    type: 'video' | 'article';
     title: string;
     sourceName: string;
     sourceUrl: string;
@@ -4632,6 +4632,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Best road racing cars',
         href: '/games/forza-horizon-6/best-road-racing-cars',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general FH6 build-and-tune reference. For this gear guide, the video supports the build-first workflow before making final-drive or per-gear changes.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a current community reference because it calls out the lack of individual-gearing discussion in early FH6 tuning content.',
       },
     ],
     sections: [

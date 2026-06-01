@@ -1,7 +1,7 @@
 import { ExternalLinkIcon, PlayCircleIcon } from 'lucide-react';
 
 type GuideMediaSource = {
-  type: 'video';
+  type: 'video' | 'article';
   title: string;
   sourceName: string;
   sourceUrl: string;
@@ -40,20 +40,22 @@ export function ForzaHorizon6GuideMediaSources({
           Referenced media
         </p>
         <h2 className="mt-3 text-xl font-semibold text-zinc-50">
-          Video sources used for this guide
+          Sources used for this guide
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-400">
-          Videos are embedded or linked from the original publisher and credited
-          here. Apex Tune Hub uses them as reference material; screenshots and
-          diagrams on this page should remain original unless we have permission
-          to reuse footage.
+          Videos and community references are embedded or linked from the
+          original publisher and credited here. Apex Tune Hub uses them as
+          reference material; screenshots and diagrams on this page should
+          remain original unless we have permission to reuse footage.
         </p>
       </div>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         {sources.map((source) => {
           const canEmbed =
-            source.embedUrl && isAllowedEmbedUrl(source.embedUrl);
+            source.type === 'video' &&
+            source.embedUrl &&
+            isAllowedEmbedUrl(source.embedUrl);
 
           return (
             <article
@@ -72,9 +74,18 @@ export function ForzaHorizon6GuideMediaSources({
                     title={source.title}
                   />
                 </div>
-              ) : (
+              ) : source.type === 'video' ? (
                 <div className="flex aspect-video items-center justify-center bg-black/40">
                   <PlayCircleIcon className="size-12 text-cyan-200" />
+                </div>
+              ) : (
+                <div className="flex aspect-video flex-col justify-end bg-[radial-gradient(circle_at_30%_20%,rgba(6,182,212,0.22),transparent_34%),linear-gradient(135deg,rgba(9,9,11,0.94),rgba(24,24,27,0.86))] p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
+                    Community reference
+                  </p>
+                  <p className="mt-3 max-w-sm text-lg font-semibold leading-7 text-zinc-50">
+                    {source.title}
+                  </p>
                 </div>
               )}
               <div className="p-4">
