@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -191,6 +192,53 @@ const futureCodeFields = [
   'Last tested date',
   'Matching preset URL',
   'Known weakness',
+];
+
+const tuneCodeMediaSources = [
+  {
+    type: 'video' as const,
+    title:
+      'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+    sourceName: 'HokiHoshi on YouTube',
+    sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+    note: 'Used as a source for the baseline tuning workflow: build first, test symptoms, then share only after the setup has context.',
+  },
+  {
+    type: 'article' as const,
+    title: 'Comprehensive tuning guide: road and rally tuning notes',
+    sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+    note: 'Community reference for why a tune row needs surface, class, handling-symptom, and retest notes instead of a copied number alone.',
+  },
+  {
+    type: 'article' as const,
+    title: 'FH6 Tune Help: Drifting',
+    sourceName: 'r/ForzaHorizon discussion',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon/comments/1tmoauc/fh6_tune_help_drifting/',
+    note: 'Used to keep future drift share-code rows separate from road, rally, and drag codes because the setup goal is different.',
+  },
+];
+
+const productLoopSteps = [
+  {
+    title: 'Public baseline URL',
+    text: 'Every search visitor can open a preset or calculator state immediately, even before a verified in-game code exists.',
+  },
+  {
+    title: 'Verified code row',
+    text: 'After testing, add the share code, creator/source, exact car, class, route type, known weakness, and last-tested date.',
+  },
+  {
+    title: 'Retest queue',
+    text: 'Patch notes, new cars, weekly restrictions, and player reports should move older rows into needs-retest instead of hiding uncertainty.',
+  },
+  {
+    title: 'Member save list',
+    text: 'The natural paid feature is a saved-code garage: favorite codes, compare versions, get retest alerts, and export setup notes.',
+  },
 ];
 
 const internalReviewLinks = [
@@ -483,6 +531,44 @@ export default function ForzaHorizon6TuneCodesPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="forza-panel p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+              Product loop
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">
+              Turn tune-code searches into a real user account feature
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              The tune-code page should not be just a list. It is the bridge
+              from free search traffic to repeat visits: users find a baseline,
+              save the version they trust, and come back when patches or weekly
+              events change the setup.
+            </p>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            {productLoopSteps.map((step, index) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={step.title}
+              >
+                <div className="flex size-8 items-center justify-center rounded-full border border-cyan-300/40 bg-cyan-300/10 text-sm font-black text-cyan-200">
+                  {index + 1}
+                </div>
+                <h3 className="mt-4 text-base font-semibold text-zinc-100">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {step.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
         <div className="forza-panel overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[1fr_1.2fr_0.8fr]">
             <span>Search intent</span>
@@ -637,6 +723,9 @@ export default function ForzaHorizon6TuneCodesPage() {
             ))}
           </div>
         </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <ForzaHorizon6GuideMediaSources sources={tuneCodeMediaSources} />
       </section>
       <ApexNewsletterCta
         description="Get verified FH6 tune-code updates, preset URLs, and car-specific setup notes as testing expands."
