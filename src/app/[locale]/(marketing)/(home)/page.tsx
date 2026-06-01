@@ -174,10 +174,10 @@ export default function HomePage() {
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-20">
           <div className="min-w-0 max-w-full flex flex-col justify-center">
             <p className="forza-chip">Forza Horizon 6 tune calculator</p>
-            <h1 className="forza-neon-title mt-6 max-w-[calc(100vw-2rem)] text-3xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
+            <h1 className="forza-neon-title mt-6 max-w-[22rem] text-3xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
               Start with the tune calculator, then test the car.
             </h1>
-            <p className="mt-5 max-w-[calc(100vw-2rem)] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl sm:text-lg">
+            <p className="mt-5 max-w-[22rem] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl sm:text-lg">
               Apex Tune Hub is an FH6 setup workbench. Choose the race type,
               drivetrain, class, and handling problem on the first screen, then
               open the full calculator to copy notes, save presets, and refine
@@ -202,7 +202,7 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid max-w-[22rem] gap-3 sm:max-w-2xl sm:grid-cols-3">
               {launchSignals.map((item) => {
                 const Icon = item.icon;
 

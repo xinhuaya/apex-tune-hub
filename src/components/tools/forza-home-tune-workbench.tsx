@@ -174,7 +174,7 @@ export function ForzaHomeTuneWorkbench() {
   }
 
   return (
-    <div className="forza-panel relative overflow-hidden p-4 sm:p-5">
+    <div className="forza-panel relative w-full max-w-[22rem] overflow-hidden p-4 sm:max-w-full sm:p-5">
       <div className="forza-hero-grid absolute inset-0 opacity-30" />
       <div className="relative">
         <div className="flex items-start justify-between gap-4 border-b border-zinc-800 pb-4">
