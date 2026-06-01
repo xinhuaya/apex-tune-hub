@@ -1,6 +1,7 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { ForzaDriftTuneCalculator } from '@/components/tools/forza-tuning-calculators';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
 import {
@@ -82,6 +83,34 @@ const driftRelatedLinks = [
   },
 ];
 
+const driftMediaSources = [
+  {
+    type: 'video' as const,
+    title:
+      'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+    sourceName: 'HokiHoshi on YouTube',
+    sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+    note: 'Used as a general FH6 build-and-tune reference. For drift, it supports the idea that setup decisions should begin with the build and the test route.',
+  },
+  {
+    type: 'article' as const,
+    title: 'FH6 Tune Help: Drifting',
+    sourceName: 'r/ForzaHorizon discussion',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon/comments/1tmoauc/fh6_tune_help_drifting/',
+    note: 'Used as a current player discussion about FH6 drift tuning, tire choice, gear use, and physics changes from earlier Horizon titles.',
+  },
+  {
+    type: 'article' as const,
+    title: 'Tips for Tuning a car for Drifting?',
+    sourceName: 'r/ForzaHorizon6 discussion',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon6/comments/1tt763j/tips_for_tuning_a_car_for_drifting/',
+    note: 'Used because players are explicitly asking for tuning principles instead of only downloading drift share codes.',
+  },
+];
+
 const driftBuildTypes = [
   {
     title: 'RWD angle learner',
@@ -137,6 +166,21 @@ const driftTrustRules = [
   'Separate RWD learning setups from AWD speed-zone setups in internal links.',
   'Fix gearing only after the car can hold angle predictably.',
   'Attach verified drift notes to car pages and best-drift-car hubs later.',
+];
+
+const driftSourceChecklist = [
+  {
+    title: 'Teach the player one drift gear',
+    body: 'Recent drift discussions keep returning to usable gear choice. The page should help the player find the main drift gear before promising more angle.',
+  },
+  {
+    title: 'Separate skill problem from tune problem',
+    body: 'A beginner may need a calmer car and a repeatable zone before extreme settings. The calculator should explain what to test first.',
+  },
+  {
+    title: 'Avoid pretending tune codes are universal',
+    body: 'Share codes can be useful, but this page should sell the workflow: build, symptom, test route, then save the preset link.',
+  },
 ];
 
 const driftFaqs = [
@@ -345,6 +389,40 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
             ))}
           </div>
         </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
+              Source-backed drift notes
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-zinc-50">
+              Make drift advice practical, not just dramatic
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Current FH6 drift questions are mostly about control: which gear
+              to hold, why the car bogs, whether automatic can work, and how to
+              tune without blindly copying a share code. The calculator keeps
+              those questions tied to one repeatable first test.
+            </p>
+          </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            {driftSourceChecklist.map((item) => (
+              <article
+                className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                key={item.title}
+              >
+                <h3 className="text-base font-semibold text-zinc-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+        <ForzaHorizon6GuideMediaSources sources={driftMediaSources} />
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="forza-panel p-5">
