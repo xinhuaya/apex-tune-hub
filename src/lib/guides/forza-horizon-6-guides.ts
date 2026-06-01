@@ -187,6 +187,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-oversteer',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general FH6 tuning workflow reference. For Japan drift setup, the page applies the workflow to route rhythm, drift gear choice, and recoverable angle.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Tune Help: Drifting',
+        sourceName: 'r/ForzaHorizon discussion',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon/comments/1tmoauc/fh6_tune_help_drifting/',
+        note: 'Used as community context for drift-specific setup questions, especially separating drift goals from road-race stability.',
+      },
+    ],
     sections: [
       {
         title: 'Choose control before angle',
@@ -213,6 +232,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Mountain setup: smoother transitions and calmer throttle response.',
           'City setup: quicker initiation and shorter gearing for tight sections.',
           'Save both presets so weekly drift zones are faster to prepare.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Japan drift route split',
+        description:
+          'Build separate drift notes for mountain flow, city transitions, and weekly drift zones instead of forcing one dramatic tune everywhere.',
+        cards: [
+          {
+            title: 'Mountain roads',
+            body: 'Mountain sections reward rhythm and recovery. The tune should hold angle without making the next transition late.',
+            bullets: [
+              'Use a linked downhill section for testing.',
+              'Keep the main drift gear usable for several corners.',
+              'Reduce snap before chasing more power.',
+            ],
+          },
+          {
+            title: 'City transitions',
+            body: 'City drift sections often need quicker initiation and lower-speed control. A mountain tune may feel too lazy here.',
+            bullets: [
+              'Test one tight transition repeatedly.',
+              'Shorten gearing only if the car bogs.',
+              'Avoid a setup that requires panic corrections.',
+            ],
+          },
+          {
+            title: 'Weekly drift zones',
+            body: 'Weekly tasks need a setup that scores quickly under restrictions. Keep a safe version before creating a sharper practice build.',
+            bullets: [
+              'Record car, class, assists, and route section.',
+              'Use the drift calculator when the zone needs a different gear.',
+              'Save a legal repeatable version before experimenting.',
+            ],
+          },
         ],
       },
     ],
@@ -3941,6 +3996,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/best-drift-cars',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general tuning workflow reference. For drift zones, the page narrows that workflow to angle, speed, transition recovery, and route-specific testing.',
+      },
+      {
+        type: 'article',
+        title: 'Tips for Tuning a car for Drifting?',
+        sourceName: 'r/ForzaHorizon6 discussion',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tt763j/tips_for_tuning_a_car_for_drifting/',
+        note: 'Used as community drift context for practical setup checks around initiation, holding angle, and recovery.',
+      },
+    ],
     sections: [
       {
         title: 'Balance angle and speed',
@@ -5691,6 +5765,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-oversteer',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general tuning workflow reference. For controller drift, the useful layer is separating input feel from car setup before changing power or gearing.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Tune Help: Drifting',
+        sourceName: 'r/ForzaHorizon discussion',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon/comments/1tmoauc/fh6_tune_help_drifting/',
+        note: 'Used as community context for drift-specific tuning questions and controller-friendly setup checks.',
+      },
+    ],
     sections: [
       {
         title: 'Smooth throttle before adding power',
@@ -5717,6 +5810,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Record the car, class, drivetrain, assists, and route section.',
           'Use one transition for initiation and another for recovery.',
           'Save a safe weekly version before building a more aggressive tune.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Controller drift diagnosis',
+        description:
+          'Separate controller feel from car setup before changing power, gearing, or differential settings.',
+        cards: [
+          {
+            title: 'Every car feels twitchy',
+            body: 'This usually points to controller settings, deadzone, steering response, or assists before it points to one car tune.',
+            bullets: [
+              'Check deadzone and steering response first.',
+              'Use a low-power drift car for comparison.',
+              'Keep assists and camera fixed during the test.',
+            ],
+          },
+          {
+            title: 'Only one car snaps',
+            body: 'If the input feels fine in other cars, tune the problem car around oversteer, gearing, and differential behavior.',
+            bullets: [
+              'Open the oversteer guide for rear snap.',
+              'Use the drift calculator once the failure point is clear.',
+              'Save a calmer weekly version before sharpening angle.',
+            ],
+          },
+          {
+            title: 'Throttle control fails',
+            body: 'Controller drift needs smooth throttle before big power. If half throttle already spins, fix delivery before adding horsepower.',
+            bullets: [
+              'Test half throttle and full throttle on the same corner.',
+              'Lengthen gearing if tires light instantly.',
+              'Use moderate power until transitions are repeatable.',
+            ],
+          },
         ],
       },
     ],
