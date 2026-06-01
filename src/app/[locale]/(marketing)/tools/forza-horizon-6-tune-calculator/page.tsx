@@ -1,5 +1,6 @@
 import { ForzaPresetCard } from '@/components/tools/forza-preset-card';
 import { ForzaTuneCalculator } from '@/components/tools/forza-tuning-calculators';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
@@ -168,6 +169,26 @@ const calculatorUseCases = [
     title: 'Car page testing',
     body: 'Attach calculator notes to individual car pages once a candidate has a role, weakness, and test route.',
     icon: CarFrontIcon,
+  },
+];
+
+const calculatorMediaSources = [
+  {
+    type: 'video' as const,
+    title:
+      'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+    sourceName: 'HokiHoshi on YouTube',
+    sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+    note: 'Used as a credited video reference for the build-first tuning workflow behind this calculator page.',
+  },
+  {
+    type: 'article' as const,
+    title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+    sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+    note: 'Used as a current community reference for road and rally setup order, drivetrain balance, and early FH6 tuning discussion.',
   },
 ];
 
@@ -427,6 +448,45 @@ export default function ForzaHorizon6TuneCalculatorPage() {
             );
           })}
         </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <ShieldCheckIcon className="size-6 text-amber-300" />
+              <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+                Why the calculator starts with symptoms
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Current FH6 tuning discussion is still evolving, so the safest
+                tool design is a guided baseline, not a fake perfect tune code.
+                Start with what the car does wrong, then move into one focused
+                setting family.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {[
+                ['1', 'Build', 'Choose class, drivetrain, tires, and role.'],
+                ['2', 'Symptom', 'Name understeer, oversteer, spin, or speed.'],
+                ['3', 'Proof', 'Retest one route before saving the preset.'],
+              ].map(([step, label, text]) => (
+                <article
+                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
+                  key={label}
+                >
+                  <span className="text-lg font-semibold text-cyan-200">
+                    {step}
+                  </span>
+                  <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                    {label}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+        <ForzaHorizon6GuideMediaSources sources={calculatorMediaSources} />
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

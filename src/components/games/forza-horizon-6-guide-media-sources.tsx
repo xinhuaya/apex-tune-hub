@@ -40,7 +40,7 @@ export function ForzaHorizon6GuideMediaSources({
           Referenced media
         </p>
         <h2 className="mt-3 text-xl font-semibold text-zinc-50">
-          Sources used for this guide
+          Sources used for this page
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-400">
           Videos and community references are embedded or linked from the
