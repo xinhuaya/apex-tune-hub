@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { ForzaHorizon6GuideVisual } from '@/components/games/forza-horizon-6-guide-visual';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -361,6 +362,15 @@ export default async function ForzaHorizon6GuidePage({
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-6">
+            <ForzaHorizon6GuideVisual
+              title={guide.h1}
+              cluster={guideCluster}
+              primaryAction={primaryActionLabel}
+              sections={guide.sections}
+            />
+          </div>
+
           <div className="mb-6 grid gap-4 lg:grid-cols-[0.76fr_1.24fr]">
             <div className="forza-panel p-5">
               <GitBranchIcon className="size-6 text-fuchsia-300" />
