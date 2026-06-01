@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { JsonLd } from '@/components/seo/json-ld';
 import { ForzaGearRatioCalculator } from '@/components/tools/forza-tuning-calculators';
 import { LocaleLink } from '@/i18n/navigation';
@@ -123,6 +124,41 @@ const gearPublishingRules = [
   'Separate top-speed builds from road-racing builds in internal links.',
   'Send handling problems back to the main tune calculator before deeper gear edits.',
   'Attach useful gearing notes to car pages once specific cars are tested.',
+];
+
+const gearMediaSources = [
+  {
+    type: 'video' as const,
+    title:
+      'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+    sourceName: 'HokiHoshi on YouTube',
+    sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+    note: 'Used as the video reference for testing final drive after the build direction is clear, instead of editing every gear immediately.',
+  },
+  {
+    type: 'article' as const,
+    title: 'Comprehensive tuning guide: road and rally tuning notes',
+    sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+    note: 'Community reference for road and rally trade-offs, especially why gearing should follow route, surface, and power-band needs.',
+  },
+];
+
+const sourceBackedGearNotes = [
+  {
+    title: 'Final drive is the first broad move',
+    text: 'Use final drive for the whole gearbox direction before touching individual gears. It is easier to reverse and easier to explain to a player.',
+  },
+  {
+    title: 'Top speed is not always the win condition',
+    text: 'A longer highway number can be slower in city, road, dirt, or rally events when the car loses exit speed or never reaches top gear.',
+  },
+  {
+    title: 'Route notes make share links useful',
+    text: 'A gearing setup should say whether it targets launch, 2nd-4th pull, mid-range stability, or limiter control.',
+  },
 ];
 
 const gearFaqs = [
@@ -374,6 +410,37 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
             ))}
           </div>
         </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="forza-panel p-5">
+            <p className="forza-chip">Source-backed gear notes</p>
+            <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+              The calculator should explain the test, not just the slider
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Players searching for a gear ratio calculator usually want an
+              exact answer. The better answer is a repeatable test: pick the
+              route, move final drive first, then verify whether the car gains
+              launch, shift recovery, or top-end pull.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {sourceBackedGearNotes.map((note) => (
+              <article className="forza-card p-4" key={note.title}>
+                <h3 className="text-base font-semibold text-zinc-50">
+                  {note.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {note.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <ForzaHorizon6GuideMediaSources sources={gearMediaSources} />
       </section>
       <ApexNewsletterCta
         description="Get gearing presets, top-speed tests, and launch tuning notes as new FH6 cars are added."
