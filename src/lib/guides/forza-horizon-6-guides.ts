@@ -187,6 +187,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-oversteer',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general FH6 tuning workflow reference. For braking instability, the page applies the build-first approach to brake platform, surface, and rotation tests.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a community reference for road and rally tuning order, especially separating smooth-road balance from bump and surface behavior.',
+      },
+    ],
     sections: [
       {
         title: 'Choose control before angle',
@@ -213,6 +232,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Mountain setup: smoother transitions and calmer throttle response.',
           'City setup: quicker initiation and shorter gearing for tight sections.',
           'Save both presets so weekly drift zones are faster to prepare.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Braking instability trigger map',
+        description:
+          'Use the first moment the car becomes unstable to decide whether the fix belongs in brakes, differential, suspension, or driver input.',
+        cards: [
+          {
+            title: 'Straight-line wandering',
+            body: 'The car moves around before steering input. Treat this as a platform or surface problem before changing corner-exit tuning.',
+            bullets: [
+              'Use one smooth braking zone and one bumpy braking zone.',
+              'Keep steering input minimal during the first test.',
+              'Retest suspension changes before touching differential.',
+            ],
+          },
+          {
+            title: 'Trail-brake snap',
+            body: 'The car is stable straight, then rotates too fast as steering arrives. Brake balance, rear stability, and lift-off behavior are the first checks.',
+            bullets: [
+              'Repeat light trail braking on one medium-speed corner.',
+              'Calm only the trigger that creates the snap.',
+              'Use the oversteer guide if the rear steps out after brake release.',
+            ],
+          },
+          {
+            title: 'Lockup or long stopping',
+            body: 'The car refuses to slow down cleanly. Confirm tire grip, brake pressure, and route surface before assuming more power is the issue.',
+            bullets: [
+              'Compare stopping distance before and after each change.',
+              'Avoid adding power until braking is repeatable.',
+              'Save a stable weekly-event setup separately from an aggressive rivals setup.',
+            ],
+          },
         ],
       },
     ],
@@ -244,6 +299,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/gear-ratio-guide',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general build-and-tune reference. For top speed, the useful workflow is to confirm route value, gearing, and build direction before adding power.',
+      },
+      {
+        type: 'article',
+        title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+        sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+        note: 'Used as a community reference for route-specific trade-offs, including why speed-trap and road-race builds should not be treated as the same setup.',
+      },
+    ],
     sections: [
       {
         title: 'Build A class for learning',
@@ -270,6 +344,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Run one dry route and one wet or rough route before saving a preset.',
           'Compare consistency over three runs, not only the fastest lap.',
           'Keep separate safe and aggressive versions for weekly events.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Top speed problem sorter',
+        description:
+          'Poor top speed can mean limiter, drag, power, aero, or a route that does not actually reward top end. Sort the problem before changing upgrades.',
+        cards: [
+          {
+            title: 'Limiter before the straight ends',
+            body: 'The gearing is too short for the route. Lengthen final drive first, then check whether launch and lower gears still feel alive.',
+            bullets: [
+              'Move final drive in small steps.',
+              'Retest the longest useful straight, not an empty highway only.',
+              'Use the gear ratio calculator before changing every gear.',
+            ],
+          },
+          {
+            title: 'Car will not pull higher speed',
+            body: 'The car may lack power for the target, carry too much drag, or sit outside its useful power band. More gear length alone can make it slower.',
+            bullets: [
+              'Compare speed gain after each shift.',
+              'Check aero and tire drag before adding horsepower.',
+              'Protect acceleration if the route has many exits.',
+            ],
+          },
+          {
+            title: 'Fast number but slow race',
+            body: 'The build has a strong top-speed number but loses because exits, braking, or fast corners are worse. Treat it as a race setup problem.',
+            bullets: [
+              'Compare lap time and speed trap separately.',
+              'Keep a speed-trap version separate from road racing.',
+              'Return to the main tune calculator if the car now understeers or spins.',
+            ],
+          },
         ],
       },
     ],
@@ -5404,6 +5514,33 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/best-mazda-cars',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general tuning workflow reference. For drift settings, this page narrows the workflow to recoverable angle, usable drift gears, and repeatable transitions.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Tune Help: Drifting',
+        sourceName: 'r/ForzaHorizon discussion',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon/comments/1tmoauc/fh6_tune_help_drifting/',
+        note: 'Used as community context for drift-specific tuning questions, especially separating drift goals from road-race stability.',
+      },
+      {
+        type: 'article',
+        title: 'Tips for Tuning a car for Drifting?',
+        sourceName: 'r/ForzaHorizon6 discussion',
+        sourceUrl:
+          'https://www.reddit.com/r/ForzaHorizon6/comments/1tt763j/tips_for_tuning_a_car_for_drifting/',
+        note: 'Used as a second community drift reference for practical setup checks and why drift pages should focus on initiation, hold, and recovery.',
+      },
+    ],
     sections: [
       {
         title: 'Start with recoverable angle',
@@ -5430,6 +5567,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Reduce snap before adding more steering aggression.',
           'Soften harsh transitions if the car bounces or unloads suddenly.',
           'Record whether the problem appears on initiation, hold, or recovery.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Drift setup diagnosis',
+        description:
+          'Name the part of the slide that fails before changing power, gearing, differential, or suspension.',
+        cards: [
+          {
+            title: 'Fails on initiation',
+            body: 'The car will not start the slide cleanly or snaps too hard. Focus on steering response, weight transfer, and entry speed before adding more power.',
+            bullets: [
+              'Use the same entry speed on each test.',
+              'Reduce snap before chasing bigger angle.',
+              'Check controller or wheel settings if every car feels delayed.',
+            ],
+          },
+          {
+            title: 'Fails while holding angle',
+            body: 'The car either bogs mid-corner or lights the tires instantly. Gearing and throttle delivery are the first places to look.',
+            bullets: [
+              'Pick one main drift gear for the test section.',
+              'Lengthen if tires smoke instantly and kill direction.',
+              'Shorten if the car falls out of power mid-drift.',
+            ],
+          },
+          {
+            title: 'Fails on recovery',
+            body: 'The car cannot catch the next transition or straightens too late. Tune for rhythm, not one dramatic isolated slide.',
+            bullets: [
+              'Use linked corners for recovery tests.',
+              'Keep a safer version for weekly drift zones.',
+              'Move to the drift tune calculator when the failure point is clear.',
+            ],
+          },
         ],
       },
     ],
