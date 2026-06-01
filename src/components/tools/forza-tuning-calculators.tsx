@@ -29,7 +29,14 @@ import {
   type Recommendation,
   type TuneInput,
 } from '@/lib/tuning/forza-horizon-6';
-import { BookmarkPlusIcon, LinkIcon, Trash2Icon } from 'lucide-react';
+import { LocaleLink } from '@/i18n/navigation';
+import {
+  BookmarkPlusIcon,
+  LifeBuoyIcon,
+  LinkIcon,
+  RouteIcon,
+  Trash2Icon,
+} from 'lucide-react';
 
 type StringRecord = Record<string, string>;
 type SavedPreset = {
@@ -193,6 +200,115 @@ const tunePresetConfig: PresetConfig<TuneInput> = {
   },
 };
 
+const tuneSymptomPresets: Array<{
+  title: string;
+  note: string;
+  input: TuneInput;
+}> = [
+  {
+    title: 'Pushes wide',
+    note: 'Road AWD understeer baseline',
+    input: {
+      raceType: 'road',
+      drivetrain: 'AWD',
+      classBand: 'S1',
+      handlingIssue: 'understeer',
+      drivingStyle: 'balanced',
+    },
+  },
+  {
+    title: 'Rear steps out',
+    note: 'RWD stability pass',
+    input: {
+      raceType: 'road',
+      drivetrain: 'RWD',
+      classBand: 'S1',
+      handlingIssue: 'oversteer',
+      drivingStyle: 'stable',
+    },
+  },
+  {
+    title: 'Too much spin',
+    note: 'Street launch grip pass',
+    input: {
+      raceType: 'street',
+      drivetrain: 'RWD',
+      classBand: 'A',
+      handlingIssue: 'wheelspin',
+      drivingStyle: 'stable',
+    },
+  },
+  {
+    title: 'Slow launch',
+    note: 'Drag AWD launch pass',
+    input: {
+      raceType: 'drag',
+      drivetrain: 'AWD',
+      classBand: 'S1',
+      handlingIssue: 'slow-launch',
+      drivingStyle: 'balanced',
+    },
+  },
+  {
+    title: 'Unstable braking',
+    note: 'Street safety pass',
+    input: {
+      raceType: 'street',
+      drivetrain: 'AWD',
+      classBand: 'A',
+      handlingIssue: 'unstable-braking',
+      drivingStyle: 'stable',
+    },
+  },
+  {
+    title: 'No top speed',
+    note: 'S2 road speed pass',
+    input: {
+      raceType: 'road',
+      drivetrain: 'AWD',
+      classBand: 'S2',
+      handlingIssue: 'poor-top-speed',
+      drivingStyle: 'aggressive',
+    },
+  },
+];
+
+const tuneIssueGuideLinks: Record<
+  HandlingIssue,
+  { label: string; href: string; hint: string }
+> = {
+  understeer: {
+    label: 'Open understeer guide',
+    href: '/games/forza-horizon-6/guides/fix-understeer',
+    hint: 'Use this when the car misses apexes or pushes wide.',
+  },
+  oversteer: {
+    label: 'Open oversteer guide',
+    href: '/games/forza-horizon-6/guides/fix-oversteer',
+    hint: 'Use this when the rear snaps, rotates too fast, or exits feel unsafe.',
+  },
+  wheelspin: {
+    label: 'Open wheelspin guide',
+    href: '/games/forza-horizon-6/guides/fix-wheelspin',
+    hint: 'Use this when launch or corner exit wastes grip.',
+  },
+  'slow-launch': {
+    label: 'Open launch guide',
+    href: '/games/forza-horizon-6/guides/fix-slow-launch',
+    hint: 'Use this when first gear bogs, spins, or loses the first seconds.',
+  },
+  'unstable-braking': {
+    label: 'Open braking guide',
+    href: '/games/forza-horizon-6/guides/fix-unstable-braking',
+    hint: 'Use this when braking makes the car dart, lock, or rotate too much.',
+  },
+  'poor-top-speed': {
+    label: 'Open top speed guide',
+    href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+    hint: 'Use this when long straights feel capped or the car cannot pull gear.',
+  },
+};
+
 const driftDefaults: DriftInput = {
   drivetrain: 'RWD',
   powerLevel: 'medium',
@@ -303,6 +419,7 @@ function ToolShell({
   title,
   description,
   children,
+  nextStep,
   result,
   shareUrl,
 }: {
@@ -311,6 +428,7 @@ function ToolShell({
   title: string;
   description: string;
   children: ReactNode;
+  nextStep?: ReactNode;
   result: CalculationResult;
   shareUrl: string;
 }) {
@@ -379,6 +497,7 @@ function ToolShell({
           </h1>
           <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
           <div className="mt-6 grid gap-4">{children}</div>
+          {nextStep ? <div className="mt-5">{nextStep}</div> : null}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <button
               className="forza-primary-button h-11 w-full focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
@@ -454,6 +573,92 @@ function ToolShell({
   );
 }
 
+function TuneSymptomPresetGrid({
+  input,
+  onSelect,
+}: {
+  input: TuneInput;
+  onSelect: (input: TuneInput) => void;
+}) {
+  return (
+    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <LifeBuoyIcon className="size-4 text-amber-200" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
+            Quick symptom presets
+          </p>
+        </div>
+        <span className="text-xs text-zinc-500">1 click start</span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {tuneSymptomPresets.map((preset) => {
+          const isActive =
+            input.raceType === preset.input.raceType &&
+            input.drivetrain === preset.input.drivetrain &&
+            input.classBand === preset.input.classBand &&
+            input.handlingIssue === preset.input.handlingIssue &&
+            input.drivingStyle === preset.input.drivingStyle;
+
+          return (
+            <button
+              className={`rounded-md border px-3 py-2 text-left transition ${
+                isActive
+                  ? 'border-cyan-300/60 bg-cyan-300/[0.08]'
+                  : 'border-white/10 bg-black/25 hover:border-cyan-300/30 hover:bg-cyan-300/[0.04]'
+              }`}
+              key={preset.title}
+              type="button"
+              onClick={() => onSelect(preset.input)}
+            >
+              <span className="block text-sm font-semibold text-zinc-100">
+                {preset.title}
+              </span>
+              <span className="mt-1 block text-xs leading-5 text-zinc-500">
+                {preset.note}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function TuneNextStepCard({
+  guide,
+}: {
+  guide: { label: string; href: string; hint: string };
+}) {
+  return (
+    <div className="rounded-md border border-amber-300/25 bg-amber-300/[0.07] p-4">
+      <div className="flex items-start gap-3">
+        <RouteIcon className="mt-1 size-5 shrink-0 text-amber-200" />
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
+            Matched next step
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">{guide.hint}</p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            <LocaleLink
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-amber-300/30 bg-black/25 px-3 text-center text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/[0.1]"
+              href={guide.href}
+            >
+              {guide.label}
+            </LocaleLink>
+            <LocaleLink
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-black/25 px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
+              href="/tools/forza-horizon-6-tune-presets"
+            >
+              Browse preset links
+            </LocaleLink>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ResultPanel({ result }: { result: CalculationResult }) {
   return (
     <div className="forza-panel relative p-5">
@@ -510,6 +715,7 @@ export function ForzaTuneCalculator() {
   );
 
   const result = useMemo(() => calculateTune(input), [input]);
+  const activeGuide = tuneIssueGuideLinks[input.handlingIssue];
   const updateInput = useCallback(
     (patch: Partial<TuneInput>) => {
       setInput((current) => ({ ...current, ...patch }));
@@ -525,7 +731,9 @@ export function ForzaTuneCalculator() {
       description="Choose the race type, drivetrain, class, and main handling problem. The calculator returns a baseline direction you can test before saving a car-specific setup."
       result={result}
       shareUrl={shareUrl}
+      nextStep={<TuneNextStepCard guide={activeGuide} />}
     >
+      <TuneSymptomPresetGrid input={input} onSelect={setInput} />
       <SelectField
         label="Race type"
         value={input.raceType}
