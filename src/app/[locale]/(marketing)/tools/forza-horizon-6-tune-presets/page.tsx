@@ -1,5 +1,6 @@
 import { ForzaPresetCard } from '@/components/tools/forza-preset-card';
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -194,6 +195,49 @@ const presetDecisionRules = [
     title: 'Keep it testable',
     text: 'Save a preset URL, run one repeatable route, then record what changed before moving to a car-specific tune.',
     icon: ShieldCheckIcon,
+  },
+];
+
+const presetMediaSources = [
+  {
+    type: 'video' as const,
+    title:
+      'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+    sourceName: 'HokiHoshi on YouTube',
+    sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+    note: 'Used as a credited build-and-tune workflow reference. Presets on this page are designed as adjustable baselines, not final universal codes.',
+  },
+  {
+    type: 'article' as const,
+    title: 'Comprehensive Tuning Guide: Road and Rally Tuning',
+    sourceName: 'LuckyJumpx on r/ForzaHorizon6',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon6/comments/1tqg50m/comprehensive_tuning_guide_road_and_rally_tuning/',
+    note: 'Used as a current community tuning reference for setup order, drivetrain balance, and the need to test by route.',
+  },
+  {
+    type: 'article' as const,
+    title: 'FH6 Tune Help: Drifting',
+    sourceName: 'r/ForzaHorizon discussion',
+    sourceUrl:
+      'https://www.reddit.com/r/ForzaHorizon/comments/1tmoauc/fh6_tune_help_drifting/',
+    note: 'Used as a current player discussion showing why drift, road, rally, and speed presets should stay separate.',
+  },
+];
+
+const presetLoopSteps = [
+  {
+    title: 'Open a preset URL',
+    text: 'Start from the closest race type, class, drivetrain, and handling problem instead of rebuilding the calculator state every time.',
+  },
+  {
+    title: 'Adjust the live calculator',
+    text: 'If the preset is close but not perfect, change only one input: issue, class, drivetrain, surface, or driving style.',
+  },
+  {
+    title: 'Save the tested variant',
+    text: 'After one repeatable route, keep the URL in notes, Discord, Reddit, or future car pages with the exact test context.',
   },
 ];
 
@@ -474,6 +518,35 @@ export default function ForzaHorizon6TunePresetsPage() {
           })}
         </div>
 
+        <div className="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="forza-panel p-5">
+            <Share2Icon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Turn presets into repeat visits
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Presets are useful because they keep context in the URL. A player
+              can arrive from Google, open a setup, tweak the calculator, then
+              share the tested version back into their notes or community post.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {presetLoopSteps.map((step, index) => (
+              <article className="forza-card p-4" key={step.title}>
+                <span className="text-lg font-semibold text-cyan-200">
+                  0{index + 1}
+                </span>
+                <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">
+                  {step.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-10">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
             Internal routes
@@ -516,6 +589,41 @@ export default function ForzaHorizon6TunePresetsPage() {
             the car-specific changes that actually helped.
           </p>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="forza-panel p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+            <div>
+              <ShieldCheckIcon className="size-6 text-cyan-300" />
+              <h2 className="mt-4 text-2xl font-semibold">
+                Why these are baseline presets
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                FH6 tuning content is still changing as players test Japan
+                routes, new physics, weekly events, and car-specific builds. The
+                preset library is intentionally transparent: it gives a useful
+                first pass, then sends users back to calculator states and
+                guides before calling anything final.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {[
+                'No fake final codes before testing.',
+                'Every preset links to an editable calculator state.',
+                'Sources stay visible when community context matters.',
+              ].map((rule) => (
+                <div
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-zinc-300"
+                  key={rule}
+                >
+                  {rule}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <ForzaHorizon6GuideMediaSources sources={presetMediaSources} />
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
