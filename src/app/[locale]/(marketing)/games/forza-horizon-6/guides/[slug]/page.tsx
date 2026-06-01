@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { ForzaHorizon6GuideVisual } from '@/components/games/forza-horizon-6-guide-visual';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
@@ -462,6 +463,8 @@ export default async function ForzaHorizon6GuidePage({
               </div>
             </div>
           ))}
+
+          <ForzaHorizon6GuideMediaSources sources={guide.mediaSources ?? []} />
 
           <div className="forza-panel mt-6 p-5">
             <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">

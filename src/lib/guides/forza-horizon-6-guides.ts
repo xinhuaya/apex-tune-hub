@@ -13,6 +13,14 @@ export type ForzaHorizon6Guide = {
     label: string;
     href: string;
   }[];
+  mediaSources?: {
+    type: 'video';
+    title: string;
+    sourceName: string;
+    sourceUrl: string;
+    embedUrl?: string;
+    note: string;
+  }[];
   sections: {
     title: string;
     body: string;
@@ -1718,7 +1726,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'hud-accessibility-settings',
-    title: 'Forza Horizon 6 HUD and Accessibility Settings Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 HUD and Accessibility Settings Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 HUD and accessibility settings guide',
     description:
       'Forza Horizon 6 HUD and accessibility settings guide for racing line, subtitles, UI scale, colorblind options, vibration, difficulty, route learning, and distraction reduction.',
@@ -2195,7 +2204,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'brake-balance-pressure-settings',
-    title: 'Forza Horizon 6 Brake Balance and Pressure Settings - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Brake Balance and Pressure Settings - Apex Tune Hub',
     h1: 'Forza Horizon 6 brake balance and pressure settings',
     description:
       'Forza Horizon 6 brake balance and pressure settings guide for unstable braking, lockups, trail braking, ABS, controller triggers, wheel pedals, road racing, and rally builds.',
@@ -2288,7 +2298,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'anti-roll-bar-suspension-settings',
-    title: 'Forza Horizon 6 Anti-Roll Bar and Suspension Settings - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Anti-Roll Bar and Suspension Settings - Apex Tune Hub',
     h1: 'Forza Horizon 6 anti-roll bar and suspension settings',
     description:
       'Forza Horizon 6 anti-roll bar and suspension settings guide for understeer, oversteer, body roll, bumps, road racing, rally routes, ride height, springs, damping, and testing workflow.',
@@ -3323,7 +3334,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'forzathon-weekly-challenge-tuning',
-    title: 'Forza Horizon 6 Forzathon Weekly Challenge Tuning Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Forzathon Weekly Challenge Tuning Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 Forzathon weekly challenge tuning guide',
     description:
       'Forza Horizon 6 Forzathon weekly challenge tuning guide for required cars, chapter tasks, road races, speed zones, skill chains, drift zones, and quick weekly setup swaps.',
@@ -3416,7 +3428,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'auction-house-tune-code-sharing',
-    title: 'Forza Horizon 6 Auction House and Tune Code Sharing Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Auction House and Tune Code Sharing Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 auction house and tune code sharing guide',
     description:
       'Forza Horizon 6 auction house and tune code sharing guide for buying event cars, saving legal builds, naming presets, avoiding bad tune codes, and preparing weekly playlist setups.',
@@ -3509,7 +3522,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'street-race-night-tuning',
-    title: 'Forza Horizon 6 Street Race and Night Race Tuning Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Street Race and Night Race Tuning Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 street race and night race tuning guide',
     description:
       'Forza Horizon 6 street race and night race tuning guide for traffic, blind corners, rain, braking confidence, launch grip, AWD choices, and safe weekly event setups.',
@@ -3695,7 +3709,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'cross-country-offroad-tuning',
-    title: 'Forza Horizon 6 Cross-Country and Offroad Tuning Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Cross-Country and Offroad Tuning Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 cross-country and offroad tuning guide',
     description:
       'Forza Horizon 6 cross-country and offroad tuning guide for jumps, bumps, water, dirt, rally tires, ride height, suspension travel, AWD grip, and weekly event consistency.',
@@ -3788,7 +3803,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'drift-zone-scoring-tuning',
-    title: 'Forza Horizon 6 Drift Zone Scoring and Tuning Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Drift Zone Scoring and Tuning Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 drift zone scoring and tuning guide',
     description:
       'Forza Horizon 6 drift zone scoring and tuning guide for angle, speed, transitions, gearing, tire pressure, controller settings, wheel settings, and weekly playlist drift tasks.',
@@ -4091,7 +4107,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'engine-swap-drivetrain-swap-guide',
-    title: 'Forza Horizon 6 Engine Swap and Drivetrain Swap Guide - Apex Tune Hub',
+    title:
+      'Forza Horizon 6 Engine Swap and Drivetrain Swap Guide - Apex Tune Hub',
     h1: 'Forza Horizon 6 engine swap and drivetrain swap guide',
     description:
       'Forza Horizon 6 engine swap and drivetrain swap guide for AWD conversions, RWD builds, power swaps, PI cost, class limits, traction, launch, and weekly tune planning.',
@@ -5206,7 +5223,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'thrustmaster-wheel-settings',
-    title: 'Best Thrustmaster Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
+    title:
+      'Best Thrustmaster Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
     h1: 'Best Thrustmaster wheel settings for Forza Horizon 6',
     description:
       'Forza Horizon 6 Thrustmaster wheel settings guide for T150, TMX, T300, force feedback, steering feel, deadzones, and road testing.',
@@ -5263,7 +5281,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'fanatec-moza-wheel-settings',
-    title: 'Best Fanatec and Moza Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
+    title:
+      'Best Fanatec and Moza Wheel Settings for Forza Horizon 6 - Apex Tune Hub',
     h1: 'Best Fanatec and Moza wheel settings for Forza Horizon 6',
     description:
       'Forza Horizon 6 Fanatec and Moza wheel settings guide for direct-drive force feedback, oscillation, clipping, damping, and car tuning workflow.',
