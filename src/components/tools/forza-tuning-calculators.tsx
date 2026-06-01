@@ -30,6 +30,7 @@ import {
   type TuneInput,
 } from '@/lib/tuning/forza-horizon-6';
 import { LocaleLink } from '@/i18n/navigation';
+import { track } from '@vercel/analytics';
 import {
   BookmarkPlusIcon,
   GaugeIcon,
@@ -53,6 +54,49 @@ type PresetConfig<T extends StringRecord> = {
     values: readonly T[K][];
   };
 };
+type ToolEventProperties = Record<
+  string,
+  string | number | boolean | null | undefined
+>;
+
+const toolEventStorageKey = 'apex-tune-hub:fh6-tool-events';
+
+function trackToolEvent(action: string, properties: ToolEventProperties = {}) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const event = {
+    action,
+    path: window.location.pathname,
+    ...properties,
+  };
+
+  try {
+    track('FH6 Tool Action', event);
+  } catch {
+    // Analytics should never block the calculator UI.
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(toolEventStorageKey);
+    const currentEvents = rawValue ? JSON.parse(rawValue) : [];
+    const nextEvents = [
+      {
+        ...event,
+        at: new Date().toISOString(),
+      },
+      ...(Array.isArray(currentEvents) ? currentEvents : []),
+    ].slice(0, 50);
+
+    window.localStorage.setItem(
+      toolEventStorageKey,
+      JSON.stringify(nextEvents)
+    );
+  } catch {
+    // Local diagnostics are best effort only.
+  }
+}
 
 function parsePresetInput<T extends StringRecord>(
   defaults: T,
@@ -773,6 +817,10 @@ function ToolShell({
 
   async function copyResult() {
     await writeClipboard(formatResultForClipboard(result));
+    trackToolEvent('copy_setup_notes', {
+      tool: toolId,
+      confidence: result.confidence,
+    });
     setCopiedNotes(true);
     window.setTimeout(() => setCopiedNotes(false), 1800);
   }
@@ -783,6 +831,10 @@ function ToolShell({
     }
 
     await writeClipboard(shareUrl);
+    trackToolEvent('copy_preset_link', {
+      tool: toolId,
+      confidence: result.confidence,
+    });
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   }
@@ -805,6 +857,11 @@ function ToolShell({
     ].slice(0, 6);
 
     writeSavedPresets(toolId, nextPresets);
+    trackToolEvent('save_preset', {
+      tool: toolId,
+      confidence: result.confidence,
+      savedCount: nextPresets.length,
+    });
     setSavedPresets(nextPresets);
     setSaved(true);
     window.setTimeout(() => setSaved(false), 1800);
@@ -813,6 +870,10 @@ function ToolShell({
   function deletePreset(id: string) {
     const nextPresets = savedPresets.filter((item) => item.id !== id);
     writeSavedPresets(toolId, nextPresets);
+    trackToolEvent('delete_saved_preset', {
+      tool: toolId,
+      savedCount: nextPresets.length,
+    });
     setSavedPresets(nextPresets);
   }
 
@@ -939,7 +1000,17 @@ function TuneSymptomPresetGrid({
               }`}
               key={preset.title}
               type="button"
-              onClick={() => onSelect(preset.input)}
+              onClick={() => {
+                trackToolEvent('select_symptom_preset', {
+                  tool: 'tune',
+                  preset: preset.title,
+                  issue: preset.input.handlingIssue,
+                  raceType: preset.input.raceType,
+                  drivetrain: preset.input.drivetrain,
+                  classBand: preset.input.classBand,
+                });
+                onSelect(preset.input);
+              }}
             >
               <span className="block text-sm font-semibold text-zinc-100">
                 {preset.title}
@@ -973,12 +1044,25 @@ function TuneNextStepCard({
             <LocaleLink
               className="inline-flex min-h-10 items-center justify-center rounded-md border border-amber-300/30 bg-black/25 px-3 text-center text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/[0.1]"
               href={guide.href}
+              onClick={() =>
+                trackToolEvent('open_matched_guide', {
+                  tool: 'tune',
+                  href: guide.href,
+                  label: guide.label,
+                })
+              }
             >
               {guide.label}
             </LocaleLink>
             <LocaleLink
               className="inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-black/25 px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
               href="/tools/forza-horizon-6-tune-presets"
+              onClick={() =>
+                trackToolEvent('open_preset_library', {
+                  tool: 'tune',
+                  href: '/tools/forza-horizon-6-tune-presets',
+                })
+              }
             >
               Browse preset links
             </LocaleLink>
@@ -1033,6 +1117,14 @@ function TuneResultActionPlan({
       <LocaleLink
         className="mt-4 inline-flex min-h-10 items-center justify-center rounded-md border border-cyan-300/30 bg-black/25 px-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-300/[0.08]"
         href={guide.href}
+        onClick={() =>
+          trackToolEvent('open_result_guide', {
+            tool: 'tune',
+            href: guide.href,
+            label: guide.label,
+            issue: input.handlingIssue,
+          })
+        }
       >
         Read the matching guide
       </LocaleLink>
@@ -1076,7 +1168,17 @@ function DriftSymptomPresetGrid({
               }`}
               key={preset.title}
               type="button"
-              onClick={() => onSelect(preset.input)}
+              onClick={() => {
+                trackToolEvent('select_symptom_preset', {
+                  tool: 'drift',
+                  preset: preset.title,
+                  problem: preset.input.problem,
+                  drivetrain: preset.input.drivetrain,
+                  powerLevel: preset.input.powerLevel,
+                  skillLevel: preset.input.skillLevel,
+                });
+                onSelect(preset.input);
+              }}
             >
               <span className="block text-sm font-semibold text-zinc-100">
                 {preset.title}
@@ -1110,12 +1212,25 @@ function DriftNextStepCard({
             <LocaleLink
               className="inline-flex min-h-10 items-center justify-center rounded-md border border-pink-300/30 bg-black/25 px-3 text-center text-sm font-semibold text-pink-100 transition hover:border-pink-300/60 hover:bg-pink-300/[0.1]"
               href={guide.href}
+              onClick={() =>
+                trackToolEvent('open_matched_guide', {
+                  tool: 'drift',
+                  href: guide.href,
+                  label: guide.label,
+                })
+              }
             >
               {guide.label}
             </LocaleLink>
             <LocaleLink
               className="inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-black/25 px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
               href="/games/forza-horizon-6/best-drift-cars"
+              onClick={() =>
+                trackToolEvent('open_best_drift_cars', {
+                  tool: 'drift',
+                  href: '/games/forza-horizon-6/best-drift-cars',
+                })
+              }
             >
               Compare drift cars
             </LocaleLink>
@@ -1170,6 +1285,14 @@ function DriftResultActionPlan({
       <LocaleLink
         className="mt-4 inline-flex min-h-10 items-center justify-center rounded-md border border-pink-300/30 bg-black/25 px-3 text-sm font-semibold text-pink-100 transition hover:border-pink-300/60 hover:bg-pink-300/[0.08]"
         href={guide.href}
+        onClick={() =>
+          trackToolEvent('open_result_guide', {
+            tool: 'drift',
+            href: guide.href,
+            label: guide.label,
+            problem: input.problem,
+          })
+        }
       >
         Read the drift guide
       </LocaleLink>
@@ -1212,7 +1335,17 @@ function GearSymptomPresetGrid({
               }`}
               key={preset.title}
               type="button"
-              onClick={() => onSelect(preset.input)}
+              onClick={() => {
+                trackToolEvent('select_symptom_preset', {
+                  tool: 'gear',
+                  preset: preset.title,
+                  symptom: preset.input.symptom,
+                  raceType: preset.input.raceType,
+                  gears: preset.input.gears,
+                  priority: preset.input.priority,
+                });
+                onSelect(preset.input);
+              }}
             >
               <span className="block text-sm font-semibold text-zinc-100">
                 {preset.title}
@@ -1266,6 +1399,13 @@ function GearResultActionPlan({ input }: { input: GearInput }) {
       <LocaleLink
         className="mt-4 inline-flex min-h-10 items-center justify-center rounded-md border border-amber-300/30 bg-black/25 px-3 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/[0.08]"
         href="/tools/forza-horizon-6-tune-presets"
+        onClick={() =>
+          trackToolEvent('open_preset_library', {
+            tool: 'gear',
+            href: '/tools/forza-horizon-6-tune-presets',
+            symptom: input.symptom,
+          })
+        }
       >
         Compare with saved tune presets
       </LocaleLink>
