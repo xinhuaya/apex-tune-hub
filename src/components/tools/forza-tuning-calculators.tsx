@@ -412,6 +412,155 @@ const driftPresetConfig: PresetConfig<DriftInput> = {
   },
 };
 
+const driftSymptomPresets: Array<{
+  title: string;
+  note: string;
+  input: DriftInput;
+}> = [
+  {
+    title: 'Spins out',
+    note: 'Calm RWD recovery',
+    input: {
+      drivetrain: 'RWD',
+      powerLevel: 'medium',
+      tireGrip: 'drift',
+      problem: 'spins-out',
+      skillLevel: 'beginner',
+    },
+  },
+  {
+    title: 'No angle',
+    note: 'Beginner angle hold',
+    input: {
+      drivetrain: 'RWD',
+      powerLevel: 'medium',
+      tireGrip: 'drift',
+      problem: 'no-angle',
+      skillLevel: 'beginner',
+    },
+  },
+  {
+    title: 'Bogs down',
+    note: 'Main gear power test',
+    input: {
+      drivetrain: 'RWD',
+      powerLevel: 'low',
+      tireGrip: 'sport',
+      problem: 'bogs-down',
+      skillLevel: 'intermediate',
+    },
+  },
+  {
+    title: 'Snaps back',
+    note: 'Transition recovery',
+    input: {
+      drivetrain: 'RWD',
+      powerLevel: 'medium',
+      tireGrip: 'drift',
+      problem: 'snaps-back',
+      skillLevel: 'intermediate',
+    },
+  },
+  {
+    title: 'Too slippery',
+    note: 'AWD grip control',
+    input: {
+      drivetrain: 'AWD',
+      powerLevel: 'high',
+      tireGrip: 'street',
+      problem: 'too-slippery',
+      skillLevel: 'advanced',
+    },
+  },
+];
+
+const driftProblemGuideLinks: Record<
+  DriftInput['problem'],
+  { label: string; href: string; hint: string }
+> = {
+  'spins-out': {
+    label: 'Open drift settings guide',
+    href: '/games/forza-horizon-6/guides/best-drift-tune-settings',
+    hint: 'Use this when the car rotates too quickly or cannot recover for the next transition.',
+  },
+  'no-angle': {
+    label: 'Open Japan drift setup',
+    href: '/games/forza-horizon-6/guides/japan-drift-setup',
+    hint: 'Use this when the car refuses to initiate or cannot hold angle through linked corners.',
+  },
+  'bogs-down': {
+    label: 'Open drift scoring guide',
+    href: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
+    hint: 'Use this when the car falls out of power mid-drift or needs a clearer main gear.',
+  },
+  'snaps-back': {
+    label: 'Open drift settings guide',
+    href: '/games/forza-horizon-6/guides/best-drift-tune-settings',
+    hint: 'Use this when transitions are dramatic but not repeatable.',
+  },
+  'too-slippery': {
+    label: 'Open drift scoring guide',
+    href: '/games/forza-horizon-6/guides/drift-zone-scoring-tuning',
+    hint: 'Use this when the car slides too freely and cannot score through a full zone.',
+  },
+};
+
+const driftActionPlans: Record<
+  DriftInput['problem'],
+  {
+    focus: string;
+    firstChange: string;
+    routeTest: string;
+    stopWhen: string;
+  }
+> = {
+  'spins-out': {
+    focus: 'Recoverable angle first',
+    firstChange:
+      'Reduce the most aggressive rear lock and alignment choices before cutting all power.',
+    routeTest:
+      'Use one linked corner and watch whether the car catches the second transition without panic countersteer.',
+    stopWhen:
+      'Stop when you can repeat three transitions without the rear rotating past your steering input.',
+  },
+  'no-angle': {
+    focus: 'Initiation without panic',
+    firstChange:
+      'Add front response and usable differential lock before chasing more horsepower.',
+    routeTest:
+      'Enter the same medium-speed drift corner and check whether angle builds before the apex.',
+    stopWhen:
+      'Stop when the car initiates cleanly and holds one main gear through the section.',
+  },
+  'bogs-down': {
+    focus: 'Keep the main drift gear alive',
+    firstChange:
+      'Shorten the active drift gear or reduce grip slightly so rpm stays in the useful band.',
+    routeTest:
+      'Hold the same drift section in one gear and listen for the car falling below power.',
+    stopWhen:
+      'Stop when throttle maintains angle without forcing an extra mid-corner downshift.',
+  },
+  'snaps-back': {
+    focus: 'Smooth transition catch',
+    firstChange:
+      'Soften the setup around transition speed before making the car sharper.',
+    routeTest:
+      'Link two corners and judge whether countersteer catches the car progressively.',
+    stopWhen:
+      'Stop when the transition feels catchable at the same steering speed three times in a row.',
+  },
+  'too-slippery': {
+    focus: 'Grip before drama',
+    firstChange:
+      'Add usable tire grip or reduce differential aggression before adding more steering angle.',
+    routeTest:
+      'Run a full drift zone and check whether the car can stay on the scoring line, not only slide wide.',
+    stopWhen:
+      'Stop when the car still slides but can hold the intended width through the zone.',
+  },
+};
+
 const gearDefaults: GearInput = {
   raceType: 'road',
   gears: '6',
@@ -891,6 +1040,143 @@ function TuneResultActionPlan({
   );
 }
 
+function DriftSymptomPresetGrid({
+  input,
+  onSelect,
+}: {
+  input: DriftInput;
+  onSelect: (input: DriftInput) => void;
+}) {
+  return (
+    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <RouteIcon className="size-4 text-pink-200" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-pink-200">
+            Drift symptom presets
+          </p>
+        </div>
+        <span className="text-xs text-zinc-500">angle test</span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {driftSymptomPresets.map((preset) => {
+          const isActive =
+            input.drivetrain === preset.input.drivetrain &&
+            input.powerLevel === preset.input.powerLevel &&
+            input.tireGrip === preset.input.tireGrip &&
+            input.problem === preset.input.problem &&
+            input.skillLevel === preset.input.skillLevel;
+
+          return (
+            <button
+              className={`rounded-md border px-3 py-2 text-left transition ${
+                isActive
+                  ? 'border-pink-300/60 bg-pink-300/[0.08]'
+                  : 'border-white/10 bg-black/25 hover:border-pink-300/30 hover:bg-pink-300/[0.04]'
+              }`}
+              key={preset.title}
+              type="button"
+              onClick={() => onSelect(preset.input)}
+            >
+              <span className="block text-sm font-semibold text-zinc-100">
+                {preset.title}
+              </span>
+              <span className="mt-1 block text-xs leading-5 text-zinc-500">
+                {preset.note}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function DriftNextStepCard({
+  guide,
+}: {
+  guide: { label: string; href: string; hint: string };
+}) {
+  return (
+    <div className="rounded-md border border-pink-300/25 bg-pink-300/[0.07] p-4">
+      <div className="flex items-start gap-3">
+        <RouteIcon className="mt-1 size-5 shrink-0 text-pink-200" />
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-pink-200">
+            Matched drift layer
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">{guide.hint}</p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            <LocaleLink
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-pink-300/30 bg-black/25 px-3 text-center text-sm font-semibold text-pink-100 transition hover:border-pink-300/60 hover:bg-pink-300/[0.1]"
+              href={guide.href}
+            >
+              {guide.label}
+            </LocaleLink>
+            <LocaleLink
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-black/25 px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
+              href="/games/forza-horizon-6/best-drift-cars"
+            >
+              Compare drift cars
+            </LocaleLink>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DriftResultActionPlan({
+  input,
+  guide,
+}: {
+  input: DriftInput;
+  guide: { label: string; href: string; hint: string };
+}) {
+  const plan = driftActionPlans[input.problem];
+
+  return (
+    <div className="mt-5 rounded-md border border-pink-300/20 bg-pink-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-pink-200">
+            First drift test
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+            {plan.focus}
+          </h3>
+        </div>
+        <span className="rounded-md border border-white/10 bg-black/25 px-3 py-1 text-xs font-semibold text-zinc-400">
+          {input.drivetrain} {input.skillLevel}
+        </span>
+      </div>
+      <div className="mt-4 grid gap-3">
+        {[
+          ['Change first', plan.firstChange],
+          ['Section test', plan.routeTest],
+          ['Stop when', plan.stopWhen],
+        ].map(([label, text]) => (
+          <div
+            className="rounded-md border border-white/10 bg-black/25 p-3"
+            key={label}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+              {label}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-zinc-200">{text}</p>
+          </div>
+        ))}
+      </div>
+      <LocaleLink
+        className="mt-4 inline-flex min-h-10 items-center justify-center rounded-md border border-pink-300/30 bg-black/25 px-3 text-sm font-semibold text-pink-100 transition hover:border-pink-300/60 hover:bg-pink-300/[0.08]"
+        href={guide.href}
+      >
+        Read the drift guide
+      </LocaleLink>
+    </div>
+  );
+}
+
 function GearSymptomPresetGrid({
   input,
   onSelect,
@@ -1115,6 +1401,7 @@ export function ForzaDriftTuneCalculator() {
   );
 
   const result = useMemo(() => calculateDriftTune(input), [input]);
+  const activeGuide = driftProblemGuideLinks[input.problem];
   const updateInput = useCallback(
     (patch: Partial<DriftInput>) => {
       setInput((current) => ({ ...current, ...patch }));
@@ -1130,7 +1417,10 @@ export function ForzaDriftTuneCalculator() {
       description="Pick your drift build style and the problem you are trying to fix. Use the output as a repeatable first test, then refine around your car and controller or wheel."
       result={result}
       shareUrl={shareUrl}
+      nextStep={<DriftNextStepCard guide={activeGuide} />}
+      resultAside={<DriftResultActionPlan guide={activeGuide} input={input} />}
     >
+      <DriftSymptomPresetGrid input={input} onSelect={setInput} />
       <SelectField
         label="Drivetrain"
         value={input.drivetrain}
