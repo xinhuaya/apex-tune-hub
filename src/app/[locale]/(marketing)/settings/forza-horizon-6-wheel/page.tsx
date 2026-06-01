@@ -14,6 +14,7 @@ import {
 import {
   ClipboardCheckIcon,
   Disc3Icon,
+  ExternalLinkIcon,
   GaugeIcon,
   GitBranchIcon,
   ListChecksIcon,
@@ -87,6 +88,30 @@ const wheelTestLinks = [
     title: 'Controller comparison',
     href: '/settings/forza-horizon-6-controller',
     note: 'Compare controller feel if the wheel profile makes every car harder to catch.',
+  },
+];
+
+const wheelOfficialSources = [
+  {
+    title: 'Advanced Wheel Tuning',
+    source: 'Forza Support',
+    href: 'https://support.forza.net/hc/en-us/articles/51642814113427-Forza-Horizon-6-on-Wheel-Advanced-Wheel-Tuning',
+    useCase:
+      'Use this for FH6 force feedback scale, damper, center spring, steering sensitivity, and deadzone testing.',
+  },
+  {
+    title: 'Supported Wheels and Devices',
+    source: 'Forza Support',
+    href: 'https://support.forza.net/hc/en-us/articles/51674028831251-FH6-Supported-Wheels-and-Devices',
+    useCase:
+      'Use this before brand-specific troubleshooting so the wheel model, driver, and firmware path are confirmed.',
+  },
+  {
+    title: 'Wheel Input on Steam',
+    source: 'Forza Support',
+    href: 'https://support.forza.net/hc/en-us/articles/51642975681427-Forza-Horizon-6-on-Wheel-Wheel-Input-on-Steam',
+    useCase:
+      'Use this when Steam wheel axes, inverted inputs, pedals, or force feedback direction behave incorrectly.',
   },
 ];
 
@@ -501,6 +526,52 @@ export default function ForzaHorizon6WheelSettingsPage() {
             the same setting feels wrong across all three, change the wheel
             profile before changing every tune.
           </p>
+        </div>
+
+        <div className="forza-panel mt-6 p-5">
+          <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <ShieldCheckIcon className="size-6 text-cyan-300" />
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                Official source lane
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold">
+                Start with FH6 support docs, then tune the car
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                These wheel notes are built around official Forza Support pages
+                first, then Apex Tune Hub adds the practical test loop that
+                tells you when to change the wheel profile and when to move into
+                car tuning.
+              </p>
+            </div>
+            <div className="grid gap-3">
+              {wheelOfficialSources.map((source) => (
+                <a
+                  className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
+                  href={source.href}
+                  key={source.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
+                        {source.source}
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold text-zinc-50">
+                        {source.title}
+                      </h3>
+                    </div>
+                    <ExternalLinkIcon className="mt-1 size-4 shrink-0 text-cyan-300" />
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    {source.useCase}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="forza-panel mt-6 overflow-hidden">
