@@ -137,7 +137,7 @@ export function calculateTune(input: TuneInput): CalculationResult {
 
   return {
     title: 'Forza Horizon 6 baseline tune',
-    summary: `${input.classBand} ${input.drivetrain} ${input.raceType} setup for a ${input.drivingStyle} driver with ${issueLabel(input.handlingIssue).toLowerCase()}.`,
+    summary: `${input.classBand} ${input.drivetrain} ${input.raceType} setup for a ${input.drivingStyle} driver trying to fix ${issueSummaryLabel(input.handlingIssue)}.`,
     confidence:
       input.classBand === 'X' || input.raceType === 'drift'
         ? 'situational'
@@ -396,6 +396,18 @@ function gearSpacing(input: GearInput): Recommendation {
 
 function issueLabel(issue: HandlingIssue): string {
   return issueOptions.find((option) => option.value === issue)?.label ?? issue;
+}
+
+function issueSummaryLabel(issue: HandlingIssue): string {
+  const labels: Record<HandlingIssue, string> = {
+    understeer: 'understeer',
+    oversteer: 'oversteer',
+    wheelspin: 'wheelspin',
+    'slow-launch': 'a slow launch',
+    'unstable-braking': 'unstable braking',
+    'poor-top-speed': 'poor top speed',
+  };
+  return labels[issue];
 }
 
 function driftProblemLabel(problem: DriftInput['problem']): string {
