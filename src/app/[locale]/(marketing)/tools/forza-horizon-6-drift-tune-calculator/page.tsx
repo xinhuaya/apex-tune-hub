@@ -244,6 +244,8 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
             featureList: [
               'RWD and AWD drift tune directions',
               'Power and tire-grip symptom matching',
+              'Drift symptom presets for angle and recovery problems',
+              'First drift test loop with matched guide links',
               'Shareable drift preset URLs',
               'Local saved drift preset history',
             ],

@@ -223,6 +223,8 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
               'Final drive tuning direction',
               'Gear count and route priority matching',
               'Shift symptom diagnosis',
+              'Gear problem presets for launch and limiter issues',
+              'First gearing test loop for route-based retesting',
               'Shareable gearing preset URLs',
             ],
           }),

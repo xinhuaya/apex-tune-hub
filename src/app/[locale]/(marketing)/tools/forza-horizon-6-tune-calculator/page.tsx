@@ -293,6 +293,8 @@ export default function ForzaHorizon6TuneCalculatorPage() {
             path: pathname,
             featureList: [
               'FH6 baseline tune recommendations',
+              'Quick symptom presets for common tuning problems',
+              'First test loop with matched guide links',
               'Shareable preset URLs',
               'Local saved preset history',
               'Road, street, dirt, rally, drag, and drift setup paths',
