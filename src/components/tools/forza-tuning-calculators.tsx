@@ -32,6 +32,7 @@ import {
 import { LocaleLink } from '@/i18n/navigation';
 import {
   BookmarkPlusIcon,
+  GaugeIcon,
   LifeBuoyIcon,
   LinkIcon,
   RouteIcon,
@@ -443,6 +444,119 @@ const gearPresetConfig: PresetConfig<GearInput> = {
   },
 };
 
+const gearSymptomPresets: Array<{
+  title: string;
+  note: string;
+  input: GearInput;
+}> = [
+  {
+    title: 'Hits limiter',
+    note: 'Road top-end check',
+    input: {
+      raceType: 'road',
+      gears: '6',
+      priority: 'top-speed',
+      symptom: 'hits-limiter',
+    },
+  },
+  {
+    title: 'Never top gear',
+    note: 'Shorten usable range',
+    input: {
+      raceType: 'road',
+      gears: '7',
+      priority: 'balanced',
+      symptom: 'never-top-gear',
+    },
+  },
+  {
+    title: 'Slow launch',
+    note: 'First gear test',
+    input: {
+      raceType: 'drag',
+      gears: '6',
+      priority: 'acceleration',
+      symptom: 'slow-launch',
+    },
+  },
+  {
+    title: 'Bogs after shift',
+    note: 'Spacing test',
+    input: {
+      raceType: 'street',
+      gears: '6',
+      priority: 'balanced',
+      symptom: 'bogs-after-shift',
+    },
+  },
+  {
+    title: 'Launch spin',
+    note: 'Lengthen first',
+    input: {
+      raceType: 'drag',
+      gears: '6',
+      priority: 'acceleration',
+      symptom: 'wheelspin',
+    },
+  },
+];
+
+const gearActionPlans: Record<
+  GearInput['symptom'],
+  {
+    focus: string;
+    firstChange: string;
+    routeTest: string;
+    stopWhen: string;
+  }
+> = {
+  'hits-limiter': {
+    focus: 'Lengthen the usable top end',
+    firstChange:
+      'Lengthen final drive first, then the last gear if the car still hits limiter too early.',
+    routeTest:
+      'Use the longest straight in the target event and note rpm in the final two seconds.',
+    stopWhen:
+      'Stop when the car reaches near redline only at the end of the straight.',
+  },
+  'never-top-gear': {
+    focus: 'Make every gear reachable',
+    firstChange:
+      'Shorten final drive or upper gear spacing until the final gear is reachable in the actual route.',
+    routeTest:
+      'Run the target straight and check whether the car can pull the top gear without stalling acceleration.',
+    stopWhen:
+      'Stop when top gear is usable without making first and second feel frantic.',
+  },
+  'slow-launch': {
+    focus: 'Clean first-to-second launch',
+    firstChange:
+      'Shorten first gear only if the car bogs. If it spins, lengthen first before touching the full stack.',
+    routeTest:
+      'Do three standing launches and compare the first-to-second shift each time.',
+    stopWhen:
+      'Stop when launch rpm stays alive and the first shift lands back in useful power.',
+  },
+  'bogs-after-shift': {
+    focus: 'Close the shift drop',
+    firstChange:
+      'Tighten spacing around the gear that drops too far after the shift, not every gear at once.',
+    routeTest:
+      'Shift at the same rpm three times and watch whether the car falls below the power band.',
+    stopWhen:
+      'Stop when the post-shift pull feels immediate without bouncing the limiter early.',
+  },
+  wheelspin: {
+    focus: 'Control first gear torque',
+    firstChange:
+      'Lengthen first gear or soften final drive before changing tire compound or power.',
+    routeTest:
+      'Launch on the same surface three times and watch whether wheelspin lasts past first gear.',
+    stopWhen:
+      'Stop when the launch hooks up while second gear still pulls strongly.',
+  },
+};
+
 function SelectField<T extends string>({
   label,
   value,
@@ -777,6 +891,102 @@ function TuneResultActionPlan({
   );
 }
 
+function GearSymptomPresetGrid({
+  input,
+  onSelect,
+}: {
+  input: GearInput;
+  onSelect: (input: GearInput) => void;
+}) {
+  return (
+    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <GaugeIcon className="size-4 text-cyan-200" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            Gear problem presets
+          </p>
+        </div>
+        <span className="text-xs text-zinc-500">route first</span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {gearSymptomPresets.map((preset) => {
+          const isActive =
+            input.raceType === preset.input.raceType &&
+            input.gears === preset.input.gears &&
+            input.priority === preset.input.priority &&
+            input.symptom === preset.input.symptom;
+
+          return (
+            <button
+              className={`rounded-md border px-3 py-2 text-left transition ${
+                isActive
+                  ? 'border-cyan-300/60 bg-cyan-300/[0.08]'
+                  : 'border-white/10 bg-black/25 hover:border-cyan-300/30 hover:bg-cyan-300/[0.04]'
+              }`}
+              key={preset.title}
+              type="button"
+              onClick={() => onSelect(preset.input)}
+            >
+              <span className="block text-sm font-semibold text-zinc-100">
+                {preset.title}
+              </span>
+              <span className="mt-1 block text-xs leading-5 text-zinc-500">
+                {preset.note}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function GearResultActionPlan({ input }: { input: GearInput }) {
+  const plan = gearActionPlans[input.symptom];
+
+  return (
+    <div className="mt-5 rounded-md border border-amber-300/20 bg-amber-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
+            First gearing test
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+            {plan.focus}
+          </h3>
+        </div>
+        <span className="rounded-md border border-white/10 bg-black/25 px-3 py-1 text-xs font-semibold text-zinc-400">
+          {input.gears} gears
+        </span>
+      </div>
+      <div className="mt-4 grid gap-3">
+        {[
+          ['Change first', plan.firstChange],
+          ['Route test', plan.routeTest],
+          ['Stop when', plan.stopWhen],
+        ].map(([label, text]) => (
+          <div
+            className="rounded-md border border-white/10 bg-black/25 p-3"
+            key={label}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+              {label}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-zinc-200">{text}</p>
+          </div>
+        ))}
+      </div>
+      <LocaleLink
+        className="mt-4 inline-flex min-h-10 items-center justify-center rounded-md border border-amber-300/30 bg-black/25 px-3 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/[0.08]"
+        href="/tools/forza-horizon-6-tune-presets"
+      >
+        Compare with saved tune presets
+      </LocaleLink>
+    </div>
+  );
+}
+
 function ResultPanel({
   result,
   children,
@@ -1007,7 +1217,9 @@ export function ForzaGearRatioCalculator() {
       description="Tune final drive and gear spacing around the route, not just the biggest speed number. The output tells you what to test first."
       result={result}
       shareUrl={shareUrl}
+      resultAside={<GearResultActionPlan input={input} />}
     >
+      <GearSymptomPresetGrid input={input} onSelect={setInput} />
       <SelectField
         label="Race type"
         value={input.raceType}
