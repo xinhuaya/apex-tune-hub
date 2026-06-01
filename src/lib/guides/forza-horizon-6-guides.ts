@@ -4936,6 +4936,32 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/tools/forza-horizon-6-tune-calculator',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Advanced Wheel Tuning',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642814113427-Forza-Horizon-6-on-Wheel-Advanced-Wheel-Tuning',
+        note: 'Used as the official FH6 wheel reference for default-baseline testing, force feedback, steering sensitivity, deadzones, damper, center spring, and one-setting-at-a-time tuning.',
+      },
+      {
+        type: 'article',
+        title: 'FH6: Supported Wheels and Devices',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51674028831251-FH6-Supported-Wheels-and-Devices',
+        note: 'Used as the official compatibility and driver/firmware reference before recommending hardware-specific wheel troubleshooting.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Wheel Input on Steam',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642975681427-Forza-Horizon-6-on-Wheel-Wheel-Input-on-Steam',
+        note: 'Used for Steam-specific wheel input checks when axes, pedals, or force feedback direction appear mapped incorrectly.',
+      },
+    ],
     sections: [
       {
         title: 'Build one baseline profile',
@@ -4962,6 +4988,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Label every test by input device.',
           'Use stable setups for wheel beginners.',
           'Only publish aggressive settings after repeat testing.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Wheel setup diagnosis',
+        description:
+          'Use this flow before changing the car tune. Most FH6 wheel problems are profile, firmware, axis, or force-feedback problems first.',
+        cards: [
+          {
+            title: 'Wheel feels wrong in every car',
+            body: 'Treat this as a wheel profile problem before blaming alignment or suspension. Start from default game and wheel software settings, then change one slider at a time.',
+            bullets: [
+              'Check driver and firmware updates first.',
+              'Return to a readable default before chasing stronger force.',
+              'Use one stable road car for every comparison pass.',
+            ],
+          },
+          {
+            title: 'Pedals or axes feel reversed',
+            body: 'If throttle, brake, handbrake, or force feedback direction is flipped, solve input mapping before tuning the car. Steam users should check the official FH6 Steam input workflow.',
+            bullets: [
+              'Confirm the in-game input meter moves in the expected direction.',
+              'Use invert controls only when the axis is truly reversed.',
+              'Do not tune brakes or launch until pedal range is correct.',
+            ],
+          },
+          {
+            title: 'One car feels bad',
+            body: 'If the wheel is readable in other cars, the problem probably belongs to the tune. Move from wheel setup into understeer, oversteer, braking, or gearing diagnosis.',
+            bullets: [
+              'Compare one known-stable car against the problem build.',
+              'Keep wheel profile fixed while tuning the car.',
+              'Save separate road, dirt, and drift wheel notes.',
+            ],
+          },
         ],
       },
     ],
@@ -5045,6 +5107,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Logitech wheel settings',
         href: '/games/forza-horizon-6/guides/logitech-wheel-settings',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Advanced Wheel Tuning',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642814113427-Forza-Horizon-6-on-Wheel-Advanced-Wheel-Tuning',
+        note: 'Used as the official FH6 source for steering sensitivity, steering deadzones, pedal deadzones, force feedback scale, damping, and rotation-related testing.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Wheel Input on Steam',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642975681427-Forza-Horizon-6-on-Wheel-Wheel-Input-on-Steam',
+        note: 'Used for Steam wheel input cases where axis index, inversion, or force feedback direction may be mapped incorrectly.',
       },
     ],
     sections: [
@@ -5708,6 +5788,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6: Supported Wheels and Devices',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51674028831251-FH6-Supported-Wheels-and-Devices',
+        note: 'Used as the official FH6 Logitech compatibility and G Hub driver reminder before suggesting in-game force feedback changes.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Advanced Wheel Tuning',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642814113427-Forza-Horizon-6-on-Wheel-Advanced-Wheel-Tuning',
+        note: 'Used for official FH6 guidance around damper, center spring, force feedback scale, and how Logitech wheels can need lighter damping than stronger direct-drive bases.',
+      },
+    ],
     sections: [
       {
         title: 'Make force feedback readable first',
@@ -5734,6 +5832,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Change wheel settings when every car feels delayed or too heavy.',
           'Change tune settings when only one build understeers, snaps, or spins.',
           'Keep notes for force, damping, steering lock, assists, and class.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Logitech wheel symptom map',
+        description:
+          'Use this map for G29, G920, G923, and similar Logitech setups before changing the car tune.',
+        cards: [
+          {
+            title: 'Wheel feels heavy but vague',
+            body: 'High force, center spring, or damper can make a Logitech wheel feel busy without adding useful tire detail. Reduce profile weight before changing suspension.',
+            bullets: [
+              'Lower heavy force if every car feels like the same wall.',
+              'Retest understeer with one stable road car.',
+              'Change car alignment only after wheel detail returns.',
+            ],
+          },
+          {
+            title: 'Noisy center or weak tire feel',
+            body: 'A gear-driven wheel can chatter around center. The goal is readable slip, not silence. Adjust damping carefully so it does not hide understeer or braking lockup.',
+            bullets: [
+              'Use small damper changes, then retest the same corner.',
+              'Keep steering lock fixed during the test.',
+              'Avoid masking tire slip with too much center force.',
+            ],
+          },
+          {
+            title: 'Wheel not detected correctly',
+            body: 'Treat this as setup and compatibility first. Check G Hub, firmware, USB path, and supported-device notes before editing FH6 tune settings.',
+            bullets: [
+              'Update Logitech G Hub before testing FH6 again.',
+              'Plug the wheelbase directly into the PC when possible.',
+              'Confirm the steering input meter moves correctly in-game.',
+            ],
+          },
         ],
       },
     ],
@@ -5878,6 +6012,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=A&issue=understeer&style=balanced',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6: Supported Wheels and Devices',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51674028831251-FH6-Supported-Wheels-and-Devices',
+        note: 'Used as the official FH6 Thrustmaster compatibility, driver, firmware, and model-selection reference before tuning in-game settings.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Advanced Wheel Tuning',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642814113427-Forza-Horizon-6-on-Wheel-Advanced-Wheel-Tuning',
+        note: 'Used for official FH6 wheel tuning concepts: force feedback scale, center spring, damper, road feel, load sensitivity, and steering sensitivity.',
+      },
+    ],
     sections: [
       {
         title: 'Balance center feel before force',
@@ -5904,6 +6056,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Use road testing for center feel and understeer.',
           'Use dirt testing for bumps and oscillation.',
           'Use drift testing for countersteer speed and recovery.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Thrustmaster wheel setup checks',
+        description:
+          'Use this checklist when a T150, TMX, T300, TX, TS-XW, or similar Thrustmaster wheel feels wrong in FH6.',
+        cards: [
+          {
+            title: 'Model mapping looks wrong',
+            body: 'Some Thrustmaster bases can share identifiers or need correct model selection. Fix recognition before tuning steering feel.',
+            bullets: [
+              'Install current Thrustmaster drivers and firmware.',
+              'Confirm the selected model and button mapping in-game.',
+              'Retest before changing force feedback or car tune settings.',
+            ],
+          },
+          {
+            title: 'Braking entry feels numb',
+            body: 'Use braking zones to separate wheel feel from car setup. If front-load information is hidden in every car, tune the wheel profile first.',
+            bullets: [
+              'Test one smooth braking zone and one bumpy braking zone.',
+              'Adjust damper or road feel in small steps.',
+              'Move to brake balance only after input feel is readable.',
+            ],
+          },
+          {
+            title: 'Drift recovery is too slow',
+            body: 'A calm road profile can feel delayed during drift. Use a separate drift pass before assuming the car needs more angle or power.',
+            bullets: [
+              'Keep steering lock and assists fixed during comparison.',
+              'Lower resistance if countersteer cannot catch the slide.',
+              'Retest with a known stable drift setup before editing gears.',
+            ],
+          },
         ],
       },
     ],
@@ -5936,6 +6124,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-oversteer',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6: Supported Wheels and Devices',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51674028831251-FH6-Supported-Wheels-and-Devices',
+        note: 'Used as the official FH6 Fanatec and MOZA compatibility reference, including driver, firmware, partial-support, multi-USB, and missing-force-feedback checks.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 on Wheel: Advanced Wheel Tuning',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forza.net/hc/en-us/articles/51642814113427-Forza-Horizon-6-on-Wheel-Advanced-Wheel-Tuning',
+        note: 'Used for official FH6 force feedback concepts around clipping, center spring, damper, road feel, load sensitivity, mechanical trail, and steering sensitivity.',
+      },
+    ],
     sections: [
       {
         title: 'Avoid clipping before chasing strength',
@@ -5962,6 +6168,42 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'If every car is nervous, adjust the wheel profile.',
           'If one RWD car snaps, open the oversteer guide.',
           'Keep separate road, rally, and drift force notes.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Direct-drive wheel setup checks',
+        description:
+          'Use this flow for Fanatec and MOZA bases before assuming a powerful wheel needs an aggressive car tune.',
+        cards: [
+          {
+            title: 'Force feedback is missing',
+            body: 'Treat missing FFB as device order, USB, driver, firmware, or support-status first. The tune cannot fix a wheelbase that is not receiving force output.',
+            bullets: [
+              'Check official support status for the exact base.',
+              'Plug the wheelbase directly into the PC when possible.',
+              'Disconnect extra USB devices if the wheel is not Device 1.',
+            ],
+          },
+          {
+            title: 'Every corner feels clipped',
+            body: 'Direct-drive strength can saturate force output. Lower strength until tire load changes are readable again, then test car setup.',
+            bullets: [
+              'Use one high-load corner for force comparison.',
+              'Lower force before changing every suspension setting.',
+              'Keep damper and center spring notes with the profile.',
+            ],
+          },
+          {
+            title: 'Fast straights oscillate',
+            body: 'Oscillation is usually a wheel-profile issue before it is a car-tune issue. Calm the wheel without hiding understeer or slide detail.',
+            bullets: [
+              'Add damping in small steps only when needed.',
+              'Retest a straight, a bumpy road, and a drift recovery.',
+              'Keep separate road and drift direct-drive profiles.',
+            ],
+          },
         ],
       },
     ],
