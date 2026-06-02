@@ -1,12 +1,14 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { Button } from '@/components/ui/button';
 import { ForzaHorizon6CarGuideVisual } from '@/components/games/forza-horizon-6-car-guide-visual';
+import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { JsonLd } from '@/components/seo/json-ld';
 import { LocaleLink } from '@/i18n/navigation';
 import {
   forzaHorizon6BestCarGuides,
   type ForzaHorizon6BestCarGuide,
 } from '@/lib/guides/forza-horizon-6-best-car-guides';
+import { forzaHorizon6CarGuideMediaSources } from '@/lib/guides/forza-horizon-6-car-guide-media-sources';
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
@@ -218,6 +220,10 @@ export function ForzaHorizon6BestCarGuidePage({
               title={guide.h1}
             />
           </div>
+
+          <ForzaHorizon6GuideMediaSources
+            sources={forzaHorizon6CarGuideMediaSources}
+          />
 
           <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
             <div className="forza-panel p-5">
