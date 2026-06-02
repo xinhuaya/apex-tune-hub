@@ -314,12 +314,12 @@ export function ForzaHomeTuneWorkbench() {
     <div className="forza-panel relative w-full max-w-[22rem] overflow-hidden p-4 sm:max-w-full sm:p-5">
       <div className="forza-hero-grid absolute inset-0 opacity-30" />
       <div className="relative">
-        <div className="flex items-start justify-between gap-4 border-b border-zinc-800 pb-3">
+        <div className="flex items-start justify-between gap-3 border-b border-zinc-800 pb-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
               Core tune product
             </p>
-            <h2 className="mt-2 text-2xl font-semibold text-zinc-50">
+            <h2 className="mt-2 text-xl font-semibold text-zinc-50 sm:text-2xl">
               Build a baseline now
             </h2>
           </div>
@@ -327,13 +327,13 @@ export function ForzaHomeTuneWorkbench() {
             <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-amber-300/30 bg-amber-300/10 text-amber-200">
               <SlidersHorizontalIcon className="size-5" />
             </span>
-            <span className="rounded-md border border-cyan-300/25 bg-cyan-300/[0.08] px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-cyan-100">
+            <span className="hidden rounded-md border border-cyan-300/25 bg-cyan-300/[0.08] px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-cyan-100 sm:inline-flex">
               First screen
             </span>
           </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center gap-2 rounded-md border border-white/10 bg-black/25 px-3 py-2 text-xs font-semibold text-zinc-400">
+        <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-white/10 bg-black/25 px-3 py-2 text-[0.72rem] font-semibold text-zinc-400 sm:text-xs">
           <span className="text-cyan-200">Pick symptom</span>
           <span className="text-zinc-600">/</span>
           <span>Generate baseline</span>
