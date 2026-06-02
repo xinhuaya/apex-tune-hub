@@ -288,9 +288,15 @@ export function ForzaHomeTuneWorkbench() {
   }
 
   async function copyBaselineNotes() {
-    await writeClipboard(formatResultForClipboard(result));
+    const presetUrl = new URL(
+      calculatorHref,
+      window.location.origin
+    ).toString();
+
+    await writeClipboard(formatResultForClipboard(result, { presetUrl }));
     trackHomeWorkbenchEvent('copy_home_baseline_notes', input, {
       confidence: result.confidence,
+      href: calculatorHref,
     });
     setCopiedNotes(true);
     window.setTimeout(() => setCopiedNotes(false), 1800);

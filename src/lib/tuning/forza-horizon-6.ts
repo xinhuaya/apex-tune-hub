@@ -64,6 +64,10 @@ export type CalculationResult = {
   recommendations: Recommendation[];
 };
 
+export type ClipboardResultOptions = {
+  presetUrl?: string;
+};
+
 export const raceTypeOptions: Array<{ value: RaceType; label: string }> = [
   { value: 'road', label: 'Road racing' },
   { value: 'street', label: 'Street racing' },
@@ -253,11 +257,15 @@ export function calculateGearRatio(input: GearInput): CalculationResult {
   };
 }
 
-export function formatResultForClipboard(result: CalculationResult): string {
+export function formatResultForClipboard(
+  result: CalculationResult,
+  options: ClipboardResultOptions = {}
+): string {
   return [
     result.title,
     result.summary,
     `Confidence: ${result.confidence}`,
+    ...(options.presetUrl ? [`Preset URL: ${options.presetUrl}`] : []),
     '',
     'Recommended changes',
     ...result.recommendations.flatMap((item) => [
