@@ -1,4 +1,5 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
+import { ForzaHorizon6CarGuideVisual } from '@/components/games/forza-horizon-6-car-guide-visual';
 import { JsonLd } from '@/components/seo/json-ld';
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
@@ -196,6 +197,20 @@ export function ForzaHorizon6ClassCarGuidePage({
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-6">
+            <ForzaHorizon6CarGuideVisual
+              candidates={guide.picks.map((pick) => ({
+                name: pick.car,
+                tag: pick.role,
+                note: pick.why,
+              }))}
+              eyebrow={guide.eyebrow}
+              primaryMetric={guide.id.toUpperCase()}
+              roles={[guide.classGoal, ...bestForRoles]}
+              title={guide.h1}
+            />
+          </div>
+
           <div className="mb-6 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
             <div className="forza-panel p-5">
               <GitBranchIcon className="size-6 text-amber-300" />

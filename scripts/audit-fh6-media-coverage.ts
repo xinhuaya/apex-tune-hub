@@ -165,7 +165,7 @@ function auditCarGuides(): MediaAuditPage[] {
       type: item.type,
       priority: scored.priority,
       reasons: scored.reasons,
-      hasOriginalDiagram: false,
+      hasOriginalDiagram: true,
       mediaSourceCount: 0,
       embeddedVideoCount: 0,
       sourceArticleCount: 0,
