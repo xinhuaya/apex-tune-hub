@@ -764,6 +764,37 @@ const gearActionPlans: Record<
   },
 };
 
+const gearProblemGuideLinks: Record<
+  GearInput['symptom'],
+  { label: string; href: string; hint: string }
+> = {
+  'hits-limiter': {
+    label: 'Open top speed guide',
+    href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
+    hint: 'Use this when the car reaches limiter too early or runs out of gear before the longest straight ends.',
+  },
+  'never-top-gear': {
+    label: 'Open gear tuning guide',
+    href: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+    hint: 'Use this when the top gear exists on paper but the car cannot pull it on the route.',
+  },
+  'slow-launch': {
+    label: 'Open launch guide',
+    href: '/games/forza-horizon-6/guides/fix-slow-launch',
+    hint: 'Use this when first gear bogs, the launch feels lazy, or the first shift falls out of power.',
+  },
+  'bogs-after-shift': {
+    label: 'Open gear tuning guide',
+    href: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+    hint: 'Use this when the car drops below the useful power band after a shift.',
+  },
+  wheelspin: {
+    label: 'Open wheelspin guide',
+    href: '/games/forza-horizon-6/guides/fix-wheelspin',
+    hint: 'Use this when first gear is too short, throttle turns into smoke, or the car wastes launch grip.',
+  },
+};
+
 function SelectField<T extends string>({
   label,
   value,
@@ -1427,6 +1458,42 @@ function GearResultActionPlan({ input }: { input: GearInput }) {
   );
 }
 
+function GearNextStepCard({
+  guide,
+  symptom,
+}: {
+  guide: { label: string; href: string; hint: string };
+  symptom: GearInput['symptom'];
+}) {
+  return (
+    <div className="rounded-md border border-amber-300/25 bg-amber-300/[0.07] p-4">
+      <div className="flex items-start gap-3">
+        <RouteIcon className="mt-1 size-5 shrink-0 text-amber-200" />
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
+            Matched gearing guide
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">{guide.hint}</p>
+          <LocaleLink
+            className="mt-3 inline-flex min-h-10 items-center justify-center rounded-md border border-amber-300/30 bg-black/25 px-3 text-center text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/[0.1]"
+            href={guide.href}
+            onClick={() =>
+              trackToolEvent('open_matched_gear_guide', {
+                tool: 'gear',
+                href: guide.href,
+                label: guide.label,
+                symptom,
+              })
+            }
+          >
+            {guide.label}
+          </LocaleLink>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ResultPanel({
   result,
   children,
@@ -1662,6 +1729,7 @@ export function ForzaGearRatioCalculator() {
   );
 
   const result = useMemo(() => calculateGearRatio(input), [input]);
+  const activeGuide = gearProblemGuideLinks[input.symptom];
   const updateInput = useCallback(
     (patch: Partial<GearInput>) => {
       const nextInput = { ...input, ...patch };
@@ -1685,6 +1753,9 @@ export function ForzaGearRatioCalculator() {
       description="Tune final drive and gear spacing around the route, not just the biggest speed number. The output tells you what to test first."
       result={result}
       shareUrl={shareUrl}
+      nextStep={
+        <GearNextStepCard guide={activeGuide} symptom={input.symptom} />
+      }
       resultAside={<GearResultActionPlan input={input} />}
     >
       <GearSymptomPresetGrid input={input} onSelect={setInput} />
