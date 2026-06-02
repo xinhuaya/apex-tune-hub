@@ -5101,17 +5101,17 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     intro:
       'Understeer means the car wants to go wider than your steering input. Fix front bite and rotation carefully before adding more power or aero.',
     primaryCta: {
-      label: 'Open understeer preset',
-      href: '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
+      label: 'Open understeer tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
     },
     relatedLinks: [
       {
-        label: 'Road racing cars',
-        href: '/games/forza-horizon-6/best-road-racing-cars',
+        label: 'Understeer preset',
+        href: '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
       },
       {
-        label: 'Tune calculator',
-        href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S1&issue=understeer&style=balanced',
+        label: 'Road racing cars',
+        href: '/games/forza-horizon-6/best-road-racing-cars',
       },
       {
         label: 'Gear ratio calculator',
