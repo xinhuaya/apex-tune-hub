@@ -1129,16 +1129,16 @@ function ToolShell({
           </p>
           <div className="mt-6 grid gap-4">{children}</div>
           {nextStep ? <div className="mt-5">{nextStep}</div> : null}
-          {savedPresets.length > 0 ? (
-            <div className="mt-5 border-t border-white/10 pt-5">
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-sm font-semibold text-zinc-100">
-                  Saved on this device
-                </h2>
-                <span className="text-xs text-zinc-500">
-                  {savedPresets.length}/6
-                </span>
-              </div>
+          <div className="mt-5 border-t border-white/10 pt-5">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-sm font-semibold text-zinc-100">
+                Preset garage
+              </h2>
+              <span className="text-xs text-zinc-500">
+                {savedPresets.length}/6
+              </span>
+            </div>
+            {savedPresets.length > 0 ? (
               <div className="mt-3 grid gap-2">
                 {savedPresets.map((preset) => (
                   <div
@@ -1185,8 +1185,25 @@ function ToolShell({
                   </div>
                 ))}
               </div>
-            </div>
-          ) : null}
+            ) : (
+              <div className="mt-3 rounded-md border border-dashed border-white/15 bg-white/[0.02] p-4">
+                <div className="flex items-start gap-3">
+                  <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-amber-300/25 bg-amber-300/[0.07] text-amber-200">
+                    <BookmarkPlusIcon className="size-4" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-100">
+                      No local slots yet
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-zinc-500">
+                      Save a baseline after choosing a symptom, then compare up
+                      to six local tune links here.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
         <ResultPanel result={result}>{resultAside}</ResultPanel>
       </div>
