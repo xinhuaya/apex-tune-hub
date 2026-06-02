@@ -126,6 +126,14 @@ Before publishing or upgrading a page, check:
 
 Use GSC data first. If there is no data yet, prioritize pages that route into the core tools.
 
+Run the local media coverage audit before choosing screenshots or videos:
+
+```text
+pnpm audit:fh6-media
+```
+
+The report lists how many FH6 pages already have original diagrams, credited media sources, and embedded videos. Use `highPriorityMissingMedia` as the first queue for pages that need screenshots, video embeds, or stronger source notes.
+
 1. Calculator improvement pages:
    - FH6 tune calculator
    - FH6 gear ratio calculator

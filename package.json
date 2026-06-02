@@ -23,6 +23,7 @@
     "distribute-credits": "tsx scripts/distribute-credits.ts",
     "indexnow": "tsx scripts/submit-indexnow.ts",
     "audit:fh6-links": "tsx scripts/audit-fh6-guide-links.ts",
+    "audit:fh6-media": "tsx scripts/audit-fh6-media-coverage.ts",
     "content": "fumadocs-mdx",
     "email": "email dev --dir src/mail/templates --port 3333",
     "knip": "knip"
