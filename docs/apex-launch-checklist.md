@@ -84,6 +84,7 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - Avoid thin city-style or fake meta pages. Label untested recommendations clearly.
 - Add real testing notes, screenshots, or route-specific observations whenever available.
 - Use `docs/apex-fh6-analytics-playbook.md` for the weekly GSC and Vercel Analytics review.
+- Use `docs/apex-fh6-content-production-playbook.md` when turning videos, screenshots, and GSC queries into new guides.
 
 ## Human Inputs Needed
 
