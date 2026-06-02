@@ -163,6 +163,11 @@ const sourceBackedGearNotes = [
 
 const gearFaqs = [
   {
+    question: 'Is this a Forza Horizon 6 gear ratio calculator?',
+    answer:
+      'Yes. It is built for Forza Horizon 6 tuning workflows, using route type, gear count, priority, and the current gearing symptom to suggest the first final-drive or shift-spacing test.',
+  },
+  {
     question: 'What does final drive do in Forza Horizon 6 tuning?',
     answer:
       'Final drive moves the whole gearbox shorter or longer. Shorter gearing improves response and acceleration but can hit the limiter early. Longer gearing gives more room for speed but can make the car feel lazy after shifts.',
@@ -181,6 +186,12 @@ const gearFaqs = [
     question: 'Is top speed always the best gearing target?',
     answer:
       'No. A car that has a bigger highway speed number can still lose a race if it exits corners slowly or never reaches top gear. Match gearing to the longest useful straight in the actual event.',
+  },
+  {
+    question:
+      'When should I use the gear ratio calculator instead of the tune calculator?',
+    answer:
+      'Use the gear ratio calculator when the problem is limiter, top gear, launch bog, shift drop, or first-gear wheelspin. Use the main tune calculator first when the car has understeer, oversteer, braking instability, or general traction balance issues.',
   },
 ];
 
@@ -222,9 +233,11 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
             featureList: [
               'Final drive tuning direction',
               'Gear count and route priority matching',
+              'FH6 gear ratio calculator baseline for final drive and shift spacing',
               'Shift symptom diagnosis',
               'Gear problem presets for launch and limiter issues',
               'First gearing test loop for route-based retesting',
+              'Main tune calculator handoff for handling and traction problems',
               'Shareable gearing preset URLs',
             ],
           }),

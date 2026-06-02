@@ -708,6 +708,36 @@ const gearSymptomPresets: Array<{
   },
 ];
 
+const gearCountOptions: Array<{ value: GearInput['gears']; label: string }> = [
+  { value: '4', label: '4 gears' },
+  { value: '5', label: '5 gears' },
+  { value: '6', label: '6 gears' },
+  { value: '7', label: '7 gears' },
+  { value: '8', label: '8 gears' },
+  { value: '9', label: '9 gears' },
+  { value: '10', label: '10 gears' },
+];
+
+const gearPriorityOptions: Array<{
+  value: GearInput['priority'];
+  label: string;
+}> = [
+  { value: 'acceleration', label: 'Acceleration' },
+  { value: 'balanced', label: 'Balanced' },
+  { value: 'top-speed', label: 'Top speed' },
+];
+
+const gearSymptomOptions: Array<{
+  value: GearInput['symptom'];
+  label: string;
+}> = [
+  { value: 'hits-limiter', label: 'Hits limiter too early' },
+  { value: 'never-top-gear', label: 'Never reaches top gear' },
+  { value: 'slow-launch', label: 'Slow launch' },
+  { value: 'bogs-after-shift', label: 'Bogs after shift' },
+  { value: 'wheelspin', label: 'Wheelspin on launch' },
+];
+
 const gearActionPlans: Record<
   GearInput['symptom'],
   {
@@ -1545,6 +1575,52 @@ function GearNextStepCard({
   );
 }
 
+function GearBaselineSummary({ input }: { input: GearInput }) {
+  const raceType = optionLabel(raceTypeOptions, input.raceType);
+  const gearCount = optionLabel(gearCountOptions, input.gears);
+  const priority = optionLabel(gearPriorityOptions, input.priority);
+  const symptom = optionLabel(gearSymptomOptions, input.symptom);
+  const plan = gearActionPlans[input.symptom];
+
+  return (
+    <div className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            Current FH6 gearing baseline
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">
+            {raceType} setup with {gearCount.toLowerCase()}, tuned for{' '}
+            {priority.toLowerCase()} while checking {symptom.toLowerCase()}.
+          </p>
+        </div>
+        <span className="rounded-md border border-white/10 bg-black/25 px-3 py-1 text-xs font-semibold text-zinc-400">
+          Live gear test
+        </span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        <div className="rounded-md border border-white/10 bg-black/25 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+            First test
+          </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-100">
+            {plan.focus}
+          </p>
+        </div>
+        <div className="rounded-md border border-white/10 bg-black/25 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+            Use this as
+          </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-100">
+            A Forza Horizon 6 gear ratio calculator baseline for final drive and
+            shift spacing
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ResultPanel({
   result,
   children,
@@ -1810,6 +1886,7 @@ export function ForzaGearRatioCalculator() {
       }
       resultAside={<GearResultActionPlan input={input} />}
     >
+      <GearBaselineSummary input={input} />
       <GearSymptomPresetGrid input={input} onSelect={setInput} />
       <SelectField
         label="Race type"
@@ -1821,15 +1898,7 @@ export function ForzaGearRatioCalculator() {
         label="Number of gears"
         value={input.gears}
         onChange={(gears: GearInput['gears']) => updateInput({ gears })}
-        options={[
-          { value: '4', label: '4 gears' },
-          { value: '5', label: '5 gears' },
-          { value: '6', label: '6 gears' },
-          { value: '7', label: '7 gears' },
-          { value: '8', label: '8 gears' },
-          { value: '9', label: '9 gears' },
-          { value: '10', label: '10 gears' },
-        ]}
+        options={gearCountOptions}
       />
       <SelectField
         label="Priority"
@@ -1837,23 +1906,13 @@ export function ForzaGearRatioCalculator() {
         onChange={(priority: GearInput['priority']) =>
           updateInput({ priority })
         }
-        options={[
-          { value: 'acceleration', label: 'Acceleration' },
-          { value: 'balanced', label: 'Balanced' },
-          { value: 'top-speed', label: 'Top speed' },
-        ]}
+        options={gearPriorityOptions}
       />
       <SelectField
         label="Current symptom"
         value={input.symptom}
         onChange={(symptom: GearInput['symptom']) => updateInput({ symptom })}
-        options={[
-          { value: 'hits-limiter', label: 'Hits limiter too early' },
-          { value: 'never-top-gear', label: 'Never reaches top gear' },
-          { value: 'slow-launch', label: 'Slow launch' },
-          { value: 'bogs-after-shift', label: 'Bogs after shift' },
-          { value: 'wheelspin', label: 'Wheelspin on launch' },
-        ]}
+        options={gearSymptomOptions}
       />
     </ToolShell>
   );
