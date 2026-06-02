@@ -5177,17 +5177,17 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     intro:
       'Oversteer can be useful, but only when it is predictable. The goal is not to remove rotation; it is to make the rear catchable.',
     primaryCta: {
-      label: 'Open rally oversteer preset',
-      href: '/tools/forza-horizon-6-tune-presets/a-rwd-rally-oversteer-aggressive',
+      label: 'Open oversteer tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=A&issue=oversteer&style=balanced',
     },
     relatedLinks: [
       {
-        label: 'Best rally cars',
-        href: '/games/forza-horizon-6/best-rally-cars',
+        label: 'Rally oversteer preset',
+        href: '/tools/forza-horizon-6-tune-presets/a-rwd-rally-oversteer-aggressive',
       },
       {
-        label: 'Oversteer tune calculator',
-        href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=A&issue=oversteer&style=balanced',
+        label: 'Best rally cars',
+        href: '/games/forza-horizon-6/best-rally-cars',
       },
       {
         label: 'Drift tune calculator',
