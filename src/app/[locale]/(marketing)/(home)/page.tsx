@@ -7,6 +7,7 @@ import { LocaleLink } from '@/i18n/navigation';
 import { constructMetadata } from '@/lib/metadata';
 import {
   buildItemListJsonLd,
+  buildSoftwareApplicationJsonLd,
   buildWebSiteJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
@@ -164,6 +165,18 @@ export default function HomePage() {
       <JsonLd
         data={[
           buildWebSiteJsonLd(),
+          buildSoftwareApplicationJsonLd({
+            title: 'Forza Horizon 6 Tune Calculator',
+            description:
+              'Free FH6 tuning workbench for road, street, dirt, rally, drift, drag, drivetrain, class, handling issue, and driving style baselines.',
+            path: '/tools/forza-horizon-6-tune-calculator',
+            featureList: [
+              'Forza Horizon 6 baseline tune recommendations',
+              'Handling issue presets for understeer, oversteer, wheelspin, launch, braking, and top speed',
+              'Copyable setup notes and shareable calculator links',
+              'Gear ratio, drift tune, tune code, and preset workflows',
+            ],
+          }),
           buildItemListJsonLd({
             title: 'Apex Tune Hub core FH6 tuning pages',
             items: homepageItemList,
