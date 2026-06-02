@@ -226,12 +226,6 @@ const issueGuideLinks: Record<
   },
 };
 
-const productLoop = [
-  ['Pick symptom', 'Start from the problem you feel in the car.'],
-  ['Generate baseline', 'Read the first three tuning moves immediately.'],
-  ['Open full tool', 'Copy notes, share the preset, and refine one route.'],
-];
-
 function CompactSelect<T extends string>({
   label,
   value,
@@ -267,7 +261,7 @@ export function ForzaHomeTuneWorkbench() {
   const [copiedLink, setCopiedLink] = useState(false);
   const result = useMemo(() => calculateTune(input), [input]);
   const calculatorHref = useMemo(() => buildCalculatorHref(input), [input]);
-  const topRecommendations = result.recommendations.slice(0, 3);
+  const topRecommendations = result.recommendations.slice(0, 2);
   const activeGuide = issueGuideLinks[input.handlingIssue];
 
   function updateInput(
@@ -320,7 +314,7 @@ export function ForzaHomeTuneWorkbench() {
     <div className="forza-panel relative w-full max-w-[22rem] overflow-hidden p-4 sm:max-w-full sm:p-5">
       <div className="forza-hero-grid absolute inset-0 opacity-30" />
       <div className="relative">
-        <div className="flex items-start justify-between gap-4 border-b border-zinc-800 pb-4">
+        <div className="flex items-start justify-between gap-4 border-b border-zinc-800 pb-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
               Core tune product
@@ -339,24 +333,15 @@ export function ForzaHomeTuneWorkbench() {
           </div>
         </div>
 
-        <div className="mt-4 grid gap-2 sm:grid-cols-3">
-          {productLoop.map(([label, text], index) => (
-            <div
-              className="rounded-md border border-white/10 bg-black/25 p-3"
-              key={label}
-            >
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
-                Step {index + 1}
-              </p>
-              <p className="mt-2 text-sm font-semibold text-zinc-100">
-                {label}
-              </p>
-              <p className="mt-1 text-xs leading-5 text-zinc-500">{text}</p>
-            </div>
-          ))}
+        <div className="mt-3 flex flex-wrap items-center gap-2 rounded-md border border-white/10 bg-black/25 px-3 py-2 text-xs font-semibold text-zinc-400">
+          <span className="text-cyan-200">Pick symptom</span>
+          <span className="text-zinc-600">/</span>
+          <span>Generate baseline</span>
+          <span className="text-zinc-600">/</span>
+          <span>Open full tool</span>
         </div>
 
-        <div className="mt-5">
+        <div className="mt-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <LifeBuoyIcon className="size-4 text-amber-200" />
@@ -398,7 +383,7 @@ export function ForzaHomeTuneWorkbench() {
           </div>
         </div>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <CompactSelect
             label="Race"
             value={input.raceType}
@@ -441,7 +426,7 @@ export function ForzaHomeTuneWorkbench() {
           </div>
         </div>
 
-        <div className="mt-5 rounded-md border border-cyan-300/20 bg-cyan-300/[0.06] p-4">
+        <div className="mt-4 rounded-md border border-cyan-300/20 bg-cyan-300/[0.06] p-3">
           <div className="flex items-start gap-3">
             <GaugeIcon className="mt-1 size-5 shrink-0 text-cyan-200" />
             <div>
@@ -449,14 +434,14 @@ export function ForzaHomeTuneWorkbench() {
                 {result.summary}
               </p>
               <p className="mt-2 text-xs leading-5 text-zinc-400">
-                {activeGuide.hint} Open the full calculator to copy, save, and
-                share the setup link.
+                {activeGuide.hint} Open the full calculator to save and share
+                the setup link.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 grid gap-2">
+        <div className="mt-3 grid gap-2">
           {topRecommendations.map((item) => (
             <div
               className="rounded-md border border-white/10 bg-black/25 px-3 py-2"
@@ -475,7 +460,7 @@ export function ForzaHomeTuneWorkbench() {
           ))}
         </div>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
           <Button
             className="h-11 rounded-md border border-cyan-300/30 bg-cyan-300/[0.08] text-cyan-100 hover:bg-cyan-300/[0.14]"
             type="button"
@@ -502,27 +487,11 @@ export function ForzaHomeTuneWorkbench() {
               <ArrowRightIcon className="ml-2 size-4" />
             </LocaleLink>
           </Button>
-          <p className="text-xs leading-5 text-zinc-500 sm:col-span-2">
-            The full FH6 Tune Calculator keeps this exact state in the URL, so
-            the homepage baseline becomes a shareable setup instead of a dead
-            end.
-          </p>
-          <LocaleLink
-            className="text-center text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
-            href="/tools/forza-horizon-6-gear-ratio-calculator"
-            onClick={() =>
-              trackHomeWorkbenchEvent('open_home_gear_ratio_tool', input, {
-                href: '/tools/forza-horizon-6-gear-ratio-calculator',
-              })
-            }
-          >
-            Gear ratio tool
-          </LocaleLink>
         </div>
 
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
           <LocaleLink
-            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-amber-300/25 bg-amber-300/[0.07] px-3 text-center text-sm font-semibold text-amber-100 transition hover:border-amber-300/50 hover:bg-amber-300/[0.1]"
+            className="inline-flex min-h-9 items-center justify-center gap-2 rounded-md border border-amber-300/25 bg-amber-300/[0.07] px-2 text-center text-xs font-semibold text-amber-100 transition hover:border-amber-300/50 hover:bg-amber-300/[0.1]"
             href={activeGuide.href}
             onClick={() =>
               trackHomeWorkbenchEvent('open_home_matched_guide', input, {
@@ -534,8 +503,20 @@ export function ForzaHomeTuneWorkbench() {
             <RouteIcon className="size-4" />
             {activeGuide.label}
           </LocaleLink>
+          <LocaleLink
+            className="inline-flex min-h-9 items-center justify-center gap-2 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] px-2 text-center text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.08]"
+            href="/tools/forza-horizon-6-gear-ratio-calculator"
+            onClick={() =>
+              trackHomeWorkbenchEvent('open_home_gear_ratio_tool', input, {
+                href: '/tools/forza-horizon-6-gear-ratio-calculator',
+              })
+            }
+          >
+            <GaugeIcon className="size-4" />
+            Gear tool
+          </LocaleLink>
           <button
-            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
+            className="inline-flex min-h-9 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-2 text-center text-xs font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
             type="button"
             onClick={copyPresetLink}
           >
