@@ -250,6 +250,11 @@ const tuneCalculatorFaqs = [
       'Yes. The calculator keeps selected options in the URL, so you can copy a preset link or save it locally on the device for quick comparison.',
   },
   {
+    question: 'Is this also a FH6 tune finder?',
+    answer:
+      'Yes, but it works as a guided tune finder rather than a static list. Start with the race type, drivetrain, class, handling issue, and driving style, then open the matching preset, guide, or calculator state that fits the car you are testing.',
+  },
+  {
     question: 'What is the best first setting to change in FH6 tuning?',
     answer:
       'Start with the main symptom. For understeer, look at tire pressure, ARBs, differential, and aero direction. For wheelspin, focus on gearing, differential, and throttle-friendly suspension before chasing top speed.',
@@ -294,6 +299,7 @@ export default function ForzaHorizon6TuneCalculatorPage() {
             featureList: [
               'FH6 baseline tune recommendations',
               'Quick symptom presets for common tuning problems',
+              'FH6 tune finder workflow from symptom to calculator state',
               'First test loop with matched guide links',
               'Shareable preset URLs',
               'Local saved preset history',
