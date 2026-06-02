@@ -1546,6 +1546,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/wheel-not-working-checklist',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6 Important Update Notes',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+        note: 'Used as an official support reference for separating game update and performance issues from car tuning problems. Apply the page workflow only after confirming the local input path is stable.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues checkpoint before blaming controller, wheel, display, or tune settings for delayed response.',
+      },
+    ],
     sections: [
       {
         title: 'Rule out frame pacing first',
@@ -2016,6 +2034,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general tuning workflow reference. This AWD page applies that workflow to launch grip, center balance, and understeer diagnosis rather than claiming a single universal setup.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 tuning guide',
+        sourceName: 'HokiHoshi',
+        sourceUrl: 'https://hokihoshi.com/forza-horizon-6/tuning/',
+        note: 'Used as supporting tuning context for keeping setup changes narrow and testing symptoms one at a time.',
+      },
+    ],
     sections: [
       {
         title: 'Start with launch and exit grip',
@@ -2301,6 +2337,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Fix wheelspin',
         href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a broad tuning workflow reference. The differential page narrows it to acceleration, deceleration, center balance, and one-corner retesting.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl: 'https://www.forzafire.com/guides/forza-horizon-6-tuning',
+        note: 'Used as a secondary reference for explaining how drivetrain and differential choices change car behavior. Apex Tune Hub still labels FH6 values as baseline guidance until route tests are logged.',
       },
     ],
     sections: [
@@ -6235,6 +6289,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-slow-launch',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning process reference. This drag page focuses the process on launch repeatability, first shift behavior, and gear spacing.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as background context for treating gearing and differential changes as controlled tests instead of one-shot magic numbers.',
+      },
+    ],
     sections: [
       {
         title: 'Fix the launch first',
@@ -6476,6 +6549,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Fix understeer',
         href: '/games/forza-horizon-6/guides/fix-understeer',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general tuning workflow reference. The A class road page applies it to low-power grip, braking stability, and repeatable corner exits.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 complete tuning guide',
+        sourceName: 'Forza Guide',
+        sourceUrl: 'https://forza.guide/fh6/tuning/',
+        note: 'Used as supporting context for road-race tuning concepts. Keep page values as starting points until route screenshots and timing notes are collected.',
       },
     ],
     sections: [
