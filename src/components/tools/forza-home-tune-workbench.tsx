@@ -25,6 +25,7 @@ import {
   CopyIcon,
   GaugeIcon,
   LifeBuoyIcon,
+  LinkIcon,
   RouteIcon,
   SlidersHorizontalIcon,
 } from 'lucide-react';
@@ -235,6 +236,7 @@ function CompactSelect<T extends string>({
 export function ForzaHomeTuneWorkbench() {
   const [input, setInput] = useState<TuneInput>(defaultInput);
   const [copiedNotes, setCopiedNotes] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
   const result = useMemo(() => calculateTune(input), [input]);
   const calculatorHref = useMemo(() => buildCalculatorHref(input), [input]);
   const topRecommendations = result.recommendations.slice(0, 3);
@@ -270,6 +272,20 @@ export function ForzaHomeTuneWorkbench() {
     });
     setCopiedNotes(true);
     window.setTimeout(() => setCopiedNotes(false), 1800);
+  }
+
+  async function copyPresetLink() {
+    const presetUrl = new URL(
+      calculatorHref,
+      window.location.origin
+    ).toString();
+
+    await writeClipboard(presetUrl);
+    trackHomeWorkbenchEvent('copy_home_preset_link', input, {
+      href: calculatorHref,
+    });
+    setCopiedLink(true);
+    window.setTimeout(() => setCopiedLink(false), 1800);
   }
 
   return (
@@ -463,17 +479,18 @@ export function ForzaHomeTuneWorkbench() {
             <RouteIcon className="size-4" />
             {activeGuide.label}
           </LocaleLink>
-          <LocaleLink
+          <button
             className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
-            href="/tools/forza-horizon-6-tune-presets"
-            onClick={() =>
-              trackHomeWorkbenchEvent('open_home_preset_links', input, {
-                href: '/tools/forza-horizon-6-tune-presets',
-              })
-            }
+            type="button"
+            onClick={copyPresetLink}
           >
-            Browse preset links
-          </LocaleLink>
+            {copiedLink ? (
+              <CheckIcon className="size-4" />
+            ) : (
+              <LinkIcon className="size-4" />
+            )}
+            {copiedLink ? 'Preset link copied' : 'Copy preset link'}
+          </button>
         </div>
       </div>
     </div>
