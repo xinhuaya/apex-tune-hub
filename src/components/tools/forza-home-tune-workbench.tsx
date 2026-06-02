@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { LocaleLink } from '@/i18n/navigation';
+import { track } from '@vercel/analytics';
 import {
   calculateTune,
   classOptions,
@@ -34,6 +35,8 @@ const defaultInput: TuneInput = {
   drivingStyle: 'balanced',
 };
 
+const homeWorkbenchStorageKey = 'apex-tune-hub:fh6-tool-events';
+
 function buildCalculatorHref(input: TuneInput) {
   const params = new URLSearchParams({
     race: input.raceType,
@@ -44,6 +47,49 @@ function buildCalculatorHref(input: TuneInput) {
   });
 
   return `/tools/forza-horizon-6-tune-calculator?${params.toString()}`;
+}
+
+function trackHomeWorkbenchEvent(
+  action: string,
+  input: TuneInput,
+  payload: Record<string, string> = {}
+) {
+  const event = {
+    action,
+    path: typeof window === 'undefined' ? '/' : window.location.pathname,
+    source: 'homepage_tune_workbench',
+    race: input.raceType,
+    drive: input.drivetrain,
+    class: input.classBand,
+    issue: input.handlingIssue,
+    style: input.drivingStyle,
+    ...payload,
+  };
+
+  try {
+    track('FH6 Tool Action', event);
+  } catch {
+    // Tracking should never block tuning interactions.
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(homeWorkbenchStorageKey);
+    const currentEvents = rawValue ? JSON.parse(rawValue) : [];
+    const nextEvents = [
+      {
+        ...event,
+        at: new Date().toISOString(),
+      },
+      ...(Array.isArray(currentEvents) ? currentEvents : []),
+    ].slice(0, 50);
+
+    window.localStorage.setItem(
+      homeWorkbenchStorageKey,
+      JSON.stringify(nextEvents)
+    );
+  } catch {
+    // Local diagnostics are best effort only.
+  }
 }
 
 const symptomPresets: Array<{
@@ -169,8 +215,27 @@ export function ForzaHomeTuneWorkbench() {
   const topRecommendations = result.recommendations.slice(0, 3);
   const activeGuide = issueGuideLinks[input.handlingIssue];
 
-  function updateInput(patch: Partial<TuneInput>) {
-    setInput((current) => ({ ...current, ...patch }));
+  function updateInput(
+    field: keyof TuneInput,
+    value: TuneInput[keyof TuneInput]
+  ) {
+    setInput((current) => {
+      const nextInput = { ...current, [field]: value };
+
+      trackHomeWorkbenchEvent('change_home_workbench_input', nextInput, {
+        field,
+        value,
+      });
+
+      return nextInput;
+    });
+  }
+
+  function selectSymptomPreset(preset: (typeof symptomPresets)[number]) {
+    setInput(preset.input);
+    trackHomeWorkbenchEvent('select_home_symptom_preset', preset.input, {
+      preset: preset.title,
+    });
   }
 
   return (
@@ -219,7 +284,7 @@ export function ForzaHomeTuneWorkbench() {
                   }`}
                   key={preset.title}
                   type="button"
-                  onClick={() => setInput(preset.input)}
+                  onClick={() => selectSymptomPreset(preset)}
                 >
                   <span className="block text-sm font-semibold text-zinc-100">
                     {preset.title}
@@ -238,26 +303,30 @@ export function ForzaHomeTuneWorkbench() {
             label="Race"
             value={input.raceType}
             options={raceTypeOptions}
-            onChange={(raceType: RaceType) => updateInput({ raceType })}
+            onChange={(raceType: RaceType) => updateInput('raceType', raceType)}
           />
           <CompactSelect
             label="Drive"
             value={input.drivetrain}
             options={drivetrainOptions}
-            onChange={(drivetrain: Drivetrain) => updateInput({ drivetrain })}
+            onChange={(drivetrain: Drivetrain) =>
+              updateInput('drivetrain', drivetrain)
+            }
           />
           <CompactSelect
             label="Class"
             value={input.classBand}
             options={classOptions}
-            onChange={(classBand: ClassBand) => updateInput({ classBand })}
+            onChange={(classBand: ClassBand) =>
+              updateInput('classBand', classBand)
+            }
           />
           <CompactSelect
             label="Problem"
             value={input.handlingIssue}
             options={issueOptions}
             onChange={(handlingIssue: HandlingIssue) =>
-              updateInput({ handlingIssue })
+              updateInput('handlingIssue', handlingIssue)
             }
           />
           <div className="sm:col-span-2">
@@ -266,7 +335,7 @@ export function ForzaHomeTuneWorkbench() {
               value={input.drivingStyle}
               options={styleOptions}
               onChange={(drivingStyle: DrivingStyle) =>
-                updateInput({ drivingStyle })
+                updateInput('drivingStyle', drivingStyle)
               }
             />
           </div>
@@ -308,7 +377,14 @@ export function ForzaHomeTuneWorkbench() {
 
         <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
           <Button asChild className="forza-primary-button h-11">
-            <LocaleLink href={calculatorHref}>
+            <LocaleLink
+              href={calculatorHref}
+              onClick={() =>
+                trackHomeWorkbenchEvent('open_home_full_calculator', input, {
+                  href: calculatorHref,
+                })
+              }
+            >
               Open full calculator
               <ArrowRightIcon className="ml-2 size-4" />
             </LocaleLink>
@@ -316,6 +392,11 @@ export function ForzaHomeTuneWorkbench() {
           <LocaleLink
             className="text-center text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
             href="/tools/forza-horizon-6-gear-ratio-calculator"
+            onClick={() =>
+              trackHomeWorkbenchEvent('open_home_gear_ratio_tool', input, {
+                href: '/tools/forza-horizon-6-gear-ratio-calculator',
+              })
+            }
           >
             Gear ratio tool
           </LocaleLink>
@@ -325,6 +406,12 @@ export function ForzaHomeTuneWorkbench() {
           <LocaleLink
             className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-amber-300/25 bg-amber-300/[0.07] px-3 text-center text-sm font-semibold text-amber-100 transition hover:border-amber-300/50 hover:bg-amber-300/[0.1]"
             href={activeGuide.href}
+            onClick={() =>
+              trackHomeWorkbenchEvent('open_home_matched_guide', input, {
+                href: activeGuide.href,
+                guide: activeGuide.label,
+              })
+            }
           >
             <RouteIcon className="size-4" />
             {activeGuide.label}
@@ -332,6 +419,11 @@ export function ForzaHomeTuneWorkbench() {
           <LocaleLink
             className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-3 text-center text-sm font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
             href="/tools/forza-horizon-6-tune-presets"
+            onClick={() =>
+              trackHomeWorkbenchEvent('open_home_preset_links', input, {
+                href: '/tools/forza-horizon-6-tune-presets',
+              })
+            }
           >
             Browse preset links
           </LocaleLink>
