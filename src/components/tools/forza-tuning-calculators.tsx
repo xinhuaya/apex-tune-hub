@@ -830,6 +830,13 @@ function SelectField<T extends string>({
   );
 }
 
+function optionLabel<T extends string>(
+  options: Array<{ value: T; label: string }>,
+  value: T
+) {
+  return options.find((option) => option.value === value)?.label ?? value;
+}
+
 function ToolShell({
   eyebrow,
   toolId,
@@ -1173,6 +1180,50 @@ function TuneResultActionPlan({
       >
         Read the matching guide
       </LocaleLink>
+    </div>
+  );
+}
+
+function TuneBaselineSummary({ input }: { input: TuneInput }) {
+  const issue = optionLabel(issueOptions, input.handlingIssue);
+  const raceType = optionLabel(raceTypeOptions, input.raceType);
+  const drivingStyle = optionLabel(styleOptions, input.drivingStyle);
+  const plan = tuneActionPlans[input.handlingIssue];
+
+  return (
+    <div className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            Current FH6 baseline
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">
+            {input.classBand} {input.drivetrain} {raceType} setup, tuned for a{' '}
+            {drivingStyle.toLowerCase()} driver fixing {issue.toLowerCase()}.
+          </p>
+        </div>
+        <span className="rounded-md border border-white/10 bg-black/25 px-3 py-1 text-xs font-semibold text-zinc-400">
+          Live result
+        </span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        <div className="rounded-md border border-white/10 bg-black/25 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+            First focus
+          </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-100">
+            {plan.focus}
+          </p>
+        </div>
+        <div className="rounded-md border border-white/10 bg-black/25 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+            Use this as
+          </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-100">
+            A testable Forza Horizon 6 tuning calculator starting point
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1577,8 +1628,8 @@ export function ForzaTuneCalculator() {
     <ToolShell
       eyebrow="Forza Horizon 6 tool"
       toolId="tune"
-      title="Tune Calculator"
-      description="Choose the race type, drivetrain, class, and main handling problem. The calculator returns a baseline direction you can test before saving a car-specific setup."
+      title="FH6 Tune Calculator"
+      description="Use this Forza Horizon 6 tuning calculator to choose the race type, drivetrain, class, and main handling problem. It returns a baseline direction you can test before saving a car-specific setup."
       result={result}
       shareUrl={shareUrl}
       nextStep={<TuneNextStepCard guide={activeGuide} />}
@@ -1619,6 +1670,7 @@ export function ForzaTuneCalculator() {
         }
         options={styleOptions}
       />
+      <TuneBaselineSummary input={input} />
     </ToolShell>
   );
 }
