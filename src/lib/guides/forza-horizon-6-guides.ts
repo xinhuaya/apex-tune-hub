@@ -317,6 +317,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/gear-ratio-guide',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This road-racing page applies it to A/S1 class grip, braking, gearing, and repeatable route testing.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 complete tuning guide',
+        sourceName: 'Forza Guide',
+        sourceUrl: 'https://forza.guide/fh6/tuning/',
+        note: 'Used as supporting context for tuning categories. Road-racing advice remains baseline guidance until route notes and timing evidence are added.',
+      },
+    ],
     sections: [
       {
         title: 'Build A class for learning',
@@ -817,6 +835,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'PC crash checklist',
         href: '/games/forza-horizon-6/guides/pc-crash-known-issues-checklist',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 PC Specs',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/50088215399827-Forza-Horizon-6-PC-Specs',
+        note: 'Used as the official PC baseline before diagnosing low FPS, VRAM pressure, storage, or graphics preset issues.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues checkpoint before treating stutter or frame pacing as only a local graphics setting problem.',
       },
     ],
     sections: [
@@ -1915,6 +1951,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/settings/forza-horizon-6-wheel',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6 Important Update Notes',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+        note: 'Used as an official update checkpoint before blaming camera feel, input response, or visibility issues on a tune.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues reference before changing camera settings around temporary input, performance, or UI symptoms.',
+      },
+    ],
     sections: [
       {
         title: 'Choose a learning camera',
@@ -2334,6 +2388,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Best Honda cars',
         href: '/games/forza-horizon-6/best-honda-cars',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. The FWD page applies it to front-tire load, lift-off rotation, gearing, and symptom isolation.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl: 'https://www.forzafire.com/guides/forza-horizon-6-tuning',
+        note: 'Used as secondary tuning context for drivetrain and front-end behavior. FWD values stay labelled as starting points until route testing confirms them.',
       },
     ],
     sections: [
@@ -2926,6 +2998,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-poor-top-speed',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This advanced gearing page narrows the process to final drive, route speed range, and repeatable shift tests.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for treating gearing as a controlled test rather than a universal number.',
+      },
+    ],
     sections: [
       {
         title: 'Start with the route speed range',
@@ -3203,6 +3294,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Advanced gearing',
         href: '/games/forza-horizon-6/guides/advanced-gear-ratio-tuning',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This launch page applies it to low gears, differential behavior, throttle control, and first-shift testing.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as background context for launch and gearing changes. Apex Tune Hub keeps launch advice tied to repeatable strip tests.',
       },
     ],
     sections: [
@@ -4044,6 +4154,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'AWD tune settings',
         href: '/games/forza-horizon-6/guides/best-awd-tune-settings',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This offroad page applies it to landing behavior, recovery gearing, AWD stability, and mixed-surface checks.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for suspension and drivetrain testing on rough routes.',
       },
     ],
     sections: [
