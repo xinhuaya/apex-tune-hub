@@ -65,6 +65,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/weekly-playlist',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a launch tuning workflow reference. This page applies the process to Japan route splits, starter classes, and transparent baseline notes.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 complete tuning guide',
+        sourceName: 'Forza Guide',
+        sourceUrl: 'https://forza.guide/fh6/tuning/',
+        note: 'Used as supporting context for tuning categories. Apex Tune Hub keeps Japan-specific route advice labelled as baseline guidance until real route notes are collected.',
+      },
+    ],
     sections: [
       {
         title: 'Build four launch baselines',
@@ -1080,6 +1098,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/crossplay-cross-save',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6 Important Update Notes',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+        note: 'Used as an official support checkpoint before treating controller detection, wireless latency, or input routing as a local settings problem.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues reference so players can separate platform/controller problems from car tuning symptoms.',
+      },
+    ],
     sections: [
       {
         title: 'Confirm the controller path',
@@ -1171,6 +1207,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Fix wheelspin',
         href: '/games/forza-horizon-6/guides/fix-wheelspin',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6 Important Update Notes',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+        note: 'Used as an official checkpoint before blaming keyboard response, frame pacing, or input delay on the car tune.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues reference for separating platform input behavior from keyboard driving technique.',
       },
     ],
     sections: [
@@ -1265,6 +1319,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Controller drift settings',
         href: '/games/forza-horizon-6/guides/controller-drift-settings',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6 Important Update Notes',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+        note: 'Used as an official update reference before diagnosing stick drift, trigger behavior, or deadzone feel as a local-only issue.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues checkpoint before changing controller deadzones or car tuning around temporary input symptoms.',
       },
     ],
     sections: [
@@ -2147,6 +2219,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Manual transmission',
         href: '/games/forza-horizon-6/guides/manual-transmission-guide',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a general tuning workflow reference. The RWD page applies it to throttle control, rear differential behavior, and controlled gear choices.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl: 'https://www.forzafire.com/guides/forza-horizon-6-tuning',
+        note: 'Used as secondary tuning context for drivetrain behavior. Apex Tune Hub keeps RWD values as starting points until route testing confirms them.',
       },
     ],
     sections: [
@@ -6401,6 +6491,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-slow-launch',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This rally page applies the process to bumps, mixed surfaces, AWD recovery, and weekly-safe baselines.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as context for treating suspension, damping, gearing, and differential changes as separate rally tests.',
+      },
+    ],
     sections: [
       {
         title: 'Build for bumps before speed',
@@ -6662,6 +6771,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/fix-wheelspin',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This S1 rally page focuses that workflow on recovery after bumps, AWD exit rotation, and playlist-safe setup notes.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for suspension and drivetrain test order on mixed-surface builds.',
+      },
+    ],
     sections: [
       {
         title: 'Protect traction after bumps',
@@ -6846,6 +6974,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Weekly playlist checklist',
         href: '/games/forza-horizon-6/guides/weekly-playlist-tuning-checklist',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'FH6 Important Update Notes',
+        sourceName: 'Forza Support',
+        sourceUrl:
+          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+        note: 'Used as an official checkpoint before treating difficulty, assists, or performance behavior as only a player-settings issue.',
+      },
+      {
+        type: 'article',
+        title: 'FH6 Release Notes and Known Issues',
+        sourceName: 'Forza Forums',
+        sourceUrl:
+          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+        note: 'Used as a known-issues reference before changing difficulty or assists around temporary event, input, or performance symptoms.',
       },
     ],
     sections: [
