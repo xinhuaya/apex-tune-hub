@@ -98,6 +98,20 @@ function trackToolEvent(action: string, properties: ToolEventProperties = {}) {
   }
 }
 
+function trackToolInputChange(
+  tool: string,
+  field: string,
+  value: string,
+  input: StringRecord
+) {
+  trackToolEvent('change_tool_input', {
+    tool,
+    field,
+    value,
+    ...input,
+  });
+}
+
 function parsePresetInput<T extends StringRecord>(
   defaults: T,
   config: PresetConfig<T>
@@ -1479,9 +1493,17 @@ export function ForzaTuneCalculator() {
   const activeGuide = tuneIssueGuideLinks[input.handlingIssue];
   const updateInput = useCallback(
     (patch: Partial<TuneInput>) => {
-      setInput((current) => ({ ...current, ...patch }));
+      const nextInput = { ...input, ...patch };
+
+      setInput(nextInput);
+
+      for (const [field, value] of Object.entries(patch)) {
+        if (typeof value === 'string') {
+          trackToolInputChange('tune', field, value, nextInput);
+        }
+      }
     },
-    [setInput]
+    [input, setInput]
   );
 
   return (
@@ -1544,9 +1566,17 @@ export function ForzaDriftTuneCalculator() {
   const activeGuide = driftProblemGuideLinks[input.problem];
   const updateInput = useCallback(
     (patch: Partial<DriftInput>) => {
-      setInput((current) => ({ ...current, ...patch }));
+      const nextInput = { ...input, ...patch };
+
+      setInput(nextInput);
+
+      for (const [field, value] of Object.entries(patch)) {
+        if (typeof value === 'string') {
+          trackToolInputChange('drift', field, value, nextInput);
+        }
+      }
     },
-    [setInput]
+    [input, setInput]
   );
 
   return (
@@ -1634,9 +1664,17 @@ export function ForzaGearRatioCalculator() {
   const result = useMemo(() => calculateGearRatio(input), [input]);
   const updateInput = useCallback(
     (patch: Partial<GearInput>) => {
-      setInput((current) => ({ ...current, ...patch }));
+      const nextInput = { ...input, ...patch };
+
+      setInput(nextInput);
+
+      for (const [field, value] of Object.entries(patch)) {
+        if (typeof value === 'string') {
+          trackToolInputChange('gear', field, value, nextInput);
+        }
+      }
     },
-    [setInput]
+    [input, setInput]
   );
 
   return (
