@@ -930,10 +930,10 @@ function ToolShell({
   }
 
   return (
-    <section className="forza-page mx-auto w-full px-4 py-10 text-zinc-50 sm:px-6 lg:px-8">
+    <section className="forza-page mx-auto w-full max-w-full px-4 py-10 text-zinc-50 sm:px-6 lg:px-8">
       <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-80 opacity-30" />
-      <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-        <div className="forza-panel relative p-5">
+      <div className="grid min-w-0 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="forza-panel relative w-full overflow-hidden p-5">
           <p className="forza-chip">{eyebrow}</p>
           <h1 className="forza-neon-title mt-3 text-3xl font-semibold tracking-normal text-zinc-50 sm:text-4xl">
             {title}
@@ -1553,7 +1553,7 @@ function ResultPanel({
   children?: ReactNode;
 }) {
   return (
-    <div className="forza-panel relative p-5">
+    <div className="forza-panel relative w-full overflow-hidden p-5">
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-zinc-800 pb-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
