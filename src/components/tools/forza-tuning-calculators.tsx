@@ -33,6 +33,8 @@ import { LocaleLink } from '@/i18n/navigation';
 import { track } from '@vercel/analytics';
 import {
   BookmarkPlusIcon,
+  CheckIcon,
+  CopyIcon,
   GaugeIcon,
   LifeBuoyIcon,
   LinkIcon,
@@ -1000,6 +1002,7 @@ function ToolShell({
 }) {
   const [copiedNotes, setCopiedNotes] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedSavedPresetId, setCopiedSavedPresetId] = useState('');
   const [saved, setSaved] = useState(false);
   const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
 
@@ -1032,6 +1035,17 @@ function ToolShell({
     });
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
+  }
+
+  async function copySavedPresetUrl(preset: SavedPreset) {
+    await writeClipboard(preset.url);
+    trackToolEvent('copy_saved_preset_link', {
+      tool: toolId,
+      presetId: preset.id,
+      title: displaySavedPresetTitle(preset),
+    });
+    setCopiedSavedPresetId(preset.id);
+    window.setTimeout(() => setCopiedSavedPresetId(''), 1800);
   }
 
   function savePreset() {
@@ -1145,14 +1159,28 @@ function ToolShell({
                           {preset.summary}
                         </span>
                       </a>
-                      <button
-                        aria-label="Delete saved preset"
-                        className="inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-white/10 text-zinc-500 transition hover:border-red-300/40 hover:bg-red-300/10 hover:text-red-200"
-                        type="button"
-                        onClick={() => deletePreset(preset.id)}
-                      >
-                        <Trash2Icon className="size-4" />
-                      </button>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <button
+                          aria-label="Copy saved preset link"
+                          className="inline-flex size-8 items-center justify-center rounded-md border border-white/10 text-zinc-500 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-100"
+                          type="button"
+                          onClick={() => copySavedPresetUrl(preset)}
+                        >
+                          {copiedSavedPresetId === preset.id ? (
+                            <CheckIcon className="size-4" />
+                          ) : (
+                            <CopyIcon className="size-4" />
+                          )}
+                        </button>
+                        <button
+                          aria-label="Delete saved preset"
+                          className="inline-flex size-8 items-center justify-center rounded-md border border-white/10 text-zinc-500 transition hover:border-red-300/40 hover:bg-red-300/10 hover:text-red-200"
+                          type="button"
+                          onClick={() => deletePreset(preset.id)}
+                        >
+                          <Trash2Icon className="size-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
