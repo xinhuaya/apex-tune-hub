@@ -156,6 +156,28 @@ const symptomPresets: Array<{
     },
   },
   {
+    title: 'Slow launch',
+    note: 'Rally RWD launch pass',
+    input: {
+      raceType: 'rally',
+      drivetrain: 'RWD',
+      classBand: 'B',
+      handlingIssue: 'slow-launch',
+      drivingStyle: 'balanced',
+    },
+  },
+  {
+    title: 'Bad braking',
+    note: 'Dirt AWD stability pass',
+    input: {
+      raceType: 'dirt',
+      drivetrain: 'AWD',
+      classBand: 'S1',
+      handlingIssue: 'unstable-braking',
+      drivingStyle: 'stable',
+    },
+  },
+  {
     title: 'No top speed',
     note: 'S2 road speed pass',
     input: {
@@ -203,6 +225,12 @@ const issueGuideLinks: Record<
     hint: 'Long straights feel capped or the car cannot pull gear.',
   },
 };
+
+const productLoop = [
+  ['Pick symptom', 'Start from the problem you feel in the car.'],
+  ['Generate baseline', 'Read the first three tuning moves immediately.'],
+  ['Open full tool', 'Copy notes, share the preset, and refine one route.'],
+];
 
 function CompactSelect<T extends string>({
   label,
@@ -295,15 +323,37 @@ export function ForzaHomeTuneWorkbench() {
         <div className="flex items-start justify-between gap-4 border-b border-zinc-800 pb-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
-              Tune workbench
+              Core tune product
             </p>
             <h2 className="mt-2 text-2xl font-semibold text-zinc-50">
               Build a baseline now
             </h2>
           </div>
-          <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-amber-300/30 bg-amber-300/10 text-amber-200">
-            <SlidersHorizontalIcon className="size-5" />
-          </span>
+          <div className="grid gap-2 justify-items-end">
+            <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-amber-300/30 bg-amber-300/10 text-amber-200">
+              <SlidersHorizontalIcon className="size-5" />
+            </span>
+            <span className="rounded-md border border-cyan-300/25 bg-cyan-300/[0.08] px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-cyan-100">
+              First screen
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-2 sm:grid-cols-3">
+          {productLoop.map(([label, text], index) => (
+            <div
+              className="rounded-md border border-white/10 bg-black/25 p-3"
+              key={label}
+            >
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                Step {index + 1}
+              </p>
+              <p className="mt-2 text-sm font-semibold text-zinc-100">
+                {label}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-zinc-500">{text}</p>
+            </div>
+          ))}
         </div>
 
         <div className="mt-5">
@@ -314,9 +364,9 @@ export function ForzaHomeTuneWorkbench() {
                 Start from the symptom
               </p>
             </div>
-            <span className="text-xs text-zinc-500">1 click preset</span>
+            <span className="text-xs text-zinc-500">6 quick presets</span>
           </div>
-          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {symptomPresets.map((preset) => {
               const isActive =
                 input.raceType === preset.input.raceType &&
@@ -452,6 +502,11 @@ export function ForzaHomeTuneWorkbench() {
               <ArrowRightIcon className="ml-2 size-4" />
             </LocaleLink>
           </Button>
+          <p className="text-xs leading-5 text-zinc-500 sm:col-span-2">
+            The full FH6 Tune Calculator keeps this exact state in the URL, so
+            the homepage baseline becomes a shareable setup instead of a dead
+            end.
+          </p>
           <LocaleLink
             className="text-center text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
             href="/tools/forza-horizon-6-gear-ratio-calculator"
