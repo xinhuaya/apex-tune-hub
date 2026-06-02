@@ -179,6 +179,69 @@ function writeSavedPresets(toolId: string, presets: SavedPreset[]) {
   );
 }
 
+function makeSavedPresetTitle(
+  toolId: string,
+  shareUrl: string,
+  result: CalculationResult
+) {
+  try {
+    const params = new URL(shareUrl).searchParams;
+
+    if (toolId === 'tune') {
+      return `${params.get('class') ?? 'FH6'} ${params.get('drive') ?? 'tune'} ${params.get('race') ?? 'baseline'}`;
+    }
+
+    if (toolId === 'drift') {
+      return `${params.get('drive') ?? 'FH6'} drift ${params.get('issue') ?? 'baseline'}`;
+    }
+
+    if (toolId === 'gear') {
+      return `${params.get('gears') ?? 'FH6'}-speed ${params.get('race') ?? 'gear'} ${params.get('priority') ?? 'baseline'}`;
+    }
+  } catch {
+    // Fall back to the generated title if a saved link cannot be parsed.
+  }
+
+  return result.title;
+}
+
+function displaySavedPresetTitle(preset: SavedPreset) {
+  if (preset.title && !preset.title.includes('Forza Horizon 6')) {
+    return preset.title;
+  }
+
+  try {
+    const url = new URL(preset.url);
+    const params = url.searchParams;
+    const path = url.pathname;
+
+    if (path.includes('drift-tune-calculator')) {
+      return `${params.get('drive') ?? 'FH6'} drift ${params.get('issue') ?? 'baseline'}`;
+    }
+
+    if (path.includes('gear-ratio-calculator')) {
+      return `${params.get('gears') ?? 'FH6'}-speed ${params.get('race') ?? 'gear'} ${params.get('priority') ?? 'baseline'}`;
+    }
+
+    return `${params.get('class') ?? 'FH6'} ${params.get('drive') ?? 'tune'} ${params.get('race') ?? 'baseline'}`;
+  } catch {
+    return preset.title || 'Saved FH6 preset';
+  }
+}
+
+function formatSavedPresetDate(value: string) {
+  try {
+    return new Date(value).toLocaleString([], {
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  } catch {
+    return 'Saved';
+  }
+}
+
 function usePresetUrl<T extends StringRecord>(
   defaults: T,
   config: PresetConfig<T>
@@ -978,7 +1041,7 @@ function ToolShell({
 
     const preset: SavedPreset = {
       id: `${Date.now()}`,
-      title: result.title,
+      title: makeSavedPresetTitle(toolId, shareUrl, result),
       summary: result.summary,
       url: shareUrl,
       createdAt: new Date().toISOString(),
@@ -1070,11 +1133,16 @@ function ToolShell({
                   >
                     <div className="flex items-start justify-between gap-3">
                       <a className="min-w-0 flex-1 text-left" href={preset.url}>
-                        <span className="block truncate text-sm font-semibold text-cyan-100">
-                          {preset.summary}
+                        <span className="flex flex-wrap items-center gap-2">
+                          <span className="min-w-0 truncate text-sm font-semibold uppercase tracking-[0.12em] text-cyan-100">
+                            {displaySavedPresetTitle(preset)}
+                          </span>
+                          <span className="rounded-md border border-white/10 bg-black/25 px-2 py-0.5 text-[0.68rem] font-semibold text-zinc-500">
+                            {formatSavedPresetDate(preset.createdAt)}
+                          </span>
                         </span>
-                        <span className="mt-1 block text-xs text-zinc-500">
-                          {new Date(preset.createdAt).toLocaleDateString()}
+                        <span className="mt-2 block line-clamp-2 text-xs leading-5 text-zinc-500">
+                          {preset.summary}
                         </span>
                       </a>
                       <button
