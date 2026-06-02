@@ -1016,9 +1016,8 @@ function ToolShell({
             {title}
           </h1>
           <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
-          <div className="mt-6 grid gap-4">{children}</div>
-          {nextStep ? <div className="mt-5">{nextStep}</div> : null}
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <ToolOutputPreview result={result} />
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
             <button
               className="forza-primary-button h-11 w-full focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
               type="button"
@@ -1043,10 +1042,12 @@ function ToolShell({
               {copied ? 'Link copied' : 'Copy preset link'}
             </button>
           </div>
-          <p className="mt-4 text-xs leading-5 text-zinc-500">
+          <p className="mt-3 text-xs leading-5 text-zinc-500">
             Preset links keep the selected options in the URL. These outputs are
             baseline tuning notes, so test in-game before calling a setup final.
           </p>
+          <div className="mt-6 grid gap-4">{children}</div>
+          {nextStep ? <div className="mt-5">{nextStep}</div> : null}
           {savedPresets.length > 0 ? (
             <div className="mt-5 border-t border-white/10 pt-5">
               <div className="flex items-center justify-between gap-3">
@@ -1090,6 +1091,41 @@ function ToolShell({
         <ResultPanel result={result}>{resultAside}</ResultPanel>
       </div>
     </section>
+  );
+}
+
+function ToolOutputPreview({ result }: { result: CalculationResult }) {
+  const firstRecommendation = result.recommendations[0];
+
+  return (
+    <div className="mt-5 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            Live output
+          </p>
+          <p className="mt-2 text-sm font-semibold leading-6 text-zinc-100">
+            {result.summary}
+          </p>
+        </div>
+        <span className="rounded-md border border-cyan-300/25 bg-black/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">
+          {result.confidence}
+        </span>
+      </div>
+      {firstRecommendation ? (
+        <div className="mt-3 rounded-md border border-white/10 bg-black/25 p-3">
+          <div className="flex items-start gap-2">
+            <GaugeIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
+            <p className="text-xs leading-5 text-zinc-300">
+              <span className="font-semibold text-zinc-100">
+                {firstRecommendation.setting}:{' '}
+              </span>
+              {firstRecommendation.recommendation}
+            </p>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
