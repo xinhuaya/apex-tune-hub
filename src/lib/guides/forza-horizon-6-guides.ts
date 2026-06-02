@@ -1,3 +1,12 @@
+export type ForzaHorizon6GuideMediaSource = {
+  type: 'video' | 'article';
+  title: string;
+  sourceName: string;
+  sourceUrl: string;
+  embedUrl?: string;
+  note: string;
+};
+
 export type ForzaHorizon6Guide = {
   slug: string;
   title: string;
@@ -13,14 +22,7 @@ export type ForzaHorizon6Guide = {
     label: string;
     href: string;
   }[];
-  mediaSources?: {
-    type: 'video' | 'article';
-    title: string;
-    sourceName: string;
-    sourceUrl: string;
-    embedUrl?: string;
-    note: string;
-  }[];
+  mediaSources?: ForzaHorizon6GuideMediaSource[];
   sections: {
     title: string;
     body: string;
@@ -36,6 +38,99 @@ export type ForzaHorizon6Guide = {
     }[];
   }[];
 };
+
+const tuningWorkflowMediaSources: ForzaHorizon6GuideMediaSource[] = [
+  {
+    type: 'video',
+    title:
+      'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+    sourceName: 'HokiHoshi on YouTube',
+    sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+    note: 'Used as the default tuning workflow reference for FH6 setup pages that still need page-specific route screenshots or test footage.',
+  },
+  {
+    type: 'article',
+    title: 'Forza Horizon 6 advanced tuning guide',
+    sourceName: 'ForzaFire',
+    sourceUrl:
+      'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+    note: 'Used as supporting context for setup categories. Apex Tune Hub keeps the page guidance tied to repeatable test routes instead of universal slider values.',
+  },
+];
+
+const officialSupportMediaSources: ForzaHorizon6GuideMediaSource[] = [
+  {
+    type: 'article',
+    title: 'Forza Horizon 6 Known Issues',
+    sourceName: 'Forza Support',
+    sourceUrl:
+      'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
+    note: 'Used as an official support checkpoint before treating settings, platform, input, save, or stability symptoms as only local configuration problems.',
+  },
+  {
+    type: 'article',
+    title: 'FH6 Known Issues and Bug Reporting',
+    sourceName: 'Forza Forums',
+    sourceUrl:
+      'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
+    note: 'Used as a known-issues reference before changing guide recommendations around temporary game, device, network, or platform symptoms.',
+  },
+];
+
+const weeklyWorkflowMediaSources: ForzaHorizon6GuideMediaSource[] = [
+  {
+    type: 'article',
+    title: 'Forza Horizon 6 official source tracker',
+    sourceName: 'Apex Tune Hub',
+    sourceUrl: '/games/forza-horizon-6/official-sources',
+    note: 'Used as the internal source policy for official FH6 facts, car availability, platform claims, update checks, and playlist-related copy.',
+  },
+  {
+    type: 'article',
+    title: 'Forza Horizon 6 weekly playlist tracker',
+    sourceName: 'Apex Tune Hub',
+    sourceUrl: '/games/forza-horizon-6/weekly-playlist',
+    note: 'Used as the operational tracker for event restrictions, legal car picks, reusable tune notes, and weekly-safe setup routing.',
+  },
+];
+
+const officialSupportGuideSlugs = new Set([
+  'best-assist-settings',
+  'best-pc-graphics-settings',
+  'cloud-save-not-syncing',
+  'hud-accessibility-settings',
+  'online-not-working-checklist',
+  'pc-crash-known-issues-checklist',
+  'steam-deck-settings-guide',
+  'wheel-not-working-checklist',
+]);
+
+const weeklyWorkflowGuideSlugs = new Set([
+  'auction-house-tune-code-sharing',
+  'forzathon-weekly-challenge-tuning',
+  'seasonal-championship-tuning',
+  'the-trial-coop-race-tuning',
+  'weekly-playlist-tuning-checklist',
+]);
+
+export function getForzaHorizon6GuideMediaSources(
+  guide: ForzaHorizon6Guide
+): ForzaHorizon6GuideMediaSource[] {
+  if (guide.mediaSources?.length) {
+    return guide.mediaSources;
+  }
+
+  if (officialSupportGuideSlugs.has(guide.slug)) {
+    return officialSupportMediaSources;
+  }
+
+  if (weeklyWorkflowGuideSlugs.has(guide.slug)) {
+    return weeklyWorkflowMediaSources;
+  }
+
+  return tuningWorkflowMediaSources;
+}
 
 export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   {
@@ -861,15 +956,15 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         title: 'Forza Horizon 6 PC Specs',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/50088215399827-Forza-Horizon-6-PC-Specs',
+          'https://support.forza.net/hc/en-us/articles/50088215399827-Forza-Horizon-6-PC-Specs',
         note: 'Used as the official PC baseline before diagnosing low FPS, VRAM pressure, storage, or graphics preset issues.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues checkpoint before treating stutter or frame pacing as only a local graphics setting problem.',
       },
     ],
@@ -1155,18 +1250,18 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     mediaSources: [
       {
         type: 'article',
-        title: 'FH6 Important Update Notes',
+        title: 'Forza Horizon 6 Known Issues',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+          'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
         note: 'Used as an official support checkpoint before treating controller detection, wireless latency, or input routing as a local settings problem.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues reference so players can separate platform/controller problems from car tuning symptoms.',
       },
     ],
@@ -1266,18 +1361,18 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     mediaSources: [
       {
         type: 'article',
-        title: 'FH6 Important Update Notes',
+        title: 'Forza Horizon 6 Known Issues',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+          'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
         note: 'Used as an official checkpoint before blaming keyboard response, frame pacing, or input delay on the car tune.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues reference for separating platform input behavior from keyboard driving technique.',
       },
     ],
@@ -1378,18 +1473,18 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     mediaSources: [
       {
         type: 'article',
-        title: 'FH6 Important Update Notes',
+        title: 'Forza Horizon 6 Known Issues',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+          'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
         note: 'Used as an official update reference before diagnosing stick drift, trigger behavior, or deadzone feel as a local-only issue.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues checkpoint before changing controller deadzones or car tuning around temporary input symptoms.',
       },
     ],
@@ -1675,18 +1770,18 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     mediaSources: [
       {
         type: 'article',
-        title: 'FH6 Important Update Notes',
+        title: 'Forza Horizon 6 Known Issues',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+          'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
         note: 'Used as an official support reference for separating game update and performance issues from car tuning problems. Apply the page workflow only after confirming the local input path is stable.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues checkpoint before blaming controller, wheel, display, or tune settings for delayed response.',
       },
     ],
@@ -1972,18 +2067,18 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     mediaSources: [
       {
         type: 'article',
-        title: 'FH6 Important Update Notes',
+        title: 'Forza Horizon 6 Known Issues',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+          'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
         note: 'Used as an official update checkpoint before blaming camera feel, input response, or visibility issues on a tune.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues reference before changing camera settings around temporary input, performance, or UI symptoms.',
       },
     ],
@@ -7286,18 +7381,18 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     mediaSources: [
       {
         type: 'article',
-        title: 'FH6 Important Update Notes',
+        title: 'Forza Horizon 6 Known Issues',
         sourceName: 'Forza Support',
         sourceUrl:
-          'https://support.forzamotorsport.net/hc/en-us/articles/45592984269715-FH6-Important-Update-Notes',
+          'https://support.forza.net/hc/en-us/articles/51701860097811-Forza-Horizon-6-Known-Issues',
         note: 'Used as an official checkpoint before treating difficulty, assists, or performance behavior as only a player-settings issue.',
       },
       {
         type: 'article',
-        title: 'FH6 Release Notes and Known Issues',
+        title: 'FH6 Known Issues and Bug Reporting',
         sourceName: 'Forza Forums',
         sourceUrl:
-          'https://forums.forza.net/t/fh6-release-notes-and-known-issues-updated-may-19-2026/802096',
+          'https://forums.forza.net/t/fh6-known-issues-and-bug-reporting-at-the-forza-feedback-portal/826214',
         note: 'Used as a known-issues reference before changing difficulty or assists around temporary event, input, or performance symptoms.',
       },
     ],

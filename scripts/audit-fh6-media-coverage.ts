@@ -1,6 +1,9 @@
 import { forzaHorizon6BestCarGuides } from '../src/lib/guides/forza-horizon-6-best-car-guides';
 import { forzaHorizon6ClassCarGuides } from '../src/lib/guides/forza-horizon-6-class-car-guides';
-import { forzaHorizon6Guides } from '../src/lib/guides/forza-horizon-6-guides';
+import {
+  forzaHorizon6Guides,
+  getForzaHorizon6GuideMediaSources,
+} from '../src/lib/guides/forza-horizon-6-guides';
 import { forzaHorizon6MakeCarGuides } from '../src/lib/guides/forza-horizon-6-make-car-guides';
 
 type MediaAuditPage = {
@@ -99,7 +102,7 @@ function recommendationFor(page: Omit<MediaAuditPage, 'recommendation'>) {
 
 function auditGuides(): MediaAuditPage[] {
   return forzaHorizon6Guides.map((guide) => {
-    const mediaSources = guide.mediaSources ?? [];
+    const mediaSources = getForzaHorizon6GuideMediaSources(guide);
     const embeddedVideoCount = mediaSources.filter(
       (source) => source.type === 'video' && source.embedUrl
     ).length;

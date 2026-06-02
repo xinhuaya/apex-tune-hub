@@ -7,6 +7,7 @@ import { LocaleLink } from '@/i18n/navigation';
 import {
   forzaHorizon6Guides,
   getForzaHorizon6Guide,
+  getForzaHorizon6GuideMediaSources,
 } from '@/lib/guides/forza-horizon-6-guides';
 import { constructMetadata } from '@/lib/metadata';
 import {
@@ -464,7 +465,9 @@ export default async function ForzaHorizon6GuidePage({
             </div>
           ))}
 
-          <ForzaHorizon6GuideMediaSources sources={guide.mediaSources ?? []} />
+          <ForzaHorizon6GuideMediaSources
+            sources={getForzaHorizon6GuideMediaSources(guide)}
+          />
 
           <div className="forza-panel mt-6 p-5">
             <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
