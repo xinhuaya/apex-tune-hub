@@ -261,7 +261,7 @@ export function ForzaHomeTuneWorkbench() {
   const [copiedLink, setCopiedLink] = useState(false);
   const result = useMemo(() => calculateTune(input), [input]);
   const calculatorHref = useMemo(() => buildCalculatorHref(input), [input]);
-  const topRecommendations = result.recommendations.slice(0, 2);
+  const topRecommendations = result.recommendations.slice(0, 1);
   const activeGuide = issueGuideLinks[input.handlingIssue];
 
   function updateInput(
@@ -341,6 +341,69 @@ export function ForzaHomeTuneWorkbench() {
           <span>Open full tool</span>
         </div>
 
+        <div className="mt-3 rounded-md border border-cyan-300/20 bg-cyan-300/[0.06] p-3">
+          <div className="flex items-start gap-3">
+            <GaugeIcon className="mt-1 size-5 shrink-0 text-cyan-200" />
+            <div>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cyan-200">
+                Current baseline
+              </p>
+              <p className="mt-1 text-sm font-semibold leading-5 text-zinc-50">
+                {result.summary}
+              </p>
+              <p className="mt-2 text-xs leading-5 text-zinc-400">
+                {activeGuide.hint}
+              </p>
+            </div>
+          </div>
+          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
+            <Button
+              className="h-10 rounded-md border border-cyan-300/30 bg-cyan-300/[0.08] text-cyan-100 hover:bg-cyan-300/[0.14]"
+              type="button"
+              variant="outline"
+              onClick={copyBaselineNotes}
+            >
+              {copiedNotes ? (
+                <CheckIcon className="mr-2 size-4" />
+              ) : (
+                <CopyIcon className="mr-2 size-4" />
+              )}
+              {copiedNotes ? 'Copied baseline' : 'Copy baseline'}
+            </Button>
+            <Button asChild className="forza-primary-button h-10">
+              <LocaleLink
+                href={calculatorHref}
+                onClick={() =>
+                  trackHomeWorkbenchEvent('open_home_full_calculator', input, {
+                    href: calculatorHref,
+                  })
+                }
+              >
+                Open full calculator
+                <ArrowRightIcon className="ml-2 size-4" />
+              </LocaleLink>
+            </Button>
+          </div>
+          <div className="mt-3 grid gap-2">
+            {topRecommendations.map((item) => (
+              <div
+                className="rounded-md border border-white/10 bg-black/25 px-3 py-2"
+                key={item.setting}
+              >
+                <div className="flex items-start gap-2">
+                  <ClipboardCheckIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
+                  <p className="text-xs leading-5 text-zinc-300">
+                    <span className="font-semibold text-zinc-100">
+                      {item.setting}:{' '}
+                    </span>
+                    {item.recommendation}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
@@ -351,7 +414,7 @@ export function ForzaHomeTuneWorkbench() {
             </div>
             <span className="text-xs text-zinc-500">6 quick presets</span>
           </div>
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-3 grid grid-cols-2 gap-2 xl:grid-cols-3">
             {symptomPresets.map((preset) => {
               const isActive =
                 input.raceType === preset.input.raceType &&
@@ -371,7 +434,7 @@ export function ForzaHomeTuneWorkbench() {
                   type="button"
                   onClick={() => selectSymptomPreset(preset)}
                 >
-                  <span className="block text-sm font-semibold text-zinc-100">
+                  <span className="block text-sm font-semibold leading-5 text-zinc-100">
                     {preset.title}
                   </span>
                   <span className="mt-1 block text-xs leading-5 text-zinc-500">
@@ -424,69 +487,6 @@ export function ForzaHomeTuneWorkbench() {
               }
             />
           </div>
-        </div>
-
-        <div className="mt-4 rounded-md border border-cyan-300/20 bg-cyan-300/[0.06] p-3">
-          <div className="flex items-start gap-3">
-            <GaugeIcon className="mt-1 size-5 shrink-0 text-cyan-200" />
-            <div>
-              <p className="text-sm font-semibold text-zinc-50">
-                {result.summary}
-              </p>
-              <p className="mt-2 text-xs leading-5 text-zinc-400">
-                {activeGuide.hint} Open the full calculator to save and share
-                the setup link.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-3 grid gap-2">
-          {topRecommendations.map((item) => (
-            <div
-              className="rounded-md border border-white/10 bg-black/25 px-3 py-2"
-              key={item.setting}
-            >
-              <div className="flex items-start gap-2">
-                <ClipboardCheckIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
-                <p className="text-xs leading-5 text-zinc-300">
-                  <span className="font-semibold text-zinc-100">
-                    {item.setting}:{' '}
-                  </span>
-                  {item.recommendation}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
-          <Button
-            className="h-11 rounded-md border border-cyan-300/30 bg-cyan-300/[0.08] text-cyan-100 hover:bg-cyan-300/[0.14]"
-            type="button"
-            variant="outline"
-            onClick={copyBaselineNotes}
-          >
-            {copiedNotes ? (
-              <CheckIcon className="mr-2 size-4" />
-            ) : (
-              <CopyIcon className="mr-2 size-4" />
-            )}
-            {copiedNotes ? 'Copied baseline' : 'Copy baseline'}
-          </Button>
-          <Button asChild className="forza-primary-button h-11">
-            <LocaleLink
-              href={calculatorHref}
-              onClick={() =>
-                trackHomeWorkbenchEvent('open_home_full_calculator', input, {
-                  href: calculatorHref,
-                })
-              }
-            >
-              Open full calculator
-              <ArrowRightIcon className="ml-2 size-4" />
-            </LocaleLink>
-          </Button>
         </div>
 
         <div className="mt-3 grid gap-2 sm:grid-cols-3">

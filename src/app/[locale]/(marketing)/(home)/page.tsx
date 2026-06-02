@@ -215,29 +215,31 @@ export default function HomePage() {
                 </LocaleLink>
               </Button>
             </div>
-
-            <div className="mt-8 grid max-w-[22rem] gap-3 sm:max-w-2xl sm:grid-cols-3">
-              {launchSignals.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div key={item.label} className="forza-signal">
-                    <Icon className="size-4 text-cyan-200" />
-                    <div className="min-w-0">
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-300">
-                        {item.label}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-zinc-500">
-                        {item.value}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
 
-          <ForzaHomeTuneWorkbench />
+          <div className="lg:row-span-2">
+            <ForzaHomeTuneWorkbench />
+          </div>
+
+          <div className="grid max-w-[22rem] gap-3 sm:max-w-2xl sm:grid-cols-3 lg:col-start-1 lg:row-start-2">
+            {launchSignals.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div key={item.label} className="forza-signal">
+                  <Icon className="size-4 text-cyan-200" />
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-300">
+                      {item.label}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-zinc-500">
+                      {item.value}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
