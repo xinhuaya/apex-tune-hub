@@ -1044,7 +1044,8 @@ function ToolShell({
           </div>
           <p className="mt-3 text-xs leading-5 text-zinc-500">
             Preset links keep the selected options in the URL. These outputs are
-            baseline tuning notes, so test in-game before calling a setup final.
+            baseline tuning notes with a route test log, so test in-game before
+            calling a setup final.
           </p>
           <div className="mt-6 grid gap-4">{children}</div>
           {nextStep ? <div className="mt-5">{nextStep}</div> : null}
@@ -1125,6 +1126,10 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
           </div>
         </div>
       ) : null}
+      <p className="mt-3 text-xs leading-5 text-zinc-500">
+        Copy setup notes to get recommendations plus a fill-in test log for two
+        repeatable runs.
+      </p>
     </div>
   );
 }
