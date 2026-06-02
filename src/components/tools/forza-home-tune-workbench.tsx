@@ -7,6 +7,7 @@ import {
   calculateTune,
   classOptions,
   drivetrainOptions,
+  formatResultForClipboard,
   issueOptions,
   raceTypeOptions,
   styleOptions,
@@ -19,7 +20,9 @@ import {
 } from '@/lib/tuning/forza-horizon-6';
 import {
   ArrowRightIcon,
+  CheckIcon,
   ClipboardCheckIcon,
+  CopyIcon,
   GaugeIcon,
   LifeBuoyIcon,
   RouteIcon,
@@ -90,6 +93,27 @@ function trackHomeWorkbenchEvent(
   } catch {
     // Local diagnostics are best effort only.
   }
+}
+
+async function writeClipboard(text: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Fall through to textarea copy for browsers that block Clipboard API.
+    }
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
 }
 
 const symptomPresets: Array<{
@@ -210,6 +234,7 @@ function CompactSelect<T extends string>({
 
 export function ForzaHomeTuneWorkbench() {
   const [input, setInput] = useState<TuneInput>(defaultInput);
+  const [copiedNotes, setCopiedNotes] = useState(false);
   const result = useMemo(() => calculateTune(input), [input]);
   const calculatorHref = useMemo(() => buildCalculatorHref(input), [input]);
   const topRecommendations = result.recommendations.slice(0, 3);
@@ -236,6 +261,15 @@ export function ForzaHomeTuneWorkbench() {
     trackHomeWorkbenchEvent('select_home_symptom_preset', preset.input, {
       preset: preset.title,
     });
+  }
+
+  async function copyBaselineNotes() {
+    await writeClipboard(formatResultForClipboard(result));
+    trackHomeWorkbenchEvent('copy_home_baseline_notes', input, {
+      confidence: result.confidence,
+    });
+    setCopiedNotes(true);
+    window.setTimeout(() => setCopiedNotes(false), 1800);
   }
 
   return (
@@ -376,6 +410,19 @@ export function ForzaHomeTuneWorkbench() {
         </div>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+          <Button
+            className="h-11 rounded-md border border-cyan-300/30 bg-cyan-300/[0.08] text-cyan-100 hover:bg-cyan-300/[0.14]"
+            type="button"
+            variant="outline"
+            onClick={copyBaselineNotes}
+          >
+            {copiedNotes ? (
+              <CheckIcon className="mr-2 size-4" />
+            ) : (
+              <CopyIcon className="mr-2 size-4" />
+            )}
+            {copiedNotes ? 'Copied baseline' : 'Copy baseline'}
+          </Button>
           <Button asChild className="forza-primary-button h-11">
             <LocaleLink
               href={calculatorHref}
