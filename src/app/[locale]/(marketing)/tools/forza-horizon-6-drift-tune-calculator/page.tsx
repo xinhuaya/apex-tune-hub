@@ -185,6 +185,11 @@ const driftSourceChecklist = [
 
 const driftFaqs = [
   {
+    question: 'Is this a Forza Horizon 6 drift tune calculator?',
+    answer:
+      'Yes. It is designed as a Forza Horizon 6 drift tune calculator for RWD and AWD builds, using drivetrain, power, tire grip, skill level, and the current drift problem to create a first testable setup direction.',
+  },
+  {
     question: 'Is RWD or AWD better for Forza Horizon 6 drifting?',
     answer:
       'RWD is usually better for learning angle, throttle control, and clean transitions. AWD can be easier for high-speed drift zones because it recovers quickly, but it can also pull the car straight if the differential and gearing are too aggressive.',
@@ -203,6 +208,12 @@ const driftFaqs = [
     question: 'Can I save drift tune calculator presets?',
     answer:
       'Yes. The calculator stores selected options in the URL and can save recent presets locally on the device, so you can compare RWD, AWD, tire grip, power level, and symptom fixes.',
+  },
+  {
+    question:
+      'When should I use the drift tune calculator instead of the gear ratio calculator?',
+    answer:
+      'Use the drift tune calculator first when the car spins out, cannot hold angle, snaps back, or feels too slippery. Move to the gear ratio calculator when the drift line is stable but the car bogs down, falls out of the power band, or needs a clearer main drift gear.',
   },
 ];
 
@@ -244,8 +255,10 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
             featureList: [
               'RWD and AWD drift tune directions',
               'Power and tire-grip symptom matching',
+              'FH6 drift tune calculator baseline for angle and recovery',
               'Drift symptom presets for angle and recovery problems',
               'First drift test loop with matched guide links',
+              'Gear ratio calculator handoff for bogging and power-band problems',
               'Shareable drift preset URLs',
               'Local saved drift preset history',
             ],

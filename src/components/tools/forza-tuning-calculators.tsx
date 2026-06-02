@@ -532,6 +532,53 @@ const driftSymptomPresets: Array<{
   },
 ];
 
+const driftDrivetrainOptions: Array<{
+  value: DriftInput['drivetrain'];
+  label: string;
+}> = [
+  { value: 'RWD', label: 'RWD' },
+  { value: 'AWD', label: 'AWD' },
+];
+
+const driftPowerOptions: Array<{
+  value: DriftInput['powerLevel'];
+  label: string;
+}> = [
+  { value: 'low', label: 'Low' },
+  { value: 'medium', label: 'Medium' },
+  { value: 'high', label: 'High' },
+];
+
+const driftTireOptions: Array<{
+  value: DriftInput['tireGrip'];
+  label: string;
+}> = [
+  { value: 'street', label: 'Street' },
+  { value: 'sport', label: 'Sport' },
+  { value: 'race', label: 'Race' },
+  { value: 'drift', label: 'Drift' },
+];
+
+const driftProblemOptions: Array<{
+  value: DriftInput['problem'];
+  label: string;
+}> = [
+  { value: 'spins-out', label: 'Spins out' },
+  { value: 'no-angle', label: 'Cannot hold angle' },
+  { value: 'bogs-down', label: 'Bogs down' },
+  { value: 'snaps-back', label: 'Snaps back on transition' },
+  { value: 'too-slippery', label: 'Feels too slippery' },
+];
+
+const driftSkillOptions: Array<{
+  value: DriftInput['skillLevel'];
+  label: string;
+}> = [
+  { value: 'beginner', label: 'Beginner' },
+  { value: 'intermediate', label: 'Intermediate' },
+  { value: 'advanced', label: 'Advanced' },
+];
+
 const driftProblemGuideLinks: Record<
   DriftInput['problem'],
   { label: string; href: string; hint: string }
@@ -1426,6 +1473,53 @@ function DriftResultActionPlan({
   );
 }
 
+function DriftBaselineSummary({ input }: { input: DriftInput }) {
+  const power = optionLabel(driftPowerOptions, input.powerLevel);
+  const tires = optionLabel(driftTireOptions, input.tireGrip);
+  const problem = optionLabel(driftProblemOptions, input.problem);
+  const skill = optionLabel(driftSkillOptions, input.skillLevel);
+  const plan = driftActionPlans[input.problem];
+
+  return (
+    <div className="rounded-md border border-pink-300/20 bg-pink-300/[0.05] p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-pink-200">
+            Current FH6 drift baseline
+          </p>
+          <p className="mt-2 text-sm leading-6 text-zinc-300">
+            {input.drivetrain} {power.toLowerCase()} power drift setup on{' '}
+            {tires.toLowerCase()} tires, tuned for a {skill.toLowerCase()}{' '}
+            driver fixing {problem.toLowerCase()}.
+          </p>
+        </div>
+        <span className="rounded-md border border-white/10 bg-black/25 px-3 py-1 text-xs font-semibold text-zinc-400">
+          Live drift test
+        </span>
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        <div className="rounded-md border border-white/10 bg-black/25 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+            First focus
+          </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-100">
+            {plan.focus}
+          </p>
+        </div>
+        <div className="rounded-md border border-white/10 bg-black/25 p-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+            Use this as
+          </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-100">
+            A Forza Horizon 6 drift tune calculator baseline for angle,
+            recovery, and one repeatable zone test
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GearSymptomPresetGrid({
   input,
   onSelect,
@@ -1778,13 +1872,14 @@ export function ForzaDriftTuneCalculator() {
     <ToolShell
       eyebrow="Forza Horizon 6 tool"
       toolId="drift"
-      title="Drift Tune Calculator"
+      title="FH6 Drift Tune Calculator"
       description="Pick your drift build style and the problem you are trying to fix. Use the output as a repeatable first test, then refine around your car and controller or wheel."
       result={result}
       shareUrl={shareUrl}
       nextStep={<DriftNextStepCard guide={activeGuide} />}
       resultAside={<DriftResultActionPlan guide={activeGuide} input={input} />}
     >
+      <DriftBaselineSummary input={input} />
       <DriftSymptomPresetGrid input={input} onSelect={setInput} />
       <SelectField
         label="Drivetrain"
@@ -1792,10 +1887,7 @@ export function ForzaDriftTuneCalculator() {
         onChange={(drivetrain: DriftInput['drivetrain']) =>
           updateInput({ drivetrain })
         }
-        options={[
-          { value: 'RWD', label: 'RWD' },
-          { value: 'AWD', label: 'AWD' },
-        ]}
+        options={driftDrivetrainOptions}
       />
       <SelectField
         label="Power level"
@@ -1803,11 +1895,7 @@ export function ForzaDriftTuneCalculator() {
         onChange={(powerLevel: DriftInput['powerLevel']) =>
           updateInput({ powerLevel })
         }
-        options={[
-          { value: 'low', label: 'Low' },
-          { value: 'medium', label: 'Medium' },
-          { value: 'high', label: 'High' },
-        ]}
+        options={driftPowerOptions}
       />
       <SelectField
         label="Tire grip"
@@ -1815,24 +1903,13 @@ export function ForzaDriftTuneCalculator() {
         onChange={(tireGrip: DriftInput['tireGrip']) =>
           updateInput({ tireGrip })
         }
-        options={[
-          { value: 'street', label: 'Street' },
-          { value: 'sport', label: 'Sport' },
-          { value: 'race', label: 'Race' },
-          { value: 'drift', label: 'Drift' },
-        ]}
+        options={driftTireOptions}
       />
       <SelectField
         label="Main problem"
         value={input.problem}
         onChange={(problem: DriftInput['problem']) => updateInput({ problem })}
-        options={[
-          { value: 'spins-out', label: 'Spins out' },
-          { value: 'no-angle', label: 'Cannot hold angle' },
-          { value: 'bogs-down', label: 'Bogs down' },
-          { value: 'snaps-back', label: 'Snaps back on transition' },
-          { value: 'too-slippery', label: 'Feels too slippery' },
-        ]}
+        options={driftProblemOptions}
       />
       <SelectField
         label="Skill level"
@@ -1840,11 +1917,7 @@ export function ForzaDriftTuneCalculator() {
         onChange={(skillLevel: DriftInput['skillLevel']) =>
           updateInput({ skillLevel })
         }
-        options={[
-          { value: 'beginner', label: 'Beginner' },
-          { value: 'intermediate', label: 'Intermediate' },
-          { value: 'advanced', label: 'Advanced' },
-        ]}
+        options={driftSkillOptions}
       />
     </ToolShell>
   );
