@@ -83,6 +83,7 @@ NEXT_PUBLIC_UMAMI_SCRIPT="https://cloud.umami.is/script.js"
 - Keep calculator pages linked from every guide and preset page.
 - Avoid thin city-style or fake meta pages. Label untested recommendations clearly.
 - Add real testing notes, screenshots, or route-specific observations whenever available.
+- Use `docs/apex-fh6-analytics-playbook.md` for the weekly GSC and Vercel Analytics review.
 
 ## Human Inputs Needed
 
