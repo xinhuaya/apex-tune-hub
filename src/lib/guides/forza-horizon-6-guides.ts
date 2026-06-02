@@ -651,6 +651,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/upgrade-order-tuning-guide',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a broad tuning vocabulary reference. This glossary maps the workflow terms to Apex Tune Hub calculators and symptom guides.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 tuning guide',
+        sourceName: 'HokiHoshi',
+        sourceUrl: 'https://hokihoshi.com/forza-horizon-6/tuning/',
+        note: 'Used as supporting context for setup terminology. The glossary avoids turning any one slider definition into a universal FH6 value.',
+      },
+    ],
     sections: [
       {
         title: 'Translate symptoms before sliders',
@@ -2613,6 +2631,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/differential-settings-guide',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This brake page applies it to one-zone brake pressure, balance, input control, and repeatable retesting.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for brake and handling setup categories. Apex Tune Hub keeps brake guidance tied to test zones instead of fixed magic numbers.',
+      },
+    ],
     sections: [
       {
         title: 'Use one braking zone',
@@ -2709,6 +2746,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Rally tune settings',
         href: '/games/forza-horizon-6/guides/best-rally-tune-settings',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This suspension page applies it to corner phase, ARB balance, damping, and road-versus-rally testing.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for suspension and damping concepts. Values remain starting points until route-specific notes are collected.',
       },
     ],
     sections: [
@@ -3110,6 +3166,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/a-s1-road-racing-tune',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This aero page applies it to downforce tradeoffs, high-speed grip, and route-specific speed checks.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for aero, suspension, and gearing tradeoffs. Apex Tune Hub keeps aero advice tied to route shape.',
+      },
+    ],
     sections: [
       {
         title: 'Tune aero around route shape',
@@ -3501,6 +3576,25 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/weekly-playlist',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This PR stunt page applies it to approach speed, landing behavior, recovery gearing, and weekly-safe build notes.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 advanced tuning guide',
+        sourceName: 'ForzaFire',
+        sourceUrl:
+          'https://www.forzafire.com/guides/forza-horizon-6-advanced-tuning',
+        note: 'Used as supporting context for suspension and drivetrain tradeoffs on rough routes.',
+      },
+    ],
     sections: [
       {
         title: 'Build for approach speed and recovery',
@@ -3781,6 +3875,22 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/best-starter-cars',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 official source tracker',
+        sourceName: 'Apex Tune Hub',
+        sourceUrl: '/games/forza-horizon-6/official-sources',
+        note: 'Used as the internal source policy for weekly challenge claims. Official facts should be checked before changing event, reward, or car-eligibility copy.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 weekly playlist tracker',
+        sourceName: 'Apex Tune Hub',
+        sourceUrl: '/games/forza-horizon-6/weekly-playlist',
+        note: 'Used as the operational tracker for weekly restrictions, car picks, and reusable tune notes.',
+      },
+    ],
     sections: [
       {
         title: 'Build around the required car',
@@ -3875,6 +3985,22 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/seasonal-championship-tuning',
       },
     ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'Official Forza Horizon 6 car list',
+        sourceName: 'Forza',
+        sourceUrl: 'https://forza.net/fh6cars?pubDate=20260123',
+        note: 'Used as the official car availability reference before buying, tagging, or sharing event builds.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 weekly playlist tracker',
+        sourceName: 'Apex Tune Hub',
+        sourceUrl: '/games/forza-horizon-6/weekly-playlist',
+        note: 'Used as the internal workflow reference for linking tune codes, legal builds, and event restrictions.',
+      },
+    ],
     sections: [
       {
         title: 'Buy with the event in mind',
@@ -3967,6 +4093,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'A class road tune',
         href: '/games/forza-horizon-6/guides/best-a-class-road-tune-settings',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This street-race page applies it to traffic recovery, braking confidence, wet exits, and weekly-safe setups.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 complete tuning guide',
+        sourceName: 'Forza Guide',
+        sourceUrl: 'https://forza.guide/fh6/tuning/',
+        note: 'Used as supporting context for road-race setup categories. Street advice stays framed as route-testing guidance.',
       },
     ],
     sections: [
@@ -6732,6 +6876,24 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/gear-ratio-guide',
       },
     ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as a tuning workflow reference. This Japan route checklist applies it to route type, corner family, and repeatable setup notes.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 complete tuning guide',
+        sourceName: 'Forza Guide',
+        sourceUrl: 'https://forza.guide/fh6/tuning/',
+        note: 'Used as supporting context for connecting route symptoms to tuning categories.',
+      },
+    ],
     sections: [
       {
         title: 'Start with route type',
@@ -7010,6 +7172,22 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Best cars hub',
         href: '/games/forza-horizon-6/best-cars',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 official source tracker',
+        sourceName: 'Apex Tune Hub',
+        sourceUrl: '/games/forza-horizon-6/official-sources',
+        note: 'Used as the internal source policy for weekly playlist claims and update checks.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 weekly playlist tracker',
+        sourceName: 'Apex Tune Hub',
+        sourceUrl: '/games/forza-horizon-6/weekly-playlist',
+        note: 'Used as the operational tracker for event restrictions, legal car picks, tune presets, and reusable weekly notes.',
       },
     ],
     sections: [
