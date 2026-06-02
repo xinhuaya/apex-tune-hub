@@ -5715,13 +5715,13 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     intro:
       'Wheelspin is not always a power problem. It can come from gearing, differential behavior, tire choice, suspension movement, or asking too much throttle from the car too early.',
     primaryCta: {
-      label: 'Open wheelspin preset',
-      href: '/tools/forza-horizon-6-tune-presets/a-rwd-street-wheelspin-stable',
+      label: 'Open wheelspin tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=street&drive=RWD&class=A&issue=wheelspin&style=stable',
     },
     relatedLinks: [
       {
-        label: 'Tune calculator',
-        href: '/tools/forza-horizon-6-tune-calculator?race=street&drive=RWD&class=A&issue=wheelspin&style=stable',
+        label: 'Wheelspin preset',
+        href: '/tools/forza-horizon-6-tune-presets/a-rwd-street-wheelspin-stable',
       },
       {
         label: 'Drag wheelspin preset',
@@ -5827,10 +5827,14 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     intro:
       'A slow launch can be too little grip, too much grip, long gearing, weak low-end response, or a setup that falls out of its useful power band after the first shift.',
     primaryCta: {
-      label: 'Open slow launch preset',
-      href: '/tools/forza-horizon-6-tune-presets/b-rwd-rally-slow-launch-balanced',
+      label: 'Open slow launch tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=B&issue=slow-launch&style=balanced',
     },
     relatedLinks: [
+      {
+        label: 'Slow launch preset',
+        href: '/tools/forza-horizon-6-tune-presets/b-rwd-rally-slow-launch-balanced',
+      },
       {
         label: 'A AWD dirt launch preset',
         href: '/tools/forza-horizon-6-tune-presets/a-awd-dirt-slow-launch-balanced',
@@ -5840,8 +5844,8 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/games/forza-horizon-6/guides/gear-ratio-guide',
       },
       {
-        label: 'Tune calculator',
-        href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=B&issue=slow-launch&style=balanced',
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
       },
     ],
     mediaSources: [
@@ -5939,13 +5943,13 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     intro:
       'Unstable braking costs confidence before the corner even starts. Fix the braking platform first, then worry about mid-corner speed or power upgrades.',
     primaryCta: {
-      label: 'Open braking preset',
-      href: '/tools/forza-horizon-6-tune-presets/s1-awd-dirt-unstable-braking-stable',
+      label: 'Open braking tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=dirt&drive=AWD&class=S1&issue=unstable-braking&style=stable',
     },
     relatedLinks: [
       {
-        label: 'Road tune calculator',
-        href: '/tools/forza-horizon-6-tune-calculator?race=dirt&drive=AWD&class=S1&issue=unstable-braking&style=stable',
+        label: 'Braking preset',
+        href: '/tools/forza-horizon-6-tune-presets/s1-awd-dirt-unstable-braking-stable',
       },
       {
         label: 'Best rally cars',
@@ -6051,10 +6055,14 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
     intro:
       'Poor top speed is not only about adding horsepower. Final drive, aero, tire drag, class limits, and whether the route actually rewards top end all matter.',
     primaryCta: {
-      label: 'Open top speed preset',
-      href: '/tools/forza-horizon-6-tune-presets/s2-awd-road-poor-top-speed-aggressive',
+      label: 'Open top speed tune calculator',
+      href: '/tools/forza-horizon-6-tune-calculator?race=road&drive=AWD&class=S2&issue=poor-top-speed&style=aggressive',
     },
     relatedLinks: [
+      {
+        label: 'Top speed preset',
+        href: '/tools/forza-horizon-6-tune-presets/s2-awd-road-poor-top-speed-aggressive',
+      },
       {
         label: 'Gear ratio calculator',
         href: '/tools/forza-horizon-6-gear-ratio-calculator',
