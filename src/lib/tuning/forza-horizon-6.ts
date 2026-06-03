@@ -66,6 +66,11 @@ export type CalculationResult = {
 
 export type ClipboardResultOptions = {
   presetUrl?: string;
+  testChecks?: Array<{
+    label: string;
+    metric: string;
+    target: string;
+  }>;
 };
 
 export const raceTypeOptions: Array<{ value: RaceType; label: string }> = [
@@ -274,6 +279,15 @@ export function formatResultForClipboard(
       `Test: ${item.test}`,
       '',
     ]),
+    ...(options.testChecks?.length
+      ? [
+          'Route checklist',
+          ...options.testChecks.map(
+            (check) => `${check.label} - ${check.metric}: ${check.target}`
+          ),
+          '',
+        ]
+      : []),
     'Test log template',
     'Car:',
     'Route or event:',

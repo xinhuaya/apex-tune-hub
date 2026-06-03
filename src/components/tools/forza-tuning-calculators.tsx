@@ -21,6 +21,7 @@ import {
   styleOptions,
   type CalculationResult,
   type ClassBand,
+  type ClipboardResultOptions,
   type DriftInput,
   type Drivetrain,
   type GearInput,
@@ -60,8 +61,63 @@ type ToolEventProperties = Record<
   string,
   string | number | boolean | null | undefined
 >;
+type TestCheck = NonNullable<ClipboardResultOptions['testChecks']>[number];
 
 const toolEventStorageKey = 'apex-tune-hub:fh6-tool-events';
+
+const tuneCornerChecks: TestCheck[] = [
+  {
+    label: 'Entry',
+    metric: 'Brake + turn-in',
+    target: 'Car points in without darting or plowing',
+  },
+  {
+    label: 'Apex',
+    metric: 'Rotation',
+    target: 'Holds the inside line with steady throttle',
+  },
+  {
+    label: 'Exit',
+    metric: 'Power down',
+    target: 'Leaves the corner without snap or wheelspin',
+  },
+];
+
+const driftZoneChecks: TestCheck[] = [
+  {
+    label: 'Entry',
+    metric: 'Initiation feel',
+    target: 'Starts rotation without snapping',
+  },
+  {
+    label: 'Mid zone',
+    metric: 'Angle hold',
+    target: 'Keeps angle without losing too much speed',
+  },
+  {
+    label: 'Exit',
+    metric: 'Recovery',
+    target: 'Straightens without a spin or dead throttle',
+  },
+];
+
+const gearRouteChecks: TestCheck[] = [
+  {
+    label: 'Launch',
+    metric: '0-2 shift feel',
+    target: 'Hooks without bogging or smoke',
+  },
+  {
+    label: 'Mid route',
+    metric: 'Post-shift rpm',
+    target: 'Drops back into useful power',
+  },
+  {
+    label: 'Long straight',
+    metric: 'Final-gear rpm',
+    target: 'Near redline at the end, not before',
+  },
+];
 
 function trackToolEvent(action: string, properties: ToolEventProperties = {}) {
   if (typeof window === 'undefined') {
@@ -1059,6 +1115,7 @@ function ToolShell({
   resultAside,
   result,
   shareUrl,
+  testChecks,
 }: {
   eyebrow: string;
   toolId: string;
@@ -1069,6 +1126,7 @@ function ToolShell({
   resultAside?: ReactNode;
   result: CalculationResult;
   shareUrl: string;
+  testChecks?: TestCheck[];
 }) {
   const [copiedNotes, setCopiedNotes] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -1083,7 +1141,7 @@ function ToolShell({
 
   async function copyResult() {
     await writeClipboard(
-      formatResultForClipboard(result, { presetUrl: shareUrl })
+      formatResultForClipboard(result, { presetUrl: shareUrl, testChecks })
     );
     trackToolEvent('copy_setup_notes', {
       tool: toolId,
@@ -1479,23 +1537,6 @@ function TuneResultActionPlan({
   guide: { label: string; href: string; hint: string };
 }) {
   const plan = tuneActionPlans[input.handlingIssue];
-  const routeChecks = [
-    {
-      label: 'Entry',
-      metric: 'Brake + turn-in',
-      target: 'Car points in without darting or plowing',
-    },
-    {
-      label: 'Apex',
-      metric: 'Rotation',
-      target: 'Holds the inside line with steady throttle',
-    },
-    {
-      label: 'Exit',
-      metric: 'Power down',
-      target: 'Leaves the corner without snap or wheelspin',
-    },
-  ];
 
   return (
     <div className="mt-5 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
@@ -1535,7 +1576,7 @@ function TuneResultActionPlan({
           <span>Log</span>
           <span>Good result</span>
         </div>
-        {routeChecks.map((check) => (
+        {tuneCornerChecks.map((check) => (
           <div
             className="grid grid-cols-[0.8fr_1fr_1.25fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
             key={check.label}
@@ -1725,23 +1766,6 @@ function DriftResultActionPlan({
   guide: { label: string; href: string; hint: string };
 }) {
   const plan = driftActionPlans[input.problem];
-  const zoneChecks = [
-    {
-      label: 'Entry',
-      metric: 'Initiation feel',
-      target: 'Starts rotation without snapping',
-    },
-    {
-      label: 'Mid zone',
-      metric: 'Angle hold',
-      target: 'Keeps angle without losing too much speed',
-    },
-    {
-      label: 'Exit',
-      metric: 'Recovery',
-      target: 'Straightens without a spin or dead throttle',
-    },
-  ];
 
   return (
     <div className="mt-5 rounded-md border border-pink-300/20 bg-pink-300/[0.05] p-4">
@@ -1781,7 +1805,7 @@ function DriftResultActionPlan({
           <span>Log</span>
           <span>Good result</span>
         </div>
-        {zoneChecks.map((check) => (
+        {driftZoneChecks.map((check) => (
           <div
             className="grid grid-cols-[0.8fr_1fr_1.25fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
             key={check.label}
@@ -1920,23 +1944,6 @@ function GearSymptomPresetGrid({
 
 function GearResultActionPlan({ input }: { input: GearInput }) {
   const plan = gearActionPlans[input.symptom];
-  const routeChecks = [
-    {
-      label: 'Launch',
-      metric: '0-2 shift feel',
-      target: 'Hooks without bogging or smoke',
-    },
-    {
-      label: 'Mid route',
-      metric: 'Post-shift rpm',
-      target: 'Drops back into useful power',
-    },
-    {
-      label: 'Long straight',
-      metric: 'Final-gear rpm',
-      target: 'Near redline at the end, not before',
-    },
-  ];
 
   return (
     <div className="mt-5 rounded-md border border-amber-300/20 bg-amber-300/[0.05] p-4">
@@ -1976,7 +1983,7 @@ function GearResultActionPlan({ input }: { input: GearInput }) {
           <span>Log</span>
           <span>Good result</span>
         </div>
-        {routeChecks.map((check) => (
+        {gearRouteChecks.map((check) => (
           <div
             className="grid grid-cols-[0.8fr_1fr_1.25fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
             key={check.label}
@@ -2173,6 +2180,7 @@ export function ForzaTuneCalculator() {
       description="Use this Forza Horizon 6 tuning calculator to choose the race type, drivetrain, class, and main handling problem. It returns a baseline direction you can test before saving a car-specific setup."
       result={result}
       shareUrl={shareUrl}
+      testChecks={tuneCornerChecks}
       nextStep={<TuneNextStepCard guide={activeGuide} />}
       resultAside={<TuneResultActionPlan guide={activeGuide} input={input} />}
     >
@@ -2247,6 +2255,7 @@ export function ForzaDriftTuneCalculator() {
       description="Pick your drift build style and the problem you are trying to fix. Use the output as a repeatable first test, then refine around your car and controller or wheel."
       result={result}
       shareUrl={shareUrl}
+      testChecks={driftZoneChecks}
       nextStep={<DriftNextStepCard guide={activeGuide} />}
       resultAside={<DriftResultActionPlan guide={activeGuide} input={input} />}
     >
@@ -2325,6 +2334,7 @@ export function ForzaGearRatioCalculator() {
       description="Tune final drive and gear spacing around the route, not just the biggest speed number. The output tells you what to test first."
       result={result}
       shareUrl={shareUrl}
+      testChecks={gearRouteChecks}
       nextStep={
         <GearNextStepCard guide={activeGuide} symptom={input.symptom} />
       }
