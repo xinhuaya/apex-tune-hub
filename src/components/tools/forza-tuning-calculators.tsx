@@ -55,6 +55,13 @@ type SavedPreset = {
   url: string;
   createdAt: string;
 };
+type TestLog = {
+  route: string;
+  baseline: string;
+  runOne: string;
+  runTwo: string;
+  verdict: string;
+};
 type PresetConfig<T extends StringRecord> = {
   [K in keyof T]: {
     key: string;
@@ -161,6 +168,18 @@ function storageKeyFor(toolId: string) {
   return `apex-tune-hub:${toolId}:saved-presets`;
 }
 
+function testLogStorageKeyFor(toolId: string) {
+  return `apex-tune-hub:${toolId}:test-log`;
+}
+
+const emptyTestLog: TestLog = {
+  route: '',
+  baseline: '',
+  runOne: '',
+  runTwo: '',
+  verdict: '',
+};
+
 function readSavedPresets(toolId: string): SavedPreset[] {
   if (typeof window === 'undefined') {
     return [];
@@ -183,6 +202,38 @@ function writeSavedPresets(toolId: string, presets: SavedPreset[]) {
   window.localStorage.setItem(
     storageKeyFor(toolId),
     JSON.stringify(presets.slice(0, 6))
+  );
+}
+
+function readTestLog(toolId: string): TestLog {
+  if (typeof window === 'undefined') {
+    return emptyTestLog;
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(testLogStorageKeyFor(toolId));
+    if (!rawValue) {
+      return emptyTestLog;
+    }
+
+    const parsed = JSON.parse(rawValue);
+
+    return {
+      route: typeof parsed.route === 'string' ? parsed.route : '',
+      baseline: typeof parsed.baseline === 'string' ? parsed.baseline : '',
+      runOne: typeof parsed.runOne === 'string' ? parsed.runOne : '',
+      runTwo: typeof parsed.runTwo === 'string' ? parsed.runTwo : '',
+      verdict: typeof parsed.verdict === 'string' ? parsed.verdict : '',
+    };
+  } catch {
+    return emptyTestLog;
+  }
+}
+
+function writeTestLog(toolId: string, log: TestLog) {
+  window.localStorage.setItem(
+    testLogStorageKeyFor(toolId),
+    JSON.stringify(log)
   );
 }
 
@@ -305,6 +356,33 @@ function formatProofRunPlan({
     '',
     'Route checks:',
     checks,
+  ].join('\n');
+}
+
+function formatTestLog({
+  toolId,
+  result,
+  shareUrl,
+  testLog,
+}: {
+  toolId: string;
+  result: CalculationResult;
+  shareUrl: string;
+  testLog: TestLog;
+}) {
+  return [
+    `Apex Tune Hub ${toolId} test log`,
+    '',
+    `Calculator: ${shareUrl || 'Open the current Apex Tune Hub tool URL.'}`,
+    `Baseline summary: ${result.summary}`,
+    '',
+    `Route/event: ${testLog.route || 'Not recorded yet'}`,
+    `Baseline run: ${testLog.baseline || 'Not recorded yet'}`,
+    `Proof run 1: ${testLog.runOne || 'Not recorded yet'}`,
+    `Proof run 2: ${testLog.runTwo || 'Not recorded yet'}`,
+    `Verdict: ${testLog.verdict || 'Not decided yet'}`,
+    '',
+    'Keep this log with screenshots or clips so the tune can become a verified Apex Tune Hub note later.',
   ].join('\n');
 }
 
@@ -1066,7 +1144,7 @@ const calculatorLanes = [
 
 function CalculatorLaneSwitcher({ activeTool }: { activeTool: string }) {
   return (
-    <div className="mt-3 grid min-w-0 grid-cols-3 gap-2">
+    <div className="mt-3 grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-3">
       {calculatorLanes.map((lane) => {
         const isActive = lane.id === activeTool;
 
@@ -1126,13 +1204,17 @@ function ToolShell({
   const [copiedNotes, setCopiedNotes] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copiedProofPlan, setCopiedProofPlan] = useState(false);
+  const [copiedTestLog, setCopiedTestLog] = useState(false);
   const [copiedGarage, setCopiedGarage] = useState(false);
   const [copiedSavedPresetId, setCopiedSavedPresetId] = useState('');
   const [saved, setSaved] = useState(false);
+  const [savedTestLog, setSavedTestLog] = useState(false);
   const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
+  const [testLog, setTestLog] = useState<TestLog>(emptyTestLog);
 
   useEffect(() => {
     setSavedPresets(readSavedPresets(toolId));
+    setTestLog(readTestLog(toolId));
   }, [toolId]);
 
   async function copyResult() {
@@ -1173,6 +1255,37 @@ function ToolShell({
     });
     setCopiedProofPlan(true);
     window.setTimeout(() => setCopiedProofPlan(false), 1800);
+  }
+
+  async function copyTestLog() {
+    await writeClipboard(formatTestLog({ toolId, result, shareUrl, testLog }));
+    trackToolEvent('copy_test_log', {
+      tool: toolId,
+      confidence: result.confidence,
+      hasRoute: Boolean(testLog.route),
+      hasVerdict: Boolean(testLog.verdict),
+    });
+    setCopiedTestLog(true);
+    window.setTimeout(() => setCopiedTestLog(false), 1800);
+  }
+
+  function updateTestLog(field: keyof TestLog, value: string) {
+    setTestLog((current) => ({ ...current, [field]: value }));
+    setSavedTestLog(false);
+  }
+
+  function saveTestLog() {
+    writeTestLog(toolId, testLog);
+    trackToolEvent('save_test_log', {
+      tool: toolId,
+      hasRoute: Boolean(testLog.route),
+      hasBaseline: Boolean(testLog.baseline),
+      hasRunOne: Boolean(testLog.runOne),
+      hasRunTwo: Boolean(testLog.runTwo),
+      hasVerdict: Boolean(testLog.verdict),
+    });
+    setSavedTestLog(true);
+    window.setTimeout(() => setSavedTestLog(false), 1800);
   }
 
   async function copySavedPresetUrl(preset: SavedPreset) {
@@ -1336,6 +1449,74 @@ function ToolShell({
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 rounded-md border border-cyan-300/20 bg-cyan-300/[0.04] p-3">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
+                  Test log
+                </p>
+                <p className="mt-2 text-xs leading-5 text-zinc-400">
+                  Record one route, one baseline, two proof runs, and the final
+                  decision.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-cyan-300/25 bg-cyan-300/[0.06] px-3 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/[0.1]"
+                  type="button"
+                  onClick={copyTestLog}
+                >
+                  {copiedTestLog ? 'Copied log' : 'Copy log'}
+                </button>
+                <button
+                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-emerald-300/25 bg-emerald-300/[0.06] px-3 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/[0.1]"
+                  type="button"
+                  onClick={saveTestLog}
+                >
+                  {savedTestLog ? 'Saved log' : 'Save log'}
+                </button>
+              </div>
+            </div>
+            <div className="mt-3 grid gap-2">
+              <label className="grid gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                <span>Route or event</span>
+                <input
+                  className="min-h-10 rounded-md border border-white/10 bg-black/25 px-3 text-sm font-medium normal-case tracking-normal text-zinc-100 outline-none transition placeholder:text-zinc-600 focus:border-cyan-300/70"
+                  placeholder="Example: road sprint, same S1 AWD route"
+                  value={testLog.route}
+                  onChange={(event) =>
+                    updateTestLog('route', event.target.value)
+                  }
+                />
+              </label>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {[
+                  ['baseline', 'Baseline run', 'Original symptom or time'],
+                  ['runOne', 'Proof run 1', 'First run after changes'],
+                  ['runTwo', 'Proof run 2', 'Second run after changes'],
+                  ['verdict', 'Verdict', 'Keep, revert, or test again'],
+                ].map(([field, label, placeholder]) => (
+                  <label
+                    className="grid gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500"
+                    key={field}
+                  >
+                    <span>{label}</span>
+                    <textarea
+                      className="min-h-20 resize-none rounded-md border border-white/10 bg-black/25 px-3 py-2 text-sm font-medium normal-case leading-5 tracking-normal text-zinc-100 outline-none transition placeholder:text-zinc-600 focus:border-cyan-300/70"
+                      placeholder={placeholder}
+                      value={testLog[field as keyof TestLog]}
+                      onChange={(event) =>
+                        updateTestLog(
+                          field as keyof TestLog,
+                          event.target.value
+                        )
+                      }
+                    />
+                  </label>
+                ))}
               </div>
             </div>
           </div>
