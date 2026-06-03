@@ -8,6 +8,7 @@ import {
   classOptions,
   drivetrainOptions,
   formatResultForClipboard,
+  forzaTuneCornerChecks,
   issueOptions,
   raceTypeOptions,
   styleOptions,
@@ -299,7 +300,12 @@ export function ForzaHomeTuneWorkbench() {
       window.location.origin
     ).toString();
 
-    await writeClipboard(formatResultForClipboard(result, { presetUrl }));
+    await writeClipboard(
+      formatResultForClipboard(result, {
+        presetUrl,
+        testChecks: forzaTuneCornerChecks,
+      })
+    );
     trackHomeWorkbenchEvent('copy_home_baseline_notes', input, {
       confidence: result.confidence,
       href: calculatorHref,
