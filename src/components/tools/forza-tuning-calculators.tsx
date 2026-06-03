@@ -1852,6 +1852,23 @@ function GearSymptomPresetGrid({
 
 function GearResultActionPlan({ input }: { input: GearInput }) {
   const plan = gearActionPlans[input.symptom];
+  const routeChecks = [
+    {
+      label: 'Launch',
+      metric: '0-2 shift feel',
+      target: 'Hooks without bogging or smoke',
+    },
+    {
+      label: 'Mid route',
+      metric: 'Post-shift rpm',
+      target: 'Drops back into useful power',
+    },
+    {
+      label: 'Long straight',
+      metric: 'Final-gear rpm',
+      target: 'Near redline at the end, not before',
+    },
+  ];
 
   return (
     <div className="mt-5 rounded-md border border-amber-300/20 bg-amber-300/[0.05] p-4">
@@ -1882,6 +1899,23 @@ function GearResultActionPlan({ input }: { input: GearInput }) {
               {label}
             </p>
             <p className="mt-2 text-sm leading-6 text-zinc-200">{text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 overflow-hidden rounded-md border border-white/10 bg-black/25">
+        <div className="grid grid-cols-[0.8fr_1fr_1.25fr] border-b border-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+          <span>Check</span>
+          <span>Log</span>
+          <span>Good result</span>
+        </div>
+        {routeChecks.map((check) => (
+          <div
+            className="grid grid-cols-[0.8fr_1fr_1.25fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
+            key={check.label}
+          >
+            <span className="font-semibold text-zinc-100">{check.label}</span>
+            <span className="text-cyan-100">{check.metric}</span>
+            <span className="text-zinc-400">{check.target}</span>
           </div>
         ))}
       </div>
