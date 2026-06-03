@@ -264,6 +264,50 @@ function formatSavedPresetGarage(toolId: string, presets: SavedPreset[]) {
   ].join('\n');
 }
 
+function formatProofRunPlan({
+  toolId,
+  result,
+  shareUrl,
+  testChecks,
+}: {
+  toolId: string;
+  result: CalculationResult;
+  shareUrl: string;
+  testChecks?: RouteTestCheck[];
+}) {
+  const settingList = result.recommendations
+    .slice(0, 3)
+    .map(
+      (recommendation) =>
+        `- ${recommendation.setting}: ${recommendation.recommendation}`
+    )
+    .join('\n');
+  const checks =
+    testChecks && testChecks.length > 0
+      ? testChecks.map((check) => `- ${check}`).join('\n')
+      : '- Repeat the same route, same car, same assists, and same input device.';
+
+  return [
+    `Apex Tune Hub ${toolId} proof run`,
+    '',
+    `Calculator: ${shareUrl || 'Open the current Apex Tune Hub tool URL.'}`,
+    `Baseline summary: ${result.summary}`,
+    `Confidence: ${result.confidence}`,
+    '',
+    'Change first:',
+    settingList || '- No setting recommendation generated yet.',
+    '',
+    'Run order:',
+    '1. Record one baseline run before changing settings.',
+    '2. Apply only the top 1-3 Apex Tune Hub changes.',
+    '3. Repeat the same route twice and compare the same symptom.',
+    '4. Save the preset only if both proof runs feel more repeatable.',
+    '',
+    'Route checks:',
+    checks,
+  ].join('\n');
+}
+
 function usePresetUrl<T extends StringRecord>(
   defaults: T,
   config: PresetConfig<T>
@@ -1022,13 +1066,13 @@ const calculatorLanes = [
 
 function CalculatorLaneSwitcher({ activeTool }: { activeTool: string }) {
   return (
-    <div className="mt-3 grid grid-cols-3 gap-2">
+    <div className="mt-3 grid min-w-0 grid-cols-3 gap-2">
       {calculatorLanes.map((lane) => {
         const isActive = lane.id === activeTool;
 
         return (
           <LocaleLink
-            className={`rounded-md border px-2 py-2 text-center transition ${
+            className={`min-w-0 rounded-md border px-2 py-2 text-center transition ${
               isActive
                 ? 'border-cyan-300/50 bg-cyan-300/[0.08] text-cyan-100'
                 : 'border-white/10 bg-black/20 text-zinc-400 hover:border-cyan-300/30 hover:bg-cyan-300/[0.04] hover:text-zinc-100'
@@ -1043,8 +1087,10 @@ function CalculatorLaneSwitcher({ activeTool }: { activeTool: string }) {
               })
             }
           >
-            <span className="block text-sm font-semibold">{lane.label}</span>
-            <span className="mt-0.5 block text-[0.68rem] font-semibold uppercase tracking-[0.12em] opacity-70">
+            <span className="block truncate text-sm font-semibold">
+              {lane.label}
+            </span>
+            <span className="mt-0.5 block truncate text-[0.68rem] font-semibold uppercase tracking-[0.12em] opacity-70">
               {lane.note}
             </span>
           </LocaleLink>
@@ -1079,6 +1125,7 @@ function ToolShell({
 }) {
   const [copiedNotes, setCopiedNotes] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedProofPlan, setCopiedProofPlan] = useState(false);
   const [copiedGarage, setCopiedGarage] = useState(false);
   const [copiedSavedPresetId, setCopiedSavedPresetId] = useState('');
   const [saved, setSaved] = useState(false);
@@ -1113,6 +1160,19 @@ function ToolShell({
     });
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
+  }
+
+  async function copyProofRunPlan() {
+    await writeClipboard(
+      formatProofRunPlan({ toolId, result, shareUrl, testChecks })
+    );
+    trackToolEvent('copy_proof_run_plan', {
+      tool: toolId,
+      confidence: result.confidence,
+      hasPresetUrl: Boolean(shareUrl),
+    });
+    setCopiedProofPlan(true);
+    window.setTimeout(() => setCopiedProofPlan(false), 1800);
   }
 
   async function copySavedPresetUrl(preset: SavedPreset) {
@@ -1179,10 +1239,10 @@ function ToolShell({
   }
 
   return (
-    <section className="forza-page mx-auto w-full max-w-full px-4 py-8 text-zinc-50 sm:px-6 lg:px-8">
+    <section className="forza-page mx-auto w-full max-w-full overflow-hidden px-4 py-8 text-zinc-50 sm:px-6 lg:px-8">
       <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-80 opacity-30" />
       <div className="grid min-w-0 gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-        <div className="forza-panel relative w-full overflow-hidden p-4 sm:p-5">
+        <div className="forza-panel relative min-w-0 w-full overflow-hidden p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/10 pb-3">
             <div className="min-w-0">
               <p className="forza-chip">{eyebrow}</p>
@@ -1199,13 +1259,21 @@ function ToolShell({
           </p>
           <CalculatorLaneSwitcher activeTool={toolId} />
           <ToolOutputPreview result={result} />
-          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
+          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto_auto_auto]">
             <button
               className="forza-primary-button h-11 w-full focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
               type="button"
               onClick={copyResult}
             >
               {copiedNotes ? 'Copied notes' : 'Copy notes'}
+            </button>
+            <button
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-emerald-300/30 bg-emerald-300/10 px-4 text-sm font-semibold text-emerald-100 transition hover:border-emerald-300/60 hover:bg-emerald-300/15 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-zinc-950 sm:w-auto"
+              type="button"
+              onClick={copyProofRunPlan}
+            >
+              <CopyIcon className="size-4" />
+              {copiedProofPlan ? 'Copied test' : 'Copy test'}
             </button>
             <button
               className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-amber-300/30 bg-amber-300/10 px-4 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/15 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-zinc-950 sm:w-auto"
