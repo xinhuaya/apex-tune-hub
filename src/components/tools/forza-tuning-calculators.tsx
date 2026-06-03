@@ -386,6 +386,49 @@ function formatTestLog({
   ].join('\n');
 }
 
+function csvCell(value: string) {
+  return `"${value.replaceAll('"', '""')}"`;
+}
+
+function formatTestLogCsv({
+  toolId,
+  result,
+  shareUrl,
+  testLog,
+}: {
+  toolId: string;
+  result: CalculationResult;
+  shareUrl: string;
+  testLog: TestLog;
+}) {
+  const columns = [
+    'recorded_at',
+    'tool',
+    'confidence',
+    'summary',
+    'route_or_event',
+    'baseline_run',
+    'proof_run_1',
+    'proof_run_2',
+    'verdict',
+    'calculator_url',
+  ];
+  const values = [
+    new Date().toISOString(),
+    toolId,
+    result.confidence,
+    result.summary,
+    testLog.route,
+    testLog.baseline,
+    testLog.runOne,
+    testLog.runTwo,
+    testLog.verdict,
+    shareUrl,
+  ];
+
+  return [columns.join(','), values.map(csvCell).join(',')].join('\n');
+}
+
 function usePresetUrl<T extends StringRecord>(
   defaults: T,
   config: PresetConfig<T>
@@ -1205,6 +1248,7 @@ function ToolShell({
   const [copied, setCopied] = useState(false);
   const [copiedProofPlan, setCopiedProofPlan] = useState(false);
   const [copiedTestLog, setCopiedTestLog] = useState(false);
+  const [copiedCsv, setCopiedCsv] = useState(false);
   const [copiedGarage, setCopiedGarage] = useState(false);
   const [copiedSavedPresetId, setCopiedSavedPresetId] = useState('');
   const [saved, setSaved] = useState(false);
@@ -1267,6 +1311,20 @@ function ToolShell({
     });
     setCopiedTestLog(true);
     window.setTimeout(() => setCopiedTestLog(false), 1800);
+  }
+
+  async function copyTestLogCsv() {
+    await writeClipboard(
+      formatTestLogCsv({ toolId, result, shareUrl, testLog })
+    );
+    trackToolEvent('copy_test_log_csv', {
+      tool: toolId,
+      confidence: result.confidence,
+      hasRoute: Boolean(testLog.route),
+      hasVerdict: Boolean(testLog.verdict),
+    });
+    setCopiedCsv(true);
+    window.setTimeout(() => setCopiedCsv(false), 1800);
   }
 
   function updateTestLog(field: keyof TestLog, value: string) {
@@ -1463,13 +1521,20 @@ function ToolShell({
                   decision.
                 </p>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   className="inline-flex min-h-8 items-center justify-center rounded-md border border-cyan-300/25 bg-cyan-300/[0.06] px-3 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/[0.1]"
                   type="button"
                   onClick={copyTestLog}
                 >
                   {copiedTestLog ? 'Copied log' : 'Copy log'}
+                </button>
+                <button
+                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-amber-300/25 bg-amber-300/[0.06] px-3 text-xs font-semibold text-amber-100 transition hover:border-amber-300/50 hover:bg-amber-300/[0.1]"
+                  type="button"
+                  onClick={copyTestLogCsv}
+                >
+                  {copiedCsv ? 'Copied CSV' : 'Copy CSV'}
                 </button>
                 <button
                   className="inline-flex min-h-8 items-center justify-center rounded-md border border-emerald-300/25 bg-emerald-300/[0.06] px-3 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/[0.1]"
