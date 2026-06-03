@@ -40,6 +40,7 @@ import {
   CheckIcon,
   CopyIcon,
   DatabaseIcon,
+  FileTextIcon,
   GaugeIcon,
   LifeBuoyIcon,
   LinkIcon,
@@ -454,6 +455,78 @@ function formatTestLogCsv({
   ];
 
   return [columns.join(','), values.map(csvCell).join(',')].join('\n');
+}
+
+function formatArticleBrief({
+  toolId,
+  result,
+  shareUrl,
+  testLog,
+  testChecks,
+  completedFields,
+  statusLabel,
+}: {
+  toolId: string;
+  result: CalculationResult;
+  shareUrl: string;
+  testLog: TestLog;
+  testChecks?: RouteTestCheck[];
+  completedFields: number;
+  statusLabel: string;
+}) {
+  const recommendations = result.recommendations
+    .slice(0, 5)
+    .map(
+      (recommendation) =>
+        `- ${recommendation.setting}: ${recommendation.recommendation}`
+    );
+  const routeChecks =
+    testChecks && testChecks.length > 0
+      ? testChecks.map((check) => `- ${check}`)
+      : [
+          '- Repeat the same route, same car, same assists, and same input device.',
+        ];
+
+  return [
+    `# FH6 tune test brief: ${result.summary}`,
+    '',
+    `Tool: ${toolId}`,
+    `Readiness: ${statusLabel} (${completedFields}/5 fields)`,
+    `Calculator URL: ${shareUrl || 'Open the current Apex Tune Hub tool URL.'}`,
+    `Confidence: ${result.confidence}`,
+    '',
+    '## Search intent',
+    '- Primary: solve the exact handling or speed problem shown in this calculator state.',
+    '- Secondary: show a repeatable route test so the article feels verified, not generic.',
+    '',
+    '## Test evidence',
+    `- Route/event: ${testLog.route || 'Needs route name or event name'}`,
+    `- Baseline run: ${testLog.baseline || 'Needs original symptom, time, or feel'}`,
+    `- Proof run 1: ${testLog.runOne || 'Needs first repeatable result after changes'}`,
+    `- Proof run 2: ${testLog.runTwo || 'Needs second repeatable result after changes'}`,
+    `- Verdict: ${testLog.verdict || 'Needs keep, revert, or test again decision'}`,
+    '',
+    '## Recommended settings to explain',
+    ...(recommendations.length > 0
+      ? recommendations
+      : ['- No setting recommendation generated yet.']),
+    '',
+    '## Route checks to mention',
+    ...routeChecks,
+    '',
+    '## Images or clips needed',
+    '- Screenshot 1: car/setup screen before the change.',
+    '- Screenshot 2: same route or event result after proof run 1.',
+    '- Screenshot 3: same route or event result after proof run 2.',
+    '- Optional clip: 10-20 seconds showing the original symptom and the improved section.',
+    '',
+    '## Article structure',
+    '1. State the problem and the car/class context in the first paragraph.',
+    '2. Show the baseline symptom before recommending settings.',
+    '3. Explain the first 1-3 setting changes and why they address the symptom.',
+    '4. Add the two proof runs in a small table.',
+    '5. End with when to keep, revert, or retest the tune.',
+  ].join('\n');
 }
 
 function usePresetUrl<T extends StringRecord>(
@@ -1276,6 +1349,7 @@ function ToolShell({
   const [copiedProofPlan, setCopiedProofPlan] = useState(false);
   const [copiedTestLog, setCopiedTestLog] = useState(false);
   const [copiedCsv, setCopiedCsv] = useState(false);
+  const [copiedArticleBrief, setCopiedArticleBrief] = useState(false);
   const [copiedGarage, setCopiedGarage] = useState(false);
   const [copiedSavedPresetId, setCopiedSavedPresetId] = useState('');
   const [saved, setSaved] = useState(false);
@@ -1354,6 +1428,30 @@ function ToolShell({
     });
     setCopiedCsv(true);
     window.setTimeout(() => setCopiedCsv(false), 1800);
+  }
+
+  async function copyArticleBrief() {
+    await writeClipboard(
+      formatArticleBrief({
+        toolId,
+        result,
+        shareUrl,
+        testLog,
+        testChecks,
+        completedFields: completedTestLogFields,
+        statusLabel: testLogStatus.label,
+      })
+    );
+    trackToolEvent('copy_article_brief', {
+      tool: toolId,
+      confidence: result.confidence,
+      completedFields: completedTestLogFields,
+      readiness: testLogStatus.label,
+      hasRoute: Boolean(testLog.route),
+      hasVerdict: Boolean(testLog.verdict),
+    });
+    setCopiedArticleBrief(true);
+    window.setTimeout(() => setCopiedArticleBrief(false), 1800);
   }
 
   function updateTestLog(field: keyof TestLog, value: string) {
@@ -1571,6 +1669,14 @@ function ToolShell({
                   onClick={copyTestLogCsv}
                 >
                   {copiedCsv ? 'Copied CSV' : 'Copy CSV'}
+                </button>
+                <button
+                  className="inline-flex min-h-8 items-center justify-center gap-1.5 rounded-md border border-fuchsia-300/25 bg-fuchsia-300/[0.06] px-3 text-xs font-semibold text-fuchsia-100 transition hover:border-fuchsia-300/50 hover:bg-fuchsia-300/[0.1]"
+                  type="button"
+                  onClick={copyArticleBrief}
+                >
+                  <FileTextIcon className="size-3.5" />
+                  {copiedArticleBrief ? 'Copied brief' : 'Copy brief'}
                 </button>
                 <button
                   className="inline-flex min-h-8 items-center justify-center rounded-md border border-emerald-300/25 bg-emerald-300/[0.06] px-3 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/[0.1]"
