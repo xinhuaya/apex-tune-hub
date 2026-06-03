@@ -1,5 +1,6 @@
 import { ApexNewsletterCta } from '@/components/marketing/apex-newsletter-cta';
 import { JsonLd } from '@/components/seo/json-ld';
+import { ForzaBeginnerTestPlan } from '@/components/tools/forza-beginner-test-plan';
 import { ForzaDriftTuneCalculator } from '@/components/tools/forza-tuning-calculators';
 import { ForzaHorizon6GuideMediaSources } from '@/components/games/forza-horizon-6-guide-media-sources';
 import { LocaleLink } from '@/i18n/navigation';
@@ -281,6 +282,7 @@ export default function ForzaHorizon6DriftTuneCalculatorPage() {
         ]}
       />
       <ForzaDriftTuneCalculator />
+      <ForzaBeginnerTestPlan mode="drift" />
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mb-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="forza-panel p-5">
