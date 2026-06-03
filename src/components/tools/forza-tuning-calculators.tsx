@@ -75,6 +75,25 @@ type ToolEventProperties = Record<
 >;
 
 const toolEventStorageKey = 'apex-tune-hub:fh6-tool-events';
+const testLogFieldLabels: Array<{
+  key: keyof TestLog;
+  label: string;
+  shortLabel: string;
+}> = [
+  { key: 'route', label: 'Route or event name', shortLabel: 'Route' },
+  {
+    key: 'baseline',
+    label: 'Baseline symptom or time',
+    shortLabel: 'Baseline',
+  },
+  { key: 'runOne', label: 'Proof run 1 result', shortLabel: 'Run 1' },
+  { key: 'runTwo', label: 'Proof run 2 result', shortLabel: 'Run 2' },
+  {
+    key: 'verdict',
+    label: 'Keep, revert, or retest verdict',
+    shortLabel: 'Verdict',
+  },
+];
 
 function trackToolEvent(action: string, properties: ToolEventProperties = {}) {
   if (typeof window === 'undefined') {
@@ -185,6 +204,12 @@ function countCompletedTestLogFields(log: TestLog) {
   return [log.route, log.baseline, log.runOne, log.runTwo, log.verdict].filter(
     (value) => value.trim().length > 0
   ).length;
+}
+
+function getMissingTestLogFields(log: TestLog) {
+  return testLogFieldLabels.filter(
+    (field) => log[field.key].trim().length === 0
+  );
 }
 
 function getTestLogStatus(completedFields: number) {
@@ -1357,6 +1382,7 @@ function ToolShell({
   const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
   const [testLog, setTestLog] = useState<TestLog>(emptyTestLog);
   const completedTestLogFields = countCompletedTestLogFields(testLog);
+  const missingTestLogFields = getMissingTestLogFields(testLog);
   const testLogStatus = getTestLogStatus(completedTestLogFields);
 
   useEffect(() => {
@@ -1686,6 +1712,34 @@ function ToolShell({
                   {savedTestLog ? 'Saved log' : 'Save log'}
                 </button>
               </div>
+            </div>
+            <div className="mt-3 rounded-md border border-white/10 bg-black/20 p-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                  Evidence checklist
+                </p>
+                <span className="text-xs font-semibold text-zinc-400">
+                  {5 - missingTestLogFields.length}/5 ready
+                </span>
+              </div>
+              {missingTestLogFields.length > 0 ? (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {missingTestLogFields.map((field) => (
+                    <span
+                      className="rounded-md border border-amber-300/20 bg-amber-300/[0.06] px-2 py-1 text-[0.68rem] font-semibold text-amber-100"
+                      key={field.key}
+                      title={field.label}
+                    >
+                      Need {field.shortLabel}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-2 text-xs leading-5 text-emerald-200">
+                  This log has enough route evidence to become a tested article
+                  brief with screenshots or clips.
+                </p>
+              )}
             </div>
             <div className="mt-3 grid gap-2">
               <label className="grid gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
