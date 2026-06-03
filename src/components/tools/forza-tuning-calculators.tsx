@@ -180,6 +180,33 @@ const emptyTestLog: TestLog = {
   verdict: '',
 };
 
+function countCompletedTestLogFields(log: TestLog) {
+  return [log.route, log.baseline, log.runOne, log.runTwo, log.verdict].filter(
+    (value) => value.trim().length > 0
+  ).length;
+}
+
+function getTestLogStatus(completedFields: number) {
+  if (completedFields >= 5) {
+    return {
+      label: 'Article-ready',
+      note: 'This log has enough fields for CSV analysis and a verified guide note.',
+    };
+  }
+
+  if (completedFields >= 3) {
+    return {
+      label: 'Almost ready',
+      note: 'Add the missing proof run or verdict before turning this into content.',
+    };
+  }
+
+  return {
+    label: 'Draft',
+    note: 'Start with the route and baseline so the test can be repeated.',
+  };
+}
+
 function readSavedPresets(toolId: string): SavedPreset[] {
   if (typeof window === 'undefined') {
     return [];
@@ -1255,6 +1282,8 @@ function ToolShell({
   const [savedTestLog, setSavedTestLog] = useState(false);
   const [savedPresets, setSavedPresets] = useState<SavedPreset[]>([]);
   const [testLog, setTestLog] = useState<TestLog>(emptyTestLog);
+  const completedTestLogFields = countCompletedTestLogFields(testLog);
+  const testLogStatus = getTestLogStatus(completedTestLogFields);
 
   useEffect(() => {
     setSavedPresets(readSavedPresets(toolId));
@@ -1410,7 +1439,7 @@ function ToolShell({
   }
 
   return (
-    <section className="forza-page mx-auto w-full max-w-full overflow-hidden px-4 py-8 text-zinc-50 sm:px-6 lg:px-8">
+    <section className="forza-page mx-auto w-full max-w-full overflow-hidden px-3 py-8 text-zinc-50 sm:px-6 lg:px-8">
       <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-80 opacity-30" />
       <div className="grid min-w-0 gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
         <div className="forza-panel relative min-w-0 w-full overflow-hidden p-4 sm:p-5">
@@ -1425,7 +1454,7 @@ function ToolShell({
               Live
             </span>
           </div>
-          <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">
+          <p className="mt-3 line-clamp-2 min-w-0 text-wrap text-sm leading-6 text-zinc-400">
             {description}
           </p>
           <CalculatorLaneSwitcher activeTool={toolId} />
@@ -1466,7 +1495,7 @@ function ToolShell({
               </span>
             </button>
           </div>
-          <p className="mt-3 text-xs leading-5 text-zinc-500">
+          <p className="mt-3 min-w-0 text-wrap text-xs leading-5 text-zinc-500">
             Links keep the selected options in the URL. Saved presets stay local
             in this browser.
           </p>
@@ -1513,12 +1542,19 @@ function ToolShell({
           <div className="mt-3 rounded-md border border-cyan-300/20 bg-cyan-300/[0.04] p-3">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
-                  Test log
-                </p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
+                    Test log
+                  </p>
+                  <span className="rounded-md border border-white/10 bg-black/25 px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-zinc-400">
+                    {completedTestLogFields}/5 fields
+                  </span>
+                  <span className="rounded-md border border-emerald-300/25 bg-emerald-300/[0.07] px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-emerald-100">
+                    {testLogStatus.label}
+                  </span>
+                </div>
                 <p className="mt-2 text-xs leading-5 text-zinc-400">
-                  Record one route, one baseline, two proof runs, and the final
-                  decision.
+                  {testLogStatus.note}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -1691,11 +1727,11 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
   return (
     <div className="mt-4 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-3">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-cyan-200">
             Live output
           </p>
-          <p className="mt-2 text-sm font-semibold leading-5 text-zinc-100">
+          <p className="mt-2 min-w-0 text-wrap break-words text-sm font-semibold leading-5 text-zinc-100">
             {result.summary}
           </p>
         </div>
@@ -1707,7 +1743,7 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
         <div className="mt-3 rounded-md border border-white/10 bg-black/25 px-3 py-2">
           <div className="flex items-start gap-2">
             <GaugeIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
-            <p className="text-xs leading-5 text-zinc-300">
+            <p className="min-w-0 text-wrap break-words text-xs leading-5 text-zinc-300">
               <span className="font-semibold text-zinc-100">
                 {firstRecommendation.setting}:{' '}
               </span>

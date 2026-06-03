@@ -500,7 +500,7 @@ html {
   }
 
   .forza-panel {
-    @apply w-full min-w-0 rounded-md border border-white/10 bg-[#080b10]/90 shadow-2xl shadow-black/50;
+    @apply box-border w-full min-w-0 rounded-md border border-white/10 bg-[#080b10]/90 shadow-2xl shadow-black/50;
     max-width: calc(100vw - 2rem);
     box-shadow:
       0 24px 80px rgb(0 0 0 / 0.48),
@@ -508,7 +508,7 @@ html {
   }
 
   .forza-card {
-    @apply w-full min-w-0 rounded-md border border-white/10 bg-[#07090d]/85 transition;
+    @apply box-border w-full min-w-0 rounded-md border border-white/10 bg-[#07090d]/85 transition;
     max-width: calc(100vw - 2rem);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
   }
