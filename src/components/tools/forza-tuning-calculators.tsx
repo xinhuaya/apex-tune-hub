@@ -1479,6 +1479,23 @@ function TuneResultActionPlan({
   guide: { label: string; href: string; hint: string };
 }) {
   const plan = tuneActionPlans[input.handlingIssue];
+  const routeChecks = [
+    {
+      label: 'Entry',
+      metric: 'Brake + turn-in',
+      target: 'Car points in without darting or plowing',
+    },
+    {
+      label: 'Apex',
+      metric: 'Rotation',
+      target: 'Holds the inside line with steady throttle',
+    },
+    {
+      label: 'Exit',
+      metric: 'Power down',
+      target: 'Leaves the corner without snap or wheelspin',
+    },
+  ];
 
   return (
     <div className="mt-5 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
@@ -1509,6 +1526,23 @@ function TuneResultActionPlan({
               {label}
             </p>
             <p className="mt-2 text-sm leading-6 text-zinc-200">{text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 overflow-hidden rounded-md border border-white/10 bg-black/25">
+        <div className="grid grid-cols-[0.8fr_1fr_1.25fr] border-b border-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+          <span>Corner</span>
+          <span>Log</span>
+          <span>Good result</span>
+        </div>
+        {routeChecks.map((check) => (
+          <div
+            className="grid grid-cols-[0.8fr_1fr_1.25fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
+            key={check.label}
+          >
+            <span className="font-semibold text-zinc-100">{check.label}</span>
+            <span className="text-cyan-100">{check.metric}</span>
+            <span className="text-zinc-400">{check.target}</span>
           </div>
         ))}
       </div>
