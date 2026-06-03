@@ -25,6 +25,27 @@ The product is not "articles first." The product is the FH6 tuning workflow: cho
 | Vercel Speed Insights | INP, LCP, CLS, slow routes | Fix pages that feel slow before adding more content. |
 | Browser localStorage | Last 50 local FH6 tool events on the current device | Quick manual QA after clicking through the site. |
 
+## Where To Check Backends And Data
+
+Use these dashboards instead of trying to judge the site from the public page alone.
+
+| Need | Dashboard | What to check |
+| --- | --- | --- |
+| Production deploys, logs, domains | Vercel project: `apex-tune-hub` | Latest deployment status, custom domain aliases, build errors, function logs, Speed Insights. |
+| Search clicks and queries | Google Search Console: `apextunehub.com` | Performance > Queries, Performance > Pages, Indexing > Pages, Sitemaps. |
+| Bing search and IndexNow | Bing Webmaster Tools: `apextunehub.com` | Sitemaps, URL inspection, IndexNow status, search performance. |
+| Code and deploy history | GitHub repo: `xinhuaya/apex-tune-hub` | Recent commits, pushed branch, Vercel-triggering changes. |
+| DNS and domain ownership | Namecheap: `apextunehub.com` | A record, CNAME, TXT verification records, mail DNS. |
+| Email sending/list setup | Resend dashboard | Domain verification, audience/list, email API delivery, sender reputation. |
+| App-side protected pages | `https://apextunehub.com/dashboard` and `/admin/users` | Only useful after auth, database, and owner access are fully configured. Do not use this as the main SEO analytics backend. |
+
+Recommended weekly order:
+
+1. Google Search Console first: find queries and pages with impressions.
+2. Vercel Analytics next: check whether clicked visitors actually use tools.
+3. Vercel Speed Insights third: fix slow pages that already get traffic.
+4. Bing Webmaster Tools last: confirm sitemap and IndexNow discovery.
+
 ## Custom Event Dictionary
 
 All custom product events use the event name:
@@ -139,3 +160,32 @@ By the end of the next 30 days, the site should have:
 - A short list of pages worth adding images/video-derived walkthroughs to.
 
 Do not judge the site only by pageviews. The useful metric is: search clicks that become tuning actions.
+
+## AdSense And Revenue Timing
+
+Do not add display ads just because the site is live. Google does not publish a fixed traffic minimum for AdSense approval, but the site still needs original, useful content, clear navigation, policy compliance, and enough value for users beyond placeholder or thin pages.
+
+Apply for AdSense when most of these are true:
+
+- 30-50 useful public pages are indexed, not just discovered.
+- 10+ pages have real GSC impressions, and at least 5 pages have clicks.
+- The top tool pages have clear user value: calculator output, save/copy/share actions, FAQ, internal links, and source notes.
+- Thin or duplicated pages are improved, merged, or blocked from indexing.
+- Required policy pages are easy to find: privacy, terms, contact/about.
+- The site has stable search traffic for at least 2-4 weeks after the first indexed batch.
+
+Best first ad rollout:
+
+1. Start with AdSense Auto ads disabled or very limited.
+2. Place no ads inside the calculator input/output box.
+3. Test one display slot after the first tool result or between long guide sections.
+4. Keep homepage and calculator first screen clean.
+5. Watch GSC clicks, Vercel engagement, and page speed after ads go live.
+
+Revenue priority before AdSense approval:
+
+- Keep building the calculator workflow because it creates repeat use.
+- Add affiliate opportunities only on buyer-intent pages, such as wheels, controllers, Game Pass, Steam Deck, and racing setup guides.
+- Start email capture after Resend/list testing works, then use weekly FH6 tune drops to create repeat traffic.
+
+Current stage: Apex Tune Hub is in the trust/indexing/core-product phase. It is too early to optimize for ad RPM. The better move is to grow indexed high-intent pages and tool usage first, then apply for AdSense when the site looks useful and stable rather than brand new.
