@@ -2664,6 +2664,41 @@ function GearBaselineSummary({ input }: { input: GearInput }) {
   const priority = optionLabel(gearPriorityOptions, input.priority);
   const symptom = optionLabel(gearSymptomOptions, input.symptom);
   const plan = gearActionPlans[input.symptom];
+  const shiftRead = [
+    {
+      zone: 'Launch',
+      watch:
+        input.symptom === 'wheelspin'
+          ? 'First gear smoke or instant limiter'
+          : 'First-to-second pull without bogging',
+      action:
+        input.symptom === 'slow-launch'
+          ? 'Shorten only if it bogs'
+          : 'Keep launch repeatable first',
+    },
+    {
+      zone: 'Mid gears',
+      watch:
+        input.symptom === 'bogs-after-shift'
+          ? 'RPM drop after the problem shift'
+          : '2nd-4th gear recovery after exits',
+      action:
+        input.symptom === 'bogs-after-shift'
+          ? 'Close the affected gear gap'
+          : 'Do not edit every gear yet',
+    },
+    {
+      zone: 'Top end',
+      watch:
+        input.symptom === 'hits-limiter'
+          ? 'Limiter before the straight ends'
+          : 'Whether top gear is actually reachable',
+      action:
+        input.symptom === 'never-top-gear'
+          ? 'Shorten upper range'
+          : 'Use the target route straight',
+    },
+  ];
 
   return (
     <div className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
@@ -2699,6 +2734,23 @@ function GearBaselineSummary({ input }: { input: GearInput }) {
             shift spacing
           </p>
         </div>
+      </div>
+      <div className="mt-3 overflow-hidden rounded-md border border-white/10 bg-black/25">
+        <div className="hidden border-b border-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500 sm:grid sm:grid-cols-[0.7fr_1.15fr_1fr]">
+          <span>Shift zone</span>
+          <span>Watch</span>
+          <span>First move</span>
+        </div>
+        {shiftRead.map((row) => (
+          <div
+            className="grid gap-1 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0 sm:grid-cols-[0.7fr_1.15fr_1fr] sm:gap-2"
+            key={row.zone}
+          >
+            <span className="font-semibold text-zinc-100">{row.zone}</span>
+            <span className="text-cyan-100">{row.watch}</span>
+            <span className="text-zinc-400">{row.action}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
