@@ -45,6 +45,7 @@ import {
   LifeBuoyIcon,
   LinkIcon,
   RouteIcon,
+  TableIcon,
   Trash2Icon,
 } from 'lucide-react';
 
@@ -480,6 +481,31 @@ function formatTestLogCsv({
   ];
 
   return [columns.join(','), values.map(csvCell).join(',')].join('\n');
+}
+
+function markdownTableCell(value: string) {
+  return (value || 'Not recorded yet')
+    .replaceAll('|', '\\|')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function formatProofTableMarkdown(testLog: TestLog) {
+  const rows = [
+    ['Baseline', testLog.baseline],
+    ['Proof run 1', testLog.runOne],
+    ['Proof run 2', testLog.runTwo],
+    ['Verdict', testLog.verdict],
+  ];
+
+  return [
+    '| Step | Result |',
+    '| --- | --- |',
+    ...rows.map(
+      ([step, value]) =>
+        `| ${markdownTableCell(step)} | ${markdownTableCell(value)} |`
+    ),
+  ].join('\n');
 }
 
 function formatArticleBrief({
@@ -1375,6 +1401,7 @@ function ToolShell({
   const [copiedTestLog, setCopiedTestLog] = useState(false);
   const [copiedCsv, setCopiedCsv] = useState(false);
   const [copiedArticleBrief, setCopiedArticleBrief] = useState(false);
+  const [copiedProofTable, setCopiedProofTable] = useState(false);
   const [copiedGarage, setCopiedGarage] = useState(false);
   const [copiedSavedPresetId, setCopiedSavedPresetId] = useState('');
   const [saved, setSaved] = useState(false);
@@ -1478,6 +1505,21 @@ function ToolShell({
     });
     setCopiedArticleBrief(true);
     window.setTimeout(() => setCopiedArticleBrief(false), 1800);
+  }
+
+  async function copyProofTable() {
+    await writeClipboard(formatProofTableMarkdown(testLog));
+    trackToolEvent('copy_proof_table', {
+      tool: toolId,
+      completedFields: completedTestLogFields,
+      readiness: testLogStatus.label,
+      hasBaseline: Boolean(testLog.baseline),
+      hasRunOne: Boolean(testLog.runOne),
+      hasRunTwo: Boolean(testLog.runTwo),
+      hasVerdict: Boolean(testLog.verdict),
+    });
+    setCopiedProofTable(true);
+    window.setTimeout(() => setCopiedProofTable(false), 1800);
   }
 
   function updateTestLog(field: keyof TestLog, value: string) {
@@ -1740,6 +1782,39 @@ function ToolShell({
                   brief with screenshots or clips.
                 </p>
               )}
+            </div>
+            <div className="mt-3 rounded-md border border-white/10 bg-black/20 p-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+                  Proof table preview
+                </p>
+                <button
+                  className="inline-flex min-h-8 items-center justify-center gap-1.5 rounded-md border border-cyan-300/25 bg-cyan-300/[0.06] px-3 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/[0.1]"
+                  type="button"
+                  onClick={copyProofTable}
+                >
+                  <TableIcon className="size-3.5" />
+                  {copiedProofTable ? 'Copied table' : 'Copy table'}
+                </button>
+              </div>
+              <div className="mt-2 overflow-hidden rounded-md border border-white/10">
+                {[
+                  ['Baseline', testLog.baseline],
+                  ['Proof run 1', testLog.runOne],
+                  ['Proof run 2', testLog.runTwo],
+                  ['Verdict', testLog.verdict],
+                ].map(([label, value]) => (
+                  <div
+                    className="grid grid-cols-[6.5rem_1fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
+                    key={label}
+                  >
+                    <span className="font-semibold text-zinc-500">{label}</span>
+                    <span className="min-w-0 text-wrap break-words text-zinc-300">
+                      {value || 'Waiting for test data'}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="mt-3 grid gap-2">
               <label className="grid gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">
