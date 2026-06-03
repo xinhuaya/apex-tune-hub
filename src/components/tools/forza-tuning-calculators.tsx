@@ -967,13 +967,13 @@ function SelectField<T extends string>({
 
   return (
     <label
-      className="grid gap-2 text-sm font-medium text-zinc-200"
+      className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500"
       htmlFor={id}
     >
       <span>{label}</span>
       <select
         id={id}
-        className="forza-select"
+        className="forza-select h-10 text-sm font-medium normal-case tracking-normal text-zinc-100"
         value={value}
         onChange={(event) => onChange(event.target.value as T)}
       >
@@ -1117,48 +1117,59 @@ function ToolShell({
   }
 
   return (
-    <section className="forza-page mx-auto w-full max-w-full px-4 py-10 text-zinc-50 sm:px-6 lg:px-8">
+    <section className="forza-page mx-auto w-full max-w-full px-4 py-8 text-zinc-50 sm:px-6 lg:px-8">
       <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-80 opacity-30" />
-      <div className="grid min-w-0 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-        <div className="forza-panel relative w-full overflow-hidden p-5">
-          <p className="forza-chip">{eyebrow}</p>
-          <h1 className="forza-neon-title mt-3 text-3xl font-semibold tracking-normal text-zinc-50 sm:text-4xl">
-            {title}
-          </h1>
-          <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
+      <div className="grid min-w-0 gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+        <div className="forza-panel relative w-full overflow-hidden p-4 sm:p-5">
+          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/10 pb-3">
+            <div className="min-w-0">
+              <p className="forza-chip">{eyebrow}</p>
+              <h1 className="forza-neon-title mt-3 text-2xl font-semibold tracking-normal text-zinc-50 sm:text-3xl">
+                {title}
+              </h1>
+            </div>
+            <span className="rounded-md border border-emerald-300/25 bg-emerald-300/[0.08] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-200">
+              Live
+            </span>
+          </div>
+          <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">
+            {description}
+          </p>
           <ToolOutputPreview result={result} />
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
             <button
               className="forza-primary-button h-11 w-full focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
               type="button"
               onClick={copyResult}
             >
-              {copiedNotes ? 'Notes copied' : 'Copy setup notes'}
+              {copiedNotes ? 'Copied notes' : 'Copy notes'}
             </button>
             <button
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-amber-300/30 bg-amber-300/10 px-4 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/15 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-amber-300/30 bg-amber-300/10 px-4 text-sm font-semibold text-amber-100 transition hover:border-amber-300/60 hover:bg-amber-300/15 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-zinc-950 sm:w-auto"
               type="button"
               onClick={savePreset}
             >
               <BookmarkPlusIcon className="size-4" />
-              {saved ? 'Saved' : 'Save preset'}
+              {saved ? 'Saved' : 'Save'}
             </button>
             <button
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-cyan-300/30 bg-cyan-300/10 px-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-300/15 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950"
+              aria-label="Copy preset link"
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-cyan-300/30 bg-cyan-300/10 px-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-300/15 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-zinc-950 sm:w-11 sm:px-0"
               type="button"
               onClick={copyPresetUrl}
             >
               <LinkIcon className="size-4" />
-              {copied ? 'Link copied' : 'Copy preset link'}
+              <span className="sm:hidden">
+                {copied ? 'Link copied' : 'Copy preset link'}
+              </span>
             </button>
           </div>
           <p className="mt-3 text-xs leading-5 text-zinc-500">
-            Preset links keep the selected options in the URL. These outputs are
-            baseline tuning notes with a route test log and reopenable preset
-            URL, so test in-game before calling a setup final.
+            Links keep the selected options in the URL. Saved presets stay local
+            in this browser.
           </p>
-          <div className="mt-6 grid gap-4">{children}</div>
-          {nextStep ? <div className="mt-5">{nextStep}</div> : null}
+          <div className="mt-5 grid gap-3">{children}</div>
+          {nextStep ? <div className="mt-4">{nextStep}</div> : null}
           <div className="mt-5 border-t border-white/10 pt-5">
             <div className="flex items-center justify-between gap-3">
               <h2 className="text-sm font-semibold text-zinc-100">
@@ -1261,22 +1272,22 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
   const firstRecommendation = result.recommendations[0];
 
   return (
-    <div className="mt-5 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
+    <div className="mt-4 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-3">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-cyan-200">
             Live output
           </p>
-          <p className="mt-2 text-sm font-semibold leading-6 text-zinc-100">
+          <p className="mt-2 text-sm font-semibold leading-5 text-zinc-100">
             {result.summary}
           </p>
         </div>
-        <span className="rounded-md border border-cyan-300/25 bg-black/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">
+        <span className="rounded-md border border-cyan-300/25 bg-black/25 px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-cyan-100">
           {result.confidence}
         </span>
       </div>
       {firstRecommendation ? (
-        <div className="mt-3 rounded-md border border-white/10 bg-black/25 p-3">
+        <div className="mt-3 rounded-md border border-white/10 bg-black/25 px-3 py-2">
           <div className="flex items-start gap-2">
             <GaugeIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
             <p className="text-xs leading-5 text-zinc-300">
@@ -1288,9 +1299,8 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
           </div>
         </div>
       ) : null}
-      <p className="mt-3 text-xs leading-5 text-zinc-500">
-        Copy setup notes to get recommendations, a preset URL, and a fill-in
-        test log for two repeatable runs.
+      <p className="mt-2 text-xs leading-5 text-zinc-500">
+        Copy notes for the route test log and preset URL.
       </p>
     </div>
   );
@@ -1309,10 +1319,10 @@ function TuneSymptomPresetGrid({
         <div className="flex items-center gap-2">
           <LifeBuoyIcon className="size-4 text-amber-200" />
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
-            Quick symptom presets
+            Symptom presets
           </p>
         </div>
-        <span className="text-xs text-zinc-500">1 click start</span>
+        <span className="text-xs text-zinc-500">1 click</span>
       </div>
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         {tuneSymptomPresets.map((preset) => {
@@ -1347,7 +1357,7 @@ function TuneSymptomPresetGrid({
               <span className="block text-sm font-semibold text-zinc-100">
                 {preset.title}
               </span>
-              <span className="mt-1 block text-xs leading-5 text-zinc-500">
+              <span className="mt-1 block truncate text-xs leading-5 text-zinc-500">
                 {preset.note}
               </span>
             </button>
@@ -1926,13 +1936,13 @@ function ResultPanel({
   children?: ReactNode;
 }) {
   return (
-    <div className="forza-panel relative w-full overflow-hidden p-5">
-      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-zinc-800 pb-4">
+    <div className="forza-panel relative w-full overflow-hidden p-4 sm:p-5">
+      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-zinc-800 pb-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
-            Generated baseline
+            Generated tune
           </p>
-          <h2 className="mt-2 text-2xl font-semibold text-zinc-50">
+          <h2 className="mt-2 text-xl font-semibold text-zinc-50 sm:text-2xl">
             {result.title}
           </h2>
           <p className="mt-2 text-sm leading-6 text-zinc-400">
@@ -1944,7 +1954,7 @@ function ResultPanel({
         </span>
       </div>
       {children}
-      <div className="mt-5 grid gap-3">
+      <div className="mt-4 grid gap-3">
         {result.recommendations.map((item) => (
           <RecommendationCard item={item} key={item.setting} />
         ))}
