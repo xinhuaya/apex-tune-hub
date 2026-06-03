@@ -2451,6 +2451,41 @@ function DriftBaselineSummary({ input }: { input: DriftInput }) {
   const problem = optionLabel(driftProblemOptions, input.problem);
   const skill = optionLabel(driftSkillOptions, input.skillLevel);
   const plan = driftActionPlans[input.problem];
+  const phaseRead = [
+    {
+      phase: 'Entry',
+      watch:
+        input.problem === 'spins-out'
+          ? 'Rear rotates past steering input'
+          : 'Whether the car starts angle before the apex',
+      firstMove:
+        input.problem === 'no-angle'
+          ? 'Add front response gradually'
+          : 'Make initiation catchable',
+    },
+    {
+      phase: 'Hold',
+      watch:
+        input.problem === 'bogs-down'
+          ? 'RPM drops below usable power'
+          : 'Angle stays steady without extra panic inputs',
+      firstMove:
+        input.problem === 'bogs-down'
+          ? 'Shorten the active drift gear'
+          : 'Tune one main drift gear first',
+    },
+    {
+      phase: 'Recover',
+      watch:
+        input.problem === 'snaps-back'
+          ? 'Transition catches too violently'
+          : 'Exit line stays on the scoring path',
+      firstMove:
+        input.problem === 'too-slippery'
+          ? 'Add usable grip before more angle'
+          : 'Keep the next transition repeatable',
+    },
+  ];
 
   return (
     <div className="rounded-md border border-pink-300/20 bg-pink-300/[0.05] p-4">
@@ -2487,6 +2522,23 @@ function DriftBaselineSummary({ input }: { input: DriftInput }) {
             recovery, and one repeatable zone test
           </p>
         </div>
+      </div>
+      <div className="mt-3 overflow-hidden rounded-md border border-white/10 bg-black/25">
+        <div className="hidden border-b border-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500 sm:grid sm:grid-cols-[0.7fr_1.15fr_1fr]">
+          <span>Drift phase</span>
+          <span>Watch</span>
+          <span>First move</span>
+        </div>
+        {phaseRead.map((row) => (
+          <div
+            className="grid gap-1 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0 sm:grid-cols-[0.7fr_1.15fr_1fr] sm:gap-2"
+            key={row.phase}
+          >
+            <span className="font-semibold text-zinc-100">{row.phase}</span>
+            <span className="text-pink-100">{row.watch}</span>
+            <span className="text-zinc-400">{row.firstMove}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
