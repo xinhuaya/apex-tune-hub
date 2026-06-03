@@ -39,6 +39,7 @@ import {
   BookmarkPlusIcon,
   CheckIcon,
   CopyIcon,
+  DatabaseIcon,
   GaugeIcon,
   LifeBuoyIcon,
   LinkIcon,
@@ -1230,6 +1231,46 @@ function ToolShell({
             Links keep the selected options in the URL. Saved presets stay local
             in this browser.
           </p>
+          <div className="mt-3 rounded-md border border-emerald-300/20 bg-emerald-300/[0.05] p-3">
+            <div className="flex items-start gap-3">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-emerald-300/25 bg-black/25 text-emerald-200">
+                <DatabaseIcon className="size-4" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                    Data loop
+                  </p>
+                  <span className="rounded-md border border-white/10 bg-black/25 px-2 py-1 text-[0.68rem] font-semibold text-zinc-400">
+                    {savedPresets.length}/6 local presets
+                  </span>
+                </div>
+                <p className="mt-2 text-xs leading-5 text-zinc-400">
+                  Copy notes, run the same route twice, then save only the
+                  baseline that feels repeatable.
+                </p>
+                <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                  {[
+                    ['Recommendations', `${result.recommendations.length}`],
+                    ['Route checks', `${testChecks?.length ?? 0}`],
+                    ['Preset slots', `${Math.max(6 - savedPresets.length, 0)}`],
+                  ].map(([label, value]) => (
+                    <div
+                      className="rounded-md border border-white/10 bg-black/25 px-3 py-2"
+                      key={label}
+                    >
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-zinc-500">
+                        {label}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-zinc-100">
+                        {value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="mt-5 grid gap-3">{children}</div>
           {nextStep ? <div className="mt-4">{nextStep}</div> : null}
           <div className="mt-5 border-t border-white/10 pt-5">
