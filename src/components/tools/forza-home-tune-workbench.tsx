@@ -261,8 +261,14 @@ export function ForzaHomeTuneWorkbench() {
   const [copiedLink, setCopiedLink] = useState(false);
   const result = useMemo(() => calculateTune(input), [input]);
   const calculatorHref = useMemo(() => buildCalculatorHref(input), [input]);
-  const topRecommendations = result.recommendations.slice(0, 1);
+  const topRecommendation = result.recommendations[0];
   const activeGuide = issueGuideLinks[input.handlingIssue];
+  const selectedRace =
+    raceTypeOptions.find((option) => option.value === input.raceType)?.label ??
+    input.raceType;
+  const selectedIssue =
+    issueOptions.find((option) => option.value === input.handlingIssue)
+      ?.label ?? input.handlingIssue;
 
   function updateInput(
     field: keyof TuneInput,
@@ -323,13 +329,13 @@ export function ForzaHomeTuneWorkbench() {
         <div className="flex items-start justify-between gap-3 border-b border-zinc-800 pb-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
-              Core tune product
+              Live FH6 workbench
             </p>
             <h2 className="mt-2 text-xl font-semibold text-zinc-50 sm:text-2xl">
-              Build a baseline now
+              Tune the first problem
             </h2>
           </div>
-          <div className="grid gap-2 justify-items-end">
+          <div className="grid justify-items-end gap-2">
             <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-amber-300/30 bg-amber-300/10 text-amber-200">
               <SlidersHorizontalIcon className="size-5" />
             </span>
@@ -339,43 +345,50 @@ export function ForzaHomeTuneWorkbench() {
           </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-white/10 bg-black/25 px-3 py-2 text-[0.72rem] font-semibold text-zinc-400 sm:text-xs">
-          <span className="text-cyan-200">Pick symptom</span>
-          <span className="text-zinc-600">/</span>
-          <span>Generate baseline</span>
-          <span className="text-zinc-600">/</span>
-          <span>Open full tool</span>
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-[0.72rem] font-semibold sm:text-xs">
+          {[selectedRace, input.drivetrain, input.classBand, selectedIssue].map(
+            (label) => (
+              <span
+                className="rounded-md border border-white/10 bg-black/25 px-2 py-1 text-zinc-300"
+                key={label}
+              >
+                {label}
+              </span>
+            )
+          )}
         </div>
 
         <div className="mt-3 rounded-md border border-cyan-300/20 bg-cyan-300/[0.06] p-3">
-          <div className="flex items-start gap-3">
-            <GaugeIcon className="mt-1 size-5 shrink-0 text-cyan-200" />
-            <div>
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cyan-200">
-                Current baseline
-              </p>
-              <p className="mt-1 text-sm font-semibold leading-5 text-zinc-50">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <GaugeIcon className="size-4 shrink-0 text-cyan-200" />
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cyan-200">
+                  Live output
+                </p>
+              </div>
+              <p className="mt-2 text-sm font-semibold leading-5 text-zinc-50">
                 {result.summary}
               </p>
-              <p className="mt-2 text-xs leading-5 text-zinc-400">
-                {activeGuide.hint}
-              </p>
             </div>
+            <span className="shrink-0 rounded-md border border-emerald-300/25 bg-emerald-300/[0.08] px-2 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-emerald-200">
+              {result.confidence}
+            </span>
           </div>
-          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto] sm:items-center">
-            <Button
-              className="h-10 rounded-md border border-cyan-300/30 bg-cyan-300/[0.08] text-cyan-100 hover:bg-cyan-300/[0.14]"
-              type="button"
-              variant="outline"
-              onClick={copyBaselineNotes}
-            >
-              {copiedNotes ? (
-                <CheckIcon className="mr-2 size-4" />
-              ) : (
-                <CopyIcon className="mr-2 size-4" />
-              )}
-              {copiedNotes ? 'Copied baseline' : 'Copy baseline'}
-            </Button>
+          {topRecommendation ? (
+            <div className="mt-3 rounded-md border border-white/10 bg-black/25 px-3 py-2">
+              <div className="flex items-start gap-2">
+                <ClipboardCheckIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
+                <p className="text-xs leading-5 text-zinc-300">
+                  <span className="font-semibold text-zinc-100">
+                    {topRecommendation.setting}:{' '}
+                  </span>
+                  {topRecommendation.recommendation}
+                </p>
+              </div>
+            </div>
+          ) : null}
+          <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_1fr_auto] sm:items-center">
             <Button asChild className="forza-primary-button h-10">
               <LocaleLink
                 href={calculatorHref}
@@ -389,24 +402,31 @@ export function ForzaHomeTuneWorkbench() {
                 <ArrowRightIcon className="ml-2 size-4" />
               </LocaleLink>
             </Button>
-          </div>
-          <div className="mt-3 grid gap-2">
-            {topRecommendations.map((item) => (
-              <div
-                className="rounded-md border border-white/10 bg-black/25 px-3 py-2"
-                key={item.setting}
-              >
-                <div className="flex items-start gap-2">
-                  <ClipboardCheckIcon className="mt-0.5 size-4 shrink-0 text-amber-200" />
-                  <p className="text-xs leading-5 text-zinc-300">
-                    <span className="font-semibold text-zinc-100">
-                      {item.setting}:{' '}
-                    </span>
-                    {item.recommendation}
-                  </p>
-                </div>
-              </div>
-            ))}
+            <Button
+              className="h-10 rounded-md border border-cyan-300/30 bg-cyan-300/[0.08] text-cyan-100 hover:bg-cyan-300/[0.14]"
+              type="button"
+              variant="outline"
+              onClick={copyBaselineNotes}
+            >
+              {copiedNotes ? (
+                <CheckIcon className="mr-2 size-4" />
+              ) : (
+                <CopyIcon className="mr-2 size-4" />
+              )}
+              {copiedNotes ? 'Copied baseline' : 'Copy baseline'}
+            </Button>
+            <button
+              aria-label="Copy homepage preset link"
+              className="inline-flex h-10 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] px-3 text-xs font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
+              type="button"
+              onClick={copyPresetLink}
+            >
+              {copiedLink ? (
+                <CheckIcon className="size-4" />
+              ) : (
+                <LinkIcon className="size-4" />
+              )}
+            </button>
           </div>
         </div>
 
@@ -418,7 +438,7 @@ export function ForzaHomeTuneWorkbench() {
                 Start from the symptom
               </p>
             </div>
-            <span className="text-xs text-zinc-500">6 quick presets</span>
+            <span className="text-xs text-zinc-500">6 presets</span>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 xl:grid-cols-3">
             {symptomPresets.map((preset) => {
@@ -443,7 +463,7 @@ export function ForzaHomeTuneWorkbench() {
                   <span className="block text-sm font-semibold leading-5 text-zinc-100">
                     {preset.title}
                   </span>
-                  <span className="mt-1 block text-xs leading-5 text-zinc-500">
+                  <span className="mt-1 block truncate text-xs leading-5 text-zinc-500">
                     {preset.note}
                   </span>
                 </button>
@@ -495,7 +515,7 @@ export function ForzaHomeTuneWorkbench() {
           </div>
         </div>
 
-        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
           <LocaleLink
             className="inline-flex min-h-9 items-center justify-center gap-2 rounded-md border border-amber-300/25 bg-amber-300/[0.07] px-2 text-center text-xs font-semibold text-amber-100 transition hover:border-amber-300/50 hover:bg-amber-300/[0.1]"
             href={activeGuide.href}
@@ -521,18 +541,6 @@ export function ForzaHomeTuneWorkbench() {
             <GaugeIcon className="size-4" />
             Gear tool
           </LocaleLink>
-          <button
-            className="inline-flex min-h-9 items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-2 text-center text-xs font-semibold text-zinc-200 transition hover:border-cyan-300/40 hover:bg-cyan-300/[0.04]"
-            type="button"
-            onClick={copyPresetLink}
-          >
-            {copiedLink ? (
-              <CheckIcon className="size-4" />
-            ) : (
-              <LinkIcon className="size-4" />
-            )}
-            {copiedLink ? 'Preset link copied' : 'Copy preset link'}
-          </button>
         </div>
       </div>
     </div>
