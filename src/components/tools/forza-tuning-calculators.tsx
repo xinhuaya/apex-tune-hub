@@ -994,6 +994,61 @@ function optionLabel<T extends string>(
   return options.find((option) => option.value === value)?.label ?? value;
 }
 
+const calculatorLanes = [
+  {
+    id: 'tune',
+    label: 'Tune',
+    href: '/tools/forza-horizon-6-tune-calculator',
+    note: 'handling',
+  },
+  {
+    id: 'drift',
+    label: 'Drift',
+    href: '/tools/forza-horizon-6-drift-tune-calculator',
+    note: 'angle',
+  },
+  {
+    id: 'gear',
+    label: 'Gear',
+    href: '/tools/forza-horizon-6-gear-ratio-calculator',
+    note: 'speed',
+  },
+] as const;
+
+function CalculatorLaneSwitcher({ activeTool }: { activeTool: string }) {
+  return (
+    <div className="mt-3 grid grid-cols-3 gap-2">
+      {calculatorLanes.map((lane) => {
+        const isActive = lane.id === activeTool;
+
+        return (
+          <LocaleLink
+            className={`rounded-md border px-2 py-2 text-center transition ${
+              isActive
+                ? 'border-cyan-300/50 bg-cyan-300/[0.08] text-cyan-100'
+                : 'border-white/10 bg-black/20 text-zinc-400 hover:border-cyan-300/30 hover:bg-cyan-300/[0.04] hover:text-zinc-100'
+            }`}
+            href={lane.href}
+            key={lane.id}
+            onClick={() =>
+              trackToolEvent('switch_calculator_lane', {
+                from: activeTool,
+                to: lane.id,
+                href: lane.href,
+              })
+            }
+          >
+            <span className="block text-sm font-semibold">{lane.label}</span>
+            <span className="mt-0.5 block text-[0.68rem] font-semibold uppercase tracking-[0.12em] opacity-70">
+              {lane.note}
+            </span>
+          </LocaleLink>
+        );
+      })}
+    </div>
+  );
+}
+
 function ToolShell({
   eyebrow,
   toolId,
@@ -1135,6 +1190,7 @@ function ToolShell({
           <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">
             {description}
           </p>
+          <CalculatorLaneSwitcher activeTool={toolId} />
           <ToolOutputPreview result={result} />
           <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
             <button
