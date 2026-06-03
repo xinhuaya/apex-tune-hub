@@ -1962,6 +1962,7 @@ function ToolShell({
 
 function ToolOutputPreview({ result }: { result: CalculationResult }) {
   const firstRecommendation = result.recommendations[0];
+  const nextDialItems = result.recommendations.slice(0, 3);
 
   return (
     <div className="mt-4 rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-3">
@@ -1988,6 +1989,38 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
               </span>
               {firstRecommendation.recommendation}
             </p>
+          </div>
+        </div>
+      ) : null}
+      {nextDialItems.length > 0 ? (
+        <div className="mt-3 rounded-md border border-white/10 bg-black/20 p-3">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-zinc-500">
+              Next dial order
+            </p>
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-zinc-600">
+              3-step test
+            </span>
+          </div>
+          <div className="mt-2 grid gap-2">
+            {nextDialItems.map((item, index) => (
+              <div
+                className="grid grid-cols-[1.75rem_1fr] gap-2 rounded-md border border-white/10 bg-black/25 px-2.5 py-2"
+                key={`${item.setting}-${index}`}
+              >
+                <span className="inline-flex size-6 items-center justify-center rounded-md border border-cyan-300/25 bg-cyan-300/[0.07] text-xs font-semibold text-cyan-100">
+                  {index + 1}
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold text-zinc-100">
+                    {item.setting}
+                  </p>
+                  <p className="mt-0.5 line-clamp-2 text-xs leading-5 text-zinc-500">
+                    {item.test}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ) : null}
