@@ -479,12 +479,34 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/tools/forza-horizon-6-tune-presets',
       },
       {
+        label: 'Tune testing checklist',
+        href: '/games/forza-horizon-6/guides/tune-testing-checklist',
+      },
+      {
         label: 'Car database',
         href: '/games/forza-horizon-6/cars',
       },
       {
         label: 'Video build and tune refresher',
         href: '/games/forza-horizon-6/guides/video-build-tune-refresher',
+      },
+    ],
+    mediaSources: [
+      {
+        type: 'video',
+        title:
+          'How To Build & Tune in Forza Horizon 6 | Basic Refresher & FH6 Changes Guide',
+        sourceName: 'HokiHoshi on YouTube',
+        sourceUrl: 'https://www.youtube.com/watch?v=I9bUB3mcqso',
+        embedUrl: 'https://www.youtube-nocookie.com/embed/I9bUB3mcqso',
+        note: 'Used as the credited video reference for the beginner build-first, tune-second workflow. Apex Tune Hub turns the source topic into a 45-minute testing plan and original route-note checklist.',
+      },
+      {
+        type: 'article',
+        title: 'Forza Horizon 6 tune calculator',
+        sourceName: 'Apex Tune Hub',
+        sourceUrl: '/tools/forza-horizon-6-tune-calculator',
+        note: 'Used as the companion tool for turning a beginner symptom into copyable setup notes, route checks, and a saved preset URL.',
       },
     ],
     sections: [
@@ -495,6 +517,16 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Use the same route for every test.',
           'Write down class, drivetrain, race type, and assists.',
           'Change one setting category at a time.',
+        ],
+      },
+      {
+        title: 'Use a 45-minute beginner session',
+        body: 'A short session is enough if it is structured. Spend the first run observing, the second run applying the calculator, and the final runs proving whether the car became easier to repeat.',
+        bullets: [
+          '0-10 minutes: drive the car once and write the exact problem.',
+          '10-20 minutes: open the calculator, copy the baseline notes, and change only the first setting group.',
+          '20-35 minutes: run the same route twice and compare entry, apex, exit, launch, or drift recovery.',
+          '35-45 minutes: screenshot the car, route result, tune settings, and the visible problem moment.',
         ],
       },
       {
@@ -513,6 +545,76 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Compare lap feel and lap time together.',
           'Keep stable tunes for weekly events.',
           'Use aggressive tunes only when the route rewards them.',
+        ],
+      },
+    ],
+    deepDive: [
+      {
+        title: 'Beginner capture checklist',
+        description:
+          'Use this when recording your own FH6 footage or turning a video into a written guide. The goal is not cinematic footage. The goal is proof that the tune changed one repeatable problem.',
+        cards: [
+          {
+            title: 'Before the run',
+            body: 'Capture enough context that another player can understand the baseline.',
+            bullets: [
+              'Screenshot the car model, PI class, drivetrain, and event type.',
+              'Write one sentence for the problem: pushes wide, snaps, spins, bogs, or hits limiter.',
+              'Save the calculator preset URL before changing the setup.',
+            ],
+          },
+          {
+            title: 'During the run',
+            body: 'Record the same small section instead of a whole messy session.',
+            bullets: [
+              'For road tuning, capture one braking zone, one apex, and one exit.',
+              'For gearing, capture launch, one shift, and the longest straight.',
+              'For drift, capture entry, mid-zone angle, and recovery.',
+            ],
+          },
+          {
+            title: 'After the run',
+            body: 'Turn the result into data that can support a future article or member feature.',
+            bullets: [
+              'Mark the setup as keep, soften, or revert.',
+              'Keep two screenshots and one short clip for the final article.',
+              'Add the result to a saved preset or car note only if the second run repeats.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'What a beginner should ignore at first',
+        description:
+          'Most new players lose time by changing details before the basic build direction is clear.',
+        cards: [
+          {
+            title: 'Ignore perfect meta codes',
+            body: 'A meta code can be fast and still teach you nothing about why the car works.',
+            bullets: [
+              'Use codes as references after you know the symptom.',
+              'Do not judge your first tune against leaderboard cars.',
+              'Prefer a stable baseline for weekly events and learning routes.',
+            ],
+          },
+          {
+            title: 'Ignore ten-slider experiments',
+            body: 'If you change every slider, you cannot tell which change helped.',
+            bullets: [
+              'Change one setting family after each calculator pass.',
+              'Undo changes that create a new bigger problem.',
+              'Keep notes shorter than the setup screen.',
+            ],
+          },
+          {
+            title: 'Ignore one lucky lap',
+            body: 'A tune is useful when it repeats, not when one lap happens to be fast.',
+            bullets: [
+              'Run the same section twice before saving.',
+              'Compare mistakes as well as lap time.',
+              'Save aggressive variants only after the safe one is reliable.',
+            ],
+          },
         ],
       },
     ],

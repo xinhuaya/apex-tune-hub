@@ -29,8 +29,8 @@ const modeCopy: Record<
       'If you are new to FH6 tuning, treat the calculator like a test script. Pick one car, one route, and one problem. Then capture the same proof every time so the site can turn your play session into better setup notes later.',
     toolHref: '/tools/forza-horizon-6-tune-presets',
     toolLabel: 'Open preset library',
-    guideHref: '/games/forza-horizon-6/guides',
-    guideLabel: 'Open FH6 guides',
+    guideHref: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+    guideLabel: 'Read beginner guide',
     accent: 'text-cyan-200',
   },
   gear: {
