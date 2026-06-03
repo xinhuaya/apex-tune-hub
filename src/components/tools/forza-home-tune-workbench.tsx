@@ -240,7 +240,9 @@ function formatHomeProofPlan(
         `- ${recommendation.setting}: ${recommendation.recommendation}`
     )
     .join('\n');
-  const checks = forzaTuneCornerChecks.map((check) => `- ${check}`).join('\n');
+  const checks = forzaTuneCornerChecks
+    .map((check) => `- ${check.label} - ${check.metric}: ${check.target}`)
+    .join('\n');
 
   return [
     'Apex Tune Hub FH6 proof run',

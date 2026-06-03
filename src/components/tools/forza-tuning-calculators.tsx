@@ -389,7 +389,9 @@ function formatProofRunPlan({
     .join('\n');
   const checks =
     testChecks && testChecks.length > 0
-      ? testChecks.map((check) => `- ${check}`).join('\n')
+      ? testChecks
+          .map((check) => `- ${check.label} - ${check.metric}: ${check.target}`)
+          .join('\n')
       : '- Repeat the same route, same car, same assists, and same input device.';
 
   return [
@@ -533,7 +535,9 @@ function formatArticleBrief({
     );
   const routeChecks =
     testChecks && testChecks.length > 0
-      ? testChecks.map((check) => `- ${check}`)
+      ? testChecks.map(
+          (check) => `- ${check.label} - ${check.metric}: ${check.target}`
+        )
       : [
           '- Repeat the same route, same car, same assists, and same input device.',
         ];
