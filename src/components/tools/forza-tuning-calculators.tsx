@@ -1691,6 +1691,23 @@ function DriftResultActionPlan({
   guide: { label: string; href: string; hint: string };
 }) {
   const plan = driftActionPlans[input.problem];
+  const zoneChecks = [
+    {
+      label: 'Entry',
+      metric: 'Initiation feel',
+      target: 'Starts rotation without snapping',
+    },
+    {
+      label: 'Mid zone',
+      metric: 'Angle hold',
+      target: 'Keeps angle without losing too much speed',
+    },
+    {
+      label: 'Exit',
+      metric: 'Recovery',
+      target: 'Straightens without a spin or dead throttle',
+    },
+  ];
 
   return (
     <div className="mt-5 rounded-md border border-pink-300/20 bg-pink-300/[0.05] p-4">
@@ -1721,6 +1738,23 @@ function DriftResultActionPlan({
               {label}
             </p>
             <p className="mt-2 text-sm leading-6 text-zinc-200">{text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 overflow-hidden rounded-md border border-white/10 bg-black/25">
+        <div className="grid grid-cols-[0.8fr_1fr_1.25fr] border-b border-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500">
+          <span>Zone</span>
+          <span>Log</span>
+          <span>Good result</span>
+        </div>
+        {zoneChecks.map((check) => (
+          <div
+            className="grid grid-cols-[0.8fr_1fr_1.25fr] gap-2 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0"
+            key={check.label}
+          >
+            <span className="font-semibold text-zinc-100">{check.label}</span>
+            <span className="text-pink-100">{check.metric}</span>
+            <span className="text-zinc-400">{check.target}</span>
           </div>
         ))}
       </div>
