@@ -5404,8 +5404,20 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
         href: '/tools/forza-horizon-6-tune-presets/s2-awd-road-poor-top-speed-aggressive',
       },
       {
+        label: 'Gear ratio calculator',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+      {
+        label: 'Beginner tuning guide',
+        href: '/games/forza-horizon-6/guides/beginner-tuning-guide',
+      },
+      {
         label: 'Best road racing cars',
         href: '/games/forza-horizon-6/best-road-racing-cars',
+      },
+      {
+        label: 'Fix slow launch',
+        href: '/games/forza-horizon-6/guides/fix-slow-launch',
       },
     ],
     mediaSources: [
@@ -5455,6 +5467,16 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
           'Leave taller gears for fast routes and high-power builds.',
         ],
       },
+      {
+        title: 'Run a 45-minute gearing test',
+        body: 'New players should test gearing like a small experiment. Use one launch point, one shift section, and one longest straight instead of changing ratios after every messy run.',
+        bullets: [
+          '0-10 minutes: drive the route with the current gearing and mark launch, shift, and top-speed symptoms.',
+          '10-20 minutes: open the gear ratio calculator and move final drive only.',
+          '20-35 minutes: run the same launch and straight twice before touching individual gears.',
+          '35-45 minutes: screenshot the gear settings, route result, and the exact section where the car bogs, spins, or hits limiter.',
+        ],
+      },
     ],
     deepDive: [
       {
@@ -5487,6 +5509,74 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
               'Watch the RPM drop after second-to-third and third-to-fourth.',
               'Use tighter gears for hill climbs and short exits.',
               'Avoid over-shortening if wheelspin appears after shifts.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Beginner gear testing checklist',
+        description:
+          'Use this checklist when you record your own FH6 footage or turn a YouTube gearing topic into a written guide. The point is to show what changed, not to chase a perfect universal ratio.',
+        cards: [
+          {
+            title: 'Launch proof',
+            body: 'Start every test from the same marker and compare the first two gears before judging top speed.',
+            bullets: [
+              'Record whether first gear bogs, spins, or hooks.',
+              'Watch if second gear lands in useful power or falls flat.',
+              'If launch is inconsistent, solve first gear before editing upper gears.',
+            ],
+          },
+          {
+            title: 'Shift proof',
+            body: 'Use one section where the car shifts under load. The important note is where RPM lands after the shift.',
+            bullets: [
+              'If the car bogs after the shift, close the gap or shorten final drive.',
+              'If the car spins after the shift, lengthen the affected range or calm the build.',
+              'If only one gear pair is bad, avoid changing the whole gearbox again.',
+            ],
+          },
+          {
+            title: 'Top-speed proof',
+            body: 'Use the longest useful straight in the real event, not an empty highway unless the build is for speed traps.',
+            bullets: [
+              'If limiter arrives early, lengthen final drive in small steps.',
+              'If top gear never appears, shorten the gearing or lower the speed target.',
+              'Keep lap time, route feel, and final speed in the same note.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Gearing evidence to collect',
+        description:
+          'These are the screenshots and notes that make a future gear guide or member garage entry feel real.',
+        cards: [
+          {
+            title: 'Screenshots',
+            body: 'Capture the setup screen and the route result so the written guide has proof anchors.',
+            bullets: [
+              'Gear settings screen after the calculator pass.',
+              'Car class, drivetrain, and tire type before the run.',
+              'Finish screen or speed-zone result after the proof run.',
+            ],
+          },
+          {
+            title: 'Short clip',
+            body: 'One short clip is more useful than a full unedited race when it shows the exact gearing symptom.',
+            bullets: [
+              'Launch and first-to-second shift for launch issues.',
+              'One corner exit and post-shift RPM drop for bogging.',
+              'The final straight for limiter or unused top gear issues.',
+            ],
+          },
+          {
+            title: 'Data note',
+            body: 'Keep the note simple enough that it can become a saved preset or newsletter item later.',
+            bullets: [
+              'Car, route, gear count, priority, and symptom.',
+              'Final-drive direction changed: shorter, longer, or unchanged.',
+              'Decision: keep, soften, or revert after two proof runs.',
             ],
           },
         ],
