@@ -18,6 +18,7 @@ import {
 import {
   calculateTune,
   formatResultForClipboard,
+  forzaTuneCornerChecks,
   type ClassBand,
   type HandlingIssue,
   type RaceType,
@@ -550,7 +551,10 @@ export default async function ForzaTunePresetPage({ params }: PresetPageProps) {
             </div>
           </div>
           <pre className="mt-5 max-h-56 overflow-auto rounded-md border border-white/10 bg-black/40 p-4 text-xs leading-5 text-zinc-400">
-            {formatResultForClipboard(result)}
+            {formatResultForClipboard(result, {
+              presetUrl: getPresetCalculatorUrl(preset),
+              testChecks: forzaTuneCornerChecks,
+            })}
           </pre>
         </div>
       </section>

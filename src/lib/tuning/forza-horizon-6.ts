@@ -64,14 +64,70 @@ export type CalculationResult = {
   recommendations: Recommendation[];
 };
 
+export type RouteTestCheck = {
+  label: string;
+  metric: string;
+  target: string;
+};
+
 export type ClipboardResultOptions = {
   presetUrl?: string;
-  testChecks?: Array<{
-    label: string;
-    metric: string;
-    target: string;
-  }>;
+  testChecks?: RouteTestCheck[];
 };
+
+export const forzaTuneCornerChecks: RouteTestCheck[] = [
+  {
+    label: 'Entry',
+    metric: 'Brake + turn-in',
+    target: 'Car points in without darting or plowing',
+  },
+  {
+    label: 'Apex',
+    metric: 'Rotation',
+    target: 'Holds the inside line with steady throttle',
+  },
+  {
+    label: 'Exit',
+    metric: 'Power down',
+    target: 'Leaves the corner without snap or wheelspin',
+  },
+];
+
+export const forzaDriftZoneChecks: RouteTestCheck[] = [
+  {
+    label: 'Entry',
+    metric: 'Initiation feel',
+    target: 'Starts rotation without snapping',
+  },
+  {
+    label: 'Mid zone',
+    metric: 'Angle hold',
+    target: 'Keeps angle without losing too much speed',
+  },
+  {
+    label: 'Exit',
+    metric: 'Recovery',
+    target: 'Straightens without a spin or dead throttle',
+  },
+];
+
+export const forzaGearRouteChecks: RouteTestCheck[] = [
+  {
+    label: 'Launch',
+    metric: '0-2 shift feel',
+    target: 'Hooks without bogging or smoke',
+  },
+  {
+    label: 'Mid route',
+    metric: 'Post-shift rpm',
+    target: 'Drops back into useful power',
+  },
+  {
+    label: 'Long straight',
+    metric: 'Final-gear rpm',
+    target: 'Near redline at the end, not before',
+  },
+];
 
 export const raceTypeOptions: Array<{ value: RaceType; label: string }> = [
   { value: 'road', label: 'Road racing' },
