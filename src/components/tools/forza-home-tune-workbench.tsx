@@ -27,6 +27,7 @@ import {
   GaugeIcon,
   LifeBuoyIcon,
   LinkIcon,
+  ListChecksIcon,
   RouteIcon,
   SlidersHorizontalIcon,
 } from 'lucide-react';
@@ -227,6 +228,40 @@ const issueGuideLinks: Record<
   },
 };
 
+function formatHomeProofPlan(
+  input: TuneInput,
+  result: ReturnType<typeof calculateTune>
+) {
+  const calculatorPath = buildCalculatorHref(input);
+  const settingList = result.recommendations
+    .slice(0, 3)
+    .map(
+      (recommendation) =>
+        `- ${recommendation.setting}: ${recommendation.recommendation}`
+    )
+    .join('\n');
+  const checks = forzaTuneCornerChecks.map((check) => `- ${check}`).join('\n');
+
+  return [
+    'Apex Tune Hub FH6 proof run',
+    '',
+    `Calculator: ${calculatorPath}`,
+    `Setup: ${input.classBand} ${input.drivetrain} ${input.raceType} / ${input.handlingIssue} / ${input.drivingStyle}`,
+    `Baseline summary: ${result.summary}`,
+    '',
+    'Change first:',
+    settingList || '- No setting recommendation generated yet.',
+    '',
+    'Run order:',
+    '1. Record one baseline run on the same route.',
+    '2. Apply only the top 1-3 Apex Tune Hub changes.',
+    '3. Repeat the same route twice and compare the same symptom.',
+    '',
+    'Route checks:',
+    checks,
+  ].join('\n');
+}
+
 function CompactSelect<T extends string>({
   label,
   value,
@@ -260,6 +295,7 @@ export function ForzaHomeTuneWorkbench() {
   const [input, setInput] = useState<TuneInput>(defaultInput);
   const [copiedNotes, setCopiedNotes] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedPlan, setCopiedPlan] = useState(false);
   const result = useMemo(() => calculateTune(input), [input]);
   const calculatorHref = useMemo(() => buildCalculatorHref(input), [input]);
   const topRecommendation = result.recommendations[0];
@@ -326,6 +362,16 @@ export function ForzaHomeTuneWorkbench() {
     });
     setCopiedLink(true);
     window.setTimeout(() => setCopiedLink(false), 1800);
+  }
+
+  async function copyProofPlan() {
+    await writeClipboard(formatHomeProofPlan(input, result));
+    trackHomeWorkbenchEvent('copy_home_proof_plan', input, {
+      confidence: result.confidence,
+      href: calculatorHref,
+    });
+    setCopiedPlan(true);
+    window.setTimeout(() => setCopiedPlan(false), 1800);
   }
 
   return (
@@ -433,6 +479,34 @@ export function ForzaHomeTuneWorkbench() {
                 <LinkIcon className="size-4" />
               )}
             </button>
+          </div>
+          <div className="mt-3 rounded-md border border-white/10 bg-black/20 p-3">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <ListChecksIcon className="size-4 text-emerald-200" />
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                    Proof run
+                  </p>
+                </div>
+                <p className="mt-2 text-xs leading-5 text-zinc-400">
+                  Baseline once, apply the top changes, then repeat the same
+                  route twice.
+                </p>
+              </div>
+              <button
+                className="inline-flex min-h-8 shrink-0 items-center justify-center rounded-md border border-emerald-300/25 bg-emerald-300/[0.07] px-2 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/45 hover:bg-emerald-300/[0.11]"
+                type="button"
+                onClick={copyProofPlan}
+              >
+                {copiedPlan ? (
+                  <CheckIcon className="mr-1.5 size-3.5" />
+                ) : (
+                  <CopyIcon className="mr-1.5 size-3.5" />
+                )}
+                {copiedPlan ? 'Copied' : 'Copy test'}
+              </button>
+            </div>
           </div>
         </div>
 
