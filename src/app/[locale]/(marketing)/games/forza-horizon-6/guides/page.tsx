@@ -565,9 +565,9 @@ export default function ForzaHorizon6GuidesPage() {
       />
       <section className="border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-96 opacity-35" />
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <p className="forza-chip">Evergreen guide cluster</p>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_0.72fr]">
+          <div className="mt-5 grid items-start gap-6 lg:grid-cols-[1fr_0.72fr]">
             <div>
               <h1 className="forza-neon-title max-w-3xl text-4xl font-semibold tracking-normal sm:text-5xl">
                 Forza Horizon 6 guides
@@ -578,7 +578,7 @@ export default function ForzaHorizon6GuidesPage() {
                 routes, how to fix handling problems, and which settings to
                 start with.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="forza-primary-button">
                   <LocaleLink href="/tools/forza-horizon-6-tune-calculator">
                     Open Tune Calculator
@@ -626,8 +626,8 @@ export default function ForzaHorizon6GuidesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid items-start gap-4 md:grid-cols-2 lg:grid-cols-4">
           {guideClusters.map((cluster) => {
             const Icon = cluster.icon;
 
@@ -651,7 +651,7 @@ export default function ForzaHorizon6GuidesPage() {
           })}
         </div>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+        <div className="mt-5 grid items-start gap-4 lg:grid-cols-4">
           {guideShortcutBays.map((bay) => {
             const Icon = bay.icon;
 
@@ -681,7 +681,7 @@ export default function ForzaHorizon6GuidesPage() {
           })}
         </div>
 
-        <div className="forza-panel mt-6 overflow-hidden">
+        <div className="forza-panel mt-5 overflow-hidden">
           <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.9fr_0.75fr_1.35fr]">
             <span>Player problem</span>
             <span>Start here</span>
@@ -700,7 +700,7 @@ export default function ForzaHorizon6GuidesPage() {
           ))}
         </div>
 
-        <div className="forza-panel mt-6 p-5" id="upgrade-planning-path">
+        <div className="forza-panel mt-5 p-5" id="upgrade-planning-path">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <WrenchIcon className="size-6 text-amber-300" />
@@ -719,7 +719,7 @@ export default function ForzaHorizon6GuidesPage() {
               </LocaleLink>
             </Button>
           </div>
-          <div className="mt-5 grid gap-3 md:grid-cols-5">
+          <div className="mt-5 grid items-start gap-3 md:grid-cols-5">
             {upgradeDecisionPath.map((item) => (
               <LocaleLink
                 className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:border-amber-300/40 hover:bg-amber-300/10"
@@ -740,8 +740,8 @@ export default function ForzaHorizon6GuidesPage() {
           </div>
         </div>
 
-        <div className="forza-panel mt-6 p-5">
-          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+        <div className="forza-panel mt-5 p-5">
+          <div className="grid items-start gap-5 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
               <ListChecksIcon className="size-6 text-amber-300" />
               <h2 className="mt-4 text-xl font-semibold">
@@ -766,7 +766,7 @@ export default function ForzaHorizon6GuidesPage() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-5 grid items-start gap-4 md:grid-cols-3">
           {guideDestinations.map((item) => (
             <LocaleLink
               className="forza-card p-5"
@@ -787,9 +787,9 @@ export default function ForzaHorizon6GuidesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="forza-panel mb-6 p-5">
-          <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="grid items-start gap-5 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
               <GitBranchIcon className="size-6 text-fuchsia-300" />
               <h2 className="mt-4 text-2xl font-semibold">
@@ -801,7 +801,7 @@ export default function ForzaHorizon6GuidesPage() {
                 read.
               </p>
             </div>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid items-start gap-3 md:grid-cols-2 lg:grid-cols-4">
               {guideHowToSteps.map((step) => (
                 <article
                   className="rounded-md border border-white/10 bg-white/[0.03] p-4"
@@ -832,7 +832,7 @@ export default function ForzaHorizon6GuidesPage() {
             planning, handling fixes, device settings, and event builds.
           </p>
         </div>
-        <div className="grid gap-5">
+        <div className="grid items-start gap-5">
           {guideGroups.map((group) => {
             const guides = getGuidesBySlug(group.slugs);
 
@@ -854,7 +854,7 @@ export default function ForzaHorizon6GuidesPage() {
                     {guides.length} guides
                   </span>
                 </div>
-                <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-5 grid items-start gap-3 md:grid-cols-2 lg:grid-cols-3">
                   {guides.map((guide) => (
                     <LocaleLink
                       className="rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
@@ -876,7 +876,7 @@ export default function ForzaHorizon6GuidesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="mb-6">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
             Guide index
@@ -885,16 +885,16 @@ export default function ForzaHorizon6GuidesPage() {
             {forzaHorizon6Guides.length} practical FH6 guides
           </h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid items-start gap-4 md:grid-cols-2">
           {forzaHorizon6Guides.map((guide) => (
             <GuideCard guide={guide} key={guide.slug} />
           ))}
         </div>
       </section>
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <div className="forza-panel p-5">
           <h2 className="text-2xl font-semibold">Guide FAQ</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
+          <div className="mt-5 grid items-start gap-4 md:grid-cols-3">
             {guideFaqs.map((faq) => (
               <article
                 className="rounded-md border border-white/10 bg-white/[0.03] p-4"

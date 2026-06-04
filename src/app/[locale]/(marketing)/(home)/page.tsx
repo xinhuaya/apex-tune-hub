@@ -77,31 +77,6 @@ const homepageItemList = [
   },
 ];
 
-const stats = [
-  { label: 'Core product', value: 'Tune' },
-  { label: 'Inputs', value: '5' },
-  { label: 'Top tools', value: '3' },
-  { label: 'Preset link', value: '1' },
-];
-
-const launchSignals = [
-  {
-    label: 'Japan prep',
-    value: 'Road + drift baselines',
-    icon: MapPinnedIcon,
-  },
-  {
-    label: 'Garage data',
-    value: 'Car pages built to scale',
-    icon: CarFrontIcon,
-  },
-  {
-    label: 'Playlist loop',
-    value: 'Weekly picks and tune notes',
-    icon: CalendarDaysIcon,
-  },
-];
-
 const entryPaths = [
   {
     title: 'I need a setup now',
@@ -185,19 +160,19 @@ export default function HomePage() {
       />
       <section className="overflow-hidden border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-[34rem] opacity-35" />
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-20">
+        <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-14">
           <div className="min-w-0 max-w-full flex flex-col justify-center">
             <p className="forza-chip">Forza Horizon 6 tune calculator</p>
-            <h1 className="forza-neon-title mt-6 max-w-[22rem] text-3xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
+            <h1 className="forza-neon-title mt-4 max-w-[22rem] text-3xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
               Start with the tune calculator, then test the car.
             </h1>
-            <p className="mt-5 max-w-[22rem] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl sm:text-lg">
+            <p className="mt-4 max-w-[22rem] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl sm:text-lg">
               Apex Tune Hub is an FH6 setup workbench. Choose the race type,
               drivetrain, class, and handling problem on the first screen, then
               open the full calculator to copy notes, save presets, and refine
               the build.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg" className="forza-primary-button">
                 <LocaleLink href="/tools/forza-horizon-6-tune-calculator">
                   Open Tune Calculator
@@ -217,45 +192,16 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="lg:row-span-2">
+          <div className="lg:self-start">
             <ForzaHomeTuneWorkbench />
-          </div>
-
-          <div className="grid max-w-[22rem] items-start gap-3 sm:max-w-2xl sm:grid-cols-3 lg:col-start-1 lg:row-start-2">
-            {launchSignals.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div key={item.label} className="forza-signal">
-                  <Icon className="size-4 text-cyan-200" />
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-300">
-                      {item.label}
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-zinc-500">
-                      {item.value}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {stats.map((item) => (
-            <div key={item.label} className="forza-stat">
-              <p className="text-xl font-semibold text-zinc-50">{item.value}</p>
-              <p className="mt-1 text-xs text-zinc-500">{item.label}</p>
-            </div>
-          ))}
-        </div>
-
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <ForzaHomeStartPaths />
 
-        <div className="mb-10 grid gap-3 md:grid-cols-4">
+        <div className="mb-8 grid items-start gap-3 md:grid-cols-4">
           {tools.map((tool) => {
             const Icon = tool.icon;
 
@@ -277,7 +223,7 @@ export default function HomePage() {
           })}
         </div>
 
-        <div className="mb-10 grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+        <div className="mb-8 grid items-start gap-4 lg:grid-cols-[0.75fr_1.25fr]">
           <div className="forza-panel p-5">
             <MapPinnedIcon className="size-6 text-amber-300" />
             <h2 className="mt-4 text-2xl font-semibold">
@@ -289,7 +235,7 @@ export default function HomePage() {
               back into the calculator workflow.
             </p>
           </div>
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid items-start gap-3 md:grid-cols-3">
             {entryPaths.map((path) => {
               const Icon = path.icon;
 
@@ -312,7 +258,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="forza-panel mb-10 overflow-hidden">
+        <div className="forza-panel mb-8 overflow-hidden">
           <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.7fr_1.2fr_1.3fr]">
             <span>Layer</span>
             <span>Value</span>
@@ -330,7 +276,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid items-start gap-4 md:grid-cols-3">
           {[
             [
               'Tools first',
