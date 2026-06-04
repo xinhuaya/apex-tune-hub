@@ -139,6 +139,12 @@ const bestCarNextLinks = [
     href: '/games/forza-horizon-6/weekly-playlist',
   },
   {
+    title: 'Drag Tune Settings',
+    description:
+      'Use launch grip, final drive, first shift, and tire pressure notes before a drag car gets promoted.',
+    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+  },
+  {
     title: 'Tuning Settings',
     description:
       'Explain which slider group supports the car role once a candidate needs refinement.',
@@ -188,6 +194,12 @@ const guideLinks = [
       'Toyota, Honda, Mazda, street, drift, and Japan-focused clusters.',
     href: '/games/forza-horizon-6/best-jdm-cars',
   },
+  {
+    title: 'Best Drag Tune Settings',
+    description:
+      'Launch grip, first shift, final drive, and speed-trap testing path.',
+    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+  },
 ];
 
 const roleDecisionMatrix = [
@@ -208,6 +220,13 @@ const roleDecisionMatrix = [
     firstPage: 'Best Drift Cars',
     href: '/games/forza-horizon-6/best-drift-cars',
     nextAction: 'Open the drift calculator and test angle recovery.',
+  },
+  {
+    playerGoal: 'Build a drag or speed car',
+    firstPage: 'Drag Tune Settings',
+    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    nextAction:
+      'Start from launch grip and gear spacing before claiming a best drag car.',
   },
   {
     playerGoal: 'Use a Japan/JDM favorite',
@@ -550,7 +569,7 @@ export default function BestCarsPage() {
               the setting group that matches the weakness.
             </p>
           </div>
-          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
             {bestCarNextLinks.map((link) => (
               <LocaleLink
                 className="forza-card p-4"
@@ -569,7 +588,7 @@ export default function BestCarsPage() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-4">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           {guideLinks.map((guide) => (
             <LocaleLink
               key={guide.href}
