@@ -183,6 +183,35 @@ const qualityStatuses = [
   },
 ];
 
+const publishReadinessRows = [
+  {
+    rowType: 'Preset-only baseline',
+    requiredEvidence: 'Calculator URL, target class, drivetrain, and symptom',
+    publishAction: 'Keep public as a safe baseline link',
+    ownerNote: 'Good for SEO and user testing before real codes exist',
+  },
+  {
+    rowType: 'Player-submitted code',
+    requiredEvidence:
+      'Exact car, creator/source, route family, and last-tested date',
+    publishAction: 'Hold as needs car test until context is complete',
+    ownerNote: 'Do not promote anonymous codes with missing car context',
+  },
+  {
+    rowType: 'Verified in-game code',
+    requiredEvidence:
+      'Share code, car, class, drivetrain, route, source, and weakness',
+    publishAction: 'Publish in the future verified code table',
+    ownerNote: 'Best candidate for member save lists and retest alerts',
+  },
+  {
+    rowType: 'Old or patch-sensitive code',
+    requiredEvidence: 'Patch note, player report, or route mismatch warning',
+    publishAction: 'Mark needs retest instead of deleting the row',
+    ownerNote: 'Keeps trust while preserving search and internal links',
+  },
+];
+
 const futureCodeFields = [
   'Share code',
   'Creator or source',
@@ -612,6 +641,45 @@ export default function ForzaHorizon6TuneCodesPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel overflow-hidden">
+          <div className="border-b border-white/10 bg-white/[0.03] px-5 py-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              Publish readiness matrix
+            </p>
+            <h2 className="mt-2 text-xl font-semibold text-zinc-50">
+              Decide what a tune-code row is allowed to do
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-400">
+              This keeps the page useful before real FH6 share codes are
+              verified, while still giving us a clear table format for future
+              user submissions and member save lists.
+            </p>
+          </div>
+          <div className="hidden grid-cols-[0.85fr_1.25fr_1fr_1fr] border-b border-white/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500 lg:grid">
+            <span>Row type</span>
+            <span>Required evidence</span>
+            <span>Publish action</span>
+            <span>Owner note</span>
+          </div>
+          {publishReadinessRows.map((row) => (
+            <div
+              className="grid gap-2 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 lg:grid-cols-[0.85fr_1.25fr_1fr_1fr] lg:gap-4"
+              key={row.rowType}
+            >
+              <span className="font-semibold text-zinc-50">{row.rowType}</span>
+              <span className="leading-6 text-zinc-400">
+                {row.requiredEvidence}
+              </span>
+              <span className="leading-6 text-amber-200">
+                {row.publishAction}
+              </span>
+              <span className="leading-6 text-zinc-500">{row.ownerNote}</span>
+            </div>
+          ))}
         </div>
       </section>
 
