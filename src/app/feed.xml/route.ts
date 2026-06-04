@@ -80,6 +80,13 @@ const feedItems: FeedItem[] = [
     category: 'Tool',
   },
   {
+    title: 'Forza tuning calculator',
+    path: '/tools/forza-tuning-calculator',
+    description:
+      'Broad Forza tuning calculator route for generic Forza, FH5, and FH6 setup searches, with handoffs into the live FH6 calculator stack.',
+    category: 'Tool',
+  },
+  {
     title: 'Forza Horizon 6 guide library',
     path: '/games/forza-horizon-6/guides',
     description:

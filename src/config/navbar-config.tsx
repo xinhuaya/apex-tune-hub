@@ -99,6 +99,14 @@ export function useNavbarLinks(): NestedMenuItem[] {
       title: 'Tools',
       items: [
         {
+          title: 'Forza Tuning Calculator',
+          description:
+            'Broad Forza calculator route for FH5/FH6 tuning searches',
+          icon: <SlidersHorizontalIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaTuningCalculator,
+          external: false,
+        },
+        {
           title: 'Tune Calculator',
           description:
             'Baseline road, street, dirt, rally, and drag setup notes',

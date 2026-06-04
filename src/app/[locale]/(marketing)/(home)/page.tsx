@@ -14,7 +14,6 @@ import {
   ArrowRightIcon,
   CalendarDaysIcon,
   CarFrontIcon,
-  LinkIcon,
   ListChecksIcon,
   MapPinnedIcon,
   SlidersHorizontalIcon,
@@ -23,6 +22,12 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
 const tools = [
+  {
+    title: 'Forza Tuning Calculator',
+    description: 'Broad FH5/FH6 tuning route for generic calculator searches.',
+    href: '/tools/forza-tuning-calculator',
+    icon: SlidersHorizontalIcon,
+  },
   {
     title: 'FH6 Tune Calculator',
     description: 'The main product: choose the problem and get a baseline.',
@@ -36,12 +41,6 @@ const tools = [
     icon: ListChecksIcon,
   },
   {
-    title: 'Tune Presets',
-    description: 'Shareable setup URLs after the baseline makes sense.',
-    href: '/tools/forza-horizon-6-tune-presets',
-    icon: LinkIcon,
-  },
-  {
     title: 'Fix Oversteer',
     description: 'A high-intent guide that routes players back to the tool.',
     href: '/games/forza-horizon-6/guides/fix-oversteer',
@@ -51,6 +50,10 @@ const tools = [
 
 const homepageItemList = [
   { name: 'Forza Horizon 6 Hub', path: '/games/forza-horizon-6' },
+  {
+    name: 'Forza Tuning Calculator',
+    path: '/tools/forza-tuning-calculator',
+  },
   {
     name: 'Forza Horizon 6 Tune Calculator',
     path: '/tools/forza-horizon-6-tune-calculator',
