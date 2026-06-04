@@ -15,6 +15,7 @@ import { forzaTunePresets } from '@/lib/tuning/forza-horizon-6-presets';
 import {
   ArrowRightIcon,
   ClipboardCheckIcon,
+  DatabaseIcon,
   GaugeIcon,
   LinkIcon,
   ListChecksIcon,
@@ -241,6 +242,45 @@ const presetLoopSteps = [
   },
 ];
 
+const presetDatabaseRows = forzaTunePresets.map((preset) => ({
+  name: preset.h1.replace('Forza Horizon 6 ', '').replace(' tune preset', ''),
+  href: `/tools/forza-horizon-6-tune-presets/${preset.slug}`,
+  context: `${preset.input.classBand} ${preset.input.drivetrain} ${preset.input.raceType}`,
+  issue: preset.input.handlingIssue.replaceAll('-', ' '),
+  style: preset.input.drivingStyle,
+  target:
+    preset.targetCars.length > 2
+      ? `${preset.targetCars.slice(0, 2).join(', ')} +${preset.targetCars.length - 2}`
+      : preset.targetCars.join(', '),
+  saveValue:
+    preset.input.raceType === 'drag'
+      ? 'Save as launch and first-shift test baseline.'
+      : preset.input.raceType === 'rally' || preset.input.raceType === 'dirt'
+        ? 'Save as mixed-surface route baseline.'
+        : preset.input.raceType === 'street'
+          ? 'Save as traffic and slow-exit baseline.'
+          : 'Save as road route comparison baseline.',
+}));
+
+const presetDataFeatures = [
+  {
+    title: 'Filterable setup rows',
+    text: 'Class, drivetrain, race type, handling issue, and style are already structured enough to become real filters.',
+  },
+  {
+    title: 'Saved preset garage',
+    text: 'A member can save baseline URLs, add car notes, and keep versions for weekly events or route testing.',
+  },
+  {
+    title: 'Code handoff path',
+    text: 'When an in-game share code is verified, it can attach to the existing preset row instead of becoming a loose number.',
+  },
+  {
+    title: 'Car-page evidence',
+    text: 'Each preset can later connect to exact car pages, screenshots, route notes, and creator/source fields.',
+  },
+];
+
 const presetNextLinks = [
   {
     title: 'Calculator workflow',
@@ -307,6 +347,13 @@ export default function ForzaHorizon6TunePresetsPage() {
             items: presetNextLinks.map((link) => ({
               name: link.title,
               path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tune preset database rows',
+            items: presetDatabaseRows.map((row) => ({
+              name: `${row.name} - ${row.context}`,
+              path: row.href,
             })),
           }),
         ]}
@@ -588,6 +635,65 @@ export default function ForzaHorizon6TunePresetsPage() {
             problem, open the calculator state, test a short route, then record
             the car-specific changes that actually helped.
           </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel overflow-hidden">
+          <div className="grid gap-4 border-b border-white/10 bg-white/[0.03] px-5 py-5 lg:grid-cols-[0.82fr_1.18fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+                Preset database view
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">
+                The preset library is already structured like a data product.
+              </h2>
+            </div>
+            <p className="text-sm leading-6 text-zinc-400">
+              Every preset has class, drivetrain, race type, handling issue,
+              style, target cars, and a crawlable URL. That gives us the base
+              for filters, member save lists, verified code handoffs, and
+              car-page testing notes.
+            </p>
+          </div>
+          <div className="hidden grid-cols-[1.05fr_0.72fr_0.75fr_0.62fr_1.05fr_1.1fr] border-b border-white/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.13em] text-zinc-500 xl:grid">
+            <span>Preset</span>
+            <span>Context</span>
+            <span>Issue</span>
+            <span>Style</span>
+            <span>Target cars</span>
+            <span>Member save value</span>
+          </div>
+          {presetDatabaseRows.map((row) => (
+            <LocaleLink
+              className="grid gap-2 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] xl:grid-cols-[1.05fr_0.72fr_0.75fr_0.62fr_1.05fr_1.1fr] xl:gap-4"
+              href={row.href}
+              key={row.href}
+            >
+              <span className="font-semibold text-zinc-50">{row.name}</span>
+              <span className="text-cyan-100">{row.context}</span>
+              <span className="text-amber-200">{row.issue}</span>
+              <span className="text-zinc-300">{row.style}</span>
+              <span className="leading-6 text-zinc-400">{row.target}</span>
+              <span className="leading-6 text-zinc-400">{row.saveValue}</span>
+            </LocaleLink>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {presetDataFeatures.map((feature) => (
+            <article className="forza-card p-5" key={feature.title}>
+              <DatabaseIcon className="size-5 text-cyan-300" />
+              <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                {feature.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {feature.text}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 
