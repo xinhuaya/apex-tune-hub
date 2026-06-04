@@ -59,6 +59,12 @@ const driftWorkflow = [
 
 const driftRelatedLinks = [
   {
+    title: 'Forza Tuning Calculator',
+    description:
+      'Use the broad Forza calculator hub when a player starts from general tuning, FH5 drift, or FH6 setup searches.',
+    href: '/tools/forza-tuning-calculator',
+  },
+  {
     title: 'Japan Drift Setup Guide',
     description:
       'Use the longer drift setup guide when you want a full launch-period tuning plan.',

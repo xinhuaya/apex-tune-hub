@@ -51,6 +51,12 @@ const gearWorkflow = [
 
 const gearRelatedLinks = [
   {
+    title: 'Forza Tuning Calculator',
+    description:
+      'Use the broad Forza calculator hub when the search is not yet FH6-specific or when you need the main workflow first.',
+    href: '/tools/forza-tuning-calculator',
+  },
+  {
     title: 'Gear Ratio Guide',
     description:
       'Read the deeper FH6 gearing guide for final drive, launch, limiter, and shift-gap testing.',

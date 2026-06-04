@@ -61,6 +61,12 @@ const workflowSteps = [
 
 const relatedLinks = [
   {
+    title: 'Forza Tuning Calculator',
+    description:
+      'Start here for generic Forza, FH5, FH6, tune-code, and setup calculator searches before choosing a specific FH6 tool.',
+    href: '/tools/forza-tuning-calculator',
+  },
+  {
     title: 'Drift Tune Calculator',
     description:
       'Use this when the build is about angle, transition, and recovery.',
