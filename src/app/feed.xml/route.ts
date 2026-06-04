@@ -31,6 +31,13 @@ const feedItems: FeedItem[] = [
     category: 'Best cars',
   },
   {
+    title: 'Forza best drag cars hub',
+    path: '/games/forza/best-drag-cars',
+    description:
+      'Broad Forza drag-car search route for FH5 and FH6 launch, gearing, drag tune-code, and straight-line setup intent.',
+    category: 'Best cars',
+  },
+  {
     title: 'Forza car list database',
     path: '/games/forza/car-list',
     description:

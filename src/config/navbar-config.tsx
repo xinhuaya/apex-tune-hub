@@ -62,6 +62,14 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Forza Drag Cars',
+          description:
+            'Broad drag-car route for FH5/FH6 launch and code searches',
+          icon: <GaugeIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaBestDragCars,
+          external: false,
+        },
+        {
           title: 'Forza Car List',
           description:
             'Broad Forza car-list route for FH5/FH6 database searches',

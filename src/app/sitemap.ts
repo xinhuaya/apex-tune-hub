@@ -31,6 +31,7 @@ const staticRoutes = [
   '/terms',
   '/cookie',
   '/games/forza/best-cars',
+  '/games/forza/best-drag-cars',
   '/games/forza/car-list',
   '/games/forza-horizon-6',
   '/games/forza-horizon-6/japan-map',
@@ -277,6 +278,7 @@ function getChangeFrequency(url: string): SitemapEntry['changeFrequency'] {
   if (
     url.includes('/games/forza-horizon-6') ||
     url.includes('/games/forza/best-cars') ||
+    url.includes('/games/forza/best-drag-cars') ||
     url.includes('/games/forza/car-list') ||
     url.includes('/tools/forza-tune-codes') ||
     url.includes('/tools/forza-tuning-calculator') ||
@@ -320,6 +322,10 @@ function getPriority(url: string) {
     return 0.91;
   }
 
+  if (url.includes('/games/forza/best-drag-cars')) {
+    return 0.91;
+  }
+
   if (url.includes('/games/forza/car-list')) {
     return 0.91;
   }
@@ -347,6 +353,7 @@ function getPriority(url: string) {
   if (
     url.includes('/games/forza-horizon-6') ||
     url.includes('/games/forza/best-cars') ||
+    url.includes('/games/forza/best-drag-cars') ||
     url.includes('/games/forza/car-list') ||
     url.includes('/tools/forza-tune-codes') ||
     url.includes('/tools/forza-tuning-calculator') ||

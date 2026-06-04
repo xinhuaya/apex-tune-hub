@@ -46,7 +46,7 @@ const searchSignals = [
     query: 'best drag car in forza horizon 5',
     signal: '1.0K US',
     route: 'Drag tune path',
-    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    href: '/games/forza/best-drag-cars',
   },
   {
     query: 'best drift car in forza horizon 5',
@@ -78,7 +78,7 @@ const roleRoutes = [
   {
     title: 'I need a drag or speed car',
     body: 'Match the car to launch grip, first shift, final drive, and top speed instead of only horsepower.',
-    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    href: '/games/forza/best-drag-cars',
     icon: GaugeIcon,
   },
   {
@@ -106,8 +106,8 @@ const routeMatrix = [
     intent: 'Best drag car',
     useFirst:
       'Use launch grip, first shift, final drive, and speed-trap proof.',
-    nextPage: 'Drag tune settings',
-    href: '/games/forza-horizon-6/guides/best-drag-tune-settings',
+    nextPage: 'Forza drag hub',
+    href: '/games/forza/best-drag-cars',
   },
   {
     intent: 'Best A / S1 / S2 car',

@@ -9,6 +9,7 @@ export const revalidate = 3600;
 const corePages: string[][] = [
   ['Home', '/'],
   ['Forza best cars hub', '/games/forza/best-cars'],
+  ['Forza best drag cars hub', '/games/forza/best-drag-cars'],
   ['Forza car list database', '/games/forza/car-list'],
   ['Forza Horizon 6 hub', '/games/forza-horizon-6'],
   [

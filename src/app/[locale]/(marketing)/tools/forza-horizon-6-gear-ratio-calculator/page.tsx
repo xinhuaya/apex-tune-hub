@@ -51,6 +51,12 @@ const gearWorkflow = [
 
 const gearRelatedLinks = [
   {
+    title: 'Forza Drag Cars Hub',
+    description:
+      'Use the broad drag-car hub when the search starts with best drag car, drag tune code, launch, or top-speed intent.',
+    href: '/games/forza/best-drag-cars',
+  },
+  {
     title: 'Forza Tuning Calculator',
     description:
       'Use the broad Forza calculator hub when the search is not yet FH6-specific or when you need the main workflow first.',

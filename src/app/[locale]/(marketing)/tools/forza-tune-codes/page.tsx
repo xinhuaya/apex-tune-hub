@@ -67,6 +67,13 @@ const searchSignals = [
 
 const codeHandoffs = [
   {
+    title: 'Forza Drag Cars Hub',
+    description:
+      'Route drag-code searches into launch, gearing, candidate cars, and verified-code rules.',
+    href: '/games/forza/best-drag-cars',
+    icon: GaugeIcon,
+  },
+  {
     title: 'FH6 Tune Codes Workflow',
     description:
       'The live code hub for Apex preset URLs, verified-code rules, and future share-code rows.',
