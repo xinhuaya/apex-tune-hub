@@ -218,6 +218,64 @@ const publishReadinessRows = [
   },
 ];
 
+const futureDatabaseRows = [
+  {
+    car: 'Any S1 AWD road candidate',
+    classDrive: 'S1 / AWD',
+    role: 'Road understeer baseline',
+    currentLink: 'S1 AWD road understeer balanced',
+    evidence: 'Preset URL ready; needs exact car test',
+    memberValue: 'Save as garage baseline, then compare car-specific versions.',
+    href: '/tools/forza-horizon-6-tune-presets/s1-awd-road-understeer-balanced',
+  },
+  {
+    car: 'Any A RWD street candidate',
+    classDrive: 'A / RWD',
+    role: 'Street wheelspin baseline',
+    currentLink: 'A RWD street wheelspin stable',
+    evidence: 'Preset URL ready; needs route and launch notes',
+    memberValue: 'Track throttle-friendly variants for weekly street events.',
+    href: '/tools/forza-horizon-6-tune-presets/a-rwd-street-wheelspin-stable',
+  },
+  {
+    car: 'High-power S2 AWD candidate',
+    classDrive: 'S2 / AWD',
+    role: 'Drag launch baseline',
+    currentLink: 'S2 AWD drag wheelspin aggressive',
+    evidence: 'Preset URL ready; needs trap-speed and first-shift proof',
+    memberValue: 'Compare drag, speed-trap, and road versions separately.',
+    href: '/tools/forza-horizon-6-tune-presets/s2-awd-drag-wheelspin-aggressive',
+  },
+  {
+    car: 'Future player-submitted code',
+    classDrive: 'Any verified build',
+    role: 'Real share-code row',
+    currentLink: 'Hold until source and date exist',
+    evidence: 'Needs car, creator/source, route, class, and last-tested date',
+    memberValue: 'Favorite, retest alert, version notes, and exportable setup.',
+    href: '/tools/forza-tune-codes',
+  },
+];
+
+const memberDataFeatures = [
+  {
+    title: 'Saved code garage',
+    text: 'Members save verified codes, preset URLs, car notes, and personal test comments in one garage view.',
+  },
+  {
+    title: 'Retest alerts',
+    text: 'Patch notes, weekly restrictions, or changed car pages can flag old rows as needs-retest.',
+  },
+  {
+    title: 'Version comparison',
+    text: 'A player can compare baseline, car-specific, drag, drift, and weekly-event variants without losing context.',
+  },
+  {
+    title: 'Exportable setup notes',
+    text: 'The paid value is not a secret number; it is organized setup evidence that can be reused across events.',
+  },
+];
+
 const futureCodeFields = [
   'Share code',
   'Creator or source',
@@ -372,6 +430,13 @@ export default function ForzaHorizon6TuneCodesPage() {
             items: internalReviewLinks.map((link) => ({
               name: link.title,
               path: link.href,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza Horizon 6 tune code database preview rows',
+            items: futureDatabaseRows.map((row) => ({
+              name: `${row.car} - ${row.role}`,
+              path: row.href,
             })),
           }),
           buildFaqJsonLd(faqs),
@@ -685,6 +750,67 @@ export default function ForzaHorizon6TuneCodesPage() {
               </span>
               <span className="leading-6 text-zinc-500">{row.ownerNote}</span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="forza-panel overflow-hidden">
+          <div className="grid gap-4 border-b border-white/10 bg-white/[0.03] px-5 py-5 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+                Database preview
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">
+                What the member tune-code database should become
+              </h2>
+            </div>
+            <p className="text-sm leading-6 text-zinc-400">
+              The public page should show enough structure to earn trust. The
+              paid product can then save, compare, retest, and export the same
+              rows once exact FH6 share codes and car tests exist.
+            </p>
+          </div>
+          <div className="hidden grid-cols-[0.95fr_0.7fr_0.95fr_1.1fr_1.2fr] border-b border-white/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500 xl:grid">
+            <span>Car scope</span>
+            <span>Class / drive</span>
+            <span>Role</span>
+            <span>Evidence</span>
+            <span>Member value</span>
+          </div>
+          {futureDatabaseRows.map((row) => (
+            <LocaleLink
+              className="grid gap-2 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] xl:grid-cols-[0.95fr_0.7fr_0.95fr_1.1fr_1.2fr] xl:gap-4"
+              href={row.href}
+              key={row.car}
+            >
+              <span>
+                <strong className="block text-zinc-50">{row.car}</strong>
+                <span className="mt-1 block text-zinc-500">
+                  {row.currentLink}
+                </span>
+              </span>
+              <span className="text-amber-200">{row.classDrive}</span>
+              <span className="text-cyan-100">{row.role}</span>
+              <span className="leading-6 text-zinc-400">{row.evidence}</span>
+              <span className="leading-6 text-zinc-400">{row.memberValue}</span>
+            </LocaleLink>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {memberDataFeatures.map((feature) => (
+            <article className="forza-card p-5" key={feature.title}>
+              <Table2Icon className="size-5 text-cyan-300" />
+              <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                {feature.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {feature.text}
+              </p>
+            </article>
           ))}
         </div>
       </section>
