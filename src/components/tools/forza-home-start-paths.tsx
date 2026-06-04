@@ -85,11 +85,11 @@ function trackHomeStartPath(path: (typeof startHerePaths)[number]) {
 
 export function ForzaHomeStartPaths() {
   return (
-    <div className="mb-10 overflow-hidden rounded-md border border-cyan-300/20 bg-black/30">
-      <div className="grid gap-4 border-b border-white/10 bg-white/[0.03] p-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+    <div className="mb-8 overflow-hidden rounded-md border border-cyan-300/20 bg-black/30">
+      <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] p-4 sm:p-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
         <div>
           <p className="forza-chip">Start here</p>
-          <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+          <h2 className="mt-3 text-2xl font-semibold text-zinc-50">
             Pick the problem, then open the right FH6 tool
           </h2>
         </div>
@@ -105,7 +105,7 @@ export function ForzaHomeStartPaths() {
 
           return (
             <LocaleLink
-              className="group min-h-48 border-b border-white/10 p-5 transition hover:bg-white/[0.04] md:border-r xl:border-b-0"
+              className="group min-w-0 border-b border-white/10 p-4 transition hover:bg-white/[0.04] sm:p-5 md:border-r xl:border-b-0"
               href={path.href}
               key={path.problem}
               onClick={() => trackHomeStartPath(path)}
@@ -118,13 +118,13 @@ export function ForzaHomeStartPaths() {
                 </span>
                 <ArrowRightIcon className="size-4 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-cyan-200" />
               </div>
-              <h2 className="mt-5 text-lg font-semibold text-zinc-50">
+              <h2 className="mt-4 text-base font-semibold leading-6 text-zinc-50">
                 {path.problem}
               </h2>
               <p className="mt-2 text-sm font-semibold text-cyan-100">
                 {path.tool}
               </p>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
                 {path.next}
               </p>
             </LocaleLink>

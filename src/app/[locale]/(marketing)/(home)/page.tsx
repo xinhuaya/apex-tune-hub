@@ -108,6 +108,27 @@ const entryPaths = [
   },
 ];
 
+const heroSignals = [
+  {
+    label: 'Core product',
+    value: 'Tune calculator first',
+    detail:
+      'The homepage opens with the live workbench, then sends users deeper only when they need the full tool.',
+  },
+  {
+    label: 'Search proof',
+    value: 'FH6 + FH5 intent',
+    detail:
+      'GSC clicks point at calculator terms; SEMrush FH5 terms guide evergreen support pages.',
+  },
+  {
+    label: 'Next action',
+    value: 'Copy, test, refine',
+    detail:
+      'Every article and car page should send the player back to a baseline they can test.',
+  },
+];
+
 const productPathRows = [
   {
     layer: 'Free tool',
@@ -170,20 +191,24 @@ export default function HomePage() {
       />
       <section className="overflow-hidden border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-[34rem] opacity-35" />
-        <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-14">
-          <div className="min-w-0 max-w-full flex flex-col justify-center">
+        <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:px-8 lg:py-12">
+          <div className="flex min-w-0 max-w-full flex-col justify-center overflow-hidden">
             <p className="forza-chip">Forza Horizon 6 tune calculator</p>
-            <h1 className="forza-neon-title mt-4 max-w-[22rem] text-3xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
+            <h1 className="forza-neon-title mt-4 max-w-[calc(100vw-2rem)] text-3xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
               Start with the tune calculator, then test the car.
             </h1>
-            <p className="mt-4 max-w-[22rem] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl sm:text-lg">
+            <p className="mt-4 max-w-[calc(100vw-2rem)] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl sm:text-lg">
               Apex Tune Hub is an FH6 setup workbench. Choose the race type,
               drivetrain, class, and handling problem on the first screen, then
               open the full calculator to copy notes, save presets, and refine
               the build.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="forza-primary-button">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button
+                asChild
+                size="lg"
+                className="forza-primary-button w-full max-w-[calc(100vw-2rem)] justify-center sm:w-auto sm:max-w-full"
+              >
                 <LocaleLink href="/tools/forza-horizon-6-tune-calculator">
                   Open Tune Calculator
                   <ArrowRightIcon className="ml-2 size-4" />
@@ -193,12 +218,30 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-md"
+                className="w-full max-w-[calc(100vw-2rem)] rounded-md justify-center sm:w-auto sm:max-w-full"
               >
                 <LocaleLink href="/tools/forza-horizon-6-gear-ratio-calculator">
                   Open Gear Tool
                 </LocaleLink>
               </Button>
+            </div>
+            <div className="mt-6 grid w-full max-w-[calc(100vw-2rem)] gap-3 overflow-hidden sm:max-w-3xl sm:grid-cols-3">
+              {heroSignals.map((signal) => (
+                <div
+                  className="min-w-0 max-w-[calc(100vw-2rem)] overflow-hidden rounded-md border border-white/10 bg-white/[0.03] p-3 sm:max-w-full"
+                  key={signal.label}
+                >
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-cyan-200">
+                    {signal.label}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-zinc-50 [overflow-wrap:anywhere]">
+                    {signal.value}
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-zinc-500 [overflow-wrap:anywhere]">
+                    {signal.detail}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
