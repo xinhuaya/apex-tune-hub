@@ -32,23 +32,39 @@ const description =
 const semrushSignals = [
   {
     query: 'forza tuning calculator',
-    takeaway: 'Generic tool intent with low difficulty. Use this page.',
+    signal: 'Broad tool intent',
+    takeaway: 'Generic calculator intent should land here first.',
     handoff: 'Start with the FH6 workbench',
   },
   {
     query: 'forza horizon 5 tuning calculator',
+    signal: '110 US / 370 global',
     takeaway: 'Evergreen FH5 search behavior still describes tuning demand.',
     handoff: 'Explain compatibility, then route to current tools',
   },
   {
     query: 'forza horizon 5 best cars',
+    signal: '390 US / 1.1K global',
     takeaway: 'Higher-volume car intent should become role-based car pages.',
     handoff: 'Best cars hub and tune presets',
   },
   {
     query: 'forza horizon 5 tune codes',
+    signal: '40 US / 160 global',
     takeaway: 'Tune-code searches need code workflow pages, not fake codes.',
     handoff: 'Tune codes hub and shareable presets',
+  },
+  {
+    query: 'forza horizon 5 gear ratio calculator',
+    signal: '20 US / 30 global',
+    takeaway: 'Small but focused calculator intent belongs in the gear tool.',
+    handoff: 'Gear ratio calculator',
+  },
+  {
+    query: 'forza horizon 5 oversteer',
+    signal: '20 US / 100 global',
+    takeaway: 'Handling symptom queries should map into calculator presets.',
+    handoff: 'Oversteer guide and tune calculator',
   },
 ];
 
@@ -106,6 +122,45 @@ const calculatorWorkflow = [
   },
 ];
 
+const contentClusterLinks = [
+  {
+    title: 'Forza Best Cars Hub',
+    body: 'Use role-based tables before exact meta claims.',
+    href: '/games/forza/best-cars',
+    icon: CarFrontIcon,
+  },
+  {
+    title: 'Forza Drift Cars Hub',
+    body: 'Match car picks to angle, recovery, and gearing.',
+    href: '/games/forza/best-drift-cars',
+    icon: GaugeIcon,
+  },
+  {
+    title: 'Forza Drag Cars Hub',
+    body: 'Route launch, trap speed, and drag-code searches into gearing tests.',
+    href: '/games/forza/best-drag-cars',
+    icon: ListChecksIcon,
+  },
+  {
+    title: 'Forza Tune Codes Hub',
+    body: 'Explain code use, preset readiness, and verified-code rules.',
+    href: '/tools/forza-tune-codes',
+    icon: LinkIcon,
+  },
+  {
+    title: 'Forza Car List Database',
+    body: 'Give best-car searches a sortable car-data route.',
+    href: '/games/forza/car-list',
+    icon: CarFrontIcon,
+  },
+  {
+    title: 'Fix Oversteer Guide',
+    body: 'Map FH5/FH6 symptom language into the active calculator workflow.',
+    href: '/games/forza-horizon-6/guides/fix-oversteer',
+    icon: ShieldCheckIcon,
+  },
+];
+
 const faqItems = [
   {
     question: 'Is this a Forza Horizon 5 tuning calculator?',
@@ -159,6 +214,7 @@ export default function ForzaTuningCalculatorPage() {
               'FH6 tune calculator handoff',
               'Gear ratio and drift calculator handoff',
               'Tune-code and best-car content planning',
+              'Search signal routing for FH5, FH6, gear ratio, oversteer, and tune-code queries',
             ],
           }),
           buildItemListJsonLd({
@@ -168,6 +224,20 @@ export default function ForzaTuningCalculatorPage() {
               path: tool.href,
             })),
           }),
+          buildItemListJsonLd({
+            title: 'Forza tuning calculator search signals',
+            items: semrushSignals.map((signal) => ({
+              name: signal.query,
+              path: pathname,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza tuning calculator content clusters',
+            items: contentClusterLinks.map((cluster) => ({
+              name: cluster.title,
+              path: cluster.href,
+            })),
+          }),
           buildFaqJsonLd(faqItems),
         ]}
       />
@@ -175,20 +245,24 @@ export default function ForzaTuningCalculatorPage() {
       <section className="overflow-hidden border-b border-zinc-800">
         <div className="forza-hero-grid pointer-events-none absolute inset-x-0 top-16 h-[32rem] opacity-35" />
         <div className="mx-auto grid max-w-7xl items-start gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] lg:px-8">
-          <div className="min-w-0">
+          <div className="min-w-0 max-w-full overflow-hidden">
             <p className="forza-chip">Forza tuning calculator</p>
-            <h1 className="forza-neon-title mt-4 max-w-3xl text-4xl font-semibold tracking-normal text-zinc-50 sm:text-5xl">
+            <h1 className="forza-neon-title mt-4 max-w-[22rem] text-4xl font-semibold tracking-normal text-zinc-50 [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl">
               One Forza tuning workflow, then the right calculator.
             </h1>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-400">
+            <p className="mt-4 max-w-[22rem] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl">
               Use this page when you searched for a Forza tuning calculator, FH5
               tuning calculator, gear ratio calculator, tune codes, or best car
               setup path. Apex Tune Hub routes the problem into the active FH6
               calculator stack first, then keeps FH5/FH6 content separated as
               real data improves.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="forza-primary-button">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button
+                asChild
+                size="lg"
+                className="forza-primary-button w-full justify-center sm:w-auto"
+              >
                 <LocaleLink href="/tools/forza-horizon-6-tune-calculator">
                   Open FH6 Tune Calculator
                   <ArrowRightIcon className="ml-2 size-4" />
@@ -198,7 +272,7 @@ export default function ForzaTuningCalculatorPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-md"
+                className="w-full rounded-md justify-center sm:w-auto"
               >
                 <LocaleLink href="/tools/forza-horizon-6-gear-ratio-calculator">
                   Open Gear Tool
@@ -241,19 +315,27 @@ export default function ForzaTuningCalculatorPage() {
           </div>
 
           <div className="forza-panel overflow-hidden">
-            <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_1.05fr_1.1fr]">
+            <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.85fr_0.58fr_1.05fr_1.02fr]">
               <span>Search signal</span>
+              <span>Volume</span>
               <span>What it means</span>
               <span>Page handoff</span>
             </div>
             {semrushSignals.map((row) => (
               <div
-                className="grid gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_1.05fr_1.1fr]"
+                className="grid min-w-0 gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.85fr_0.58fr_1.05fr_1.02fr]"
                 key={row.query}
               >
-                <span className="font-semibold text-zinc-50">{row.query}</span>
-                <span className="leading-6 text-zinc-400">{row.takeaway}</span>
-                <span className="leading-6 text-cyan-100">{row.handoff}</span>
+                <span className="min-w-0 font-semibold text-zinc-50 [overflow-wrap:anywhere]">
+                  {row.query}
+                </span>
+                <span className="text-amber-200">{row.signal}</span>
+                <span className="min-w-0 leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                  {row.takeaway}
+                </span>
+                <span className="min-w-0 leading-6 text-cyan-100 [overflow-wrap:anywhere]">
+                  {row.handoff}
+                </span>
               </div>
             ))}
           </div>
@@ -333,34 +415,25 @@ export default function ForzaTuningCalculatorPage() {
               </p>
             </div>
             <div className="grid items-start gap-3 md:grid-cols-2">
-              {[
-                [
-                  'Best car pages',
-                  'Use role-based tables before exact meta claims.',
-                ],
-                [
-                  'Drift car pages',
-                  'Match car picks to angle, recovery, and gearing.',
-                ],
-                [
-                  'Tune-code pages',
-                  'Explain how to use codes and mark readiness.',
-                ],
-                [
-                  'Oversteer pages',
-                  'Keep FH5 language mapped to FH6 symptoms.',
-                ],
-              ].map(([heading, body]) => (
-                <div
-                  className="rounded-md border border-white/10 bg-white/[0.03] p-4"
-                  key={heading}
-                >
-                  <h3 className="text-base font-semibold text-zinc-100">
-                    {heading}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-400">{body}</p>
-                </div>
-              ))}
+              {contentClusterLinks.map((cluster) => {
+                const Icon = cluster.icon;
+
+                return (
+                  <LocaleLink
+                    className="rounded-md border border-white/10 bg-white/[0.03] p-4 transition hover:bg-white/[0.06]"
+                    href={cluster.href}
+                    key={cluster.href}
+                  >
+                    <Icon className="size-5 text-cyan-300" />
+                    <h3 className="mt-3 text-base font-semibold text-zinc-100">
+                      {cluster.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-400">
+                      {cluster.body}
+                    </p>
+                  </LocaleLink>
+                );
+              })}
             </div>
           </div>
         </div>
