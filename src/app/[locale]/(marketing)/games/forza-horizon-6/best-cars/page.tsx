@@ -127,6 +127,12 @@ const bestCarNextLinks = [
     href: '/games/forza/best-cars',
   },
   {
+    title: 'Forza Car List Database',
+    description:
+      'Use the broad car-list page for FH5/FH6 car-list searches before opening specific FH6 car rows.',
+    href: '/games/forza/car-list',
+  },
+  {
     title: 'Car Database',
     description:
       'Browse individual car pages with class, PI, tune direction, presets, and candidate status.',

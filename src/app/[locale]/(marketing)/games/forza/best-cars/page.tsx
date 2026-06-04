@@ -57,8 +57,8 @@ const searchSignals = [
   {
     query: 'best cars in forza horizon 5',
     signal: '590 US',
-    route: 'Car database',
-    href: '/games/forza-horizon-6/cars',
+    route: 'Car list hub',
+    href: '/games/forza/car-list',
   },
 ];
 
@@ -120,8 +120,8 @@ const routeMatrix = [
     intent: 'Car list',
     useFirst:
       'Compare stock class, PI, acquisition, tune direction, and testing status.',
-    nextPage: 'Car database',
-    href: '/games/forza-horizon-6/cars',
+    nextPage: 'Forza car list',
+    href: '/games/forza/car-list',
   },
 ];
 

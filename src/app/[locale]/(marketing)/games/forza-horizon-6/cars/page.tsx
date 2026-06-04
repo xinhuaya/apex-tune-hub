@@ -114,6 +114,13 @@ const databaseStats = [
 
 const officialListCards = [
   {
+    label: 'Broad car-list route',
+    value: 'Forza car list hub',
+    detail:
+      'Use the broader route for FH5/FH6 car-list searches before opening FH6-specific rows.',
+    href: '/games/forza/car-list',
+  },
+  {
     label: 'Official source',
     value: 'Forza.net car list',
     detail:
@@ -384,7 +391,7 @@ export default function ForzaHorizon6CarsPage() {
                 have useful class, route, settings, or weekly-event value.
               </p>
             </div>
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {officialListCards.map((card) => {
                 const isExternal = card.href.startsWith('http');
                 const content = (

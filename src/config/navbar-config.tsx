@@ -62,6 +62,14 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Forza Car List',
+          description:
+            'Broad Forza car-list route for FH5/FH6 database searches',
+          icon: <DatabaseIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaCarList,
+          external: false,
+        },
+        {
           title: 'FH6 Best Cars Hub',
           description: 'Road, drift, rally, class, and weekly car picks',
           icon: <BadgeCheckIcon className="size-4 shrink-0" />,

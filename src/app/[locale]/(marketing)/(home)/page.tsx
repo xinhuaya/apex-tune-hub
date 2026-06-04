@@ -50,6 +50,7 @@ const tools = [
 
 const homepageItemList = [
   { name: 'Forza Best Cars Hub', path: '/games/forza/best-cars' },
+  { name: 'Forza Car List Database', path: '/games/forza/car-list' },
   { name: 'Forza Horizon 6 Hub', path: '/games/forza-horizon-6' },
   {
     name: 'Forza Tuning Calculator',
