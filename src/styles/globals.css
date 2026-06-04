@@ -526,7 +526,7 @@ html {
   }
 
   .forza-signal {
-    @apply grid min-w-0 grid-cols-[auto_1fr] items-start gap-3 rounded-md border border-white/10 bg-black/30 p-3;
+    @apply grid h-fit min-w-0 self-start grid-cols-[auto_1fr] items-start gap-3 rounded-md border border-white/10 bg-black/30 p-3;
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.06),
       0 12px 34px rgb(0 0 0 / 0.22);

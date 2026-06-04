@@ -221,7 +221,7 @@ export default function HomePage() {
             <ForzaHomeTuneWorkbench />
           </div>
 
-          <div className="grid max-w-[22rem] gap-3 sm:max-w-2xl sm:grid-cols-3 lg:col-start-1 lg:row-start-2">
+          <div className="grid max-w-[22rem] items-start gap-3 sm:max-w-2xl sm:grid-cols-3 lg:col-start-1 lg:row-start-2">
             {launchSignals.map((item) => {
               const Icon = item.icon;
 

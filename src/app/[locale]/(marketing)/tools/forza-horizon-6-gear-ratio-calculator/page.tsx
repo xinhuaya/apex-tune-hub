@@ -18,9 +18,9 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
 const pathname = '/tools/forza-horizon-6-gear-ratio-calculator';
-const title = 'Forza Horizon 6 Gear Ratio Calculator - Apex Tune Hub';
+const title = 'Forza Gear Ratio Calculator for FH6 - Apex Tune Hub';
 const description =
-  'Tune Forza Horizon 6 final drive and gear spacing around acceleration, top speed, drift, rally, and balanced builds.';
+  'Use this FH6 gear ratio calculator to tune Forza final drive, launch, shift spacing, limiter behavior, and top speed around the route.';
 
 const gearWorkflow = [
   {

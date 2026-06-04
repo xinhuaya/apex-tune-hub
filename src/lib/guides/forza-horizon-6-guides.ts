@@ -5271,13 +5271,13 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
   },
   {
     slug: 'fix-oversteer',
-    title: 'How to Fix Oversteer in Forza Horizon 6 - Apex Tune Hub',
-    h1: 'How to fix oversteer in Forza Horizon 6',
+    title: 'Fix FH6 Oversteer: Rear Steps Out Tuning Guide - Apex Tune Hub',
+    h1: 'Fix FH6 oversteer when the rear steps out',
     description:
-      'Forza Horizon 6 oversteer tuning guide for twitchy RWD, rally, drift-adjacent, and street builds.',
+      'Fix Forza Horizon 6 oversteer with entry, exit, bump, RWD, rally, and street tuning checks before changing every slider.',
     eyebrow: 'Handling fix',
     intro:
-      'Oversteer can be useful, but only when it is predictable. The goal is not to remove rotation; it is to make the rear catchable.',
+      'If the rear steps out in FH6, tune the trigger first: braking, lift-off, throttle, bumps, or gearing. The goal is not to remove rotation; it is to make the car catchable.',
     primaryCta: {
       label: 'Open oversteer tune calculator',
       href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=A&issue=oversteer&style=balanced',
