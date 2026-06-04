@@ -24,6 +24,13 @@ const feedItems: FeedItem[] = [
     category: 'Source tracking',
   },
   {
+    title: 'Forza best cars hub',
+    path: '/games/forza/best-cars',
+    description:
+      'Broad Forza best-car search route for FH5 and FH6 car intent, with handoffs into FH6 best cars, class hubs, tune presets, and calculators.',
+    category: 'Best cars',
+  },
+  {
     title: 'Forza Horizon 6 tuning hub',
     path: '/games/forza-horizon-6',
     description:

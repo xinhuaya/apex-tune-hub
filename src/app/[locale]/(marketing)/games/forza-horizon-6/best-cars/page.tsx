@@ -121,6 +121,12 @@ const bestCarWorkflow = [
 
 const bestCarNextLinks = [
   {
+    title: 'Forza Best Cars Hub',
+    description:
+      'Use the broad Forza best-car page when the search intent is not clearly FH6 yet.',
+    href: '/games/forza/best-cars',
+  },
+  {
     title: 'Car Database',
     description:
       'Browse individual car pages with class, PI, tune direction, presets, and candidate status.',

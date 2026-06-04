@@ -19,6 +19,7 @@ import {
   MailIcon,
   MailboxIcon,
   MonitorIcon,
+  SearchIcon,
   ShieldCheckIcon,
   SlidersHorizontalIcon,
   SquareKanbanIcon,
@@ -54,7 +55,14 @@ export function useNavbarLinks(): NestedMenuItem[] {
       title: 'Best Cars',
       items: [
         {
-          title: 'Best Cars Hub',
+          title: 'Forza Best Cars',
+          description: 'Broad Forza best-car route for FH5/FH6 searches',
+          icon: <SearchIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaBestCars,
+          external: false,
+        },
+        {
+          title: 'FH6 Best Cars Hub',
           description: 'Road, drift, rally, class, and weekly car picks',
           icon: <BadgeCheckIcon className="size-4 shrink-0" />,
           href: Routes.ForzaHorizon6BestCars,

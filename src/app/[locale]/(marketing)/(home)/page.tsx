@@ -49,6 +49,7 @@ const tools = [
 ];
 
 const homepageItemList = [
+  { name: 'Forza Best Cars Hub', path: '/games/forza/best-cars' },
   { name: 'Forza Horizon 6 Hub', path: '/games/forza-horizon-6' },
   {
     name: 'Forza Tuning Calculator',
@@ -89,8 +90,8 @@ const entryPaths = [
   },
   {
     title: 'I need the right car',
-    href: '/games/forza-horizon-6/best-cars',
-    action: 'Pick role first: road, drift, rally, class, JDM, or weekly.',
+    href: '/games/forza/best-cars',
+    action: 'Pick the Forza role first, then open the FH6 car path.',
     icon: CarFrontIcon,
   },
   {
