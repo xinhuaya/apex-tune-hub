@@ -22,6 +22,7 @@ import {
   GaugeIcon,
   ListChecksIcon,
   RouteIcon,
+  SearchIcon,
   ShieldCheckIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -107,6 +108,33 @@ const relatedLinks = [
     description:
       'Check what each slider changes before turning a baseline into a car-specific tune.',
     href: '/games/forza-horizon-6/tuning-settings',
+  },
+];
+
+const calculatorSearchSignals = [
+  {
+    query: 'forza horizon 6 tuning calculator',
+    signal: 'GSC: 51 clicks / 840 impressions on this tool family',
+    job: 'Keep the calculator as the main first-screen product.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    query: 'fh6 tune calculator',
+    signal: 'GSC: 7 clicks / 206 impressions',
+    job: 'Answer the short branded query with a fast usable calculator.',
+    href: '/tools/forza-horizon-6-tune-calculator',
+  },
+  {
+    query: 'forza horizon 5 tuning calculator',
+    signal: 'SEMrush: 110 US / 370 global',
+    job: 'Use evergreen Forza demand, but label the live workflow as FH6.',
+    href: '/tools/forza-tuning-calculator',
+  },
+  {
+    query: 'forza horizon 5 tune codes',
+    signal: 'SEMrush: 40 US / 160 global',
+    job: 'Route code intent into presets and verification rules.',
+    href: '/tools/forza-tune-codes',
   },
 ];
 
@@ -311,6 +339,7 @@ export default function ForzaHorizon6TuneCalculatorPage() {
               'Shareable preset URLs',
               'Local saved preset history',
               'Road, street, dirt, rally, drag, and drift setup paths',
+              'Search intent handoffs for FH6 calculator, FH5 tuning calculator, and tune-code queries',
             ],
           }),
           buildHowToJsonLd({
@@ -328,6 +357,13 @@ export default function ForzaHorizon6TuneCalculatorPage() {
             })),
           }),
           buildItemListJsonLd({
+            title: 'Forza Horizon 6 tune calculator search signals',
+            items: calculatorSearchSignals.map((signal) => ({
+              name: signal.query,
+              path: signal.href,
+            })),
+          }),
+          buildItemListJsonLd({
             title: 'Forza Horizon 6 tune calculator slider drilldowns',
             items: sliderDrilldownLinks.map((link) => ({
               name: link.title,
@@ -339,6 +375,45 @@ export default function ForzaHorizon6TuneCalculatorPage() {
       />
       <ForzaTuneCalculator />
       <ForzaBeginnerTestPlan mode="tune" />
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="forza-panel p-5">
+            <SearchIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+              This is the core product page
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+              Google is already sending calculator intent here, so the job is
+              simple: keep the first screen usable, explain the testing loop
+              below it, and route every broader Forza query into the right tool
+              instead of making visitors read before they can tune.
+            </p>
+          </div>
+
+          <div className="forza-panel min-w-0 overflow-hidden">
+            <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.92fr_0.9fr_1.18fr]">
+              <span>Search signal</span>
+              <span>Activity</span>
+              <span>Product job</span>
+            </div>
+            {calculatorSearchSignals.map((row) => (
+              <LocaleLink
+                className="grid min-w-0 gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.92fr_0.9fr_1.18fr]"
+                href={row.href}
+                key={row.query}
+              >
+                <span className="min-w-0 font-semibold text-zinc-50 [overflow-wrap:anywhere]">
+                  {row.query}
+                </span>
+                <span className="text-amber-200">{row.signal}</span>
+                <span className="min-w-0 leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                  {row.job}
+                </span>
+              </LocaleLink>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mb-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="forza-panel p-5">
