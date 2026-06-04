@@ -2221,6 +2221,42 @@ function TuneBaselineSummary({ input }: { input: TuneInput }) {
   const raceType = optionLabel(raceTypeOptions, input.raceType);
   const drivingStyle = optionLabel(styleOptions, input.drivingStyle);
   const plan = tuneActionPlans[input.handlingIssue];
+  const cornerRead = [
+    {
+      phase: 'Entry',
+      watch:
+        input.handlingIssue === 'unstable-braking'
+          ? 'Car darts, locks, or rotates before turn-in'
+          : 'Whether the car points in with one steering input',
+      firstMove:
+        input.handlingIssue === 'unstable-braking'
+          ? 'Stabilize brake phase first'
+          : 'Keep braking and turn-in repeatable',
+    },
+    {
+      phase: 'Apex',
+      watch:
+        input.handlingIssue === 'understeer'
+          ? 'Front misses the inside line'
+          : 'Rotation holds without extra correction',
+      firstMove:
+        input.handlingIssue === 'understeer'
+          ? 'Add front bite gradually'
+          : 'Change one balance setting',
+    },
+    {
+      phase: 'Exit',
+      watch:
+        input.handlingIssue === 'wheelspin' ||
+        input.handlingIssue === 'slow-launch'
+          ? 'Throttle turns into spin or bog'
+          : 'Rear stays settled as power comes in',
+      firstMove:
+        input.handlingIssue === 'poor-top-speed'
+          ? 'Check the longest useful straight'
+          : 'Make power delivery repeatable',
+    },
+  ];
 
   return (
     <div className="rounded-md border border-cyan-300/20 bg-cyan-300/[0.05] p-4">
@@ -2255,6 +2291,23 @@ function TuneBaselineSummary({ input }: { input: TuneInput }) {
             A testable Forza Horizon 6 tuning calculator starting point
           </p>
         </div>
+      </div>
+      <div className="mt-3 overflow-hidden rounded-md border border-white/10 bg-black/25">
+        <div className="hidden border-b border-white/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-zinc-500 sm:grid sm:grid-cols-[0.7fr_1.15fr_1fr]">
+          <span>Corner phase</span>
+          <span>Watch</span>
+          <span>First move</span>
+        </div>
+        {cornerRead.map((row) => (
+          <div
+            className="grid gap-1 border-b border-white/10 px-3 py-2 text-xs leading-5 last:border-b-0 sm:grid-cols-[0.7fr_1.15fr_1fr] sm:gap-2"
+            key={row.phase}
+          >
+            <span className="font-semibold text-zinc-100">{row.phase}</span>
+            <span className="text-cyan-100">{row.watch}</span>
+            <span className="text-zinc-400">{row.firstMove}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
