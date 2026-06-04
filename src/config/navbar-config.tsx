@@ -107,6 +107,13 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Forza Tune Codes',
+          description: 'Generic tune-code workflow for FH5/FH6 code searches',
+          icon: <LinkIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaTuneCodes,
+          external: false,
+        },
+        {
           title: 'Tune Calculator',
           description:
             'Baseline road, street, dirt, rally, and drag setup notes',

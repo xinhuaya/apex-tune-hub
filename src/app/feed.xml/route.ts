@@ -87,6 +87,13 @@ const feedItems: FeedItem[] = [
     category: 'Tool',
   },
   {
+    title: 'Forza tune codes hub',
+    path: '/tools/forza-tune-codes',
+    description:
+      'Broad Forza tune-code workflow for generic code searches, FH5 search demand, FH6 preset URLs, drag code intent, and verified-code readiness.',
+    category: 'Tool',
+  },
+  {
     title: 'Forza Horizon 6 guide library',
     path: '/games/forza-horizon-6/guides',
     description:

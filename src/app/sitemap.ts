@@ -55,6 +55,7 @@ const staticRoutes = [
   '/settings/forza-horizon-6-steam-deck',
   '/settings/forza-horizon-6-wheel',
   '/tools/forza-tuning-calculator',
+  '/tools/forza-tune-codes',
   '/tools/forza-horizon-6-drift-tune-calculator',
   '/tools/forza-horizon-6-gear-ratio-calculator',
   '/tools/forza-horizon-6-tune-calculator',
@@ -273,6 +274,7 @@ function getChangeFrequency(url: string): SitemapEntry['changeFrequency'] {
 
   if (
     url.includes('/games/forza-horizon-6') ||
+    url.includes('/tools/forza-tune-codes') ||
     url.includes('/tools/forza-tuning-calculator') ||
     url.includes('/tools/forza-horizon-6') ||
     url.includes('/settings/forza-horizon-6')
@@ -306,6 +308,10 @@ function getPriority(url: string) {
     return 0.92;
   }
 
+  if (url.includes('/tools/forza-tune-codes')) {
+    return 0.91;
+  }
+
   if (
     url.endsWith('/games/forza-horizon-6/guides') ||
     url.endsWith('/games/forza-horizon-6/best-cars') ||
@@ -328,6 +334,7 @@ function getPriority(url: string) {
 
   if (
     url.includes('/games/forza-horizon-6') ||
+    url.includes('/tools/forza-tune-codes') ||
     url.includes('/tools/forza-tuning-calculator') ||
     url.includes('/tools/forza-horizon-6') ||
     url.includes('/settings/forza-horizon-6')

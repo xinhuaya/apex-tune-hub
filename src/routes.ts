@@ -35,6 +35,7 @@ export enum Routes {
   ForzaHorizon6SteamDeck = '/settings/forza-horizon-6-steam-deck',
   ForzaHorizon6Wheel = '/settings/forza-horizon-6-wheel',
   ForzaTuningCalculator = '/tools/forza-tuning-calculator',
+  ForzaTuneCodes = '/tools/forza-tune-codes',
   TuneCalculator = '/tools/forza-horizon-6-tune-calculator',
   TunePresets = '/tools/forza-horizon-6-tune-presets',
   TuneCodes = '/tools/forza-horizon-6-tune-codes',

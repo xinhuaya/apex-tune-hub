@@ -76,9 +76,9 @@ const toolRoutes = [
   },
   {
     title: 'Tune Codes Hub',
-    href: '/tools/forza-horizon-6-tune-codes',
+    href: '/tools/forza-tune-codes',
     description:
-      'Track tune-code workflow, shareable presets, and code-readiness rules.',
+      'Route generic Forza tune-code searches into FH6 presets and verified-code rules.',
     icon: LinkIcon,
   },
 ];

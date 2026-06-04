@@ -65,6 +65,12 @@ const codeWorkflow = [
 
 const tuneCodeRows = [
   {
+    label: 'Generic Forza tune-code searches',
+    preset: 'Forza tune codes workflow router',
+    status: 'Search hub ready',
+    href: '/tools/forza-tune-codes',
+  },
+  {
     label: 'A class RWD street wheelspin',
     preset: 'A RWD street wheelspin stable',
     status: 'Baseline URL ready',

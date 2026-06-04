@@ -14,6 +14,7 @@ const corePages: string[][] = [
     '/games/forza-horizon-6/official-sources',
   ],
   ['Forza tuning calculator', '/tools/forza-tuning-calculator'],
+  ['Forza tune codes hub', '/tools/forza-tune-codes'],
   ['Forza Horizon 6 tune calculator', '/tools/forza-horizon-6-tune-calculator'],
   [
     'Forza Horizon 6 drift tune calculator',
