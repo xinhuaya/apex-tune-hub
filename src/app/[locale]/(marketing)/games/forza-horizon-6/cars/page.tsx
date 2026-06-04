@@ -167,6 +167,35 @@ const databaseCoverageRows = [
   },
 ];
 
+const carDatabaseRows = forzaHorizon6Cars.map((car) => ({
+  title: getForzaHorizon6CarTitle(car),
+  href: `/games/forza-horizon-6/cars/${car.slug}`,
+  classPi: `${car.stockClass} ${car.stockPi}`,
+  role: car.bestUse,
+  source: car.acquisition,
+  tunePath: car.tuneDirection,
+  status: car.testingStatus,
+}));
+
+const garageDataFeatures = [
+  {
+    title: 'Saved garage list',
+    text: 'Members can save candidate cars, class targets, and personal notes once traffic shows repeat interest.',
+  },
+  {
+    title: 'Car comparison rows',
+    text: 'Class, PI, role, tune direction, and status are enough to compare two candidate cars cleanly.',
+  },
+  {
+    title: 'Preset attachment',
+    text: 'Each useful car can attach a baseline preset URL before a real in-game code is verified.',
+  },
+  {
+    title: 'Testing history',
+    text: 'The future paid layer should track route, date, patch, screenshot, and setup version per car.',
+  },
+];
+
 const testingStatusRows = [
   {
     status: 'candidate',
@@ -235,6 +264,17 @@ export default function ForzaHorizon6CarsPage() {
               position: index + 1,
               name: getForzaHorizon6CarTitle(car),
               url: `https://apextunehub.com/games/forza-horizon-6/cars/${car.slug}`,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Forza Horizon 6 garage database preview rows',
+            itemListElement: carDatabaseRows.map((row, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: `${row.title} - ${row.classPi}`,
+              url: `https://apextunehub.com${row.href}`,
             })),
           },
         ]}
@@ -529,6 +569,61 @@ export default function ForzaHorizon6CarsPage() {
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="forza-panel mb-6 overflow-hidden">
+          <div className="grid gap-4 border-b border-white/10 bg-white/[0.03] px-5 py-5 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300">
+                Garage database view
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">
+                Make the car list feel like a working garage database.
+              </h2>
+            </div>
+            <p className="text-sm leading-6 text-zinc-400">
+              The free page should let players scan class, PI, role, source,
+              tune direction, and testing status quickly. The same structure can
+              become saved garage lists, car comparisons, preset attachments,
+              and route-test history later.
+            </p>
+          </div>
+          <div className="hidden grid-cols-[1fr_0.55fr_1fr_0.8fr_1.45fr_0.72fr] border-b border-white/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500 xl:grid">
+            <span>Car</span>
+            <span>Class</span>
+            <span>Role</span>
+            <span>Source</span>
+            <span>Tune path</span>
+            <span>Status</span>
+          </div>
+          {carDatabaseRows.map((row) => (
+            <LocaleLink
+              className="grid gap-2 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] xl:grid-cols-[1fr_0.55fr_1fr_0.8fr_1.45fr_0.72fr] xl:gap-4"
+              href={row.href}
+              key={row.href}
+            >
+              <span className="font-semibold text-zinc-50">{row.title}</span>
+              <span className="text-amber-200">{row.classPi}</span>
+              <span className="leading-6 text-cyan-100">{row.role}</span>
+              <span className="leading-6 text-zinc-400">{row.source}</span>
+              <span className="leading-6 text-zinc-400">{row.tunePath}</span>
+              <span className="text-zinc-300">{row.status}</span>
+            </LocaleLink>
+          ))}
+        </div>
+
+        <div className="mb-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {garageDataFeatures.map((feature) => (
+            <article className="forza-card p-5" key={feature.title}>
+              <DatabaseIcon className="size-5 text-cyan-300" />
+              <h2 className="mt-4 text-lg font-semibold text-zinc-50">
+                {feature.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-400">
+                {feature.text}
+              </p>
+            </article>
+          ))}
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
