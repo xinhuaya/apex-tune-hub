@@ -13,7 +13,13 @@ import {
   buildSoftwareApplicationJsonLd,
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
-import { FlagIcon, GaugeIcon, ListChecksIcon, TimerIcon } from 'lucide-react';
+import {
+  FlagIcon,
+  GaugeIcon,
+  ListChecksIcon,
+  SearchIcon,
+  TimerIcon,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 
@@ -57,6 +63,12 @@ const gearRelatedLinks = [
     href: '/games/forza/best-drag-cars',
   },
   {
+    title: 'Forza Drift Cars Hub',
+    description:
+      'Use this when gearing questions are tied to drift angle, snapback, bogging mid-drift, or drift tune-code intent.',
+    href: '/games/forza/best-drift-cars',
+  },
+  {
     title: 'Forza Tuning Calculator',
     description:
       'Use the broad Forza calculator hub when the search is not yet FH6-specific or when you need the main workflow first.',
@@ -79,6 +91,33 @@ const gearRelatedLinks = [
     description:
       'Pair gearing changes with road candidates that can use longer straights and stable exits.',
     href: '/games/forza-horizon-6/best-road-racing-cars',
+  },
+];
+
+const gearSearchSignals = [
+  {
+    query: 'forza gear ratio calculator',
+    source: 'GSC page signal',
+    signal: '43 clicks / 1,222 impressions on the gear URL',
+    route: 'Keep this as the main gearing product page.',
+  },
+  {
+    query: 'forza horizon 5 gear ratio calculator',
+    source: 'SEMrush US',
+    signal: '20 US / 30 global',
+    route: 'Answer broad Forza intent, then label FH6 workflow clearly.',
+  },
+  {
+    query: 'best drag car in forza horizon 5',
+    source: 'SEMrush US',
+    signal: '1,000 US',
+    route: 'Send launch and trap-speed questions into gearing checks.',
+  },
+  {
+    query: 'forza horizon 5 drift tune codes',
+    source: 'SEMrush US',
+    signal: '40 US',
+    route: 'Send bogging and main drift gear questions into gearing checks.',
   },
 ];
 
@@ -273,6 +312,46 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
       />
       <ForzaGearRatioCalculator />
       <ForzaBeginnerTestPlan mode="gear" />
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="forza-panel p-5">
+            <SearchIcon className="size-6 text-amber-300" />
+            <h2 className="mt-4 text-2xl font-semibold text-zinc-50">
+              Gear searches need a route target
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+              The gear URL is already getting Search Console activity, so this
+              page should act like the main Forza gearing workbench. Broad FH5
+              demand is used as search evidence; the live calculator remains
+              labeled around FH6 tuning decisions.
+            </p>
+          </div>
+
+          <div className="forza-panel min-w-0 overflow-hidden">
+            <div className="grid border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.9fr_0.62fr_0.9fr_1.1fr]">
+              <span>Search signal</span>
+              <span>Source</span>
+              <span>Volume / activity</span>
+              <span>Page job</span>
+            </div>
+            {gearSearchSignals.map((row) => (
+              <div
+                className="grid min-w-0 gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.9fr_0.62fr_0.9fr_1.1fr]"
+                key={row.query}
+              >
+                <span className="min-w-0 font-semibold text-zinc-50 [overflow-wrap:anywhere]">
+                  {row.query}
+                </span>
+                <span className="text-cyan-100">{row.source}</span>
+                <span className="text-amber-200">{row.signal}</span>
+                <span className="min-w-0 leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                  {row.route}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mb-6 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="forza-panel p-5">
