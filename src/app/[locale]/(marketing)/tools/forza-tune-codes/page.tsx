@@ -21,6 +21,7 @@ import {
   SearchIcon,
   ShieldCheckIcon,
   SlidersHorizontalIcon,
+  Table2Icon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -160,6 +161,35 @@ const workflowRows = [
   },
 ];
 
+const codeDatabaseBlueprint = [
+  {
+    rowType: 'Preset URL baseline',
+    requiredFields: 'Class, drivetrain, race type, symptom, preset URL',
+    userValue:
+      'Safe to use now while exact in-game share codes are unverified.',
+    memberLayer: 'Saved garage baseline',
+  },
+  {
+    rowType: 'Player-submitted code',
+    requiredFields: 'Share code, car, creator/source, class, route',
+    userValue:
+      'Useful only after context is complete and the source is visible.',
+    memberLayer: 'Needs-test queue',
+  },
+  {
+    rowType: 'Verified code row',
+    requiredFields: 'Code, car, route, source, last-tested date, weakness',
+    userValue: 'The future high-trust table users will bookmark and compare.',
+    memberLayer: 'Favorites and retest alerts',
+  },
+  {
+    rowType: 'Patch-sensitive code',
+    requiredFields: 'Old code, patch note, changed behavior, replacement link',
+    userValue: 'Keeps old search traffic honest without silently hiding risk.',
+    memberLayer: 'Version history',
+  },
+];
+
 const faqItems = [
   {
     question: 'Does Apex Tune Hub publish real Forza tune codes?',
@@ -211,31 +241,51 @@ export default function ForzaTuneCodesPage() {
               path: item.href,
             })),
           }),
+          buildItemListJsonLd({
+            title: 'Forza tune code search signals',
+            items: searchSignals.map((item) => ({
+              name: item.query,
+              path: pathname,
+            })),
+          }),
+          buildItemListJsonLd({
+            title: 'Forza tune code database blueprint',
+            items: codeDatabaseBlueprint.map((item) => ({
+              name: item.rowType,
+              path: pathname,
+            })),
+          }),
           buildFaqJsonLd(faqItems),
         ]}
       />
 
       <section className="border-white/10 border-b bg-[radial-gradient(circle_at_18%_12%,rgba(255,48,95,0.18),transparent_34%),radial-gradient(circle_at_78%_4%,rgba(28,213,255,0.18),transparent_32%),linear-gradient(135deg,#090a0f_0%,#05070a_58%,#071314_100%)]">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
-          <div className="flex flex-col justify-center">
+          <div className="min-w-0 max-w-full overflow-hidden flex flex-col justify-center">
             <p className="forza-chip">Forza tune codes</p>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[0.95] tracking-normal text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 max-w-[22rem] text-4xl font-black leading-[0.95] tracking-normal text-white [overflow-wrap:anywhere] sm:max-w-3xl sm:text-5xl lg:text-6xl">
               Find the right code workflow before trusting a tune code.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-400">
+            <p className="mt-5 max-w-[22rem] text-base leading-7 text-zinc-400 [overflow-wrap:anywhere] sm:max-w-2xl">
               This page catches broad Forza tune-code searches and routes them
               into the safest next step: FH6 preset URLs, verified-code rules,
               drag launch testing, or car-specific code rows when the evidence
               exists.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild className="forza-button">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button
+                asChild
+                className="forza-button w-full max-w-full justify-center sm:w-auto"
+              >
                 <LocaleLink href="/tools/forza-horizon-6-tune-codes">
                   Open FH6 Code Workflow
                   <ArrowRightIcon className="size-4" />
                 </LocaleLink>
               </Button>
-              <Button asChild className="forza-button-secondary">
+              <Button
+                asChild
+                className="forza-button-secondary w-full max-w-full justify-center sm:w-auto"
+              >
                 <LocaleLink href="/tools/forza-horizon-6-tune-presets">
                   Browse Preset URLs
                 </LocaleLink>
@@ -353,6 +403,49 @@ export default function ForzaTuneCodesPage() {
               <span className="text-cyan-100">Open page</span>
             </LocaleLink>
           ))}
+        </div>
+
+        <div className="mt-6 grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+          <div className="forza-panel h-fit p-5">
+            <Table2Icon className="size-6 text-cyan-300" />
+            <h2 className="mt-4 text-2xl font-semibold">
+              Build the code table as a data product
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+              The strongest monetization path is not hiding random codes behind
+              a paywall. It is a clean data layer: saved baselines, verified
+              rows, freshness labels, retest queues, and car-specific evidence
+              that players can trust and return to.
+            </p>
+          </div>
+
+          <div className="forza-panel min-w-0 overflow-hidden">
+            <div className="grid border-white/10 border-b bg-white/[0.03] px-5 py-3 text-cyan-200 text-xs font-semibold uppercase tracking-[0.18em] md:grid-cols-[0.82fr_1.05fr_1.1fr_0.82fr]">
+              <span>Row type</span>
+              <span>Required fields</span>
+              <span>User value</span>
+              <span>Member layer</span>
+            </div>
+            {codeDatabaseBlueprint.map((row) => (
+              <div
+                className="grid min-w-0 gap-3 border-white/10 border-b px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.82fr_1.05fr_1.1fr_0.82fr]"
+                key={row.rowType}
+              >
+                <span className="font-semibold text-zinc-50">
+                  {row.rowType}
+                </span>
+                <span className="min-w-0 leading-6 text-amber-100 [overflow-wrap:anywhere]">
+                  {row.requiredFields}
+                </span>
+                <span className="min-w-0 leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                  {row.userValue}
+                </span>
+                <span className="min-w-0 leading-6 text-cyan-100 [overflow-wrap:anywhere]">
+                  {row.memberLayer}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
