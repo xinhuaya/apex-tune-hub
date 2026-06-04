@@ -20,6 +20,7 @@ import {
   ListChecksIcon,
   SearchIcon,
   ShieldCheckIcon,
+  SlidersHorizontalIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -72,6 +73,13 @@ const codeHandoffs = [
       'Route drag-code searches into launch, gearing, candidate cars, and verified-code rules.',
     href: '/games/forza/best-drag-cars',
     icon: GaugeIcon,
+  },
+  {
+    title: 'Forza Drift Cars Hub',
+    description:
+      'Route drift-code searches into RWD/AWD choice, angle control, candidate cars, and verified-code rules.',
+    href: '/games/forza/best-drift-cars',
+    icon: SlidersHorizontalIcon,
   },
   {
     title: 'FH6 Tune Codes Workflow',

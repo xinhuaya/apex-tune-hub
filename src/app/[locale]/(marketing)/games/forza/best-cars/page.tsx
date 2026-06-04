@@ -52,7 +52,7 @@ const searchSignals = [
     query: 'best drift car in forza horizon 5',
     signal: '880 US',
     route: 'Drift car candidates',
-    href: '/games/forza-horizon-6/best-drift-cars',
+    href: '/games/forza/best-drift-cars',
   },
   {
     query: 'best cars in forza horizon 5',
@@ -72,7 +72,7 @@ const roleRoutes = [
   {
     title: 'I need a drift car',
     body: 'Use angle control, recovery, power delivery, and gearing before chasing a dramatic build.',
-    href: '/games/forza-horizon-6/best-drift-cars',
+    href: '/games/forza/best-drift-cars',
     icon: SlidersHorizontalIcon,
   },
   {
@@ -99,8 +99,8 @@ const routeMatrix = [
   {
     intent: 'Best drift car',
     useFirst: 'Prioritize controllable angle and recovery over power.',
-    nextPage: 'Best drift cars',
-    href: '/games/forza-horizon-6/best-drift-cars',
+    nextPage: 'Forza drift hub',
+    href: '/games/forza/best-drift-cars',
   },
   {
     intent: 'Best drag car',

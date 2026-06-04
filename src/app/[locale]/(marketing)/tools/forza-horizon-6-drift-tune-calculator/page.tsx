@@ -59,6 +59,12 @@ const driftWorkflow = [
 
 const driftRelatedLinks = [
   {
+    title: 'Forza Drift Cars Hub',
+    description:
+      'Use the broad drift-car hub when a player starts from best drift car, drift tune code, RWD, AWD, or drift-zone searches.',
+    href: '/games/forza/best-drift-cars',
+  },
+  {
     title: 'Forza Tuning Calculator',
     description:
       'Use the broad Forza calculator hub when a player starts from general tuning, FH5 drift, or FH6 setup searches.',

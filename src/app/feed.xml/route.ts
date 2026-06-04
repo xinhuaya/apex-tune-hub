@@ -38,6 +38,13 @@ const feedItems: FeedItem[] = [
     category: 'Best cars',
   },
   {
+    title: 'Forza best drift cars hub',
+    path: '/games/forza/best-drift-cars',
+    description:
+      'Broad Forza drift-car search route for FH5 and FH6 drift candidates, drift tune-code, RWD/AWD, drift-zone, and calculator intent.',
+    category: 'Best cars',
+  },
+  {
     title: 'Forza car list database',
     path: '/games/forza/car-list',
     description:

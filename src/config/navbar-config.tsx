@@ -70,6 +70,14 @@ export function useNavbarLinks(): NestedMenuItem[] {
           external: false,
         },
         {
+          title: 'Forza Drift Cars',
+          description:
+            'Broad drift-car route for FH5/FH6 angle and code searches',
+          icon: <SlidersHorizontalIcon className="size-4 shrink-0" />,
+          href: Routes.ForzaBestDriftCars,
+          external: false,
+        },
+        {
           title: 'Forza Car List',
           description:
             'Broad Forza car-list route for FH5/FH6 database searches',

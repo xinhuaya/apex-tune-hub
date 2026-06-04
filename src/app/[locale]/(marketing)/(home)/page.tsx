@@ -51,6 +51,10 @@ const tools = [
 const homepageItemList = [
   { name: 'Forza Best Cars Hub', path: '/games/forza/best-cars' },
   { name: 'Forza Best Drag Cars Hub', path: '/games/forza/best-drag-cars' },
+  {
+    name: 'Forza Best Drift Cars Hub',
+    path: '/games/forza/best-drift-cars',
+  },
   { name: 'Forza Car List Database', path: '/games/forza/car-list' },
   { name: 'Forza Horizon 6 Hub', path: '/games/forza-horizon-6' },
   {

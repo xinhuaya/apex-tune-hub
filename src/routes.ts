@@ -12,6 +12,7 @@ export enum Routes {
   Docs = '/docs',
   ForzaBestCars = '/games/forza/best-cars',
   ForzaBestDragCars = '/games/forza/best-drag-cars',
+  ForzaBestDriftCars = '/games/forza/best-drift-cars',
   ForzaCarList = '/games/forza/car-list',
   ForzaHorizon6 = '/games/forza-horizon-6',
   ForzaHorizon6Guides = '/games/forza-horizon-6/guides',
