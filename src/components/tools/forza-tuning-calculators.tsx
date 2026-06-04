@@ -2024,6 +2024,25 @@ function ToolOutputPreview({ result }: { result: CalculationResult }) {
           </div>
         </div>
       ) : null}
+      <div className="mt-3 grid gap-2 rounded-md border border-amber-300/20 bg-amber-300/[0.05] p-3 sm:grid-cols-2">
+        <div>
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-amber-200">
+            Logic status
+          </p>
+          <p className="mt-1 text-xs leading-5 text-zinc-400">
+            Current FH6 baseline model, updated as official info and route tests
+            improve.
+          </p>
+        </div>
+        <div>
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-amber-200">
+            Trust rule
+          </p>
+          <p className="mt-1 text-xs leading-5 text-zinc-400">
+            Change the first dial, repeat the same route, then save the preset.
+          </p>
+        </div>
+      </div>
       <p className="mt-2 text-xs leading-5 text-zinc-500">
         Copy notes for the route test log and preset URL.
       </p>
