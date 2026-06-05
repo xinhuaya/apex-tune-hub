@@ -14,6 +14,7 @@ import {
   buildWebPageJsonLd,
 } from '@/lib/seo/forza-horizon-6';
 import {
+  ArrowRightIcon,
   FlagIcon,
   GaugeIcon,
   ListChecksIcon,
@@ -118,6 +119,45 @@ const gearSearchSignals = [
     source: 'SEMrush US',
     signal: '40 US',
     route: 'Send bogging and main drift gear questions into gearing checks.',
+  },
+];
+
+const gearIntentClusters = [
+  {
+    title: 'Gear ratio calculator',
+    query: 'forza gear ratio calculator',
+    userProblem:
+      'The car hits limiter, never reaches top gear, or bogs after shifts.',
+    pageAnswer:
+      'Use this page first. Pick route, gear count, priority, and symptom, then copy the final-drive test.',
+    href: pathname,
+  },
+  {
+    title: 'Drag launch gearing',
+    query: 'best drag car in forza horizon 5',
+    userProblem:
+      'The search starts with car choice, but the real test is launch, first shift, and trap speed.',
+    pageAnswer:
+      'Choose a drag candidate, then open the gear tool when launch or limiter behavior is the blocker.',
+    href: '/games/forza/best-drag-cars',
+  },
+  {
+    title: 'Drift gear recovery',
+    query: 'forza horizon 5 drift tune codes',
+    userProblem:
+      'The drift car drops out of power, snaps back, or cannot hold one useful gear.',
+    pageAnswer:
+      'Stabilize the drift setup first, then use gearing only when the main drift gear is the issue.',
+    href: '/games/forza/best-drift-cars',
+  },
+  {
+    title: 'Handling before gearing',
+    query: 'fh6 oversteer / understeer',
+    userProblem:
+      'The car rotates badly, pushes wide, or feels unstable before the straight even starts.',
+    pageAnswer:
+      'Use the main tune calculator before gearing. Gear edits cannot fix a balance problem by themselves.',
+    href: '/tools/forza-horizon-6-tune-calculator',
   },
 ];
 
@@ -307,6 +347,13 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
               path: link.href,
             })),
           }),
+          buildItemListJsonLd({
+            title: 'Forza gear ratio search intent clusters',
+            items: gearIntentClusters.map((cluster) => ({
+              name: cluster.title,
+              path: cluster.href,
+            })),
+          }),
           buildFaqJsonLd(gearFaqs),
         ]}
       />
@@ -350,6 +397,33 @@ export default function ForzaHorizon6GearRatioCalculatorPage() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {gearIntentClusters.map((cluster) => (
+            <LocaleLink
+              className="forza-card group min-w-0 overflow-hidden p-4"
+              href={cluster.href}
+              key={cluster.title}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-cyan-200 [overflow-wrap:anywhere]">
+                    {cluster.query}
+                  </p>
+                  <h3 className="mt-3 text-base font-semibold text-zinc-50">
+                    {cluster.title}
+                  </h3>
+                </div>
+                <ArrowRightIcon className="mt-0.5 size-4 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-cyan-200" />
+              </div>
+              <p className="mt-3 text-sm leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                {cluster.userProblem}
+              </p>
+              <p className="mt-3 rounded-md border border-white/10 bg-black/25 px-3 py-2 text-xs leading-5 text-zinc-300 [overflow-wrap:anywhere]">
+                {cluster.pageAnswer}
+              </p>
+            </LocaleLink>
+          ))}
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
