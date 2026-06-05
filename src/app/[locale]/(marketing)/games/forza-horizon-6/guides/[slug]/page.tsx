@@ -172,6 +172,8 @@ export default async function ForzaHorizon6GuidePage({
   const relatedGuides = getRelatedGuides(guide);
   const pathname = `/games/forza-horizon-6/guides/${guide.slug}`;
   const guideCluster = getGuideCluster(guide);
+  const guideIntentClusters = guide.intentClusters ?? [];
+  const guideQuickFixRows = guide.quickFixRows ?? [];
   const primaryActionLabel = guide.primaryCta.label.replace(/^Open\s+/i, '');
   const relatedGuideSummary = relatedGuides
     .map((item) => item.h1.replace(/^Forza Horizon 6\s+/i, ''))
@@ -295,6 +297,28 @@ export default async function ForzaHorizon6GuidePage({
               path: pathname,
             })),
           }),
+          ...(guideIntentClusters.length
+            ? [
+                buildItemListJsonLd({
+                  title: `${guide.h1} search intent clusters`,
+                  items: guideIntentClusters.map((item) => ({
+                    name: item.query,
+                    path: item.href,
+                  })),
+                }),
+              ]
+            : []),
+          ...(guideQuickFixRows.length
+            ? [
+                buildItemListJsonLd({
+                  title: `${guide.h1} quick fix routing`,
+                  items: guideQuickFixRows.map((item) => ({
+                    name: item.trigger,
+                    path: item.toolHref,
+                  })),
+                }),
+              ]
+            : []),
           buildFaqJsonLd(faqs),
         ]}
       />
@@ -403,6 +427,68 @@ export default async function ForzaHorizon6GuidePage({
               })}
             </div>
           </div>
+
+          {guideIntentClusters.length ? (
+            <div className="forza-panel mb-5 overflow-hidden">
+              <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.75fr_0.78fr_1.35fr]">
+                <span>Search query</span>
+                <span>Signal</span>
+                <span>Best answer</span>
+              </div>
+              {guideIntentClusters.map((item) => (
+                <LocaleLink
+                  className="grid min-w-0 gap-3 border-b border-white/10 px-5 py-4 text-sm transition last:border-b-0 hover:bg-white/[0.03] md:grid-cols-[0.75fr_0.78fr_1.35fr]"
+                  href={item.href}
+                  key={item.query}
+                >
+                  <span className="min-w-0 font-semibold text-zinc-50 [overflow-wrap:anywhere]">
+                    {item.query}
+                  </span>
+                  <span className="min-w-0 text-amber-200 [overflow-wrap:anywhere]">
+                    {item.searchSignal}
+                  </span>
+                  <span className="min-w-0 leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                    {item.answer}
+                  </span>
+                </LocaleLink>
+              ))}
+            </div>
+          ) : null}
+
+          {guideQuickFixRows.length ? (
+            <div className="forza-panel mb-5 overflow-hidden">
+              <div className="grid gap-3 border-b border-white/10 bg-white/[0.03] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 md:grid-cols-[0.72fr_0.9fr_1.2fr_0.42fr]">
+                <span>Trigger</span>
+                <span>Likely cause</span>
+                <span>First test</span>
+                <span>Tool</span>
+              </div>
+              {guideQuickFixRows.map((row) => (
+                <div
+                  className="grid min-w-0 gap-3 border-b border-white/10 px-5 py-4 text-sm last:border-b-0 md:grid-cols-[0.72fr_0.9fr_1.2fr_0.42fr]"
+                  key={row.trigger}
+                >
+                  <span className="min-w-0 font-semibold text-zinc-50 [overflow-wrap:anywhere]">
+                    {row.trigger}
+                  </span>
+                  <span className="min-w-0 leading-6 text-zinc-400 [overflow-wrap:anywhere]">
+                    {row.likelyCause}
+                  </span>
+                  <span className="min-w-0 leading-6 text-zinc-300 [overflow-wrap:anywhere]">
+                    {row.firstTest}
+                  </span>
+                  <Button
+                    asChild
+                    size="sm"
+                    variant="outline"
+                    className="w-full rounded-md"
+                  >
+                    <LocaleLink href={row.toolHref}>Open</LocaleLink>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          ) : null}
 
           <div className="grid items-start gap-4 lg:grid-cols-3">
             {guide.sections.map((section) => (

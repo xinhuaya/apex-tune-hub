@@ -22,6 +22,18 @@ export type ForzaHorizon6Guide = {
     label: string;
     href: string;
   }[];
+  intentClusters?: {
+    query: string;
+    searchSignal: string;
+    answer: string;
+    href: string;
+  }[];
+  quickFixRows?: {
+    trigger: string;
+    likelyCause: string;
+    firstTest: string;
+    toolHref: string;
+  }[];
   mediaSources?: ForzaHorizon6GuideMediaSource[];
   sections: {
     title: string;
@@ -5298,6 +5310,73 @@ export const forzaHorizon6Guides: ForzaHorizon6Guide[] = [
       {
         label: 'Gear ratio guide',
         href: '/games/forza-horizon-6/guides/gear-ratio-guide',
+      },
+    ],
+    intentClusters: [
+      {
+        query: 'fh6 oversteer',
+        searchSignal: 'GSC: early clicks with high impressions',
+        answer:
+          'Land the user on a simple rear-step-out diagnosis, then route them to the oversteer preset in the tune calculator.',
+        href: '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=A&issue=oversteer&style=balanced',
+      },
+      {
+        query: 'forza horizon 5 oversteer',
+        searchSignal: 'SEMrush: 20 US / 100 global',
+        answer:
+          'Use evergreen Forza handling language, but label the current workflow as FH6 and keep exact settings test-based.',
+        href: '/games/forza-horizon-6/guides/fix-oversteer',
+      },
+      {
+        query: 'rwd car spins on exit',
+        searchSignal: 'Adjacent handling intent',
+        answer:
+          'Separate throttle oversteer from drift setup. If the goal is angle, send the user to the drift calculator.',
+        href: '/tools/forza-horizon-6-drift-tune-calculator',
+      },
+      {
+        query: 'car unstable after shifts',
+        searchSignal: 'Gear-linked oversteer intent',
+        answer:
+          'If the rear only steps out after a shift, test gearing before changing every suspension slider.',
+        href: '/tools/forza-horizon-6-gear-ratio-calculator',
+      },
+    ],
+    quickFixRows: [
+      {
+        trigger: 'Rear snaps on corner entry',
+        likelyCause: 'Brake release, lift-off rotation, or too much front bite',
+        firstTest:
+          'Brake straighter, repeat the same entry, then soften the rear only if the snap repeats.',
+        toolHref:
+          '/tools/forza-horizon-6-tune-calculator?race=road&drive=RWD&class=S1&issue=oversteer&style=balanced',
+      },
+      {
+        trigger: 'Rear steps out on throttle',
+        likelyCause:
+          'Power delivery, diff accel, short low gear, or rear tire load',
+        firstTest:
+          'Run the same exit at half throttle and full throttle before touching suspension.',
+        toolHref:
+          '/tools/forza-horizon-6-tune-calculator?race=street&drive=RWD&class=A&issue=oversteer&style=safe',
+      },
+      {
+        trigger: 'Rally car rotates over bumps',
+        likelyCause:
+          'Stiff rear behavior, low compliance, or route-specific crest instability',
+        firstTest:
+          'Use one rough section as the proof route and keep a separate rally setup from road builds.',
+        toolHref:
+          '/tools/forza-horizon-6-tune-calculator?race=rally&drive=RWD&class=A&issue=oversteer&style=balanced',
+      },
+      {
+        trigger: 'Slide appears after shifting',
+        likelyCause:
+          'Gear gap, torque spike, or first-to-second recovery issue',
+        firstTest:
+          'Open the gear tool and test final drive or the affected shift before adding grip everywhere.',
+        toolHref:
+          '/tools/forza-horizon-6-gear-ratio-calculator?race=road&gears=6&priority=balanced&issue=bogs-after-shift',
       },
     ],
     mediaSources: [
